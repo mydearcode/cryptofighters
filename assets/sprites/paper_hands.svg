@@ -1,0 +1,39 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Paper Hands Character - Weak crypto trader -->
+  
+  <!-- Body -->
+  <rect x="20" y="32" width="24" height="20" fill="#DC143C" stroke="#B22222" stroke-width="2"/>
+  
+  <!-- Head -->
+  <circle cx="32" cy="20" r="12" fill="#FFE4B5" stroke="#DEB887" stroke-width="2"/>
+  
+  <!-- Eyes (worried expression) -->
+  <ellipse cx="28" cy="18" rx="2" ry="3" fill="#000"/>
+  <ellipse cx="36" cy="18" rx="2" ry="3" fill="#000"/>
+  
+  <!-- Worried mouth -->
+  <path d="M 28 24 Q 32 26 36 24" stroke="#000" stroke-width="1" fill="none"/>
+  
+  <!-- Red Chart Arrow Down on Chest -->
+  <polygon points="32,36 28,44 36,44" fill="#FF0000" stroke="#CC0000" stroke-width="1"/>
+  <rect x="30" y="44" width="4" height="6" fill="#FF0000" stroke="#CC0000" stroke-width="1"/>
+  
+  <!-- Arms -->
+  <rect x="12" y="34" width="8" height="16" fill="#FFE4B5" stroke="#DEB887" stroke-width="1"/>
+  <rect x="44" y="34" width="8" height="16" fill="#FFE4B5" stroke="#DEB887" stroke-width="1"/>
+  
+  <!-- Legs -->
+  <rect x="22" y="52" width="8" height="12" fill="#4169E1" stroke="#2E4BC7" stroke-width="1"/>
+  <rect x="34" y="52" width="8" height="12" fill="#4169E1" stroke="#2E4BC7" stroke-width="1"/>
+  
+  <!-- Paper Hands (torn paper effect) -->
+  <polygon points="12,46 16,50 20,46 18,54 14,54" fill="#F5F5DC" stroke="#D3D3D3" stroke-width="1"/>
+  <polygon points="44,46 48,50 52,46 50,54 46,54" fill="#F5F5DC" stroke="#D3D3D3" stroke-width="1"/>
+  
+  <!-- Tear lines on hands -->
+  <line x1="14" y1="48" x2="18" y2="52" stroke="#D3D3D3" stroke-width="1"/>
+  <line x1="46" y1="48" x2="50" y2="52" stroke="#D3D3D3" stroke-width="1"/>
+  
+  <!-- SELL text on forehead -->
+  <text x="32" y="14" text-anchor="middle" font-family="Arial" font-size="6" font-weight="bold" fill="#DC143C">SELL</text>
+</svg>

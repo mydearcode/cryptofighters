@@ -1,0 +1,31 @@
+{
+  "name": "crypto-fighters",
+  "version": "0.1.0",
+  "description": "2D pixel art fighting game with crypto theme for Telegram Mini App",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "phaser": "^3.70.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0",
+    "vite": "^5.0.0"
+  },
+  "keywords": [
+    "phaser",
+    "game",
+    "fighting",
+    "crypto",
+    "telegram",
+    "mini-app",
+    "typescript"
+  ],
+  "author": "Crypto Fighters Team",
+  "license": "MIT"
+}
