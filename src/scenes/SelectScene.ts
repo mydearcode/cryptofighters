@@ -12,6 +12,12 @@ export class SelectScene extends Phaser.Scene {
   }
   private currentPlayer: 1 | 2 = 1
   private characters = CharacterManager.getAllCharacters()
+  private characterIdMapping: { [key: string]: string } = {
+    'hodler': 'hodl_master',
+    'trader': 'paper_hands', 
+    'whale': 'whale_trader',
+    'degen': 'degen_ape'
+  }
   private player1ReadyButton!: Phaser.GameObjects.Text
   private player2ReadyButton!: Phaser.GameObjects.Text
   private player1Indicator!: Phaser.GameObjects.Text
@@ -19,6 +25,11 @@ export class SelectScene extends Phaser.Scene {
 
   constructor() {
     super({ key: 'SelectScene' })
+  }
+
+  preload() {
+    // Load character sprites
+    CharacterManager.preloadAssets(this)
   }
 
   create() {
@@ -154,18 +165,18 @@ export class SelectScene extends Phaser.Scene {
       const x = startX + (index % 2) * spacing * 3
       const y = startY + Math.floor(index / 2) * 120
 
-      // Character placeholder (colored rectangle)
-      const charColor = characterColors[character.id] || 0x888888
-      const charRect = this.add.rectangle(x, y, 80, 100, charColor)
+      // Character sprite instead of colored rectangle
+      const charSprite = this.add.image(x, y, character.sprite)
+        .setDisplaySize(80, 100)
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => {
           this.selectCharacter(character.id)
         })
         .on('pointerover', () => {
-          charRect.setStrokeStyle(3, 0xffffff)
+          charSprite.setTint(0xcccccc)
         })
         .on('pointerout', () => {
-          charRect.setStrokeStyle(0)
+          charSprite.clearTint()
         })
 
       // Character name
@@ -289,27 +300,22 @@ export class SelectScene extends Phaser.Scene {
     const width = this.cameras.main.width
     const x = player === 1 ? width / 4 : 3 * width / 4
 
-    // Color mapping for characters
-    const characterColors: { [key: string]: number } = {
-      'hodler': 0x00ff00,
-      'trader': 0xff0000,
-      'whale': 0x0066ff,
-      'degen': 0xff6600
-    }
-
     // Clear previous display
     const area = this.registry.get(`p${player}Area`)
-    const charColor = characterColors[character.id] || 0x888888
-    area.setFillStyle(charColor, 0.8)
+    area.setFillStyle(0x333333, 0.8)
+
+    // Add character sprite
+    const selectedSprite = this.add.image(x, 160, character.sprite)
+      .setDisplaySize(60, 80)
 
     // Add character info
-    this.add.text(x, x === width / 4 ? 160 : 160, character.name, {
+    this.add.text(x, 210, character.name, {
       font: 'bold 12px Courier New',
       color: '#ffffff'
     }).setOrigin(0.5)
 
-    this.add.text(x, x === width / 4 ? 200 : 200, 'READY!', {
-      font: 'bold 16px Courier New',
+    this.add.text(x, 225, 'SELECTED!', {
+      font: 'bold 10px Courier New',
       color: '#00ff00'
     }).setOrigin(0.5)
   }

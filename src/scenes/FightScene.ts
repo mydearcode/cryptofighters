@@ -15,6 +15,8 @@ export class FightScene extends Phaser.Scene {
   private cursors!: Phaser.Types.Input.Keyboard.CursorKeys
   private wasdKeys!: any
   private gameTimer!: Phaser.Time.TimerEvent
+  private player1HasHit: boolean = false
+  private player2HasHit: boolean = false
 
   constructor() {
     super({ key: 'FightScene' })
@@ -136,7 +138,7 @@ export class FightScene extends Phaser.Scene {
     this.cursors = this.input.keyboard!.createCursorKeys()
 
     // WASD keys for Player 1
-    this.wasdKeys = this.input.keyboard!.addKeys('W,S,A,D,SPACE,ENTER')
+    this.wasdKeys = this.input.keyboard!.addKeys('W,S,A,D,SPACE,Q,E,ENTER,CTRL')
   }
 
   private startRoundTimer() {
@@ -201,12 +203,25 @@ export class FightScene extends Phaser.Scene {
       this.player2.jump()
     }
 
-    // Attack inputs
+    // Attack inputs - different attack types
     if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.SPACE)) {
-      this.player1.attack()
+      this.player1.attack() // Basic attack
     }
+    if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.Q)) {
+      this.player1.attack() // Special move 1 (for now same as basic)
+    }
+    if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.E)) {
+      this.player1.attack() // Special move 2 (for now same as basic)
+    }
+    
     if (Phaser.Input.Keyboard.JustDown(this.cursors.shift!)) {
-      this.player2.attack()
+      this.player2.attack() // Basic attack
+    }
+    if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.ENTER)) {
+      this.player2.attack() // Special move 1 (for now same as basic)
+    }
+    if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.CTRL)) {
+      this.player2.attack() // Special move 2 (for now same as basic)
     }
 
     // Keep players on screen
@@ -228,14 +243,26 @@ export class FightScene extends Phaser.Scene {
       }
     }
 
-    // Check for attack collisions - only damage the other player
-    if (this.player1.currentState === CharacterState.ATTACKING && distance < 100) {
-      // Player 1 attacks Player 2
-      this.player2.takeDamage(15)
+    // Check for attack collisions - only damage the other player once per attack
+    if (this.player1.currentState === CharacterState.ATTACKING && distance < 100 && !this.player1HasHit) {
+      // Player 1 attacks Player 2 - use character's attack stat
+      const damage = this.player1.characterData.stats.attack
+      this.player2.takeDamage(damage)
+      this.player1HasHit = true
     }
-    if (this.player2.currentState === CharacterState.ATTACKING && distance < 100) {
-      // Player 2 attacks Player 1
-      this.player1.takeDamage(15)
+    if (this.player2.currentState === CharacterState.ATTACKING && distance < 100 && !this.player2HasHit) {
+      // Player 2 attacks Player 1 - use character's attack stat
+      const damage = this.player2.characterData.stats.attack
+      this.player1.takeDamage(damage)
+      this.player2HasHit = true
+    }
+
+    // Reset hit flags when not attacking
+    if (this.player1.currentState !== CharacterState.ATTACKING) {
+      this.player1HasHit = false
+    }
+    if (this.player2.currentState !== CharacterState.ATTACKING) {
+      this.player2HasHit = false
     }
 
     // Check for KO
