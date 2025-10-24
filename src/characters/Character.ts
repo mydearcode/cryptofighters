@@ -14,6 +14,12 @@ export interface CharacterData {
   moves: string[]
 }
 
+export enum AttackType {
+  BASIC = 'basic',
+  SPECIAL1 = 'special1', 
+  SPECIAL2 = 'special2'
+}
+
 export enum CharacterState {
   IDLE = 'idle',
   WALKING = 'walking',
@@ -26,6 +32,7 @@ export enum CharacterState {
 export class Character extends Phaser.GameObjects.Container {
   public characterData: CharacterData
   public currentState: CharacterState = CharacterState.IDLE
+  public currentAttackType: AttackType = AttackType.BASIC
   public health: number
   public maxHealth: number
   public facingRight: boolean = true
@@ -179,15 +186,44 @@ export class Character extends Phaser.GameObjects.Container {
     }
   }
 
-  public attack(): boolean {
+  public attack(attackType: AttackType = AttackType.BASIC): boolean {
     if (this.attackCooldown > 0 || this.currentState === CharacterState.HURT) {
       return false
     }
     
+    this.currentAttackType = attackType
     this.setCharacterState(CharacterState.ATTACKING)
-    this.attackCooldown = 500 // Attack cooldown in ms
+    
+    // Different cooldowns for different attack types
+    switch (attackType) {
+      case AttackType.BASIC:
+        this.attackCooldown = 400 // Fast basic attack
+        break
+      case AttackType.SPECIAL1:
+        this.attackCooldown = 800 // Slower but stronger
+        break
+      case AttackType.SPECIAL2:
+        this.attackCooldown = 600 // Medium speed
+        break
+    }
+    
     this.stateTimer = 0 // Reset state timer for attack duration
     return true
+  }
+
+  public getAttackDamage(): number {
+    const baseAttack = this.characterData.stats.attack
+    
+    switch (this.currentAttackType) {
+      case AttackType.BASIC:
+        return baseAttack // Normal damage
+      case AttackType.SPECIAL1:
+        return Math.floor(baseAttack * 1.8) // 80% more damage
+      case AttackType.SPECIAL2:
+        return Math.floor(baseAttack * 0.7) // 30% less damage but faster
+      default:
+        return baseAttack
+    }
   }
 
   public block(blocking: boolean) {

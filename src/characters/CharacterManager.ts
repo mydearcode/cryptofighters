@@ -8,7 +8,7 @@ export class CharacterManager {
       sprite: 'hodl_master',
       stats: {
         health: 100,
-        attack: 25,
+        attack: 6, // 100/6 = ~17 hits to kill
         defense: 20,
         speed: 150
       },
@@ -20,7 +20,7 @@ export class CharacterManager {
       sprite: 'paper_hands',
       stats: {
         health: 80,
-        attack: 30,
+        attack: 5, // 80/5 = 16 hits to kill
         defense: 10,
         speed: 200
       },
@@ -32,7 +32,7 @@ export class CharacterManager {
       sprite: 'whale_trader',
       stats: {
         health: 120,
-        attack: 35,
+        attack: 7, // 120/7 = ~17 hits to kill
         defense: 25,
         speed: 120
       },
@@ -44,7 +44,7 @@ export class CharacterManager {
       sprite: 'degen_ape',
       stats: {
         health: 90,
-        attack: 40,
+        attack: 6, // 90/6 = 15 hits to kill
         defense: 15,
         speed: 180
       },

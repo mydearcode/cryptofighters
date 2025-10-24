@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 import { GAME_CONSTANTS } from '../config/GameConfig'
-import { Character, CharacterState } from '../characters/Character'
+import { Character, CharacterState, AttackType } from '../characters/Character'
 import { CharacterManager } from '../characters/CharacterManager'
 
 export class FightScene extends Phaser.Scene {
@@ -203,25 +203,25 @@ export class FightScene extends Phaser.Scene {
       this.player2.jump()
     }
 
-    // Attack inputs - different attack types
+    // Attack inputs - different attack types with different damage
     if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.SPACE)) {
-      this.player1.attack() // Basic attack
+      this.player1.attack(AttackType.BASIC) // Basic attack - normal damage, fast
     }
     if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.Q)) {
-      this.player1.attack() // Special move 1 (for now same as basic)
+      this.player1.attack(AttackType.SPECIAL1) // Special move 1 - high damage, slow
     }
     if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.E)) {
-      this.player1.attack() // Special move 2 (for now same as basic)
+      this.player1.attack(AttackType.SPECIAL2) // Special move 2 - low damage, medium speed
     }
     
     if (Phaser.Input.Keyboard.JustDown(this.cursors.shift!)) {
-      this.player2.attack() // Basic attack
+      this.player2.attack(AttackType.BASIC) // Basic attack - normal damage, fast
     }
     if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.ENTER)) {
-      this.player2.attack() // Special move 1 (for now same as basic)
+      this.player2.attack(AttackType.SPECIAL1) // Special move 1 - high damage, slow
     }
     if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.CTRL)) {
-      this.player2.attack() // Special move 2 (for now same as basic)
+      this.player2.attack(AttackType.SPECIAL2) // Special move 2 - low damage, medium speed
     }
 
     // Keep players on screen
@@ -245,14 +245,14 @@ export class FightScene extends Phaser.Scene {
 
     // Check for attack collisions - only damage the other player once per attack
     if (this.player1.currentState === CharacterState.ATTACKING && distance < 100 && !this.player1HasHit) {
-      // Player 1 attacks Player 2 - use character's attack stat
-      const damage = this.player1.characterData.stats.attack
+      // Player 1 attacks Player 2 - use character's attack damage based on attack type
+      const damage = this.player1.getAttackDamage()
       this.player2.takeDamage(damage)
       this.player1HasHit = true
     }
     if (this.player2.currentState === CharacterState.ATTACKING && distance < 100 && !this.player2HasHit) {
-      // Player 2 attacks Player 1 - use character's attack stat
-      const damage = this.player2.characterData.stats.attack
+      // Player 2 attacks Player 1 - use character's attack damage based on attack type
+      const damage = this.player2.getAttackDamage()
       this.player1.takeDamage(damage)
       this.player2HasHit = true
     }

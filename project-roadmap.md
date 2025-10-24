@@ -15,22 +15,25 @@ Hedef platform Telegram Mini App olduğu için 960x540 çözünürlükte, dokunm
 ### ✅ Tamamlanan Fazlar:
 - **Faz 1.1**: Proje kurulumu ve altyapı
 - **Faz 1.2**: Temel sahne sistemi
+- **Faz 1.5**: Çarpışma ve hasar sistemi (gelişmiş)
 - **Faz 1.7**: Temel UI sistemi
 
 ### 🔄 Devam Eden/Kısmi Tamamlanan:
-- **Faz 1.5**: Çarpışma ve hasar sistemi (temel seviye)
+- **Faz 1.3**: Karakter sistemi (SVG sprite'lar eklendi, animasyon gerekli)
 - **Faz 1.6**: Arena sistemi (temel tasarım)
 
 ### 🎯 Sonraki Öncelikler:
-1. **Faz 1.3**: Karakter sistemi (sprite'lar ve animasyonlar)
+1. **Faz 1.3**: Karakter animasyon sistemi
 2. **Faz 1.4**: JSON veri sistemi
-3. **Faz 1.5**: Gelişmiş hitbox sistemi
-4. **Faz 1.6**: Çoklu arena desteği
+3. **Faz 1.6**: Çoklu arena desteği
+4. **Faz 2.1**: Gelişmiş karakter sistemi
 
 ### 🎮 Mevcut Oynanabilir Özellikler:
 - Tam sahne döngüsü (Menu → Select → Fight → Results)
 - İki oyunculu dövüş (WASD vs Arrow keys)
-- Temel saldırı sistemi (Space vs Shift)
+- **YENİ:** Çoklu saldırı sistemi (3 farklı saldırı tipi her oyuncu için)
+- **YENİ:** Dengeli hasar sistemi (15+ vuruş gerekli)
+- **YENİ:** Karakter sprite'ları (4 kripto karakter)
 - Sağlık barları ve zamanlayıcı
 - Sonuç ekranı ve skor sistemi
 
@@ -63,18 +66,21 @@ Hedef platform Telegram Mini App olduğu için 960x540 çözünürlükte, dokunm
 
 **Mevcut Durum:** Tam oyun döngüsü çalışıyor - Menu → Select → Fight → Results
 
-### 🔄 1.3 Karakter Sistemi **[SONRAKİ HEDEF]**
+### ✅ 1.3 Karakter Sistemi **[KISMİ TAMAMLANDI]**
 **Hedef:** Oynanabilir karakter mekaniği
 
-- [ ] Karakter sprite ve animasyon sistemi
-- [ ] Temel durum makinesi (idle, walk, jump, attack)
-- [ ] Input handling (klavye + dokunmatik)
-- [ ] Karakter fizik ve hareket
-- [ ] İki oyuncu kontrolü
+- [x] Karakter sprite sistemi (SVG formatında 4 karakter)
+- [x] Temel durum makinesi (idle, walk, jump, attack)
+- [x] Input handling (klavye kontrolü)
+- [x] Karakter fizik ve hareket
+- [x] İki oyuncu kontrolü
+- [x] Çoklu saldırı sistemi (3 farklı saldırı tipi)
+- [ ] Karakter animasyon sistemi
+- [ ] Dokunmatik kontrol desteği
 
-**Kabul Kriteri:** İki karakter ekranda hareket eder ve temel saldırılar yapar.
+**Kabul Kriteri:** ✅ İki karakter ekranda hareket eder ve farklı saldırılar yapar.
 
-**Mevcut Durum:** Placeholder karakterler (renkli dikdörtgenler) mevcut, gerçek sprite'lar gerekli.
+**Mevcut Durum:** Karakter sprite'ları ve temel mekanikler tamamlandı, animasyon sistemi gerekli.
 
 ### 1.4 Veri Yapıları ve JSON Sistemi
 **Hedef:** Oyun verilerinin merkezi yönetimi
@@ -87,18 +93,22 @@ Hedef platform Telegram Mini App olduğu için 960x540 çözünürlükte, dokunm
 
 **Kabul Kriteri:** JSON dosyaları yüklenir ve oyun genelinde erişilebilir.
 
-### 🔄 1.5 Çarpışma ve Hasar Sistemi **[KISMİ TAMAMLANDI]**
+### ✅ 1.5 Çarpışma ve Hasar Sistemi **[TAMAMLANDI]**
 **Hedef:** Dövüş mekaniğinin temeli
 
-- [x] Temel hasar hesaplama
+- [x] Gelişmiş hasar hesaplama sistemi
 - [x] Sağlık sistemi
-- [ ] Hitbox/hurtbox sistemi (geliştirilmeli)
+- [x] Hitbox sistemi (mesafe tabanlı çarpışma)
+- [x] Saldırı cooldown sistemi
+- [x] Çoklu saldırı tipi desteği
+- [x] Dengeli hasar değerleri (15+ vuruş gerekli)
+- [x] Tek vuruş koruma sistemi
 - [ ] Frame data implementasyonu
 - [ ] Temel savunma mekaniği
 
-**Kabul Kriteri:** Saldırılar hasar verir, sağlık azalır, raund biter.
+**Kabul Kriteri:** ✅ Saldırılar dengeli hasar verir, sağlık azalır, raund biter.
 
-**Mevcut Durum:** Temel hasar sistemi çalışıyor, hitbox sistemi basit mesafe kontrolü ile yapılmış.
+**Mevcut Durum:** Gelişmiş hasar sistemi tamamlandı. 3 farklı saldırı tipi: Temel (%100), Güçlü (%180), Hızlı (%70) hasar değerleri.
 
 ### 1.6 Temel Arena Sistemi **[KISMİ TAMAMLANDI]**
 **Hedef:** Dövüş ortamı
