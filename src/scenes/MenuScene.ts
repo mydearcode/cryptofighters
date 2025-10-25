@@ -6,52 +6,105 @@ export class MenuScene extends Phaser.Scene {
   }
 
   create() {
-    const width = this.cameras.main.width
-    const height = this.cameras.main.height
-
-    // Background
-    this.add.rectangle(width / 2, height / 2, width, height, 0x1a1a2e)
-
-    // Title
-    this.add.text(width / 2, height / 4, 'CRYPTO FIGHTERS', {
-      font: 'bold 48px Courier New',
-      color: '#00ff00'
+    // Add gradient background
+    this.add.rectangle(400, 300, 800, 600, 0x0f0f23)
+    
+    // Add decorative elements
+    this.add.rectangle(400, 300, 780, 580, 0x1a1a2e).setStrokeStyle(3, 0x00d4ff, 0.3)
+    
+    // Add title with glow effect
+    const title = this.add.text(400, 120, 'CRYPTO FIGHTERS', {
+      fontSize: '52px',
+      color: '#00d4ff',
+      fontFamily: 'Arial Black',
+      stroke: '#003d5c',
+      strokeThickness: 4
     }).setOrigin(0.5)
-
-    // Subtitle
-    this.add.text(width / 2, height / 4 + 60, 'Blockchain Battle Arena', {
-      font: '20px Courier New',
-      color: '#ffffff'
-    }).setOrigin(0.5)
-
-    // Start button
-    const startButton = this.add.text(width / 2, height / 2, 'START FIGHT', {
-      font: 'bold 24px Courier New',
+    
+    // Add subtitle
+    const subtitle = this.add.text(400, 170, 'The Most Powerful Warriors of Crypto World', {
+      fontSize: '18px',
       color: '#ffffff',
-      backgroundColor: '#333333',
-      padding: { x: 20, y: 10 }
+      fontFamily: 'Arial'
     }).setOrigin(0.5)
-    .setInteractive({ useHandCursor: true })
-    .on('pointerdown', () => {
-      this.scene.start('SelectScene')
-    })
-    .on('pointerover', () => {
-      startButton.setStyle({ backgroundColor: '#555555' })
-    })
-    .on('pointerout', () => {
-      startButton.setStyle({ backgroundColor: '#333333' })
-    })
-
-    // Instructions
-    this.add.text(width / 2, height - 100, 'Use WASD to move, SPACE to attack', {
-      font: '16px Courier New',
-      color: '#888888'
+    subtitle.setAlpha(0.9)
+    
+    // Game mode selection title
+    const modeTitle = this.add.text(400, 230, 'SELECT GAME MODE', {
+      fontSize: '24px',
+      color: '#ffffff',
+      fontFamily: 'Arial Bold'
     }).setOrigin(0.5)
-
-    // Version info
-    this.add.text(20, height - 30, 'v0.1.0 - MVP', {
-      font: '12px Courier New',
-      color: '#666666'
-    })
+    
+    // Single Player Button
+    const singlePlayerButton = this.add.rectangle(400, 300, 280, 70, 0x16213e)
+      .setStrokeStyle(3, 0x00d4ff)
+      .setInteractive()
+      .on('pointerdown', () => {
+        // Set game mode to single player and go to character selection
+        this.registry.set('gameMode', 'singlePlayer')
+        this.scene.start('SelectScene')
+      })
+      .on('pointerover', () => {
+        singlePlayerButton.setFillStyle(0x0f3460)
+        singlePlayerButton.setStrokeStyle(3, 0x00ffff)
+      })
+      .on('pointerout', () => {
+        singlePlayerButton.setFillStyle(0x16213e)
+        singlePlayerButton.setStrokeStyle(3, 0x00d4ff)
+      })
+    
+    const singlePlayerText = this.add.text(400, 285, 'SINGLE PLAYER', {
+      fontSize: '18px',
+      color: '#00d4ff',
+      fontFamily: 'Arial Bold'
+    }).setOrigin(0.5)
+    
+    const singlePlayerSubtext = this.add.text(400, 310, 'Play vs CPU', {
+      fontSize: '14px',
+      color: '#cccccc',
+      fontFamily: 'Arial'
+    }).setOrigin(0.5)
+    
+    // Two Player Button
+    const twoPlayerButton = this.add.rectangle(400, 400, 280, 70, 0x16213e)
+      .setStrokeStyle(3, 0x00d4ff)
+      .setInteractive()
+      .on('pointerdown', () => {
+        // Set game mode to two player and go to character selection
+        this.registry.set('gameMode', 'twoPlayer')
+        this.scene.start('SelectScene')
+      })
+      .on('pointerover', () => {
+        twoPlayerButton.setFillStyle(0x0f3460)
+        twoPlayerButton.setStrokeStyle(3, 0x00ffff)
+      })
+      .on('pointerout', () => {
+        twoPlayerButton.setFillStyle(0x16213e)
+        twoPlayerButton.setStrokeStyle(3, 0x00d4ff)
+      })
+    
+    const twoPlayerText = this.add.text(400, 385, 'TWO PLAYER', {
+      fontSize: '18px',
+      color: '#00d4ff',
+      fontFamily: 'Arial Bold'
+    }).setOrigin(0.5)
+    
+    const twoPlayerSubtext = this.add.text(400, 410, 'Play with Friend', {
+      fontSize: '14px',
+      color: '#cccccc',
+      fontFamily: 'Arial'
+    }).setOrigin(0.5)
+    
+    // Add instructions
+    const instructions = this.add.text(400, 500, 
+      'Movement: WASD (Player 1) / Arrow Keys (Player 2)\n' +
+      'Attack: J, K, L (Player 1) / 1, 2, 3 (Player 2)', {
+      fontSize: '13px',
+      color: '#999999',
+      fontFamily: 'Arial',
+      align: 'center'
+    }).setOrigin(0.5)
+    instructions.setAlpha(0.8)
   }
 }

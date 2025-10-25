@@ -3,13 +3,14 @@ import { GameConfig } from './config/GameConfig'
 import { BootScene } from './scenes/BootScene'
 import { MenuScene } from './scenes/MenuScene'
 import { SelectScene } from './scenes/SelectScene'
+import { ArenaSelectScene } from './scenes/ArenaSelectScene'
 import { FightScene } from './scenes/FightScene'
 import { ResultsScene } from './scenes/ResultsScene'
 
 // Register all scenes
 const config: Phaser.Types.Core.GameConfig = {
   ...GameConfig,
-  scene: [BootScene, MenuScene, SelectScene, FightScene, ResultsScene]
+  scene: [BootScene, MenuScene, SelectScene, ArenaSelectScene, FightScene, ResultsScene]
 }
 
 // Initialize the game

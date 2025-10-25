@@ -1,0 +1,194 @@
+{
+  "characters": [
+    {
+      "id": "hodl_master",
+      "name": "HODL Master",
+      "sprite": "hodl-master",
+      "description": "Uzun vadeli yatırımın ustası, sabır ve kararlılıkla dövüşür.",
+      "stats": {
+        "health": 100,
+        "attack": 25,
+        "defense": 20,
+        "speed": 150
+      },
+      "moves": [
+        "diamond_hands",
+        "hodl_slam",
+        "patience_strike"
+      ],
+      "rarity": "legendary",
+      "element": "stability"
+    },
+    {
+      "id": "trade_queen",
+      "name": "Trade Queen",
+      "sprite": "trade-queen",
+      "description": "Piyasaların kraliçesi, stratejik ticaret ustası.",
+      "stats": {
+        "health": 85,
+        "attack": 32,
+        "defense": 18,
+        "speed": 190
+      },
+      "moves": [
+        "royal_profit",
+        "queen_strike",
+        "market_dominance"
+      ],
+      "rarity": "epic",
+      "element": "strategy"
+    },
+    {
+      "id": "saylor",
+      "name": "Saylor",
+      "sprite": "saylor",
+      "description": "Bitcoin maksimalisti ve kurumsal stratejist, dijital altın savunucusu.",
+      "stats": {
+        "health": 130,
+        "attack": 40,
+        "defense": 30,
+        "speed": 110
+      },
+      "moves": [
+        "bitcoin_laser",
+        "hodl_shield",
+        "corporate_strategy"
+      ],
+      "rarity": "legendary",
+      "element": "power"
+    },
+    {
+      "id": "defi_ninja",
+      "name": "DeFi Ninja",
+      "sprite": "defi-ninja",
+      "description": "Merkezi olmayan finans protokollerinin gizli ustası.",
+      "stats": {
+        "health": 90,
+        "attack": 28,
+        "defense": 18,
+        "speed": 180
+      },
+      "moves": [
+        "yield_farming",
+        "liquidity_strike",
+        "flash_loan"
+      ],
+      "rarity": "epic",
+      "element": "technology"
+    },
+    {
+      "id": "meme_lord",
+      "name": "Meme Lord",
+      "sprite": "meme-lord",
+      "description": "Meme coinlerin gücüyle beslenen eğlenceli savaşçı.",
+      "stats": {
+        "health": 75,
+        "attack": 22,
+        "defense": 16,
+        "speed": 190
+      },
+      "moves": [
+        "viral_attack",
+        "moon_rocket",
+        "diamond_paws"
+      ],
+      "rarity": "common",
+      "element": "chaos"
+    },
+    {
+      "id": "vitalik",
+      "name": "Vitalik",
+      "sprite": "vitalik",
+      "description": "Ethereum'un yaratıcısı, akıllı kontratların ustası ve blockchain vizyoneri.",
+      "stats": {
+        "health": 110,
+        "attack": 32,
+        "defense": 28,
+        "speed": 170
+      },
+      "moves": [
+        "smart_contract",
+        "ethereum_blast",
+        "proof_of_stake"
+      ],
+      "rarity": "legendary",
+      "element": "innovation"
+    },
+    {
+      "id": "cz",
+      "name": "CZ",
+      "sprite": "cz",
+      "description": "Binance'in kurucusu, kripto dünyasının en büyük borsasının lideri.",
+      "stats": {
+        "health": 115,
+        "attack": 30,
+        "defense": 26,
+        "speed": 165
+      },
+      "moves": [
+        "binance_blast",
+        "trading_fury",
+        "market_dominance"
+      ],
+      "rarity": "legendary",
+      "element": "exchange"
+    },
+    {
+      "id": "elon",
+      "name": "Elon",
+      "sprite": "elon",
+      "description": "Tesla ve SpaceX'in kurucusu, kripto dünyasının en etkili isimlerinden biri.",
+      "stats": {
+        "health": 110,
+        "attack": 32,
+        "defense": 28,
+        "speed": 170
+      },
+      "moves": [
+        "smart_contract",
+        "ethereum_blast",
+        "proof_of_stake"
+      ],
+      "rarity": "legendary",
+      "element": "innovation"
+    },
+    {
+      "id": "hoskinson",
+      "name": "Hoskinson",
+      "sprite": "hoskinson",
+      "description": "Cardano'nun kurucusu, akademik yaklaşımla blockchain teknolojisini geliştiren vizyon sahibi.",
+      "stats": {
+        "health": 115,
+        "attack": 30,
+        "defense": 30,
+        "speed": 160
+      },
+      "moves": [
+        "peer_review",
+        "cardano_strike",
+        "academic_precision"
+      ],
+      "rarity": "legendary",
+      "element": "research"
+    },
+    {
+      "id": "gavin",
+      "name": "Gavin",
+      "sprite": "gavin",
+      "description": "Polkadot'un kurucusu ve Ethereum'un eski CTO'su, interoperabilite vizyoneri.",
+      "stats": {
+        "health": 120,
+        "attack": 28,
+        "defense": 32,
+        "speed": 155
+      },
+      "moves": [
+        "parachain_link",
+        "substrate_strike",
+        "interop_blast"
+      ],
+      "rarity": "legendary",
+      "element": "connectivity"
+    }
+  ]
+}

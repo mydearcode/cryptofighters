@@ -1,0 +1,235 @@
+{
+  "moves": [
+    {
+      "id": "diamond_hands",
+      "name": "Diamond Hands",
+      "description": "Güçlü bir tutma hareketi, rakibi sıkıştırır.",
+      "type": "basic",
+      "damage": 100,
+      "cooldown": 400,
+      "range": 60,
+      "effects": ["knockback"],
+      "animation": "grab_squeeze"
+    },
+    {
+      "id": "hodl_slam",
+      "name": "HODL Slam",
+      "description": "Sabırla biriken gücü serbest bırakır.",
+      "type": "special1",
+      "damage": 180,
+      "cooldown": 800,
+      "range": 70,
+      "effects": ["stun", "knockback"],
+      "animation": "power_slam"
+    },
+    {
+      "id": "patience_strike",
+      "name": "Patience Strike",
+      "description": "Hızlı ve etkili sabır darbesi.",
+      "type": "special2",
+      "damage": 70,
+      "cooldown": 600,
+      "range": 50,
+      "effects": ["speed_boost"],
+      "animation": "quick_jab"
+    },
+    {
+      "id": "quick_profit",
+      "name": "Quick Profit",
+      "description": "Hızlı kar alma hareketi.",
+      "type": "basic",
+      "damage": 100,
+      "cooldown": 400,
+      "range": 55,
+      "effects": ["speed_boost"],
+      "animation": "rapid_strike"
+    },
+    {
+      "id": "scalp_attack",
+      "name": "Scalp Attack",
+      "description": "Küçük ama etkili seri saldırı.",
+      "type": "special1",
+      "damage": 180,
+      "cooldown": 800,
+      "range": 60,
+      "effects": ["multi_hit"],
+      "animation": "combo_strike"
+    },
+    {
+      "id": "momentum_rush",
+      "name": "Momentum Rush",
+      "description": "Momentum ile hızlı hamle.",
+      "type": "special2",
+      "damage": 70,
+      "cooldown": 600,
+      "range": 65,
+      "effects": ["dash", "speed_boost"],
+      "animation": "dash_attack"
+    },
+    {
+      "id": "market_manipulation",
+      "name": "Market Manipulation",
+      "description": "Piyasayı kontrol eden güçlü hamle.",
+      "type": "basic",
+      "damage": 100,
+      "cooldown": 400,
+      "range": 75,
+      "effects": ["area_damage"],
+      "animation": "wave_attack"
+    },
+    {
+      "id": "whale_splash",
+      "name": "Whale Splash",
+      "description": "Balina gücüyle dev saldırı.",
+      "type": "special1",
+      "damage": 180,
+      "cooldown": 800,
+      "range": 80,
+      "effects": ["area_damage", "knockback"],
+      "animation": "ground_slam"
+    },
+    {
+      "id": "volume_crush",
+      "name": "Volume Crush",
+      "description": "Yüksek hacimle ezici darbe.",
+      "type": "special2",
+      "damage": 70,
+      "cooldown": 600,
+      "range": 70,
+      "effects": ["armor_break"],
+      "animation": "crushing_blow"
+    },
+    {
+      "id": "yield_farming",
+      "name": "Yield Farming",
+      "description": "Verim odaklı stratejik saldırı.",
+      "type": "basic",
+      "damage": 100,
+      "cooldown": 400,
+      "range": 60,
+      "effects": ["heal_self"],
+      "animation": "energy_drain"
+    },
+    {
+      "id": "liquidity_strike",
+      "name": "Liquidity Strike",
+      "description": "Likidite gücüyle güçlü darbe.",
+      "type": "special1",
+      "damage": 180,
+      "cooldown": 800,
+      "range": 65,
+      "effects": ["mana_drain"],
+      "animation": "energy_blast"
+    },
+    {
+      "id": "flash_loan",
+      "name": "Flash Loan",
+      "description": "Anlık borçlanma ile hızlı saldırı.",
+      "type": "special2",
+      "damage": 70,
+      "cooldown": 600,
+      "range": 55,
+      "effects": ["teleport", "surprise"],
+      "animation": "flash_strike"
+    },
+    {
+      "id": "rare_mint",
+      "name": "Rare Mint",
+      "description": "Nadir NFT yaratma gücü.",
+      "type": "basic",
+      "damage": 100,
+      "cooldown": 400,
+      "range": 60,
+      "effects": ["create_shield"],
+      "animation": "creation_burst"
+    },
+    {
+      "id": "collection_power",
+      "name": "Collection Power",
+      "description": "Koleksiyon gücüyle saldırı.",
+      "type": "special1",
+      "damage": 180,
+      "cooldown": 800,
+      "range": 70,
+      "effects": ["power_stack"],
+      "animation": "collection_wave"
+    },
+    {
+      "id": "artistic_fury",
+      "name": "Artistic Fury",
+      "description": "Sanatsal öfke ile hızlı saldırı.",
+      "type": "special2",
+      "damage": 70,
+      "cooldown": 600,
+      "range": 55,
+      "effects": ["confusion"],
+      "animation": "artistic_swirl"
+    },
+    {
+      "id": "viral_attack",
+      "name": "Viral Attack",
+      "description": "Viral yayılım ile saldırı.",
+      "type": "basic",
+      "damage": 100,
+      "cooldown": 400,
+      "range": 65,
+      "effects": ["spread_damage"],
+      "animation": "viral_burst"
+    },
+    {
+      "id": "moon_rocket",
+      "name": "Moon Rocket",
+      "description": "Aya roket ile güçlü saldırı.",
+      "type": "special1",
+      "damage": 180,
+      "cooldown": 800,
+      "range": 75,
+      "effects": ["launch", "knockback"],
+      "animation": "rocket_launch"
+    },
+    {
+      "id": "diamond_paws",
+      "name": "Diamond Paws",
+      "description": "Elmas pençeler ile hızlı saldırı.",
+      "type": "special2",
+      "damage": 70,
+      "cooldown": 600,
+      "range": 50,
+      "effects": ["crit_chance"],
+      "animation": "claw_swipe"
+    },
+    {
+      "id": "smart_contract",
+      "name": "Smart Contract",
+      "description": "Akıllı kontrat ile otomatik saldırı sistemi kurar.",
+      "type": "basic",
+      "damage": 110,
+      "cooldown": 450,
+      "range": 65,
+      "effects": ["auto_counter"],
+      "animation": "code_cast"
+    },
+    {
+      "id": "ethereum_blast",
+      "name": "Ethereum Blast",
+      "description": "Ethereum ağının gücüyle dev bir enerji patlaması.",
+      "type": "special1",
+      "damage": 200,
+      "cooldown": 900,
+      "range": 80,
+      "effects": ["area_damage", "stun"],
+      "animation": "energy_blast"
+    },
+    {
+      "id": "proof_of_stake",
+      "name": "Proof of Stake",
+      "description": "Stake gücüyle savunma ve karşı saldırı.",
+      "type": "special2",
+      "damage": 85,
+      "cooldown": 650,
+      "range": 60,
+      "effects": ["defense_boost", "reflect"],
+      "animation": "shield_counter"
+    }
+  ]
+}

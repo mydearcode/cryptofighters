@@ -1,5 +1,7 @@
 import Phaser from 'phaser'
 import { CharacterManager } from '../characters/CharacterManager'
+import { gameData } from '../data/DataManager'
+import { GAME_CONSTANTS } from '../config/GameConfig'
 
 export class SelectScene extends Phaser.Scene {
   private selectedCharacters: { player1: string | null, player2: string | null } = {
@@ -22,227 +24,396 @@ export class SelectScene extends Phaser.Scene {
   private player2ReadyButton!: Phaser.GameObjects.Text
   private player1Indicator!: Phaser.GameObjects.Text
   private player2Indicator!: Phaser.GameObjects.Text
+  private characterCards: Phaser.GameObjects.Rectangle[] = []
+  private characterSprites: Phaser.GameObjects.Image[] = []
+  
+  private player1DisplayElements: Phaser.GameObjects.GameObject[] = []
+  private player2DisplayElements: Phaser.GameObjects.GameObject[] = []
 
   constructor() {
     super({ key: 'SelectScene' })
   }
 
   preload() {
-    // Load character sprites
-    CharacterManager.preloadAssets(this)
+    this.load.image('vitalik-portrait', 'assets/sprites/vitalik/vitalik_single.png')
   }
 
   create() {
-    const width = this.cameras.main.width
-    const height = this.cameras.main.height
+    const { width, height } = this.cameras.main
+    const gameMode = this.registry.get('gameMode') || 'twoPlayer'
 
-    // Background
+    // Background matching MenuScene
     this.add.rectangle(width / 2, height / 2, width, height, 0x0f0f23)
-
-    // Title
-    this.add.text(width / 2, 60, 'SELECT YOUR FIGHTER', {
-      font: 'bold 32px Courier New',
-      color: '#00ff00'
+    
+    // Add decorative border matching MenuScene
+    this.add.rectangle(width / 2, height / 2, width - 20, height - 20, 0x1a1a2e).setStrokeStyle(3, 0x00d4ff, 0.3)
+    
+    // Title with glow effect matching MenuScene
+    const titleText = gameMode === 'singlePlayer' ? 'SELECT FIGHTER' : 'FIGHTER SELECTION'
+    this.add.text(width / 2, 60, titleText, {
+      fontSize: '42px',
+      color: '#00d4ff',
+      fontFamily: 'Arial Black',
+      stroke: '#003d5c',
+      strokeThickness: 4
     }).setOrigin(0.5)
-
-    // Player indicators
-    this.player1Indicator = this.add.text(width / 4, 120, 'PLAYER 1', {
-      font: 'bold 20px Courier New',
-      color: this.currentPlayer === 1 ? '#ffff00' : '#666666'
-    }).setOrigin(0.5)
-
-    this.player2Indicator = this.add.text(3 * width / 4, 120, 'PLAYER 2', {
-      font: 'bold 20px Courier New',
-      color: this.currentPlayer === 2 ? '#ffff00' : '#666666'
-    }).setOrigin(0.5)
-
-    // Character selection grid
-    this.createCharacterGrid()
-
-    // Selected characters display
-    this.createSelectedDisplay()
-
-    // Ready buttons for each player
-    this.createReadyButtons()
-
-    // Instructions
-    this.add.text(width / 2, height - 100, 'Click to select character, then press READY', {
-      font: '16px Courier New',
-      color: '#888888'
-    }).setOrigin(0.5)
-
-    this.add.text(width / 2, height - 80, 'Player 1: SPACE to Ready | Player 2: ENTER to Ready', {
-      font: '14px Courier New',
-      color: '#666666'
-    }).setOrigin(0.5)
-
-    // Start fight button (initially hidden)
-    const startButton = this.add.text(width / 2, height - 40, 'START FIGHT!', {
-      font: 'bold 20px Courier New',
+    
+    // Subtitle matching MenuScene style
+    const subtitleText = gameMode === 'singlePlayer' 
+      ? 'Choose your crypto warrior'
+      : 'Each player select your crypto warrior'
+    const subtitle = this.add.text(width / 2, 100, subtitleText, {
+      fontSize: '18px',
       color: '#ffffff',
-      backgroundColor: '#333333',
-      padding: { x: 20, y: 8 }
+      fontFamily: 'Arial'
     }).setOrigin(0.5)
-    .setInteractive({ useHandCursor: true })
-    .setVisible(false)
-    .on('pointerdown', () => {
-      this.startFight()
-    })
-    .on('pointerover', () => {
-      startButton.setStyle({ backgroundColor: '#555555' })
-    })
-    .on('pointerout', () => {
-      startButton.setStyle({ backgroundColor: '#333333' })
-    })
+    subtitle.setAlpha(0.9)
 
-    this.registry.set('startButton', startButton)
-
-    // Setup keyboard input
+    // Create UI components
+    this.createCharacterGrid()
+    this.createSelectedDisplay()
+    this.createReadyButtons()
     this.setupKeyboardInput()
-  }
-
-  private createReadyButtons() {
-    const width = this.cameras.main.width
-
-    // Player 1 Ready Button
-    this.player1ReadyButton = this.add.text(width / 4, 400, 'READY', {
-      font: 'bold 16px Courier New',
-      color: '#666666',
-      backgroundColor: '#333333',
-      padding: { x: 15, y: 8 }
-    }).setOrigin(0.5)
-    .setInteractive({ useHandCursor: true })
-    .setVisible(false)
-    .on('pointerdown', () => {
-      this.togglePlayerReady(1)
-    })
-
-    // Player 2 Ready Button
-    this.player2ReadyButton = this.add.text(3 * width / 4, 400, 'READY', {
-      font: 'bold 16px Courier New',
-      color: '#666666',
-      backgroundColor: '#333333',
-      padding: { x: 15, y: 8 }
-    }).setOrigin(0.5)
-    .setInteractive({ useHandCursor: true })
-    .setVisible(false)
-    .on('pointerdown', () => {
-      this.togglePlayerReady(2)
-    })
+    this.updatePlayerIndicators()
   }
 
   private setupKeyboardInput() {
-    // Space key for Player 1 ready
-    this.input.keyboard!.on('keydown-SPACE', () => {
+    this.input.keyboard?.on('keydown-SPACE', () => {
       if (this.selectedCharacters.player1) {
         this.togglePlayerReady(1)
       }
     })
 
-    // Enter key for Player 2 ready
-    this.input.keyboard!.on('keydown-ENTER', () => {
+    this.input.keyboard?.on('keydown-ENTER', () => {
       if (this.selectedCharacters.player2) {
         this.togglePlayerReady(2)
       }
     })
   }
 
-  private createCharacterGrid() {
-    const width = this.cameras.main.width
-    const startX = width / 2 - 150
-    const startY = 200
-    const spacing = 100
-
-    // Color mapping for characters
-    const characterColors: { [key: string]: number } = {
-      'hodler': 0x00ff00,
-      'trader': 0xff0000,
-      'whale': 0x0066ff,
-      'degen': 0xff6600
+  updatePlayerIndicators() {
+    const { width } = this.cameras.main
+    const gameMode = this.registry.get('gameMode') || 'twoPlayer'
+    
+    // Remove existing indicators if they exist
+    if (this.player1Indicator) this.player1Indicator.destroy()
+    if (this.player2Indicator) this.player2Indicator.destroy()
+    
+    // Player indicators moved to bottom corners, smaller and less intrusive
+    this.player1Indicator = this.add.text(80, 480, 'P1', {
+      fontSize: '16px',
+      color: this.currentPlayer === 1 ? '#00d4ff' : '#666666',
+      fontFamily: 'Arial Bold'
+    }).setOrigin(0.5)
+    
+    // Player 2 indicator (only for two player mode)
+    if (gameMode === 'twoPlayer') {
+      this.player2Indicator = this.add.text(width - 80, 480, 'P2', {
+        fontSize: '16px',
+        color: this.currentPlayer === 2 ? '#00d4ff' : '#666666',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
     }
+  }
 
-    this.characters.forEach((character, index) => {
-      const x = startX + (index % 2) * spacing * 3
-      const y = startY + Math.floor(index / 2) * 120
-
-      // Character sprite instead of colored rectangle
-      const charSprite = this.add.image(x, y, character.sprite)
-        .setDisplaySize(80, 100)
+  private createCharacterGrid() {
+    const { width, height } = this.cameras.main
+    const characters = gameData.getAllCharacters()
+    
+    // Character selection title matching MenuScene style
+    this.add.text(width / 2, 120, 'SELECT CHARACTER', {
+      fontSize: '22px',
+      color: '#ffffff',
+      fontFamily: 'Arial Bold'
+    }).setOrigin(0.5)
+    
+    // Character grid - smaller cards to prevent overflow
+    const gridCols = 4
+    const cardWidth = 100
+    const cardHeight = 120
+    const spacing = 15
+    const startX = width / 2 - ((gridCols - 1) * (cardWidth + spacing)) / 2
+    const startY = 170
+    
+    characters.forEach((character, index) => {
+      const col = index % gridCols
+      const row = Math.floor(index / gridCols)
+      const x = startX + col * (cardWidth + spacing)
+      const y = startY + row * (cardHeight + spacing)
+      
+      // Character card background matching MenuScene button style
+      const card = this.add.rectangle(x, y, cardWidth, cardHeight, 0x16213e)
+        .setStrokeStyle(2, 0x00d4ff)
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => {
           this.selectCharacter(character.id)
         })
         .on('pointerover', () => {
-          charSprite.setTint(0xcccccc)
+          card.setFillStyle(0x0f3460)
+          card.setStrokeStyle(2, 0x00ffff)
         })
         .on('pointerout', () => {
-          charSprite.clearTint()
+          card.setFillStyle(0x16213e)
+          card.setStrokeStyle(2, 0x00d4ff)
         })
+      
+      this.characterCards.push(card)
+      
+      // Character sprite - using centralized size constants
+      let spriteKey = character.sprite
+      if (character.id === 'vitalik') {
+        // For Vitalik, create a sprite from the combat idle spritesheet with specific frame
+        const sprite = this.add.sprite(x, y - 15, 'vitalik-idle', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
+        
+        this.characterSprites.push(sprite)
+      } else if (character.id === 'cz') {
+        // For CZ, create a sprite from the spritesheet with specific frame
+        const sprite = this.add.sprite(x, y - 15, 'cz-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
+        
+        this.characterSprites.push(sprite)
+      } else if (character.id === 'elon') {
+        // For Elon, create a sprite from the spritesheet with specific frame
+        const sprite = this.add.sprite(x, y - 15, 'elon-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
+        
+        this.characterSprites.push(sprite)
+      } else if (character.id === 'hoskinson') {
+        // For Hoskinson, create a sprite from the spritesheet with specific frame
+        const sprite = this.add.sprite(x, y - 15, 'hoskinson-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
+        
+        this.characterSprites.push(sprite)
+      } else if (character.id === 'saylor') {
+        // For Saylor, create a sprite from the spritesheet with specific frame
+        const sprite = this.add.sprite(x, y - 15, 'saylor-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
+        
+        this.characterSprites.push(sprite)
+      } else if (character.id === 'gavin') {
+        // For Gavin, create a sprite from the spritesheet with specific frame
+        const sprite = this.add.sprite(x, y - 15, 'gavin-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
+        
+        this.characterSprites.push(sprite)
+      } else if (character.id === 'hodl_master') {
+        // For Hodl Master, create a sprite from the spritesheet with specific frame
+        const sprite = this.add.sprite(x, y - 15, 'hodl-master-combat-idle', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
+        
+        this.characterSprites.push(sprite)
+      } else if (character.id === 'trade_queen') {
+        // For Trade Queen, create a sprite from the spritesheet with specific frame
+        const sprite = this.add.sprite(x, y - 15, 'trade-queen-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
+        
+        this.characterSprites.push(sprite)
+      } else if (character.id === 'defi_ninja') {
+        // For Defi Ninja, create a sprite from the spritesheet with specific frame
+        const sprite = this.add.sprite(x, y - 15, 'defi-ninja-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
+        
+        this.characterSprites.push(sprite)
+      } else if (character.id === 'meme_lord') {
+        // For Meme Lord, create a sprite from the spritesheet with specific frame
+        const sprite = this.add.sprite(x, y - 15, 'meme-lord-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
+        
+        this.characterSprites.push(sprite)
+      } else {
+        const sprite = this.add.image(x, y - 15, spriteKey)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
 
-      // Character name
-      this.add.text(x, y + 70, character.name, {
-        font: '12px Courier New',
-        color: '#ffffff'
+        this.characterSprites.push(sprite)
+      }
+      
+      // Character name - smaller font to prevent overlap
+      const nameText = this.add.text(x, y + 35, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
       }).setOrigin(0.5)
-
-      // Special moves preview
-      const movesText = character.moves.slice(0, 2).join('\n') || 'Special Moves'
-      this.add.text(x, y + 85, movesText, {
-        font: '8px Courier New',
-        color: '#888888',
-        align: 'center'
+      
+      // Character special move - smaller font and positioned better
+      const moveId = character.moves[0]
+      const moveData = gameData.getMove(moveId)
+      const moveName = moveData ? moveData.name : moveId.replace(/([A-Z])/g, ' $1').trim()
+      
+      const moveText = this.add.text(x, y + 48, moveName, {
+        fontSize: '9px',
+        color: '#cccccc',
+        fontFamily: 'Arial'
       }).setOrigin(0.5)
     })
   }
 
   private createSelectedDisplay() {
-    const width = this.cameras.main.width
+    // Removed the unnecessary rectangle that was blocking character view
+    // Characters will be displayed directly without background interference
+  }
 
-    // Player 1 selection area
-    const p1Area = this.add.rectangle(width / 4, 180, 120, 140, 0x333333, 0.5)
-    this.add.text(width / 4, 180, 'Select\nCharacter', {
-      font: '14px Courier New',
-      color: '#666666',
-      align: 'center'
+  private createReadyButtons() {
+    const { width, height } = this.cameras.main
+    const gameMode = this.registry.get('gameMode') || 'twoPlayer'
+    
+    // Player 1 ready button - positioned near selected character
+    this.player1ReadyButton = this.add.text(120, height - 30, 'READY!', {
+      fontSize: '14px',
+      color: '#00d4ff',
+      fontFamily: 'Arial Bold',
+      backgroundColor: '#16213e',
+      padding: { x: 12, y: 6 }
     }).setOrigin(0.5)
+    .setInteractive({ useHandCursor: true })
+    .on('pointerdown', () => {
+      if (this.selectedCharacters.player1) {
+        this.togglePlayerReady(1)
+      }
+    })
+    .on('pointerover', () => {
+      if (this.selectedCharacters.player1) {
+        this.player1ReadyButton.setStyle({ backgroundColor: '#0f3460' })
+      }
+    })
+    .on('pointerout', () => {
+      this.player1ReadyButton.setStyle({ backgroundColor: '#16213e' })
+    })
 
-    // Player 2 selection area  
-    const p2Area = this.add.rectangle(3 * width / 4, 180, 120, 140, 0x333333, 0.5)
-    this.add.text(3 * width / 4, 180, 'Select\nCharacter', {
-      font: '14px Courier New',
-      color: '#666666',
-      align: 'center'
-    }).setOrigin(0.5)
+    // Player 2 ready button (only for two player mode) - positioned near selected character
+    if (gameMode === 'twoPlayer') {
+      this.player2ReadyButton = this.add.text(width - 120, height - 30, 'READY!', {
+        fontSize: '14px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold',
+        backgroundColor: '#16213e',
+        padding: { x: 12, y: 6 }
+      }).setOrigin(0.5)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => {
+        if (this.selectedCharacters.player2) {
+          this.togglePlayerReady(2)
+        }
+      })
+      .on('pointerover', () => {
+        if (this.selectedCharacters.player2) {
+          this.player2ReadyButton.setStyle({ backgroundColor: '#0f3460' })
+        }
+      })
+      .on('pointerout', () => {
+        this.player2ReadyButton.setStyle({ backgroundColor: '#16213e' })
+      })
+    }
 
-    this.registry.set('p1Area', p1Area)
-    this.registry.set('p2Area', p2Area)
+    // Instructions removed - no longer needed at the top
   }
 
   private selectCharacter(characterId: string) {
     const character = this.characters.find(c => c.id === characterId)
     if (!character) return
+    
+    const gameMode = this.registry.get('gameMode') || 'twoPlayer'
 
-    // Allow players to change their selection if they haven't readied up
-    if (this.currentPlayer === 1 && !this.playerReady.player1) {
-      this.selectedCharacters.player1 = characterId
-      this.updateSelectedDisplay(1, character)
-      this.player1ReadyButton.setVisible(true)
-    } else if (this.currentPlayer === 2 && !this.playerReady.player2) {
-      this.selectedCharacters.player2 = characterId
-      this.updateSelectedDisplay(2, character)
-      this.player2ReadyButton.setVisible(true)
-    } else if (this.currentPlayer === 1 && this.playerReady.player1) {
-      // Allow changing selection if player unreadies first
-      this.playerReady.player1 = false
-      this.selectedCharacters.player1 = characterId
-      this.updateSelectedDisplay(1, character)
-      this.updateReadyButton(1)
-    } else if (this.currentPlayer === 2 && this.playerReady.player2) {
-      // Allow changing selection if player unreadies first
-      this.playerReady.player2 = false
-      this.selectedCharacters.player2 = characterId
-      this.updateSelectedDisplay(2, character)
-      this.updateReadyButton(2)
+    if (gameMode === 'singlePlayer') {
+      // Single player mode
+      if (!this.playerReady.player1) {
+        this.selectedCharacters.player1 = characterId
+        this.updateSelectedDisplay(1, character)
+        this.player1ReadyButton.setVisible(true)
+        
+        // Auto-select CPU character
+        const availableCharacters = this.characters.filter(c => c.id !== characterId)
+        const randomIndex = Math.floor(Math.random() * availableCharacters.length)
+        const cpuCharacter = availableCharacters[randomIndex]
+
+        this.selectedCharacters.player2 = cpuCharacter.id
+        this.updateSelectedDisplay(2, cpuCharacter)
+        this.playerReady.player2 = true
+        this.updateReadyButton(2)
+      } else {
+        // Allow changing selection
+        this.playerReady.player1 = false
+        this.selectedCharacters.player1 = characterId
+        this.updateSelectedDisplay(1, character)
+        this.updateReadyButton(1)
+        
+        // Re-select CPU character
+        const availableCharacters = this.characters.filter(c => c.id !== characterId)
+        const randomIndex = Math.floor(Math.random() * availableCharacters.length)
+        const cpuCharacter = availableCharacters[randomIndex]
+        
+        this.selectedCharacters.player2 = cpuCharacter.id
+        this.updateSelectedDisplay(2, cpuCharacter)
+        this.playerReady.player2 = true
+        this.updateReadyButton(2)
+      }
+    } else {
+      // Two player mode
+      if (this.currentPlayer === 1 && !this.playerReady.player1) {
+        this.selectedCharacters.player1 = characterId
+        this.updateSelectedDisplay(1, character)
+        this.player1ReadyButton.setVisible(true)
+      } else if (this.currentPlayer === 2 && !this.playerReady.player2) {
+        this.selectedCharacters.player2 = characterId
+        this.updateSelectedDisplay(2, character)
+        this.player2ReadyButton.setVisible(true)
+      } else if (this.currentPlayer === 1 && this.playerReady.player1) {
+        // Allow changing selection
+        this.playerReady.player1 = false
+        this.selectedCharacters.player1 = characterId
+        this.updateSelectedDisplay(1, character)
+        this.updateReadyButton(1)
+      } else if (this.currentPlayer === 2 && this.playerReady.player2) {
+        // Allow changing selection
+        this.playerReady.player2 = false
+        this.selectedCharacters.player2 = characterId
+        this.updateSelectedDisplay(2, character)
+        this.updateReadyButton(2)
+      }
     }
 
     this.updatePlayerIndicators()
@@ -272,6 +443,11 @@ export class SelectScene extends Phaser.Scene {
     const button = player === 1 ? this.player1ReadyButton : this.player2ReadyButton
     const isReady = player === 1 ? this.playerReady.player1 : this.playerReady.player2
 
+    // Check if button exists (player2ReadyButton might not exist in single player mode)
+    if (!button) {
+      return
+    }
+
     if (isReady) {
       button.setStyle({
         color: '#00ff00',
@@ -288,66 +464,431 @@ export class SelectScene extends Phaser.Scene {
   }
 
   private checkStartCondition() {
-    const startButton = this.registry.get('startButton')
     if (this.playerReady.player1 && this.playerReady.player2) {
-      startButton.setVisible(true)
-    } else {
-      startButton.setVisible(false)
+      this.showStartButton()
     }
   }
 
   private updateSelectedDisplay(player: 1 | 2, character: any) {
     const width = this.cameras.main.width
-    const x = player === 1 ? width / 4 : 3 * width / 4
-
-    // Clear previous display
-    const area = this.registry.get(`p${player}Area`)
-    area.setFillStyle(0x333333, 0.8)
-
-    // Add character sprite
-    const selectedSprite = this.add.image(x, 160, character.sprite)
-      .setDisplaySize(60, 80)
-
-    // Add character info
-    this.add.text(x, 210, character.name, {
-      font: 'bold 12px Courier New',
-      color: '#ffffff'
-    }).setOrigin(0.5)
-
-    this.add.text(x, 225, 'SELECTED!', {
-      font: 'bold 10px Courier New',
-      color: '#00ff00'
-    }).setOrigin(0.5)
-  }
-
-  private updatePlayerIndicators() {
-    // Update Player 1 indicator
-    const player1Status = this.playerReady.player1 ? 'READY' : 'SELECTING'
-    const player1Color = this.currentPlayer === 1 ? '#ffff00' : '#888888'
-    const player1ReadyColor = this.playerReady.player1 ? '#00ff00' : player1Color
+    const height = this.cameras.main.height
     
-    this.player1Indicator.setText(`Player 1: ${player1Status}`)
-    this.player1Indicator.setColor(player1ReadyColor)
-
-    // Update Player 2 indicator
-    const player2Status = this.playerReady.player2 ? 'READY' : 'SELECTING'
-    const player2Color = this.currentPlayer === 2 ? '#ffff00' : '#888888'
-    const player2ReadyColor = this.playerReady.player2 ? '#00ff00' : player2Color
+    // Position selected characters at the bottom corners, away from character grid
+    const x = player === 1 ? 120 : width - 120
+    const y = height - 100
     
-    this.player2Indicator.setText(`Player 2: ${player2Status}`)
-    this.player2Indicator.setColor(player2ReadyColor)
+    const gameMode = this.registry.get('gameMode') || 'twoPlayer'
+
+    // Clear previous display elements
+    const displayElements = player === 1 ? this.player1DisplayElements : this.player2DisplayElements
+    displayElements.forEach(element => element.destroy())
+    displayElements.length = 0
+
+    // Use portrait for Vitalik, specific frame for CZ, regular sprite for others
+    let spriteKey = character.sprite
+    if (character.id === 'vitalik') {
+      // For Vitalik, we'll create a specific frame from the spritesheet in the scene
+      const selectedSprite = this.add.sprite(x, y - 30, 'vitalik-idle', 2)  // Use frame 2 (3rd frame)
+        .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+      displayElements.push(selectedSprite)
+      
+      // Skip the regular sprite creation and continue with other elements
+      // Character name
+      const nameText = this.add.text(x, y + 10, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(nameText)
+
+      // Player indicator
+      const playerLabel = `P${player}`
+      const playerText = this.add.text(x, y - 60, playerLabel, {
+        fontSize: '14px',
+        color: player === 1 ? '#00ff00' : '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(playerText)
+
+      // Status text - only show for CPU
+      if (player === 2 && gameMode === 'singlePlayer') {
+        const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+          fontSize: '10px',
+          color: '#ff6600',
+          fontFamily: 'Arial Bold'
+        }).setOrigin(0.5)
+        displayElements.push(statusTextObj)
+      }
+      return  // Exit early for Vitalik character
+    } else if (character.id === 'cz') {
+      // For CZ, we'll create a specific frame from the spritesheet in the scene
+      const selectedSprite = this.add.sprite(x, y - 30, 'cz-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+      displayElements.push(selectedSprite)
+      
+      // Skip the regular sprite creation and continue with other elements
+      // Character name
+      const nameText = this.add.text(x, y + 10, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(nameText)
+
+      // Player indicator
+      const playerLabel = `P${player}`
+      const playerText = this.add.text(x, y - 60, playerLabel, {
+        fontSize: '14px',
+        color: player === 1 ? '#00ff00' : '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(playerText)
+
+      // Status text - only show for CPU
+      if (player === 2 && gameMode === 'singlePlayer') {
+        const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+          fontSize: '10px',
+          color: '#ff6600',
+          fontFamily: 'Arial Bold'
+        }).setOrigin(0.5)
+        displayElements.push(statusTextObj)
+      }
+      return  // Exit early for CZ character
+    } else if (character.id === 'elon') {
+      // For Elon, we'll create a specific frame from the spritesheet in the scene
+      const selectedSprite = this.add.sprite(x, y - 30, 'elon-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+      displayElements.push(selectedSprite)
+      
+      // Skip the regular sprite creation and continue with other elements
+      // Character name
+      const nameText = this.add.text(x, y + 10, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(nameText)
+
+      // Player indicator
+      const playerLabel = `P${player}`
+      const playerText = this.add.text(x, y - 60, playerLabel, {
+        fontSize: '14px',
+        color: player === 1 ? '#00ff00' : '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(playerText)
+
+      // Status text - only show for CPU
+      if (player === 2 && gameMode === 'singlePlayer') {
+        const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+          fontSize: '10px',
+          color: '#ff6600',
+          fontFamily: 'Arial Bold'
+        }).setOrigin(0.5)
+        displayElements.push(statusTextObj)
+      }
+      return  // Exit early for Elon character
+    } else if (character.id === 'hoskinson') {
+      // For Hoskinson, we'll create a specific frame from the spritesheet in the scene
+      const selectedSprite = this.add.sprite(x, y - 30, 'hoskinson-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+      displayElements.push(selectedSprite)
+      
+      // Skip the regular sprite creation and continue with other elements
+      // Character name
+      const nameText = this.add.text(x, y + 10, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(nameText)
+
+      // Player indicator
+      const playerLabel = `P${player}`
+      const playerText = this.add.text(x, y - 60, playerLabel, {
+        fontSize: '14px',
+        color: player === 1 ? '#00ff00' : '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(playerText)
+
+      // Status text - only show for CPU
+      if (player === 2 && gameMode === 'singlePlayer') {
+        const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+          fontSize: '10px',
+          color: '#ff6600',
+          fontFamily: 'Arial Bold'
+        }).setOrigin(0.5)
+        displayElements.push(statusTextObj)
+      }
+      return  // Exit early for Hoskinson character
+    } else if (character.id === 'saylor') {
+      // For Saylor, we'll create a specific frame from the spritesheet in the scene
+      const selectedSprite = this.add.sprite(x, y - 30, 'saylor-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+      displayElements.push(selectedSprite)
+      
+      // Skip the regular sprite creation and continue with other elements
+      // Character name
+      const nameText = this.add.text(x, y + 10, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(nameText)
+
+      // Player indicator
+      const playerLabel = `P${player}`
+      const playerText = this.add.text(x, y - 60, playerLabel, {
+        fontSize: '14px',
+        color: player === 1 ? '#00ff00' : '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(playerText)
+
+      // Status text - only show for CPU
+      if (player === 2 && gameMode === 'singlePlayer') {
+        const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+          fontSize: '10px',
+          color: '#ff6600',
+          fontFamily: 'Arial Bold'
+        }).setOrigin(0.5)
+        displayElements.push(statusTextObj)
+      }
+      return  // Exit early for Saylor character
+    } else if (character.id === 'gavin') {
+      // For Gavin, we'll create a specific frame from the spritesheet in the scene
+      const selectedSprite = this.add.sprite(x, y - 30, 'gavin-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+      displayElements.push(selectedSprite)
+      
+      // Skip the regular sprite creation and continue with other elements
+      // Character name
+      const nameText = this.add.text(x, y + 10, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(nameText)
+
+      // Player indicator
+      const playerLabel = `P${player}`
+      const playerText = this.add.text(x, y - 60, playerLabel, {
+        fontSize: '14px',
+        color: player === 1 ? '#00ff00' : '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(playerText)
+
+      // Status text - only show for CPU
+      if (player === 2 && gameMode === 'singlePlayer') {
+        const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+          fontSize: '10px',
+          color: '#ff6600',
+          fontFamily: 'Arial Bold'
+        }).setOrigin(0.5)
+        displayElements.push(statusTextObj)
+      }
+      return  // Exit early for Gavin character
+    } else if (character.id === 'hodl_master') {
+        // For Hodl Master, we'll create a specific frame from the spritesheet in the scene
+        const selectedSprite = this.add.sprite(x, y - 30, 'hodl-master-combat-idle', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+        displayElements.push(selectedSprite)
+      
+      // Skip the regular sprite creation and continue with other elements
+      // Character name
+      const nameText = this.add.text(x, y + 10, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(nameText)
+
+      // Player indicator
+      const playerLabel = `P${player}`
+      const playerText = this.add.text(x, y - 60, playerLabel, {
+        fontSize: '14px',
+        color: player === 1 ? '#00ff00' : '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(playerText)
+
+      // Status text - only show for CPU
+      if (player === 2 && gameMode === 'singlePlayer') {
+        const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+          fontSize: '10px',
+          color: '#ff6600',
+          fontFamily: 'Arial Bold'
+        }).setOrigin(0.5)
+        displayElements.push(statusTextObj)
+      }
+      return  // Exit early for Hodl Master character
+    } else if (character.id === 'trade_queen') {
+      // For Trade Queen, we'll create a specific frame from the spritesheet in the scene
+      const selectedSprite = this.add.sprite(x, y - 30, 'trade-queen-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+      displayElements.push(selectedSprite)
+      
+      // Skip the regular sprite creation and continue with other elements
+      // Character name
+      const nameText = this.add.text(x, y + 10, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(nameText)
+
+      // Player indicator
+      const playerLabel = `P${player}`
+      const playerText = this.add.text(x, y - 60, playerLabel, {
+        fontSize: '14px',
+        color: player === 1 ? '#00ff00' : '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(playerText)
+
+      // Status text - only show for CPU
+      if (player === 2 && gameMode === 'singlePlayer') {
+        const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+          fontSize: '10px',
+          color: '#ff6600',
+          fontFamily: 'Arial Bold'
+        }).setOrigin(0.5)
+        displayElements.push(statusTextObj)
+      }
+      return  // Exit early for Trade Queen character
+    } else if (character.id === 'defi_ninja') {
+      // For Defi Ninja, we'll create a specific frame from the spritesheet in the scene
+      const selectedSprite = this.add.sprite(x, y - 30, 'defi-ninja-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+      displayElements.push(selectedSprite)
+      
+      // Skip the regular sprite creation and continue with other elements
+      // Character name
+      const nameText = this.add.text(x, y + 10, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(nameText)
+
+      // Player indicator
+      const playerLabel = `P${player}`
+      const playerText = this.add.text(x, y - 60, playerLabel, {
+        fontSize: '14px',
+        color: player === 1 ? '#00ff00' : '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(playerText)
+
+      // Status text - only show for CPU
+      if (player === 2 && gameMode === 'singlePlayer') {
+        const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+          fontSize: '10px',
+          color: '#ff6600',
+          fontFamily: 'Arial Bold'
+        }).setOrigin(0.5)
+        displayElements.push(statusTextObj)
+      }
+      return  // Exit early for Defi Ninja character
+    } else if (character.id === 'meme_lord') {
+      // For Meme Lord, we'll create a specific frame from the spritesheet in the scene
+      const selectedSprite = this.add.sprite(x, y - 30, 'meme-lord-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+      displayElements.push(selectedSprite)
+      
+      // Skip the regular sprite creation and continue with other elements
+      // Character name
+      const nameText = this.add.text(x, y + 10, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(nameText)
+
+      // Player indicator
+      const playerLabel = `P${player}`
+      const playerText = this.add.text(x, y - 60, playerLabel, {
+        fontSize: '14px',
+        color: player === 1 ? '#00ff00' : '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(playerText)
+
+      // Status text - only show for CPU
+      if (player === 2 && gameMode === 'singlePlayer') {
+        const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+          fontSize: '10px',
+          color: '#ff6600',
+          fontFamily: 'Arial Bold'
+        }).setOrigin(0.5)
+        displayElements.push(statusTextObj)
+      }
+      return  // Exit early for Meme Lord character
+    }
+
+    // Selected character sprite - positioned at bottom corners - using centralized size constants
+    const selectedSprite = this.add.image(x, y - 30, spriteKey)
+      .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+    displayElements.push(selectedSprite)
+
+    // Character name
+    const nameText = this.add.text(x, y + 10, character.name, {
+      fontSize: '12px',
+      color: '#00d4ff',
+      fontFamily: 'Arial Bold'
+    }).setOrigin(0.5)
+    displayElements.push(nameText)
+
+    // Player indicator
+    const playerLabel = `P${player}`
+    const playerText = this.add.text(x, y - 60, playerLabel, {
+      fontSize: '14px',
+      color: player === 1 ? '#00ff00' : '#ff6600',
+      fontFamily: 'Arial Bold'
+    }).setOrigin(0.5)
+    displayElements.push(playerText)
+
+    // Status text - only show for CPU
+    if (player === 2 && gameMode === 'singlePlayer') {
+      const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+        fontSize: '10px',
+        color: '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(statusTextObj)
+    }
   }
 
   private showStartButton() {
-    // This method is no longer needed as we use checkStartCondition instead
-    // Keeping for compatibility but it does nothing
+    const { width, height } = this.cameras.main
+    
+    const startButton = this.add.text(width / 2, height - 100, 'START FIGHT!', {
+      fontSize: '24px',
+      color: '#00d4ff',
+      fontFamily: 'Arial Black',
+      backgroundColor: '#16213e',
+      padding: { x: 20, y: 10 }
+    }).setOrigin(0.5)
+    .setInteractive({ useHandCursor: true })
+    .on('pointerdown', () => {
+      this.startFight()
+    })
+    .on('pointerover', () => {
+      startButton.setStyle({ backgroundColor: '#0f3460' })
+    })
+    .on('pointerout', () => {
+      startButton.setStyle({ backgroundColor: '#16213e' })
+    })
   }
 
   private startFight() {
-    // Store selected characters in registry for Fight scene
+    // Store selected data in registry
     this.registry.set('selectedCharacters', this.selectedCharacters)
     
-    // Transition to Fight scene
-    this.scene.start('FightScene')
+    // Go to arena selection scene
+    this.scene.start('ArenaSelectScene')
   }
+
 }

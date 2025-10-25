@@ -1,0 +1,142 @@
+{
+  "arenas": [
+    {
+      "id": "crypto_exchange",
+      "name": "Crypto Exchange",
+      "description": "Büyük kripto borsasının trading floor'unda dövüş.",
+      "background": "exchange-floor",
+      "theme": "technology",
+      "music": "electronic_beats",
+      "lighting": "neon",
+      "effects": {
+        "particles": "trading_charts",
+        "ambient": "server_hum"
+      },
+      "boundaries": {
+        "left": 50,
+        "right": 750,
+        "ground": 500
+      },
+      "special_features": [
+        "price_tickers",
+        "trading_screens",
+        "server_racks"
+      ]
+    },
+    {
+      "id": "blockchain_city",
+      "name": "Blockchain City",
+      "description": "Gelecekteki blockchain şehrinin merkezinde dövüş.",
+      "background": "cyber-city",
+      "theme": "futuristic",
+      "music": "cyberpunk_synth",
+      "lighting": "holographic",
+      "effects": {
+        "particles": "data_streams",
+        "ambient": "city_buzz"
+      },
+      "boundaries": {
+        "left": 40,
+        "right": 760,
+        "ground": 480
+      },
+      "special_features": [
+        "holographic_ads",
+        "flying_cars",
+        "neon_buildings"
+      ]
+    },
+    {
+      "id": "mining_facility",
+      "name": "Mining Facility",
+      "description": "Dev kripto madenciliği tesisinde dövüş.",
+      "background": "mining-rigs",
+      "theme": "industrial",
+      "music": "industrial_metal",
+      "lighting": "harsh_white",
+      "effects": {
+        "particles": "sparks",
+        "ambient": "machinery_noise"
+      },
+      "boundaries": {
+        "left": 60,
+        "right": 740,
+        "ground": 520
+      },
+      "special_features": [
+        "mining_rigs",
+        "cooling_fans",
+        "power_cables"
+      ]
+    },
+    {
+      "id": "defi_temple",
+      "name": "DeFi Temple",
+      "description": "Merkezi olmayan finansın kutsal tapınağında dövüş.",
+      "background": "ancient-temple",
+      "theme": "mystical",
+      "music": "ethereal_ambient",
+      "lighting": "mystical_glow",
+      "effects": {
+        "particles": "magical_runes",
+        "ambient": "temple_echo"
+      },
+      "boundaries": {
+        "left": 45,
+        "right": 755,
+        "ground": 490
+      },
+      "special_features": [
+        "floating_runes",
+        "energy_pillars",
+        "ancient_symbols"
+      ]
+    },
+    {
+      "id": "nft_gallery",
+      "name": "NFT Gallery",
+      "description": "Prestijli NFT galerisinde sanat eserleri arasında dövüş.",
+      "background": "art-gallery",
+      "theme": "artistic",
+      "music": "classical_electronic",
+      "lighting": "gallery_spots",
+      "effects": {
+        "particles": "color_splashes",
+        "ambient": "gallery_quiet"
+      },
+      "boundaries": {
+        "left": 55,
+        "right": 745,
+        "ground": 510
+      },
+      "special_features": [
+        "nft_displays",
+        "art_frames",
+        "spotlight_beams"
+      ]
+    },
+    {
+      "id": "meme_arena",
+      "name": "Meme Arena",
+      "description": "Meme coinlerin eğlenceli dünyasında dövüş.",
+      "background": "meme-space",
+      "theme": "chaotic",
+      "music": "meme_beats",
+      "lighting": "rainbow",
+      "effects": {
+        "particles": "meme_icons",
+        "ambient": "crowd_cheers"
+      },
+      "boundaries": {
+        "left": 30,
+        "right": 770,
+        "ground": 470
+      },
+      "special_features": [
+        "meme_posters",
+        "rocket_emojis",
+        "diamond_hands"
+      ]
+    }
+  ]
+}

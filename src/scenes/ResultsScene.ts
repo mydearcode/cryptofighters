@@ -1,7 +1,9 @@
 import Phaser from 'phaser'
+import { CharacterManager } from '../characters/CharacterManager'
 
 export class ResultsScene extends Phaser.Scene {
   private fightResult: any
+  private selectedCharacters: any
 
   constructor() {
     super({ key: 'ResultsScene' })
@@ -11,11 +13,16 @@ export class ResultsScene extends Phaser.Scene {
     const width = this.cameras.main.width
     const height = this.cameras.main.height
 
-    // Get fight result from registry
+    // Get fight result and selected characters from registry
     this.fightResult = this.registry.get('fightResult') || {
       result: 'PLAYER1_WINS',
       player1Health: 100,
       player2Health: 0
+    }
+
+    this.selectedCharacters = this.registry.get('selectedCharacters') || {
+      player1: 'vitalik',
+      player2: 'satoshi'
     }
 
     // Background
@@ -45,21 +52,25 @@ export class ResultsScene extends Phaser.Scene {
     let resultText = ''
     let resultColor = '#ffffff'
 
+    // Get character data for names
+    const char1Data = CharacterManager.getCharacterById(this.selectedCharacters.player1) || CharacterManager.getAllCharacters()[0]
+    const char2Data = CharacterManager.getCharacterById(this.selectedCharacters.player2) || CharacterManager.getAllCharacters()[1]
+
     switch (this.fightResult.result) {
       case 'PLAYER1_WINS':
-        resultText = '🏆 HODL MASTER WINS! 🏆'
+        resultText = `🏆 ${char1Data.name.toUpperCase()} WINS! 🏆`
         resultColor = '#00ff00'
         break
       case 'PLAYER2_WINS':
-        resultText = '🏆 DAY TRADER WINS! 🏆'
+        resultText = `🏆 ${char2Data.name.toUpperCase()} WINS! 🏆`
         resultColor = '#ff0000'
         break
       case 'TIME_UP':
         if (this.fightResult.player1Health > this.fightResult.player2Health) {
-          resultText = '⏰ HODL MASTER WINS BY DECISION! ⏰'
+          resultText = `⏰ ${char1Data.name.toUpperCase()} WINS BY DECISION! ⏰`
           resultColor = '#00ff00'
         } else if (this.fightResult.player2Health > this.fightResult.player1Health) {
-          resultText = '⏰ DAY TRADER WINS BY DECISION! ⏰'
+          resultText = `⏰ ${char2Data.name.toUpperCase()} WINS BY DECISION! ⏰`
           resultColor = '#ff0000'
         } else {
           resultText = '🤝 DRAW! 🤝'
@@ -82,6 +93,10 @@ export class ResultsScene extends Phaser.Scene {
   private displayStats() {
     const width = this.cameras.main.width
 
+    // Get character data for names
+    const char1Data = CharacterManager.getCharacterById(this.selectedCharacters.player1) || CharacterManager.getAllCharacters()[0]
+    const char2Data = CharacterManager.getCharacterById(this.selectedCharacters.player2) || CharacterManager.getAllCharacters()[1]
+
     // Stats container
     this.add.rectangle(width / 2, 280, 500, 120, 0x000000, 0.8)
 
@@ -92,7 +107,7 @@ export class ResultsScene extends Phaser.Scene {
     }).setOrigin(0.5)
 
     // Player 1 stats
-    this.add.text(width / 2 - 150, 270, 'HODL MASTER', {
+    this.add.text(width / 2 - 150, 270, char1Data.name.toUpperCase(), {
       font: 'bold 14px Courier New',
       color: '#00ff00'
     }).setOrigin(0.5)
@@ -114,7 +129,7 @@ export class ResultsScene extends Phaser.Scene {
     }).setOrigin(0.5)
 
     // Player 2 stats
-    this.add.text(width / 2 + 150, 270, 'DAY TRADER', {
+    this.add.text(width / 2 + 150, 270, char2Data.name.toUpperCase(), {
       font: 'bold 14px Courier New',
       color: '#ff0000'
     }).setOrigin(0.5)

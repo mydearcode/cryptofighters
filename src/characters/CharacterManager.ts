@@ -1,7 +1,9 @@
 import { CharacterData } from './Character'
+import { gameData, CharacterData as JSONCharacterData } from '../data/DataManager'
 
 export class CharacterManager {
-  private static characters: CharacterData[] = [
+  // Legacy hardcoded characters (kept for backward compatibility)
+  private static legacyCharacters: CharacterData[] = [
     {
       id: 'hodl_master',
       name: 'HODL Master',
@@ -52,27 +54,80 @@ export class CharacterManager {
     }
   ]
 
+  // Convert JSON character data to game character data format
+  private static convertJSONToCharacterData(jsonChar: JSONCharacterData): CharacterData {
+    return {
+      id: jsonChar.id,
+      name: jsonChar.name,
+      sprite: jsonChar.sprite.replace('-', '_'), // Convert kebab-case to snake_case for sprites
+      stats: jsonChar.stats,
+      moves: jsonChar.moves
+    }
+  }
+
   public static getAllCharacters(): CharacterData[] {
-    return [...this.characters] // Return a copy
+    // Try to get characters from JSON data first
+    if (gameData.isDataLoaded()) {
+      const jsonCharacters = gameData.getAllCharacters()
+      return jsonCharacters.map(char => this.convertJSONToCharacterData(char))
+    }
+    
+    // Fallback to legacy characters
+    return this.legacyCharacters
   }
 
   public static getCharacterById(id: string): CharacterData | undefined {
-    return this.characters.find(char => char.id === id)
+    // Try JSON data first
+    if (gameData.isDataLoaded()) {
+      const jsonChar = gameData.getCharacter(id)
+      if (jsonChar) {
+        return this.convertJSONToCharacterData(jsonChar)
+      }
+    }
+    
+    // Fallback to legacy characters
+    return this.legacyCharacters.find(char => char.id === id)
   }
 
   public static getCharacterByName(name: string): CharacterData | undefined {
-    return this.characters.find(char => char.name === name)
+    return this.getAllCharacters().find(char => char.name === name)
   }
 
   public static getRandomCharacter(): CharacterData {
-    const randomIndex = Math.floor(Math.random() * this.characters.length)
-    return this.characters[randomIndex]
+    const characters = this.getAllCharacters()
+    const randomIndex = Math.floor(Math.random() * characters.length)
+    return characters[randomIndex]
   }
 
   public static preloadAssets(scene: Phaser.Scene) {
-    // Load all character sprites
-    this.characters.forEach(character => {
-      scene.load.image(character.sprite, `assets/sprites/${character.sprite}.svg`)
+    const characters = this.getAllCharacters()
+    characters.forEach(character => {
+      scene.load.image(character.sprite, `assets/characters/${character.sprite}.png`)
     })
+  }
+
+  // New methods for JSON data system
+  public static getCharactersByRarity(rarity: string): CharacterData[] {
+    if (gameData.isDataLoaded()) {
+      const jsonCharacters = gameData.getCharactersByRarity(rarity)
+      return jsonCharacters.map(char => this.convertJSONToCharacterData(char))
+    }
+    return []
+  }
+
+  public static getCharactersByElement(element: string): CharacterData[] {
+    if (gameData.isDataLoaded()) {
+      const jsonCharacters = gameData.getCharactersByElement(element)
+      return jsonCharacters.map(char => this.convertJSONToCharacterData(char))
+    }
+    return []
+  }
+
+  public static getDataStats(): { total: number, fromJSON: boolean } {
+    const characters = this.getAllCharacters()
+    return {
+      total: characters.length,
+      fromJSON: gameData.isDataLoaded()
+    }
   }
 }
