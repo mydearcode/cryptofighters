@@ -73,7 +73,7 @@
       "id": "defi_temple",
       "name": "DeFi Temple",
       "description": "Merkezi olmayan finansın kutsal tapınağında dövüş.",
-      "background": "ancient-temple",
+      "background": "defi_temple.png",
       "theme": "mystical",
       "music": "ethereal_ambient",
       "lighting": "mystical_glow",

@@ -3,6 +3,7 @@ import { GAME_CONSTANTS } from '../config/GameConfig'
 import { Character, CharacterState, AttackType } from '../characters/Character'
 import { CharacterManager } from '../characters/CharacterManager'
 import { gameData, ArenaData } from '../data/DataManager'
+import defiTempleImg from '../assets/images/arenas/defi_temple.png'
 
 export class FightScene extends Phaser.Scene {
   private player1!: Character
@@ -25,8 +26,27 @@ export class FightScene extends Phaser.Scene {
   }
 
   preload() {
+    console.log('FightScene preload started')
+    
+    // Add load event listeners for debugging
+    this.load.on('filecomplete', (key: string, type: string, data: any) => {
+      console.log(`File loaded successfully: ${key} (${type})`)
+    })
+    
+    this.load.on('loaderror', (file: any) => {
+      console.error(`Failed to load file: ${file.key} from ${file.url}`)
+    })
+    
+    this.load.on('complete', () => {
+      console.log('All files loaded successfully')
+    })
+    
     // Load character assets
     CharacterManager.preloadAssets(this)
+    
+    // Load arena background images using Vite import
+    console.log('Loading defi_temple image from:', defiTempleImg)
+    this.load.image('defi_temple', defiTempleImg)
   }
 
   create() {
@@ -68,11 +88,24 @@ export class FightScene extends Phaser.Scene {
     const width = this.cameras.main.width
     const height = this.cameras.main.height
 
-    // Parse arena background color
-    const bgColor = this.parseColor(this.currentArena.background)
-    
-    // Arena background with theme-based color
-    this.add.rectangle(width / 2, height / 2, width, height, bgColor)
+    // Check if arena has a PNG background image
+    if (this.currentArena.background.endsWith('.png')) {
+      // Use image background - use the filename without extension as key
+      const bgKey = this.currentArena.background.replace('.png', '')
+      const bgImage = this.add.image(width / 2, height / 2, bgKey)
+      
+      // Scale image to fit screen while maintaining aspect ratio
+      const scaleX = width / bgImage.width
+      const scaleY = height / bgImage.height
+      const scale = Math.max(scaleX, scaleY)
+      bgImage.setScale(scale)
+    } else {
+      // Parse arena background color (fallback)
+      const bgColor = this.parseColor(this.currentArena.background)
+      
+      // Arena background with theme-based color
+      this.add.rectangle(width / 2, height / 2, width, height, bgColor)
+    }
 
     // Ground with arena-specific styling - create physics platform
     const groundColor = this.getGroundColor(this.currentArena.theme)
@@ -406,25 +439,25 @@ export class FightScene extends Phaser.Scene {
   private checkCollisions() {
     const distance = Math.abs(this.player1.x - this.player2.x)
     
-    // Prevent players from overlapping
-    if (distance < 80) {
+    // Prevent players from overlapping - reduced distance for closer combat
+    if (distance < 60) {
       if (this.player1.x < this.player2.x) {
-        this.player1.x -= 2
-        this.player2.x += 2
+        this.player1.x -= 1
+        this.player2.x += 1
       } else {
-        this.player1.x += 2
-        this.player2.x -= 2
+        this.player1.x += 1
+        this.player2.x -= 1
       }
     }
 
-    // Check for attack collisions - only damage the other player once per attack
-    if (this.player1.currentState === CharacterState.ATTACKING && distance < 100 && !this.player1HasHit) {
+    // Check for attack collisions - reduced attack range for closer combat
+    if (this.player1.currentState === CharacterState.ATTACKING && distance < 80 && !this.player1HasHit) {
       // Player 1 attacks Player 2 - use character's attack damage based on attack type
       const damage = this.player1.getAttackDamage()
       this.player2.takeDamage(damage)
       this.player1HasHit = true
     }
-    if (this.player2.currentState === CharacterState.ATTACKING && distance < 100 && !this.player2HasHit) {
+    if (this.player2.currentState === CharacterState.ATTACKING && distance < 80 && !this.player2HasHit) {
       // Player 2 attacks Player 1 - use character's attack damage based on attack type
       const damage = this.player2.getAttackDamage()
       this.player1.takeDamage(damage)

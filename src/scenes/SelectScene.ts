@@ -862,24 +862,25 @@ export class SelectScene extends Phaser.Scene {
   }
 
   private showStartButton() {
-    const { width, height } = this.cameras.main
+    const { width } = this.cameras.main
     
-    const startButton = this.add.text(width / 2, height - 100, 'START FIGHT!', {
-      fontSize: '24px',
+    // Create NEXT button in top-right corner instead of top-left
+    const nextButton = this.add.text(width - 80, 60, 'NEXT', {
+      fontSize: '18px',
       color: '#00d4ff',
       fontFamily: 'Arial Black',
       backgroundColor: '#16213e',
-      padding: { x: 20, y: 10 }
+      padding: { x: 15, y: 8 }
     }).setOrigin(0.5)
     .setInteractive({ useHandCursor: true })
     .on('pointerdown', () => {
       this.startFight()
     })
     .on('pointerover', () => {
-      startButton.setStyle({ backgroundColor: '#0f3460' })
+      nextButton.setStyle({ backgroundColor: '#0f3460' })
     })
     .on('pointerout', () => {
-      startButton.setStyle({ backgroundColor: '#16213e' })
+      nextButton.setStyle({ backgroundColor: '#16213e' })
     })
   }
 

@@ -50,29 +50,34 @@ export class ArenaSelectScene extends Phaser.Scene {
   }
 
   private createArenaSelection() {
-    const { width } = this.cameras.main
+    const { width, height } = this.cameras.main
     const arenas = gameData.getAllArenas()
     
     // Arena selection title matching MenuScene style
-    this.add.text(width / 2, 180, 'AVAILABLE ARENAS', {
+    this.add.text(width / 2, 160, 'AVAILABLE ARENAS', {
       fontSize: '24px',
       color: '#ffffff',
       fontFamily: 'Arial Bold'
     }).setOrigin(0.5)
     
-    // Arena grid
+    // Arena grid - adjusted for better fit, smaller cards without descriptions
     const gridCols = 2
-    const cardWidth = 280
-    const cardHeight = 120
-    const spacing = 40
+    const cardWidth = 240  // Smaller cards since no descriptions
+    const cardHeight = 70  // Much smaller height without descriptions
+    const spacing = 30     // Less spacing
     const startX = width / 2 - ((gridCols - 1) * (cardWidth + spacing)) / 2
-    const startY = 250
+    const startY = 200     // Moved up from 250
     
     arenas.forEach((arena, index) => {
       const col = index % gridCols
       const row = Math.floor(index / gridCols)
       const x = startX + col * (cardWidth + spacing)
       const y = startY + row * (cardHeight + spacing)
+      
+      // Ensure cards don't go below a certain point
+      if (y + cardHeight / 2 > height - 120) {
+        return // Skip cards that would be too low
+      }
       
       // Arena card background matching MenuScene button style
       const isSelected = arena.id === this.selectedArena
@@ -95,21 +100,14 @@ export class ArenaSelectScene extends Phaser.Scene {
           }
         })
       
-      // Arena name
-      const nameText = this.add.text(x, y - 30, arena.name, {
-        fontSize: '18px',
+      // Arena name - centered in the card, no description
+      const nameText = this.add.text(x, y, arena.name, {
+        fontSize: '16px',  // Slightly smaller font
         color: '#00d4ff',
         fontFamily: 'Arial Bold'
       }).setOrigin(0.5)
       
-      // Arena description
-      const descText = this.add.text(x, y + 10, arena.description, {
-        fontSize: '14px',
-        color: '#cccccc',
-        fontFamily: 'Arial',
-        wordWrap: { width: cardWidth - 40 },
-        align: 'center'
-      }).setOrigin(0.5)
+      // Removed arena description to save space
       
       this.arenaButtons.push(card as any)
     })
