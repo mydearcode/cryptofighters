@@ -2,9 +2,9 @@
   "arenas": [
     {
       "id": "crypto_exchange",
-      "name": "Crypto Exchange",
+      "name": "Exchanges Street",
       "description": "Büyük kripto borsasının trading floor'unda dövüş.",
-      "background": "exchange-floor",
+      "background": "exchanges_street.png",
       "theme": "technology",
       "music": "electronic_beats",
       "lighting": "neon",

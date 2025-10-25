@@ -4,6 +4,7 @@ import { Character, CharacterState, AttackType } from '../characters/Character'
 import { CharacterManager } from '../characters/CharacterManager'
 import { gameData, ArenaData } from '../data/DataManager'
 import defiTempleImg from '../assets/images/arenas/defi_temple.png'
+import exchangesStreetImg from '../assets/images/arenas/exchanges_street.png'
 
 export class FightScene extends Phaser.Scene {
   private player1!: Character
@@ -47,6 +48,9 @@ export class FightScene extends Phaser.Scene {
     // Load arena background images using Vite import
     console.log('Loading defi_temple image from:', defiTempleImg)
     this.load.image('defi_temple', defiTempleImg)
+    
+    console.log('Loading exchanges_street image from:', exchangesStreetImg)
+    this.load.image('exchanges_street', exchangesStreetImg)
   }
 
   create() {
@@ -107,9 +111,8 @@ export class FightScene extends Phaser.Scene {
       this.add.rectangle(width / 2, height / 2, width, height, bgColor)
     }
 
-    // Ground with arena-specific styling - create physics platform
-    const groundColor = this.getGroundColor(this.currentArena.theme)
-    const ground = this.add.rectangle(width / 2, GAME_CONSTANTS.GROUND_Y + 25, width, 50, groundColor)
+    // Create invisible physics ground for collision (no visual ground since BG has its own)
+    const ground = this.add.rectangle(width / 2, GAME_CONSTANTS.GROUND_Y + 25, width, 50, 0x000000, 0) // Alpha 0 = invisible
     ground.setName('ground') // Set name for later reference
     
     // Add physics to ground for collision
@@ -439,8 +442,8 @@ export class FightScene extends Phaser.Scene {
   private checkCollisions() {
     const distance = Math.abs(this.player1.x - this.player2.x)
     
-    // Prevent players from overlapping - reduced distance for closer combat
-    if (distance < 60) {
+    // Prevent players from overlapping - allow closer combat but prevent complete overlap
+    if (distance < 40) {
       if (this.player1.x < this.player2.x) {
         this.player1.x -= 1
         this.player2.x += 1
@@ -450,14 +453,14 @@ export class FightScene extends Phaser.Scene {
       }
     }
 
-    // Check for attack collisions - reduced attack range for closer combat
-    if (this.player1.currentState === CharacterState.ATTACKING && distance < 80 && !this.player1HasHit) {
+    // Check for attack collisions - increased attack range for better combat feel
+    if (this.player1.currentState === CharacterState.ATTACKING && distance < 120 && !this.player1HasHit) {
       // Player 1 attacks Player 2 - use character's attack damage based on attack type
       const damage = this.player1.getAttackDamage()
       this.player2.takeDamage(damage)
       this.player1HasHit = true
     }
-    if (this.player2.currentState === CharacterState.ATTACKING && distance < 80 && !this.player2HasHit) {
+    if (this.player2.currentState === CharacterState.ATTACKING && distance < 150 && !this.player2HasHit) {
       // Player 2 attacks Player 1 - use character's attack damage based on attack type
       const damage = this.player2.getAttackDamage()
       this.player1.takeDamage(damage)

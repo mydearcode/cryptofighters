@@ -58,7 +58,7 @@ export const GameConfig: Phaser.Types.Core.GameConfig = {
 export const GAME_CONSTANTS = {
   SCREEN_WIDTH: 960,
   SCREEN_HEIGHT: 540,
-  GROUND_Y: 350,  // Lowered from 450 to keep characters on screen
+  GROUND_Y: 450,  // Increased to lower characters to ground level
   PLAYER_SPEED: 200,
   JUMP_VELOCITY: -500,
   GRAVITY: 800,
@@ -68,10 +68,10 @@ export const GAME_CONSTANTS = {
   
   // Character Display Sizes - Simplified single size for all characters
   CHARACTER_SIZES: {
-    // Game Scene Size (Fight Scene) - reduced for better balance
-    GAME: { width: 200, height: 200 },
+    // Game Scene Size (Fight Scene) - increased 3x for better visibility in arena
+    GAME: { width: 600, height: 600 },
     
-    // Selection Scene Sizes
+    // Selection Scene Sizes - keep original sizes
     SELECTION_CARD: { width: 120, height: 150 },
     SELECTION_DISPLAY: { width: 120, height: 144 }
   }
