@@ -57,13 +57,19 @@ export class ResultsScene extends Phaser.Scene {
     const char2Data = CharacterManager.getCharacterById(this.selectedCharacters.player2) || CharacterManager.getAllCharacters()[1]
 
     switch (this.fightResult.result) {
+      case 'PLAYER1_WINS_MATCH':
       case 'PLAYER1_WINS':
         resultText = `🏆 ${char1Data.name.toUpperCase()} WINS! 🏆`
         resultColor = '#00ff00'
         break
+      case 'PLAYER2_WINS_MATCH':
       case 'PLAYER2_WINS':
         resultText = `🏆 ${char2Data.name.toUpperCase()} WINS! 🏆`
         resultColor = '#ff0000'
+        break
+      case 'MATCH_DRAW':
+        resultText = '🤝 DRAW! 🤝'
+        resultColor = '#ffff00'
         break
       case 'TIME_UP':
         if (this.fightResult.player1Health > this.fightResult.player2Health) {
@@ -78,8 +84,22 @@ export class ResultsScene extends Phaser.Scene {
         }
         break
       default:
-        resultText = '🤝 DRAW! 🤝'
-        resultColor = '#ffff00'
+        // Check round scores to determine winner
+        if (this.fightResult.roundScores) {
+          if (this.fightResult.roundScores.player1 > this.fightResult.roundScores.player2) {
+            resultText = `🏆 ${char1Data.name.toUpperCase()} WINS! 🏆`
+            resultColor = '#00ff00'
+          } else if (this.fightResult.roundScores.player2 > this.fightResult.roundScores.player1) {
+            resultText = `🏆 ${char2Data.name.toUpperCase()} WINS! 🏆`
+            resultColor = '#ff0000'
+          } else {
+            resultText = '🤝 DRAW! 🤝'
+            resultColor = '#ffff00'
+          }
+        } else {
+          resultText = '🤝 DRAW! 🤝'
+          resultColor = '#ffff00'
+        }
     }
 
     this.add.text(width / 2, 160, resultText, {

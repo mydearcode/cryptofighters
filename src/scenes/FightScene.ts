@@ -26,7 +26,7 @@ export class FightScene extends Phaser.Scene {
   
   // Round system variables
   private currentRound: number = 1
-  private maxRounds: number = 2
+  private maxRounds: number = 3  // Best of 3 system - up to 3 rounds
   private roundScores: { player1: number, player2: number } = { player1: 0, player2: 0 }
   private roundText!: Phaser.GameObjects.Text
   private isMatchComplete: boolean = false
@@ -353,6 +353,11 @@ export class FightScene extends Phaser.Scene {
   }
 
   private updateTimer() {
+    // Don't update timer if match is complete
+    if (this.isMatchComplete) {
+      return
+    }
+    
     this.roundTime--
     this.timerText.setText(this.roundTime.toString())
 
@@ -361,12 +366,31 @@ export class FightScene extends Phaser.Scene {
     }
   }
 
+  private roundEndProcessed: boolean = false
+
   update() {
+    // Skip update if match is complete to prevent further actions
+    if (this.isMatchComplete) {
+      return
+    }
+
     this.handleInput()
     this.player1.update(this.game.loop.delta)
     this.player2.update(this.game.loop.delta)
     this.checkCollisions()
     this.updateHealthBars()
+    
+    // Check for round end conditions - ONLY HERE, NOT IN checkCollisions
+    // Use roundEndProcessed flag to prevent multiple calls in same frame
+    if (!this.roundEndProcessed) {
+      if (this.player1.health <= 0) {
+        this.roundEndProcessed = true
+        this.endRound('PLAYER2_WINS')
+      } else if (this.player2.health <= 0) {
+        this.roundEndProcessed = true
+        this.endRound('PLAYER1_WINS')
+      }
+    }
   }
 
   private updateHealthBars() {
@@ -516,25 +540,40 @@ export class FightScene extends Phaser.Scene {
       this.player2HasHit = false
     }
 
-    // Check for KO
-    if (this.player1.health <= 0) {
-      this.endRound('PLAYER2_WINS')
-    } else if (this.player2.health <= 0) {
-      this.endRound('PLAYER1_WINS')
-    }
+    // Check for KO - REMOVED: Health checks moved to update() function
+    // This prevents double endRound calls
   }
 
   private endRound(result: string) {
-    if (this.isMatchComplete) return
+    // Add call stack logging
+    console.log('=== endRound CALLED ===')
+    console.log('Call stack:', new Error().stack)
+    console.log('Current round:', this.currentRound)
+    console.log('isMatchComplete before:', this.isMatchComplete)
     
-    this.gameTimer.destroy()
+    // Prevent multiple calls
+    if (this.isMatchComplete) {
+      console.log('endRound called but match already complete - ignoring')
+      return
+    }
+    
+    // Stop the timer immediately
+    if (this.gameTimer) {
+      this.gameTimer.destroy()
+    }
+
+    // Set match complete flag to prevent further actions
+    this.isMatchComplete = true
 
     // Determine round winner and update scores
     let roundWinner = ''
-    if (result === 'PLAYER1_WINS') {
+    console.log(`BEFORE score update: P1=${this.roundScores.player1}, P2=${this.roundScores.player2}`)
+    console.log(`Round result: ${result}`)
+    
+    if (result === 'PLAYER1_WIN' || result === 'PLAYER1_WINS') {
       this.roundScores.player1++
       roundWinner = 'PLAYER 1 WINS ROUND!'
-    } else if (result === 'PLAYER2_WINS') {
+    } else if (result === 'PLAYER2_WIN' || result === 'PLAYER2_WINS') {
       this.roundScores.player2++
       roundWinner = 'PLAYER 2 WINS ROUND!'
     } else if (result === 'TIME_UP') {
@@ -550,6 +589,8 @@ export class FightScene extends Phaser.Scene {
       }
     }
 
+    console.log(`AFTER score update: P1=${this.roundScores.player1}, P2=${this.roundScores.player2}`)
+
     // Show round result
     const resultText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, roundWinner, {
       font: 'bold 24px Courier New',
@@ -558,12 +599,35 @@ export class FightScene extends Phaser.Scene {
       padding: { x: 20, y: 10 }
     }).setOrigin(0.5)
 
-    // Check if match is complete
-    const isMatchComplete = this.checkMatchComplete()
+    // Debug log
+    console.log(`Round ${this.currentRound} ended. Scores: P1=${this.roundScores.player1}, P2=${this.roundScores.player2}`)
+
+    // Check match completion conditions
+    const hasWinner = this.roundScores.player1 >= 2 || this.roundScores.player2 >= 2
+    const isThirdRound = this.currentRound >= 3
     
-    if (isMatchComplete) {
+    console.log(`Match check: hasWinner=${hasWinner}, isThirdRound=${isThirdRound}, currentRound=${this.currentRound}`)
+
+    if (hasWinner) {
+      console.log('Match complete: Someone won 2 rounds')
       // Match is complete, go to results
       this.time.delayedCall(3000, () => {
+        resultText.destroy()
+        const finalResult = this.getFinalMatchResult()
+        this.registry.set('fightResult', {
+          result: finalResult,
+          player1Health: this.player1.health,
+          player2Health: this.player2.health,
+          roundScores: this.roundScores,
+          totalRounds: this.currentRound
+        })
+        this.scene.start('ResultsScene')
+      })
+    } else if (isThirdRound) {
+      console.log('Match complete: 3 rounds completed')
+      // We've completed 3 rounds, match is over
+      this.time.delayedCall(3000, () => {
+        resultText.destroy()
         const finalResult = this.getFinalMatchResult()
         this.registry.set('fightResult', {
           result: finalResult,
@@ -575,8 +639,12 @@ export class FightScene extends Phaser.Scene {
         this.scene.start('ResultsScene')
       })
     } else {
-      // Start next round
+      console.log(`Continuing to next round. Will be round ${this.currentRound + 1}`)
+      // Reset match complete flag for next round
+      this.isMatchComplete = false
+      // Continue to next round
       this.time.delayedCall(3000, () => {
+        resultText.destroy()
         this.startNextRound()
       })
     }
@@ -589,15 +657,8 @@ export class FightScene extends Phaser.Scene {
       return true
     }
     
-    // Check if we need a tiebreaker (after 2 rounds, if tied 1-1)
-    if (this.currentRound >= this.maxRounds && this.roundScores.player1 === this.roundScores.player2) {
-      // Extend to 3 rounds for tiebreaker
-      this.maxRounds = 3
-      return false
-    }
-    
-    // Check if we completed all rounds without a tie
-    if (this.currentRound >= this.maxRounds) {
+    // Check if we've completed 3 rounds (after incrementing currentRound)
+    if (this.currentRound >= 3) {
       this.isMatchComplete = true
       return true
     }
@@ -618,13 +679,22 @@ export class FightScene extends Phaser.Scene {
   private startNextRound() {
     this.currentRound++
     
+    // Reset match complete flag
+    this.isMatchComplete = false
+    
+    // Reset round end processed flag for new round
+    this.roundEndProcessed = false
+    
     // Reset players for next round
-    this.player1.health = 100
-    this.player2.health = 100
+    this.player1.health = this.player1.maxHealth
+    this.player2.health = this.player2.maxHealth
     this.player1.x = 200
     this.player2.x = this.cameras.main.width - 200
     this.player1.y = GAME_CONSTANTS.GROUND_Y
     this.player2.y = GAME_CONSTANTS.GROUND_Y
+    
+    // Reset round time
+    this.roundTime = GAME_CONSTANTS.ROUND_TIME
     
     // Update UI
     this.roundText.setText(`ROUND ${this.currentRound}`)
@@ -637,10 +707,21 @@ export class FightScene extends Phaser.Scene {
       padding: { x: 20, y: 10 }
     }).setOrigin(0.5)
     
-    // Remove the message and start the round
+    // Show "FIGHT!" message after round announcement
     this.time.delayedCall(2000, () => {
       nextRoundText.destroy()
-      this.startRoundTimer()
+      
+      const fightText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, 'FIGHT!', {
+        font: 'bold 48px Courier New',
+        color: '#ff0000',
+        backgroundColor: '#000000',
+        padding: { x: 20, y: 10 }
+      }).setOrigin(0.5)
+      
+      this.time.delayedCall(1000, () => {
+        fightText.destroy()
+        this.startRoundTimer()
+      })
     })
   }
 
@@ -649,82 +730,82 @@ export class FightScene extends Phaser.Scene {
     this.cpuDecisionTimer += this.game.loop.delta
     this.cpuActionCooldown -= this.game.loop.delta
 
-    // Make CPU decisions every 500-1500ms
-    if (this.cpuDecisionTimer > Phaser.Math.Between(500, 1500)) {
+    // Make CPU decisions every 300-800ms (more frequent)
+    if (this.cpuDecisionTimer > Phaser.Math.Between(300, 800)) {
       this.cpuDecisionTimer = 0
       
       // Calculate distance to player1
       const distance = Math.abs(this.player2.x - this.player1.x)
       const isPlayerAbove = this.player1.y < this.player2.y - 20
+      const isPlayerToLeft = this.player1.x < this.player2.x
       
       // CPU decision making based on distance and situation
-      if (distance > 300) {
-        // Far away - move closer
-        this.cpuNextAction = this.player1.x < this.player2.x ? 'moveLeft' : 'moveRight'
-      } else if (distance < 100) {
-        // Too close - back away or attack
-        if (Math.random() < 0.6) {
-          // 60% chance to attack when close
+      if (distance > 250) {
+        // Far away - move closer aggressively
+        this.cpuNextAction = isPlayerToLeft ? 'moveLeft' : 'moveRight'
+      } else if (distance < 150) {
+        // Close range - prioritize attacking
+        if (Math.random() < 0.8) {
+          // 80% chance to attack when close
           const attackType = Math.random()
-          if (attackType < 0.5) {
+          if (attackType < 0.4) {
             this.cpuNextAction = 'basicAttack'
-          } else if (attackType < 0.8) {
+          } else if (attackType < 0.7) {
             this.cpuNextAction = 'special1Attack'
           } else {
             this.cpuNextAction = 'special2Attack'
           }
         } else {
-          // 40% chance to back away
-          this.cpuNextAction = this.player1.x < this.player2.x ? 'moveRight' : 'moveLeft'
+          // 20% chance to reposition
+          this.cpuNextAction = isPlayerToLeft ? 'moveRight' : 'moveLeft'
         }
-      } else if (isPlayerAbove && Math.random() < 0.3) {
-        // 30% chance to jump if player is above
+      } else if (isPlayerAbove && Math.random() < 0.4) {
+        // 40% chance to jump if player is above
         this.cpuNextAction = 'jump'
       } else {
-        // Medium distance - random action
-        const actions = ['moveLeft', 'moveRight', 'basicAttack', 'jump', 'idle']
-        this.cpuNextAction = actions[Math.floor(Math.random() * actions.length)]
+        // Medium distance - move closer or attack
+        if (Math.random() < 0.6) {
+          // 60% chance to move closer
+          this.cpuNextAction = isPlayerToLeft ? 'moveLeft' : 'moveRight'
+        } else {
+          // 40% chance to attack from medium range
+          this.cpuNextAction = Math.random() < 0.6 ? 'basicAttack' : 'special1Attack'
+        }
       }
     }
 
-    // Execute CPU action (with some randomness to make it less predictable)
+    // Execute CPU action with reduced cooldowns for more aggressive play
     if (this.cpuActionCooldown <= 0) {
       switch (this.cpuNextAction) {
         case 'moveLeft':
           this.player2.moveLeft()
+          this.cpuActionCooldown = 100 // Shorter movement cooldown
           break
         case 'moveRight':
           this.player2.moveRight()
+          this.cpuActionCooldown = 100 // Shorter movement cooldown
           break
         case 'jump':
           this.player2.jump()
-          this.cpuActionCooldown = 1000 // Cooldown for jump
+          this.cpuActionCooldown = 600 // Reduced jump cooldown
           break
         case 'basicAttack':
           this.player2.attack(AttackType.BASIC)
-          this.cpuActionCooldown = 800 // Cooldown for attacks
+          this.cpuActionCooldown = 500 // Reduced attack cooldown
           break
         case 'special1Attack':
           this.player2.attack(AttackType.SPECIAL1)
-          this.cpuActionCooldown = 1200
+          this.cpuActionCooldown = 800 // Reduced special attack cooldown
           break
         case 'special2Attack':
           this.player2.attack(AttackType.SPECIAL2)
-          this.cpuActionCooldown = 1000
+          this.cpuActionCooldown = 700 // Reduced special attack cooldown
           break
         case 'idle':
         default:
-          this.player2.stopMovement()
+          // CPU rarely stays idle
+          this.cpuActionCooldown = 200
           break
-      }
-    } else {
-      // During cooldown, only allow movement
-      if (this.cpuNextAction === 'moveLeft') {
-        this.player2.moveLeft()
-      } else if (this.cpuNextAction === 'moveRight') {
-        this.player2.moveRight()
-      } else {
-        this.player2.stopMovement()
       }
     }
   }
