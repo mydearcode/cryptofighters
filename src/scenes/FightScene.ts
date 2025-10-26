@@ -690,8 +690,8 @@ export class FightScene extends Phaser.Scene {
     this.player2.health = this.player2.maxHealth
     this.player1.x = 200
     this.player2.x = this.cameras.main.width - 200
-    this.player1.y = GAME_CONSTANTS.GROUND_Y
-    this.player2.y = GAME_CONSTANTS.GROUND_Y
+    this.player1.y = GAME_CONSTANTS.GROUND_Y - 40  // Match initial position from create()
+    this.player2.y = GAME_CONSTANTS.GROUND_Y - 40  // Match initial position from create()
     
     // Reset round time
     this.roundTime = GAME_CONSTANTS.ROUND_TIME
