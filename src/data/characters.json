@@ -7,7 +7,7 @@
       "description": "Uzun vadeli yatırımın ustası, sabır ve kararlılıkla dövüşür.",
       "stats": {
         "health": 100,
-        "attack": 25,
+        "attack": 8,
         "defense": 20,
         "speed": 150
       },
@@ -26,7 +26,7 @@
       "description": "Piyasaların kraliçesi, stratejik ticaret ustası.",
       "stats": {
         "health": 85,
-        "attack": 32,
+        "attack": 10,
         "defense": 18,
         "speed": 190
       },
@@ -45,7 +45,7 @@
       "description": "Bitcoin maksimalisti ve kurumsal stratejist, dijital altın savunucusu.",
       "stats": {
         "health": 130,
-        "attack": 40,
+        "attack": 12,
         "defense": 30,
         "speed": 110
       },
@@ -64,7 +64,7 @@
       "description": "Merkezi olmayan finans protokollerinin gizli ustası.",
       "stats": {
         "health": 90,
-        "attack": 28,
+        "attack": 9,
         "defense": 18,
         "speed": 180
       },
@@ -83,7 +83,7 @@
       "description": "Meme coinlerin gücüyle beslenen eğlenceli savaşçı.",
       "stats": {
         "health": 75,
-        "attack": 22,
+        "attack": 7,
         "defense": 16,
         "speed": 190
       },
@@ -102,7 +102,7 @@
       "description": "Ethereum'un yaratıcısı, akıllı kontratların ustası ve blockchain vizyoneri.",
       "stats": {
         "health": 110,
-        "attack": 32,
+        "attack": 10,
         "defense": 28,
         "speed": 170
       },
@@ -121,7 +121,7 @@
       "description": "Binance'in kurucusu, kripto dünyasının en büyük borsasının lideri.",
       "stats": {
         "health": 115,
-        "attack": 30,
+        "attack": 10,
         "defense": 26,
         "speed": 165
       },
@@ -140,7 +140,7 @@
       "description": "Tesla ve SpaceX'in kurucusu, kripto dünyasının en etkili isimlerinden biri.",
       "stats": {
         "health": 110,
-        "attack": 32,
+        "attack": 10,
         "defense": 28,
         "speed": 170
       },
@@ -159,7 +159,7 @@
       "description": "Cardano'nun kurucusu, akademik yaklaşımla blockchain teknolojisini geliştiren vizyon sahibi.",
       "stats": {
         "health": 115,
-        "attack": 30,
+        "attack": 10,
         "defense": 30,
         "speed": 160
       },
@@ -178,7 +178,7 @@
       "description": "Polkadot'un kurucusu ve Ethereum'un eski CTO'su, interoperabilite vizyoneri.",
       "stats": {
         "health": 120,
-        "attack": 28,
+        "attack": 9,
         "defense": 32,
         "speed": 155
       },
@@ -197,7 +197,7 @@
       "description": "Kripto dünyasının deneyimli savaşçısı, güçlü ve kararlı bir dövüşçü.",
       "stats": {
         "health": 110,
-        "attack": 35,
+        "attack": 12,
         "defense": 25,
         "speed": 160
       },
@@ -216,7 +216,7 @@
       "description": "Hızlı ve çevik kripto ninja, stratejik saldırılarıyla rakiplerini şaşırtır.",
       "stats": {
         "health": 95,
-        "attack": 30,
+        "attack": 10,
         "defense": 20,
         "speed": 200
       },

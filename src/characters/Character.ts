@@ -1186,9 +1186,9 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
       case AttackType.BASIC:
         return baseAttack // Normal damage
       case AttackType.SPECIAL1:
-        return Math.floor(baseAttack * 1.8) // 80% more damage
+        return Math.floor(baseAttack * 1.3) // 30% more damage (reduced from 80%)
       case AttackType.SPECIAL2:
-        return Math.floor(baseAttack * 0.7) // 30% less damage but faster
+        return Math.floor(baseAttack * 0.8) // 20% less damage but faster (increased from 30% less)
       default:
         return baseAttack
     }
