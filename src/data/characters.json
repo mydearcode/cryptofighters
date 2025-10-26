@@ -189,6 +189,44 @@
       ],
       "rarity": "legendary",
       "element": "connectivity"
+    },
+    {
+      "id": "brian",
+      "name": "Brian",
+      "sprite": "brian",
+      "description": "Kripto dünyasının deneyimli savaşçısı, güçlü ve kararlı bir dövüşçü.",
+      "stats": {
+        "health": 110,
+        "attack": 35,
+        "defense": 25,
+        "speed": 160
+      },
+      "moves": [
+        "crypto_punch",
+        "blockchain_slam",
+        "digital_strike"
+      ],
+      "rarity": "epic",
+      "element": "power"
+    },
+    {
+      "id": "jesse",
+      "name": "Jesse",
+      "sprite": "jesse",
+      "description": "Hızlı ve çevik kripto ninja, stratejik saldırılarıyla rakiplerini şaşırtır.",
+      "stats": {
+        "health": 95,
+        "attack": 30,
+        "defense": 20,
+        "speed": 200
+      },
+      "moves": [
+        "ninja_strike",
+        "swift_attack",
+        "shadow_dash"
+      ],
+      "rarity": "rare",
+      "element": "agility"
     }
   ]
 }

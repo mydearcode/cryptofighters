@@ -19,26 +19,42 @@ export class ArenaSelectScene extends Phaser.Scene {
     // Get selected characters from registry
     this.selectedCharacters = this.registry.get('selectedCharacters')
 
-    // Background matching MenuScene
-    this.add.rectangle(width / 2, height / 2, width, height, 0x0f0f23)
+    // Background matching MenuScene - darker, more aggressive
+    this.add.rectangle(width / 2, height / 2, width, height, 0x1a0a0a)
     
-    // Add decorative border matching MenuScene
-    this.add.rectangle(width / 2, height / 2, width - 20, height - 20, 0x1a1a2e).setStrokeStyle(3, 0x00d4ff, 0.3)
+    // Add decorative border matching MenuScene - fiery border
+    this.add.rectangle(width / 2, height / 2, width - 20, height - 20, 0x2a1a1a).setStrokeStyle(3, 0xff4444, 0.6)
     
-    // Title with glow effect matching MenuScene
+    // Title with enhanced styling matching other scenes
     this.add.text(width / 2, 80, 'SELECT ARENA', {
       fontSize: '42px',
-      color: '#00d4ff',
-      fontFamily: 'Arial Black',
-      stroke: '#003d5c',
-      strokeThickness: 4
+      color: '#ff6600',
+      fontFamily: 'Impact, Arial Black, sans-serif',
+      stroke: '#660000',
+      strokeThickness: 5,
+      letterSpacing: 2,
+      shadow: {
+        offsetX: 3,
+        offsetY: 3,
+        color: '#330000',
+        blur: 5,
+        fill: true
+      }
     }).setOrigin(0.5)
     
-    // Subtitle matching MenuScene style
+    // Subtitle with better styling
     const subtitle = this.add.text(width / 2, 120, 'Choose the battlefield for your fight', {
       fontSize: '18px',
-      color: '#ffffff',
-      fontFamily: 'Arial'
+      color: '#ffccaa',
+      fontFamily: 'Georgia, serif',
+      fontStyle: 'italic',
+      shadow: {
+        offsetX: 1,
+        offsetY: 1,
+        color: '#660000',
+        blur: 2,
+        fill: true
+      }
     }).setOrigin(0.5)
     subtitle.setAlpha(0.9)
 
@@ -56,8 +72,16 @@ export class ArenaSelectScene extends Phaser.Scene {
     // Arena selection title matching MenuScene style
     this.add.text(width / 2, 160, 'AVAILABLE ARENAS', {
       fontSize: '24px',
-      color: '#ffffff',
-      fontFamily: 'Arial Bold'
+      color: '#ffddcc',
+      fontFamily: 'Impact, Arial Black, sans-serif',
+      letterSpacing: 1,
+      shadow: {
+        offsetX: 2,
+        offsetY: 2,
+        color: '#330000',
+        blur: 3,
+        fill: true
+      }
     }).setOrigin(0.5)
     
     // Arena grid - adjusted for better fit, smaller cards without descriptions
@@ -79,31 +103,31 @@ export class ArenaSelectScene extends Phaser.Scene {
         return // Skip cards that would be too low
       }
       
-      // Arena card background matching MenuScene button style
+      // Arena card background matching MenuScene button style - dark red theme
       const isSelected = arena.id === this.selectedArena
-      const card = this.add.rectangle(x, y, cardWidth, cardHeight, isSelected ? 0x0f3460 : 0x16213e)
-        .setStrokeStyle(3, isSelected ? 0x00ffff : 0x00d4ff)
+      const card = this.add.rectangle(x, y, cardWidth, cardHeight, isSelected ? 0x5d2a2a : 0x3d1a1a)
+        .setStrokeStyle(3, isSelected ? 0xff6666 : 0xff4444)
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => {
           this.selectArena(arena.id)
         })
         .on('pointerover', () => {
           if (!isSelected) {
-            card.setFillStyle(0x0f3460)
-            card.setStrokeStyle(3, 0x00ffff)
+            card.setFillStyle(0x5d2a2a)
+            card.setStrokeStyle(3, 0xff6666)
           }
         })
         .on('pointerout', () => {
           if (!isSelected) {
-            card.setFillStyle(0x16213e)
-            card.setStrokeStyle(3, 0x00d4ff)
+            card.setFillStyle(0x3d1a1a)
+            card.setStrokeStyle(3, 0xff4444)
           }
         })
       
       // Arena name - centered in the card, no description
       const nameText = this.add.text(x, y, arena.name, {
         fontSize: '16px',  // Slightly smaller font
-        color: '#00d4ff',
+        color: '#ff6600',
         fontFamily: 'Arial Bold'
       }).setOrigin(0.5)
       
@@ -118,20 +142,30 @@ export class ArenaSelectScene extends Phaser.Scene {
     
     const fightButton = this.add.text(width / 2, height - 80, 'START FIGHT!', {
       fontSize: '32px',
-      color: '#00d4ff',
-      fontFamily: 'Arial Black',
-      backgroundColor: '#16213e',
-      padding: { x: 30, y: 15 }
+      color: '#ff6600',
+      fontFamily: 'Impact, Arial Black, sans-serif',
+      backgroundColor: '#3d1a1a',
+      padding: { x: 20, y: 10 },
+      stroke: '#660000',
+      strokeThickness: 3,
+      letterSpacing: 1,
+      shadow: {
+        offsetX: 2,
+        offsetY: 2,
+        color: '#330000',
+        blur: 4,
+        fill: true
+      }
     }).setOrigin(0.5)
     .setInteractive({ useHandCursor: true })
     .on('pointerdown', () => {
       this.startFight()
     })
     .on('pointerover', () => {
-      fightButton.setStyle({ backgroundColor: '#0f3460' })
+      fightButton.setStyle({ backgroundColor: '#5d2a2a' })
     })
     .on('pointerout', () => {
-      fightButton.setStyle({ backgroundColor: '#16213e' })
+      fightButton.setStyle({ backgroundColor: '#3d1a1a' })
     })
   }
 

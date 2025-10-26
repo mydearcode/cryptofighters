@@ -103,6 +103,10 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
       this.createDefiNinjaAnimations(scene)
     } else if (characterData.id === 'meme_lord') {
       this.createMemeLordAnimations(scene)
+    } else if (characterData.id === 'brian') {
+      this.createBrianAnimations(scene)
+    } else if (characterData.id === 'jesse') {
+      this.createJesseAnimations(scene)
     } else {
       // For new characters, use automatic animation creation
       this.createGenericAnimations(scene, characterData.id)
@@ -871,6 +875,150 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
       scene.anims.create({
         key: 'trade_queen-spellcast-anim',
         frames: scene.anims.generateFrameNumbers('trade-queen-spellcast', { start: 0, end: 6 }),
+        frameRate: 12,
+        repeat: 0
+      })
+    }
+  }
+
+  private createBrianAnimations(scene: Phaser.Scene) {
+    // Create animations for Brian (using only side views - same as other characters)
+    if (!scene.anims.exists('brian-idle-anim')) {
+      scene.anims.create({
+        key: 'brian-idle-anim',
+        frames: scene.anims.generateFrameNumbers('brian-combat-idle', { start: 2, end: 3 }),
+        frameRate: 8,
+        repeat: -1
+      })
+    }
+
+    // Add walk animation
+    if (!scene.anims.exists('brian-walk-anim')) {
+      scene.anims.create({
+        key: 'brian-walk-anim',
+        frames: scene.anims.generateFrameNumbers('brian-walk', { start: 9, end: 17 }),
+        frameRate: 12,
+        repeat: -1
+      })
+    }
+
+    // Add attack animation
+    if (!scene.anims.exists('brian-attack-anim')) {
+      scene.anims.create({
+        key: 'brian-attack-anim',
+        frames: scene.anims.generateFrameNumbers('brian-slash', { start: 6, end: 11 }),
+        frameRate: 15,
+        repeat: 0
+      })
+    }
+
+    // Add hurt animation
+    if (!scene.anims.exists('brian-hurt-anim')) {
+      scene.anims.create({
+        key: 'brian-hurt-anim',
+        frames: scene.anims.generateFrameNumbers('brian-hurt', { start: 0, end: 5 }),
+        frameRate: 10,
+        repeat: 0
+      })
+    }
+
+    // Add jump animation
+    if (!scene.anims.exists('brian-jump-anim')) {
+      scene.anims.create({
+        key: 'brian-jump-anim',
+        frames: scene.anims.generateFrameNumbers('brian-jump', { start: 0, end: 4 }),
+        frameRate: 6,
+        repeat: -1
+      })
+    }
+
+    // Add shoot animation
+    if (!scene.anims.exists('brian-shoot-anim')) {
+      scene.anims.create({
+        key: 'brian-shoot-anim',
+        frames: scene.anims.generateFrameNumbers('brian-shoot', { start: 13, end: 25 }),
+        frameRate: 16,
+        repeat: 0
+      })
+    }
+
+    // Add spellcast animation
+    if (!scene.anims.exists('brian-spellcast-anim')) {
+      scene.anims.create({
+        key: 'brian-spellcast-anim',
+        frames: scene.anims.generateFrameNumbers('brian-spellcast', { start: 0, end: 6 }),
+        frameRate: 12,
+        repeat: 0
+      })
+    }
+  }
+
+  private createJesseAnimations(scene: Phaser.Scene) {
+    // Create animations for Jesse (using only side views - same as other characters)
+    if (!scene.anims.exists('jesse-idle-anim')) {
+      scene.anims.create({
+        key: 'jesse-idle-anim',
+        frames: scene.anims.generateFrameNumbers('jesse-combat-idle', { start: 2, end: 3 }),
+        frameRate: 8,
+        repeat: -1
+      })
+    }
+
+    // Add walk animation
+    if (!scene.anims.exists('jesse-walk-anim')) {
+      scene.anims.create({
+        key: 'jesse-walk-anim',
+        frames: scene.anims.generateFrameNumbers('jesse-walk', { start: 9, end: 17 }),
+        frameRate: 12,
+        repeat: -1
+      })
+    }
+
+    // Add attack animation
+    if (!scene.anims.exists('jesse-attack-anim')) {
+      scene.anims.create({
+        key: 'jesse-attack-anim',
+        frames: scene.anims.generateFrameNumbers('jesse-slash', { start: 6, end: 11 }),
+        frameRate: 15,
+        repeat: 0
+      })
+    }
+
+    // Add hurt animation
+    if (!scene.anims.exists('jesse-hurt-anim')) {
+      scene.anims.create({
+        key: 'jesse-hurt-anim',
+        frames: scene.anims.generateFrameNumbers('jesse-hurt', { start: 0, end: 5 }),
+        frameRate: 10,
+        repeat: 0
+      })
+    }
+
+    // Add jump animation
+    if (!scene.anims.exists('jesse-jump-anim')) {
+      scene.anims.create({
+        key: 'jesse-jump-anim',
+        frames: scene.anims.generateFrameNumbers('jesse-jump', { start: 0, end: 4 }),
+        frameRate: 6,
+        repeat: -1
+      })
+    }
+
+    // Add shoot animation
+    if (!scene.anims.exists('jesse-shoot-anim')) {
+      scene.anims.create({
+        key: 'jesse-shoot-anim',
+        frames: scene.anims.generateFrameNumbers('jesse-shoot', { start: 13, end: 25 }),
+        frameRate: 16,
+        repeat: 0
+      })
+    }
+
+    // Add spellcast animation
+    if (!scene.anims.exists('jesse-spellcast-anim')) {
+      scene.anims.create({
+        key: 'jesse-spellcast-anim',
+        frames: scene.anims.generateFrameNumbers('jesse-spellcast', { start: 0, end: 6 }),
         frameRate: 12,
         repeat: 0
       })

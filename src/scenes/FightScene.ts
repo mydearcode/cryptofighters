@@ -5,6 +5,8 @@ import { CharacterManager } from '../characters/CharacterManager'
 import { gameData, ArenaData } from '../data/DataManager'
 import defiTempleImg from '../assets/images/arenas/defi_temple.png'
 import exchangesStreetImg from '../assets/images/arenas/exchanges_street.png'
+import baseApprenaImg from '../assets/images/arenas/base_apprena.png'
+import tipboxArenaImg from '../assets/images/arenas/tipbox_arena.png'
 
 export class FightScene extends Phaser.Scene {
   private player1!: Character
@@ -51,6 +53,12 @@ export class FightScene extends Phaser.Scene {
     
     console.log('Loading exchanges_street image from:', exchangesStreetImg)
     this.load.image('exchanges_street', exchangesStreetImg)
+    
+    console.log('Loading base_apprena image from:', baseApprenaImg)
+    this.load.image('base_apprena', baseApprenaImg)
+    
+    console.log('Loading tipbox_arena image from:', tipboxArenaImg)
+    this.load.image('tipbox_arena', tipboxArenaImg)
   }
 
   create() {
@@ -196,9 +204,7 @@ export class FightScene extends Phaser.Scene {
         break
       
       case 'industrial':
-        // Add metal beams
-        this.add.rectangle(100, height / 2, 20, height, 0x666666)
-        this.add.rectangle(width - 100, height / 2, 20, height, 0x666666)
+        // Remove metal beams for Tipbox.co Arena - background image is sufficient
         break
       
       case 'mystical':
@@ -229,10 +235,15 @@ export class FightScene extends Phaser.Scene {
   }
 
   private createCrowd() {
+    // Skip crowd simulation for arenas with PNG backgrounds - background image is sufficient
+    if (this.currentArena.background.endsWith('.png')) {
+      return
+    }
+
     const width = this.cameras.main.width
     const crowdColor = this.parseColor(this.currentArena.lighting)
 
-    // Crowd simulation with arena-specific colors
+    // Crowd simulation with arena-specific colors (only for non-PNG backgrounds)
     for (let i = 0; i < 20; i++) {
       const x = 50 + i * 40
       const y = 100 + Math.random() * 50

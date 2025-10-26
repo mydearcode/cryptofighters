@@ -42,30 +42,42 @@ export class SelectScene extends Phaser.Scene {
     const { width, height } = this.cameras.main
     const gameMode = this.registry.get('gameMode') || 'twoPlayer'
 
-    // Background matching MenuScene
-    this.add.rectangle(width / 2, height / 2, width, height, 0x0f0f23)
+    // Background matching MenuScene - darker, more aggressive
+    this.add.rectangle(width / 2, height / 2, width, height, 0x1a0a0a)
     
-    // Add decorative border matching MenuScene
-    this.add.rectangle(width / 2, height / 2, width - 20, height - 20, 0x1a1a2e).setStrokeStyle(3, 0x00d4ff, 0.3)
+    // Add decorative border matching MenuScene - fiery border
+    this.add.rectangle(width / 2, height / 2, width - 20, height - 20, 0x2a1a1a).setStrokeStyle(3, 0xff4444, 0.6)
     
-    // Title with glow effect matching MenuScene
-    const titleText = gameMode === 'singlePlayer' ? 'SELECT FIGHTER' : 'FIGHTER SELECTION'
-    this.add.text(width / 2, 60, titleText, {
+    // Title with enhanced styling
+    const title = this.add.text(width / 2, 50, 'CHARACTER SELECTION', {
       fontSize: '42px',
-      color: '#00d4ff',
-      fontFamily: 'Arial Black',
-      stroke: '#003d5c',
-      strokeThickness: 4
+      color: '#ff6600',
+      fontFamily: 'Impact, Arial Black, sans-serif',
+      stroke: '#660000',
+      strokeThickness: 5,
+      letterSpacing: 2,
+      shadow: {
+        offsetX: 3,
+        offsetY: 3,
+        color: '#330000',
+        blur: 5,
+        fill: true
+      }
     }).setOrigin(0.5)
     
-    // Subtitle matching MenuScene style
-    const subtitleText = gameMode === 'singlePlayer' 
-      ? 'Choose your crypto warrior'
-      : 'Each player select your crypto warrior'
-    const subtitle = this.add.text(width / 2, 100, subtitleText, {
+    // Subtitle with better styling
+    const subtitle = this.add.text(width / 2, 85, 'Choose Your Fighter', {
       fontSize: '18px',
-      color: '#ffffff',
-      fontFamily: 'Arial'
+      color: '#ffccaa',
+      fontFamily: 'Georgia, serif',
+      fontStyle: 'italic',
+      shadow: {
+        offsetX: 1,
+        offsetY: 1,
+        color: '#660000',
+        blur: 2,
+        fill: true
+      }
     }).setOrigin(0.5)
     subtitle.setAlpha(0.9)
 
@@ -101,17 +113,21 @@ export class SelectScene extends Phaser.Scene {
     
     // Player indicators moved to bottom corners, smaller and less intrusive
     this.player1Indicator = this.add.text(80, 480, 'P1', {
-      fontSize: '16px',
-      color: this.currentPlayer === 1 ? '#00d4ff' : '#666666',
-      fontFamily: 'Arial Bold'
+      fontSize: '18px',
+      color: this.currentPlayer === 1 ? '#ff6600' : '#666666',
+      fontFamily: 'Impact, Arial Black, sans-serif',
+      stroke: this.currentPlayer === 1 ? '#330000' : '#333333',
+      strokeThickness: 2
     }).setOrigin(0.5)
     
     // Player 2 indicator (only for two player mode)
     if (gameMode === 'twoPlayer') {
       this.player2Indicator = this.add.text(width - 80, 480, 'P2', {
-        fontSize: '16px',
-        color: this.currentPlayer === 2 ? '#00d4ff' : '#666666',
-        fontFamily: 'Arial Bold'
+        fontSize: '18px',
+        color: this.currentPlayer === 2 ? '#ff6600' : '#666666',
+        fontFamily: 'Impact, Arial Black, sans-serif',
+        stroke: this.currentPlayer === 2 ? '#330000' : '#333333',
+        strokeThickness: 2
       }).setOrigin(0.5)
     }
   }
@@ -122,9 +138,17 @@ export class SelectScene extends Phaser.Scene {
     
     // Character selection title matching MenuScene style
     this.add.text(width / 2, 120, 'SELECT CHARACTER', {
-      fontSize: '22px',
-      color: '#ffffff',
-      fontFamily: 'Arial Bold'
+      fontSize: '24px',
+      color: '#ffddcc',
+      fontFamily: 'Impact, Arial Black, sans-serif',
+      letterSpacing: 1,
+      shadow: {
+        offsetX: 2,
+        offsetY: 2,
+        color: '#330000',
+        blur: 3,
+        fill: true
+      }
     }).setOrigin(0.5)
     
     // Character grid - smaller cards to prevent overflow
@@ -141,20 +165,20 @@ export class SelectScene extends Phaser.Scene {
       const x = startX + col * (cardWidth + spacing)
       const y = startY + row * (cardHeight + spacing)
       
-      // Character card background matching MenuScene button style
-      const card = this.add.rectangle(x, y, cardWidth, cardHeight, 0x16213e)
-        .setStrokeStyle(2, 0x00d4ff)
+      // Character card background matching MenuScene button style - dark red theme
+      const card = this.add.rectangle(x, y, cardWidth, cardHeight, 0x3d1a1a)
+        .setStrokeStyle(2, 0xff4444)
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => {
           this.selectCharacter(character.id)
         })
         .on('pointerover', () => {
-          card.setFillStyle(0x0f3460)
-          card.setStrokeStyle(2, 0x00ffff)
+          card.setFillStyle(0x5d2a2a)
+          card.setStrokeStyle(2, 0xff6666)
         })
         .on('pointerout', () => {
-          card.setFillStyle(0x16213e)
-          card.setStrokeStyle(2, 0x00d4ff)
+          card.setFillStyle(0x3d1a1a)
+          card.setStrokeStyle(2, 0xff4444)
         })
       
       this.characterCards.push(card)
@@ -261,6 +285,26 @@ export class SelectScene extends Phaser.Scene {
           })
         
         this.characterSprites.push(sprite)
+      } else if (character.id === 'brian') {
+        // For Brian, create a sprite from the spritesheet with specific frame
+        const sprite = this.add.sprite(x, y - 15, 'brian-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
+        
+        this.characterSprites.push(sprite)
+      } else if (character.id === 'jesse') {
+        // For Jesse, create a sprite from the spritesheet with specific frame
+        const sprite = this.add.sprite(x, y - 15, 'jesse-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+          .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
+          .setInteractive({ useHandCursor: true })
+          .on('pointerdown', () => {
+            this.selectCharacter(character.id)
+          })
+        
+        this.characterSprites.push(sprite)
       } else {
         const sprite = this.add.image(x, y - 15, spriteKey)
           .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
@@ -301,12 +345,12 @@ export class SelectScene extends Phaser.Scene {
     const { width, height } = this.cameras.main
     const gameMode = this.registry.get('gameMode') || 'twoPlayer'
     
-    // Player 1 ready button - positioned near selected character
+    // Player 1 ready button - positioned near selected character - dark red theme
     this.player1ReadyButton = this.add.text(120, height - 30, 'READY!', {
       fontSize: '14px',
-      color: '#00d4ff',
+      color: '#ff6600',
       fontFamily: 'Arial Bold',
-      backgroundColor: '#16213e',
+      backgroundColor: '#3d1a1a',
       padding: { x: 12, y: 6 }
     }).setOrigin(0.5)
     .setInteractive({ useHandCursor: true })
@@ -317,20 +361,20 @@ export class SelectScene extends Phaser.Scene {
     })
     .on('pointerover', () => {
       if (this.selectedCharacters.player1) {
-        this.player1ReadyButton.setStyle({ backgroundColor: '#0f3460' })
+        this.player1ReadyButton.setStyle({ backgroundColor: '#5d2a2a' })
       }
     })
     .on('pointerout', () => {
-      this.player1ReadyButton.setStyle({ backgroundColor: '#16213e' })
+      this.player1ReadyButton.setStyle({ backgroundColor: '#3d1a1a' })
     })
 
-    // Player 2 ready button (only for two player mode) - positioned near selected character
+    // Player 2 ready button (only for two player mode) - positioned near selected character - matching theme
     if (gameMode === 'twoPlayer') {
       this.player2ReadyButton = this.add.text(width - 120, height - 30, 'READY!', {
         fontSize: '14px',
-        color: '#00d4ff',
+        color: '#ff6600',
         fontFamily: 'Arial Bold',
-        backgroundColor: '#16213e',
+        backgroundColor: '#3d1a1a',
         padding: { x: 12, y: 6 }
       }).setOrigin(0.5)
       .setInteractive({ useHandCursor: true })
@@ -341,11 +385,11 @@ export class SelectScene extends Phaser.Scene {
       })
       .on('pointerover', () => {
         if (this.selectedCharacters.player2) {
-          this.player2ReadyButton.setStyle({ backgroundColor: '#0f3460' })
+          this.player2ReadyButton.setStyle({ backgroundColor: '#5d2a2a' })
         }
       })
       .on('pointerout', () => {
-        this.player2ReadyButton.setStyle({ backgroundColor: '#16213e' })
+        this.player2ReadyButton.setStyle({ backgroundColor: '#3d1a1a' })
       })
     }
 
@@ -826,6 +870,74 @@ export class SelectScene extends Phaser.Scene {
         displayElements.push(statusTextObj)
       }
       return  // Exit early for Meme Lord character
+    } else if (character.id === 'brian') {
+      // For Brian, we'll create a specific frame from the spritesheet in the scene
+      const selectedSprite = this.add.sprite(x, y - 30, 'brian-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+      displayElements.push(selectedSprite)
+      
+      // Skip the regular sprite creation and continue with other elements
+      // Character name
+      const nameText = this.add.text(x, y + 10, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(nameText)
+
+      // Player indicator
+      const playerLabel = `P${player}`
+      const playerText = this.add.text(x, y - 60, playerLabel, {
+        fontSize: '14px',
+        color: player === 1 ? '#00ff00' : '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(playerText)
+
+      // Status text - only show for CPU
+      if (player === 2 && gameMode === 'singlePlayer') {
+        const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+          fontSize: '10px',
+          color: '#ff6600',
+          fontFamily: 'Arial Bold'
+        }).setOrigin(0.5)
+        displayElements.push(statusTextObj)
+      }
+      return  // Exit early for Brian character
+    } else if (character.id === 'jesse') {
+      // For Jesse, we'll create a specific frame from the spritesheet in the scene
+      const selectedSprite = this.add.sprite(x, y - 30, 'jesse-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
+      displayElements.push(selectedSprite)
+      
+      // Skip the regular sprite creation and continue with other elements
+      // Character name
+      const nameText = this.add.text(x, y + 10, character.name, {
+        fontSize: '12px',
+        color: '#00d4ff',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(nameText)
+
+      // Player indicator
+      const playerLabel = `P${player}`
+      const playerText = this.add.text(x, y - 60, playerLabel, {
+        fontSize: '14px',
+        color: player === 1 ? '#00ff00' : '#ff6600',
+        fontFamily: 'Arial Bold'
+      }).setOrigin(0.5)
+      displayElements.push(playerText)
+
+      // Status text - only show for CPU
+      if (player === 2 && gameMode === 'singlePlayer') {
+        const statusTextObj = this.add.text(x, y + 25, 'CPU', {
+          fontSize: '10px',
+          color: '#ff6600',
+          fontFamily: 'Arial Bold'
+        }).setOrigin(0.5)
+        displayElements.push(statusTextObj)
+      }
+      return  // Exit early for Jesse character
     }
 
     // Selected character sprite - positioned at bottom corners - using centralized size constants

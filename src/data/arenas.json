@@ -25,9 +25,9 @@
     },
     {
       "id": "blockchain_city",
-      "name": "Blockchain City",
+      "name": "Base Apprena",
       "description": "Gelecekteki blockchain şehrinin merkezinde dövüş.",
-      "background": "cyber-city",
+      "background": "base_apprena.png",
       "theme": "futuristic",
       "music": "cyberpunk_synth",
       "lighting": "holographic",
@@ -48,9 +48,9 @@
     },
     {
       "id": "mining_facility",
-      "name": "Mining Facility",
+      "name": "Tipbox.co Arena",
       "description": "Dev kripto madenciliği tesisinde dövüş.",
-      "background": "mining-rigs",
+      "background": "tipbox_arena.png",
       "theme": "industrial",
       "music": "industrial_metal",
       "lighting": "harsh_white",

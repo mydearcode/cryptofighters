@@ -353,6 +353,52 @@ export class BootScene extends Phaser.Scene {
     // Load meme_lord as separate sprite for character selection
     this.load.image('meme_lord', 'assets/sprites/meme_lord/combat_idle.png')
 
+    // Load Brian sprites
+    this.load.spritesheet('brian-idle', 'assets/sprites/brian/idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-combat-idle', 'assets/sprites/brian/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-walk', 'assets/sprites/brian/walk.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-run', 'assets/sprites/brian/run.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-jump', 'assets/sprites/brian/jump.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-slash', 'assets/sprites/brian/slash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-halfslash', 'assets/sprites/brian/halfslash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-backslash', 'assets/sprites/brian/backslash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-thrust', 'assets/sprites/brian/thrust.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-hurt', 'assets/sprites/brian/hurt.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-shoot', 'assets/sprites/brian/shoot.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-spellcast', 'assets/sprites/brian/spellcast.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-climb', 'assets/sprites/brian/climb.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-sit', 'assets/sprites/brian/sit.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-emote', 'assets/sprites/brian/emote.png', { frameWidth: 64, frameHeight: 64 })
+
+    // Load Brian portrait for character selection (specific frame from combat_idle spritesheet)
+    this.load.spritesheet('brian-combat-idle-frames', 'assets/sprites/brian/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    
+    // Load brian as separate sprite for character selection
+    this.load.image('brian', 'assets/sprites/brian/combat_idle.png')
+
+    // Load Jesse sprites
+    this.load.spritesheet('jesse-idle', 'assets/sprites/jesse/idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-combat-idle', 'assets/sprites/jesse/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-walk', 'assets/sprites/jesse/walk.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-run', 'assets/sprites/jesse/run.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-jump', 'assets/sprites/jesse/jump.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-slash', 'assets/sprites/jesse/slash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-halfslash', 'assets/sprites/jesse/halfslash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-backslash', 'assets/sprites/jesse/backslash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-thrust', 'assets/sprites/jesse/thrust.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-hurt', 'assets/sprites/jesse/hurt.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-shoot', 'assets/sprites/jesse/shoot.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-spellcast', 'assets/sprites/jesse/spellcast.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-climb', 'assets/sprites/jesse/climb.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-sit', 'assets/sprites/jesse/sit.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-emote', 'assets/sprites/jesse/emote.png', { frameWidth: 64, frameHeight: 64 })
+
+    // Load Jesse portrait for character selection (specific frame from combat_idle spritesheet)
+    this.load.spritesheet('jesse-combat-idle-frames', 'assets/sprites/jesse/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    
+    // Load jesse as separate sprite for character selection
+    this.load.image('jesse', 'assets/sprites/jesse/combat_idle.png')
+
     // Load placeholder images for characters that don't have sprites yet
     this.load.image('trade_queen', 'assets/sprites/trade_queen/combat_idle.png')
     this.load.image('hodl_master', 'assets/sprites/hold_master/combat_idle.png')
