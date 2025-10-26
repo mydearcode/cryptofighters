@@ -117,6 +117,16 @@ export class ResultsScene extends Phaser.Scene {
     const char1Data = CharacterManager.getCharacterById(this.selectedCharacters.player1) || CharacterManager.getAllCharacters()[0]
     const char2Data = CharacterManager.getCharacterById(this.selectedCharacters.player2) || CharacterManager.getAllCharacters()[1]
 
+    // Calculate health percentages correctly (health values are 0-100, convert to percentage)
+    const player1HealthPercent = Math.round(this.fightResult.player1Health)
+    const player2HealthPercent = Math.round(this.fightResult.player2Health)
+
+    // Determine winner and loser for better status display
+    const isPlayer1Winner = this.fightResult.result.includes('PLAYER1_WINS') || 
+                           (this.fightResult.roundScores && this.fightResult.roundScores.player1 > this.fightResult.roundScores.player2)
+    const isPlayer2Winner = this.fightResult.result.includes('PLAYER2_WINS') || 
+                           (this.fightResult.roundScores && this.fightResult.roundScores.player2 > this.fightResult.roundScores.player1)
+
     // Stats container
     this.add.rectangle(width / 2, 280, 500, 120, 0x000000, 0.8)
 
@@ -129,17 +139,27 @@ export class ResultsScene extends Phaser.Scene {
     // Player 1 stats
     this.add.text(width / 2 - 150, 270, char1Data.name.toUpperCase(), {
       font: 'bold 14px Courier New',
-      color: '#00ff00'
+      color: isPlayer1Winner ? '#00ff00' : '#ff0000'
     }).setOrigin(0.5)
 
-    this.add.text(width / 2 - 150, 290, `Health: ${this.fightResult.player1Health}%`, {
+    this.add.text(width / 2 - 150, 290, `Health: ${player1HealthPercent}%`, {
       font: '12px Courier New',
       color: '#ffffff'
     }).setOrigin(0.5)
 
-    this.add.text(width / 2 - 150, 310, `Status: ${this.fightResult.player1Health > 0 ? 'ALIVE' : 'REKT'}`, {
+    // Better status display
+    let player1Status = ''
+    if (isPlayer1Winner) {
+      player1Status = '🚀 MOONED'
+    } else if (player1HealthPercent <= 0) {
+      player1Status = '💀 LIQUIDATED'
+    } else {
+      player1Status = '❌ LOST'
+    }
+
+    this.add.text(width / 2 - 150, 310, `Status: ${player1Status}`, {
       font: '12px Courier New',
-      color: this.fightResult.player1Health > 0 ? '#00ff00' : '#ff0000'
+      color: isPlayer1Winner ? '#00ff00' : '#ff0000'
     }).setOrigin(0.5)
 
     // VS
@@ -151,29 +171,47 @@ export class ResultsScene extends Phaser.Scene {
     // Player 2 stats
     this.add.text(width / 2 + 150, 270, char2Data.name.toUpperCase(), {
       font: 'bold 14px Courier New',
-      color: '#ff0000'
+      color: isPlayer2Winner ? '#00ff00' : '#ff0000'
     }).setOrigin(0.5)
 
-    this.add.text(width / 2 + 150, 290, `Health: ${this.fightResult.player2Health}%`, {
+    this.add.text(width / 2 + 150, 290, `Health: ${player2HealthPercent}%`, {
       font: '12px Courier New',
       color: '#ffffff'
     }).setOrigin(0.5)
 
-    this.add.text(width / 2 + 150, 310, `Status: ${this.fightResult.player2Health > 0 ? 'ALIVE' : 'REKT'}`, {
+    // Better status display
+    let player2Status = ''
+    if (isPlayer2Winner) {
+      player2Status = '🚀 MOONED'
+    } else if (player2HealthPercent <= 0) {
+      player2Status = '💀 LIQUIDATED'
+    } else {
+      player2Status = '❌ LOST'
+    }
+
+    this.add.text(width / 2 + 150, 310, `Status: ${player2Status}`, {
       font: '12px Courier New',
-      color: this.fightResult.player2Health > 0 ? '#00ff00' : '#ff0000'
+      color: isPlayer2Winner ? '#00ff00' : '#ff0000'
     }).setOrigin(0.5)
 
-    // Rewards section
+    // Rewards section with new scoring system
     this.add.text(width / 2, 360, '💰 REWARDS EARNED 💰', {
       font: 'bold 14px Courier New',
       color: '#ffaa00'
     }).setOrigin(0.5)
 
-    const coins = Math.floor(Math.random() * 100) + 50
-    const xp = Math.floor(Math.random() * 200) + 100
+    // New scoring system: winner health * 2 for coins, winner health * 3 for XP
+    let winnerHealth = 0
+    if (isPlayer1Winner) {
+      winnerHealth = player1HealthPercent
+    } else if (isPlayer2Winner) {
+      winnerHealth = player2HealthPercent
+    }
+    
+    const coins = winnerHealth * 2
+    const xp = winnerHealth * 3 // XP is now winner health * 3
 
-    this.add.text(width / 2, 380, `+${coins} CRYPTO COINS | +${xp} XP`, {
+    this.add.text(width / 2, 380, `+${coins} $Bario | +${xp} XP`, {
       font: '12px Courier New',
       color: '#00ff88'
     }).setOrigin(0.5)
@@ -273,22 +311,25 @@ export class ResultsScene extends Phaser.Scene {
       })
     }
 
-    // Add winner glow effect if there's a clear winner
+    // Add winner glow effect if there's a clear winner - positioned above the winner text
     if (this.fightResult.result !== 'TIME_UP' && !this.fightResult.result.includes('DRAW')) {
+      // Create a simple white texture for particles
+      this.add.graphics()
+        .fillStyle(0xffffff)
+        .fillCircle(2, 2, 2)
+        .generateTexture('white', 4, 4)
+
       const particles = this.add.particles(0, 0, 'white', {
         x: width / 2,
-        y: 160,
+        y: 120, // Moved up from 160 to be above the winner text
         speed: { min: 50, max: 100 },
         scale: { start: 0.3, end: 0 },
         lifespan: 1000,
         quantity: 2
       })
 
-      // Create a simple white texture for particles
-      this.add.graphics()
-        .fillStyle(0xffffff)
-        .fillCircle(2, 2, 2)
-        .generateTexture('white', 4, 4)
+      // Set depth to be behind the text
+      particles.setDepth(-1)
     }
   }
 }

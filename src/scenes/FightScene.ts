@@ -31,13 +31,92 @@ export class FightScene extends Phaser.Scene {
   private roundText!: Phaser.GameObjects.Text
   private isMatchComplete: boolean = false
   
+  // Game state control variables
+  private isRoundActive: boolean = false
+  private isCountingDown: boolean = false
+  
   // CPU AI variables
   private cpuDecisionTimer: number = 0
   private cpuNextAction: string = 'idle'
   private cpuActionCooldown: number = 0
-  
+
   constructor() {
     super({ key: 'FightScene' })
+  }
+
+  shutdown() {
+    // Clean up all game objects and timers when leaving the scene
+    console.log('FightScene shutdown - cleaning up resources')
+    
+    // Destroy timer
+    if (this.gameTimer) {
+      this.gameTimer.destroy()
+      this.gameTimer = null as any
+    }
+    
+    // Stop all time events
+    this.time.removeAllEvents()
+    
+    // Clean up players and their projectiles
+    if (this.player1) {
+      // Clean up any projectiles
+      if (this.player1.projectiles) {
+        this.player1.projectiles.forEach(projectile => {
+          if (projectile && projectile.destroy) {
+            projectile.destroy()
+          }
+        })
+        this.player1.projectiles = []
+      }
+      this.player1.destroy()
+      this.player1 = null as any
+    }
+    
+    if (this.player2) {
+      // Clean up any projectiles
+      if (this.player2.projectiles) {
+        this.player2.projectiles.forEach(projectile => {
+          if (projectile && projectile.destroy) {
+            projectile.destroy()
+          }
+        })
+        this.player2.projectiles = []
+      }
+      this.player2.destroy()
+      this.player2 = null as any
+    }
+    
+    // Reset all state variables
+    this.currentRound = 1
+    this.roundScores = { player1: 0, player2: 0 }
+    this.isMatchComplete = false
+    this.isRoundActive = false
+    this.isCountingDown = false
+    this.roundEndProcessed = false
+    this.player1HasHit = false
+    this.player2HasHit = false
+    this.cpuDecisionTimer = 0
+    this.cpuActionCooldown = 0
+    
+    // Clear all animations to prevent duplication
+    // Remove character-specific animations
+    const characterIds = ['vitalik', 'cz', 'elon', 'hoskinson', 'saylor', 'gavin', 
+                         'hodl_master', 'trade_queen', 'brian', 'jesse', 'defi_ninja', 'meme_lord']
+    const animTypes = ['idle', 'walk', 'attack', 'hurt', 'jump', 'shoot', 'spellcast']
+    
+    characterIds.forEach(charId => {
+      animTypes.forEach(animType => {
+        const animKey = `${charId}-${animType}-anim`
+        if (this.anims.exists(animKey)) {
+          this.anims.remove(animKey)
+        }
+      })
+    })
+    
+    // Clear all children to prevent sprite duplication
+    this.children.removeAll(true)
+    
+    console.log('FightScene cleanup completed')
   }
 
   preload() {
@@ -77,6 +156,19 @@ export class FightScene extends Phaser.Scene {
     const width = this.cameras.main.width
     const height = this.cameras.main.height
 
+    // Reset all state variables at the beginning of create
+    this.currentRound = 1
+    this.roundScores = { player1: 0, player2: 0 }
+    this.isMatchComplete = false
+    this.isRoundActive = false
+    this.isCountingDown = false
+    this.roundEndProcessed = false
+    this.player1HasHit = false
+    this.player2HasHit = false
+    this.cpuDecisionTimer = 0
+    this.cpuActionCooldown = 0
+    this.roundTime = GAME_CONSTANTS.ROUND_TIME
+
     // Get selected characters and arena
     const selectedCharacters = this.registry.get('selectedCharacters') || {
       player1: 'hodler',
@@ -98,8 +190,10 @@ export class FightScene extends Phaser.Scene {
     // Setup input
     this.setupInput()
 
-    // Start round timer
-    this.startRoundTimer()
+    // Start with countdown for first round
+    this.isRoundActive = false
+    this.isCountingDown = true
+    this.startCountdown()
 
     // Add some fight instructions
     this.add.text(width / 2, height - 30, 'P1: WASD + Space | P2: Arrow Keys + Enter', {
@@ -403,9 +497,17 @@ export class FightScene extends Phaser.Scene {
   }
 
   private handleInput() {
+    // Don't allow input if round is not active or during countdown
+    if (!this.isRoundActive || this.isCountingDown || this.isMatchComplete) {
+      // Stop all movement when round is not active
+      this.player1.stopMovement()
+      this.player2.stopMovement()
+      return
+    }
+
     const gameMode = this.registry.get('gameMode') || 'twoPlayer'
     
-    // Player 1 controls (WASD) - always active
+    // Player 1 controls (WASD) - only when round is active
     if (this.wasdKeys.A.isDown) {
       this.player1.moveLeft()
     } else if (this.wasdKeys.D.isDown) {
@@ -562,8 +664,8 @@ export class FightScene extends Phaser.Scene {
       this.gameTimer.destroy()
     }
 
-    // Set match complete flag to prevent further actions
-    this.isMatchComplete = true
+    // Deactivate round to stop all actions
+    this.isRoundActive = false
 
     // Determine round winner and update scores
     let roundWinner = ''
@@ -610,6 +712,8 @@ export class FightScene extends Phaser.Scene {
 
     if (hasWinner) {
       console.log('Match complete: Someone won 2 rounds')
+      // Set match complete flag
+      this.isMatchComplete = true
       // Match is complete, go to results
       this.time.delayedCall(3000, () => {
         resultText.destroy()
@@ -625,6 +729,8 @@ export class FightScene extends Phaser.Scene {
       })
     } else if (isThirdRound) {
       console.log('Match complete: 3 rounds completed')
+      // Set match complete flag
+      this.isMatchComplete = true
       // We've completed 3 rounds, match is over
       this.time.delayedCall(3000, () => {
         resultText.destroy()
@@ -640,8 +746,6 @@ export class FightScene extends Phaser.Scene {
       })
     } else {
       console.log(`Continuing to next round. Will be round ${this.currentRound + 1}`)
-      // Reset match complete flag for next round
-      this.isMatchComplete = false
       // Continue to next round
       this.time.delayedCall(3000, () => {
         resultText.destroy()
@@ -685,6 +789,10 @@ export class FightScene extends Phaser.Scene {
     // Reset round end processed flag for new round
     this.roundEndProcessed = false
     
+    // Round is not active during setup and countdown
+    this.isRoundActive = false
+    this.isCountingDown = true
+    
     // Reset players for next round
     this.player1.health = this.player1.maxHealth
     this.player2.health = this.player2.maxHealth
@@ -707,25 +815,60 @@ export class FightScene extends Phaser.Scene {
       padding: { x: 20, y: 10 }
     }).setOrigin(0.5)
     
-    // Show "FIGHT!" message after round announcement
+    // Start countdown sequence
     this.time.delayedCall(2000, () => {
       nextRoundText.destroy()
-      
-      const fightText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, 'FIGHT!', {
-        font: 'bold 48px Courier New',
-        color: '#ff0000',
-        backgroundColor: '#000000',
-        padding: { x: 20, y: 10 }
-      }).setOrigin(0.5)
-      
-      this.time.delayedCall(1000, () => {
-        fightText.destroy()
-        this.startRoundTimer()
-      })
+      this.startCountdown()
     })
   }
 
+  private startCountdown() {
+    let countdownNumber = 3
+    
+    const showCountdownNumber = () => {
+      const countdownText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, countdownNumber.toString(), {
+        font: 'bold 64px Courier New',
+        color: '#ffff00',
+        backgroundColor: '#000000',
+        padding: { x: 30, y: 20 }
+      }).setOrigin(0.5)
+      
+      this.time.delayedCall(1000, () => {
+        countdownText.destroy()
+        countdownNumber--
+        
+        if (countdownNumber > 0) {
+          showCountdownNumber()
+        } else {
+          // Show "FIGHT!" and start the round
+          const fightText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, 'FIGHT!', {
+            font: 'bold 48px Courier New',
+            color: '#ff0000',
+            backgroundColor: '#000000',
+            padding: { x: 20, y: 10 }
+          }).setOrigin(0.5)
+          
+          this.time.delayedCall(1000, () => {
+            fightText.destroy()
+            // Activate the round
+            this.isCountingDown = false
+            this.isRoundActive = true
+            this.startRoundTimer()
+          })
+        }
+      })
+    }
+    
+    showCountdownNumber()
+  }
+
   private handleCPUInput() {
+    // Don't allow CPU input if round is not active or during countdown
+    if (!this.isRoundActive || this.isCountingDown || this.isMatchComplete) {
+      this.player2.stopMovement()
+      return
+    }
+
     // Update CPU decision timer
     this.cpuDecisionTimer += this.game.loop.delta
     this.cpuActionCooldown -= this.game.loop.delta
