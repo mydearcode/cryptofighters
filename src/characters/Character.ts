@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 import { GAME_CONSTANTS } from '../config/GameConfig'
 import { Projectile, ProjectileType } from './Projectile'
+import { gameData } from '../data/DataManager'
 
 export interface CharacterData {
   id: string
@@ -1158,20 +1159,37 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     this.currentAttackType = attackType
     this.setCharacterState(CharacterState.ATTACKING)
     
+    // Karakter-spesifik move verilerini al
+    const moveData = this.getCharacterMoveData(attackType)
+    
     // Different cooldowns for different attack types
     switch (attackType) {
       case AttackType.BASIC:
-        this.attackCooldown = 400 // Fast basic attack
+        this.attackCooldown = moveData?.cooldown || 400 // Fast basic attack
+        // BASIC attack için de battle cry göster
+        if (moveData?.id) {
+          this.showBattleCry(moveData.id, attackType)
+        }
         break
       case AttackType.SPECIAL1:
-        this.attackCooldown = 800 // Slower but stronger
-        // Create projectile for shoot attack
-        this.createProjectile(ProjectileType.BULLET)
+        this.attackCooldown = moveData?.cooldown || 800 // Slower but stronger
+        // Karakter-spesifik projectile oluştur
+        if (moveData?.id) {
+          this.createProjectileFromMove(moveData.id)
+          this.showBattleCry(moveData.id, attackType)
+        } else {
+          this.createProjectile(ProjectileType.BULLET)
+        }
         break
       case AttackType.SPECIAL2:
-        this.attackCooldown = 600 // Medium speed
-        // Create projectile for magic attack
-        this.createProjectile(ProjectileType.MAGIC)
+        this.attackCooldown = moveData?.cooldown || 600 // Medium speed
+        // Karakter-spesifik projectile oluştur
+        if (moveData?.id) {
+          this.createProjectileFromMove(moveData.id)
+          this.showBattleCry(moveData.id, attackType)
+        } else {
+          this.createProjectile(ProjectileType.MAGIC)
+        }
         break
     }
     
@@ -1278,5 +1296,90 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     )
     
     this.projectiles.push(projectile)
+  }
+
+  // Yeni metodlar: Karakter-spesifik projectile ve battle cry
+  public createProjectileFromMove(moveId: string): void {
+    const moveData = gameData.getMove(moveId)
+    if (!moveData || !moveData.projectileType) return
+
+    // ProjectileType enum'ından uygun türü bul
+    const projectileType = ProjectileType[moveData.projectileType as keyof typeof ProjectileType]
+    if (projectileType) {
+      this.createProjectile(projectileType)
+    }
+  }
+
+  public showBattleCry(moveId: string, attackType: AttackType): void {
+    const moveData = gameData.getMove(moveId)
+    if (!moveData || !moveData.battleCries || moveData.battleCries.length === 0) return
+
+    // AttackType'a göre sabit slogan seç (rastgele değil)
+    let battleCryIndex = 0
+    switch (attackType) {
+      case AttackType.BASIC:
+        battleCryIndex = 0 // İlk slogan
+        break
+      case AttackType.SPECIAL1:
+        battleCryIndex = 1 % moveData.battleCries.length // İkinci slogan (varsa)
+        break
+      case AttackType.SPECIAL2:
+        battleCryIndex = 2 % moveData.battleCries.length // Üçüncü slogan (varsa)
+        break
+    }
+    
+    const battleCry = moveData.battleCries[battleCryIndex]
+
+    // Battle cry'ı ekranda göster
+    const battleCryText = this.scene.add.text(
+      this.x,
+      this.y - 60,
+      battleCry,
+      {
+        fontSize: '14px',
+        color: '#FFD700',
+        stroke: '#000000',
+        strokeThickness: 2,
+        fontFamily: 'Jacquard 12, Impact, Arial Black, Helvetica Neue, Arial, sans-serif'
+      }
+    ).setOrigin(0.5)
+
+    // Animasyon: yukarı doğru hareket ve fade out
+    this.scene.tweens.add({
+      targets: battleCryText,
+      y: battleCryText.y - 30,
+      alpha: 0,
+      duration: 2000,
+      ease: 'Power2',
+      onComplete: () => {
+        battleCryText.destroy()
+      }
+    })
+  }
+
+  public getCharacterMoveData(attackType: AttackType): any {
+    // Karakterin moves listesinden uygun move'u bul
+    const characterMoves = gameData.getCharacterMoves(this.characterData.id)
+    if (characterMoves.length === 0) return null
+
+    // AttackType'a göre uygun move'u seç
+    let targetMoveType: string
+    switch (attackType) {
+      case AttackType.BASIC:
+        targetMoveType = 'basic'
+        break
+      case AttackType.SPECIAL1:
+        targetMoveType = 'special1'
+        break
+      case AttackType.SPECIAL2:
+        targetMoveType = 'special2'
+        break
+      default:
+        targetMoveType = 'basic'
+    }
+
+    // Bu tipteki ilk move'u bul
+    const move = characterMoves.find(m => m.type === targetMoveType)
+    return move || characterMoves[0] // Bulamazsa ilk move'u döndür
   }
 }

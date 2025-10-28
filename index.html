@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Fighters</title>
+    <!-- Google Fonts - Jacquard 12 with improved loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap" rel="stylesheet">
+    <!-- Fallback font preload for better performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap"></noscript>
     <style>
         body {
             margin: 0;
@@ -13,7 +20,10 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            font-family: 'Courier New', monospace;
+            /* Güçlendirilmiş fallback font stack */
+            font-family: 'Jacquard 12', 'Impact', 'Arial Black', 'Helvetica Neue', 'Arial', 'Courier New', monospace, sans-serif;
+            /* Font yüklenmesini beklerken görünürlük */
+            font-display: swap;
         }
         
         #game-container {

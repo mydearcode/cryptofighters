@@ -16,16 +16,16 @@ export class MenuScene extends Phaser.Scene {
     
     // Add title with enhanced glow effect - more dynamic font
     const title = this.add.text(width / 2, 120, 'CRYPTO FIGHTERS', {
-      fontSize: '56px',
+      fontSize: '72px',
       color: '#ff6600',
-      fontFamily: 'Impact, Arial Black, sans-serif',
+      fontFamily: '"Jacquard 12", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
       stroke: '#660000',
-      strokeThickness: 6,
+      strokeThickness: 8,
       shadow: {
-        offsetX: 3,
-        offsetY: 3,
+        offsetX: 4,
+        offsetY: 4,
         color: '#330000',
-        blur: 5,
+        blur: 6,
         fill: true
       }
     }).setOrigin(0.5)
@@ -48,9 +48,9 @@ export class MenuScene extends Phaser.Scene {
     
     // Game mode selection title with better font
     const modeTitle = this.add.text(width / 2, 230, 'SELECT GAME MODE', {
-      fontSize: '26px',
+      fontSize: '32px',
       color: '#ffddcc',
-      fontFamily: 'Impact, Arial Black, sans-serif',
+      fontFamily: '"Jacquard 12", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
       letterSpacing: 2,
       shadow: {
         offsetX: 2,
@@ -80,9 +80,9 @@ export class MenuScene extends Phaser.Scene {
       })
     
     const singlePlayerText = this.add.text(width / 2, 285, 'SINGLE PLAYER', {
-      fontSize: '20px',
+      fontSize: '24px',
       color: '#ff6600',
-      fontFamily: 'Impact, Arial Black, sans-serif',
+      fontFamily: '"Jacquard 12", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
       letterSpacing: 1,
       shadow: {
         offsetX: 1,
@@ -119,9 +119,9 @@ export class MenuScene extends Phaser.Scene {
       })
     
     const twoPlayerText = this.add.text(width / 2, 385, 'TWO PLAYER', {
-      fontSize: '20px',
+      fontSize: '24px',
       color: '#ff6600',
-      fontFamily: 'Impact, Arial Black, sans-serif',
+      fontFamily: '"Jacquard 12", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
       letterSpacing: 1,
       shadow: {
         offsetX: 1,

@@ -28,6 +28,8 @@ export interface MoveData {
   range: number
   effects: string[]
   animation: string
+  projectileType?: string
+  battleCries?: string[]
 }
 
 export interface ArenaData {

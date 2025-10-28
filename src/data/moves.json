@@ -9,7 +9,9 @@
       "cooldown": 400,
       "range": 60,
       "effects": ["knockback"],
-      "animation": "grab_squeeze"
+      "animation": "grab_squeeze",
+      "projectileType": "HODL_DIAMOND",
+      "battleCries": ["HODL to the moon!", "Diamond hands never sell!", "Patience is power!"]
     },
     {
       "id": "hodl_slam",
@@ -20,7 +22,9 @@
       "cooldown": 800,
       "range": 70,
       "effects": ["stun", "knockback"],
-      "animation": "power_slam"
+      "animation": "power_slam",
+      "projectileType": "HODL_DIAMOND",
+      "battleCries": ["Feel the power of HODL!", "Years of patience unleashed!", "This is diamond strength!"]
     },
     {
       "id": "patience_strike",
@@ -31,7 +35,9 @@
       "cooldown": 600,
       "range": 50,
       "effects": ["speed_boost"],
-      "animation": "quick_jab"
+      "animation": "quick_jab",
+      "projectileType": "HODL_DIAMOND",
+      "battleCries": ["Patience pays off!", "Quick diamond strike!", "HODL power!"]
     },
     {
       "id": "quick_profit",
@@ -42,7 +48,9 @@
       "cooldown": 400,
       "range": 55,
       "effects": ["speed_boost"],
-      "animation": "rapid_strike"
+      "animation": "rapid_strike",
+      "projectileType": "TRADE_COIN",
+      "battleCries": ["Quick gains!", "Profit secured!", "Trading like a queen!"]
     },
     {
       "id": "scalp_attack",
@@ -53,7 +61,9 @@
       "cooldown": 800,
       "range": 60,
       "effects": ["multi_hit"],
-      "animation": "combo_strike"
+      "animation": "combo_strike",
+      "projectileType": "CANDLE_STICKS",
+      "battleCries": ["Scalping profits!", "Multiple strikes!", "Trading fury!"]
     },
     {
       "id": "momentum_rush",
@@ -64,7 +74,9 @@
       "cooldown": 600,
       "range": 65,
       "effects": ["dash", "speed_boost"],
-      "animation": "dash_attack"
+      "animation": "dash_attack",
+      "projectileType": "EXCHANGE_DOLLAR",
+      "battleCries": ["Momentum building!", "Trading rush!", "Speed advantage!"]
     },
     {
       "id": "market_manipulation",
@@ -75,7 +87,9 @@
       "cooldown": 400,
       "range": 75,
       "effects": ["area_damage"],
-      "animation": "wave_attack"
+      "animation": "wave_attack",
+      "projectileType": "BITCOIN_LASER",
+      "battleCries": ["Market control!", "Whale power!", "Manipulating the market!"]
     },
     {
       "id": "whale_splash",
@@ -86,7 +100,9 @@
       "cooldown": 800,
       "range": 80,
       "effects": ["area_damage", "knockback"],
-      "animation": "ground_slam"
+      "animation": "ground_slam",
+      "projectileType": "BITCOIN_LASER",
+      "battleCries": ["Whale splash!", "Big money moves!", "Market tsunami!"]
     },
     {
       "id": "volume_crush",
@@ -97,7 +113,9 @@
       "cooldown": 600,
       "range": 70,
       "effects": ["armor_break"],
-      "animation": "crushing_blow"
+      "animation": "crushing_blow",
+      "projectileType": "BITCOIN_LASER",
+      "battleCries": ["Volume spike!", "Crushing the market!", "Bitcoin power!"]
     },
     {
       "id": "yield_farming",
@@ -108,18 +126,22 @@
       "cooldown": 400,
       "range": 60,
       "effects": ["heal_self"],
-      "animation": "energy_drain"
+      "animation": "energy_drain",
+      "projectileType": "DEFI_ORB",
+      "battleCries": ["Farming yields!", "DeFi power!", "Decentralized finance!"]
     },
     {
       "id": "liquidity_strike",
       "name": "Liquidity Strike",
-      "description": "Likidite gücüyle güçlü darbe.",
+      "description": "Likidite gücüyle saldırı.",
       "type": "special1",
       "damage": 180,
       "cooldown": 800,
       "range": 65,
       "effects": ["mana_drain"],
-      "animation": "energy_blast"
+      "animation": "energy_blast",
+      "projectileType": "COMPUTER_CHIP",
+      "battleCries": ["Liquidity flows!", "Pool power!", "DeFi ninja strike!"]
     },
     {
       "id": "flash_loan",
@@ -130,7 +152,9 @@
       "cooldown": 600,
       "range": 55,
       "effects": ["teleport", "surprise"],
-      "animation": "flash_strike"
+      "animation": "flash_strike",
+      "projectileType": "TRENDING_DOWN",
+      "battleCries": ["Flash loan executed!", "Instant liquidity!", "DeFi magic!"]
     },
     {
       "id": "rare_mint",
@@ -141,7 +165,9 @@
       "cooldown": 400,
       "range": 60,
       "effects": ["create_shield"],
-      "animation": "creation_burst"
+      "animation": "creation_burst",
+      "projectileType": "NINJA_STAR",
+      "battleCries": ["Rare NFT minted!", "Unique creation!", "Digital art power!"]
     },
     {
       "id": "collection_power",
@@ -152,7 +178,9 @@
       "cooldown": 800,
       "range": 70,
       "effects": ["power_stack"],
-      "animation": "collection_wave"
+      "animation": "collection_wave",
+      "projectileType": "NINJA_STAR",
+      "battleCries": ["Collection power!", "NFT army!", "Digital dominance!"]
     },
     {
       "id": "artistic_fury",
@@ -163,7 +191,9 @@
       "cooldown": 600,
       "range": 55,
       "effects": ["confusion"],
-      "animation": "artistic_swirl"
+      "animation": "artistic_swirl",
+      "projectileType": "NINJA_STAR",
+      "battleCries": ["Art is power!", "Creative destruction!", "NFT fury!"]
     },
     {
       "id": "viral_attack",
@@ -174,7 +204,9 @@
       "cooldown": 400,
       "range": 65,
       "effects": ["spread_damage"],
-      "animation": "viral_burst"
+      "animation": "viral_burst",
+      "projectileType": "MEME_ROCKET",
+      "battleCries": ["Going viral!", "Meme power!", "To the moon!"]
     },
     {
       "id": "moon_rocket",
@@ -185,7 +217,9 @@
       "cooldown": 800,
       "range": 75,
       "effects": ["launch", "knockback"],
-      "animation": "rocket_launch"
+      "animation": "rocket_launch",
+      "projectileType": "MEME_ROCKET",
+      "battleCries": ["Rocket to the moon!", "Diamond hands!", "Meme lord power!"]
     },
     {
       "id": "diamond_paws",
@@ -196,7 +230,9 @@
       "cooldown": 600,
       "range": 50,
       "effects": ["crit_chance"],
-      "animation": "claw_swipe"
+      "animation": "claw_swipe",
+      "projectileType": "MEME_ROCKET",
+      "battleCries": ["Diamond paws!", "Meme magic!", "Paws of power!"]
     },
     {
       "id": "smart_contract",
@@ -207,7 +243,9 @@
       "cooldown": 450,
       "range": 65,
       "effects": ["auto_counter"],
-      "animation": "code_cast"
+      "animation": "code_cast",
+      "projectileType": "ETHEREUM_SHARD",
+      "battleCries": ["Code is law!", "Smart contracts execute!", "Ethereum power!"]
     },
     {
       "id": "ethereum_blast",
@@ -218,7 +256,9 @@
       "cooldown": 900,
       "range": 80,
       "effects": ["area_damage", "stun"],
-      "animation": "energy_blast"
+      "animation": "energy_blast",
+      "projectileType": "ETHEREUM_SHARD",
+      "battleCries": ["Feel Ethereum's power!", "World computer activated!", "Decentralized destruction!"]
     },
     {
       "id": "proof_of_stake",
@@ -229,7 +269,360 @@
       "cooldown": 650,
       "range": 60,
       "effects": ["defense_boost", "reflect"],
-      "animation": "shield_counter"
+      "animation": "shield_counter",
+      "projectileType": "ETHEREUM_SHARD",
+      "battleCries": ["Proof of Stake!", "Staking rewards!", "Ethereum 2.0 power!"]
+    },
+    {
+      "id": "crypto_punch",
+      "name": "Crypto Punch",
+      "description": "Coinbase'in gücüyle güçlü yumruk.",
+      "type": "basic",
+      "damage": 110,
+      "cooldown": 450,
+      "range": 60,
+      "effects": ["knockback"],
+      "animation": "power_punch",
+      "projectileType": "TRADE_COIN",
+      "battleCries": ["Coinbase power!", "Crypto for everyone!", "Building the future!"]
+    },
+    {
+      "id": "blockchain_slam",
+      "name": "Blockchain Slam",
+      "description": "Blockchain teknolojisinin gücüyle ezici darbe.",
+      "type": "special1",
+      "damage": 190,
+      "cooldown": 850,
+      "range": 70,
+      "effects": ["area_damage", "stun"],
+      "animation": "ground_slam",
+      "projectileType": "BITCOIN_LASER",
+      "battleCries": ["Blockchain revolution!", "Decentralized power!", "Armstrong slam!"]
+    },
+    {
+      "id": "digital_strike",
+      "name": "Digital Strike",
+      "description": "Dijital varlıkların gücüyle hızlı saldırı.",
+      "type": "special2",
+      "damage": 80,
+      "cooldown": 650,
+      "range": 65,
+      "effects": ["speed_boost", "crit_chance"],
+      "animation": "lightning_strike",
+      "projectileType": "ETHEREUM_SHARD",
+      "battleCries": ["Digital assets!", "Coinbase strike!", "Crypto adoption!"]
+    },
+    {
+      "id": "ninja_strike",
+      "name": "Ninja Strike",
+      "description": "Base Network'ün hızıyla ninja saldırısı.",
+      "type": "basic",
+      "damage": 105,
+      "cooldown": 400,
+      "range": 55,
+      "effects": ["speed_boost"],
+      "animation": "quick_strike",
+      "projectileType": "NINJA_STAR",
+      "battleCries": ["Base speed!", "Layer 2 power!", "Ninja technique!"]
+    },
+    {
+      "id": "swift_attack",
+      "name": "Swift Attack",
+      "description": "Şimşek hızında Base Network saldırısı.",
+      "type": "special1",
+      "damage": 175,
+      "cooldown": 750,
+      "range": 60,
+      "effects": ["multi_hit", "speed_boost"],
+      "animation": "combo_rush",
+      "projectileType": "ETHEREUM_SHARD",
+      "battleCries": ["Swift as Base!", "Layer 2 lightning!", "Polak power!"]
+    },
+    {
+      "id": "shadow_dash",
+      "name": "Shadow Dash",
+      "description": "Gölge gibi hızlı Base Network hamlesi.",
+      "type": "special2",
+      "damage": 75,
+      "cooldown": 600,
+      "range": 70,
+      "effects": ["teleport", "surprise", "dash"],
+      "animation": "shadow_move",
+      "projectileType": "DEFI_ORB",
+      "battleCries": ["Shadow dash!", "Base network!", "Invisible strike!"]
+    },
+    {
+      "id": "tesla_punch",
+      "name": "Tesla Punch",
+      "description": "Elektrikli güçle Tesla yumruğu.",
+      "type": "basic",
+      "damage": 110,
+      "cooldown": 450,
+      "range": 60,
+      "effects": ["electric_shock"],
+      "animation": "electric_punch",
+      "projectileType": "BITCOIN_LASER",
+      "battleCries": ["Tesla power!", "Electric innovation!", "Sustainable energy!"]
+    },
+    {
+      "id": "spacex_rocket",
+      "name": "SpaceX Rocket",
+      "description": "Uzay roketiyle güçlü saldırı.",
+      "type": "special1",
+      "damage": 200,
+      "cooldown": 900,
+      "range": 80,
+      "effects": ["launch", "area_damage"],
+      "animation": "rocket_blast",
+      "projectileType": "MEME_ROCKET",
+      "battleCries": ["To Mars!", "SpaceX launch!", "Rocket power!"]
+    },
+    {
+      "id": "doge_power",
+      "name": "Doge Power",
+      "description": "Dogecoin'in gücüyle meme saldırısı.",
+      "type": "special2",
+      "damage": 85,
+      "cooldown": 650,
+      "range": 65,
+      "effects": ["meme_boost", "viral"],
+      "animation": "doge_blast",
+      "projectileType": "MEME_ROCKET",
+      "battleCries": ["Much wow!", "Doge to the moon!", "Such power!"]
+    },
+    {
+      "id": "bitcoin_laser",
+      "name": "Bitcoin Laser",
+      "description": "Bitcoin'in gücüyle lazer saldırısı.",
+      "type": "basic",
+      "damage": 120,
+      "cooldown": 500,
+      "range": 70,
+      "effects": ["burn", "pierce"],
+      "animation": "laser_blast",
+      "projectileType": "BITCOIN_LASER",
+      "battleCries": ["Bitcoin power!", "Digital gold!", "HODL strong!"]
+    },
+    {
+      "id": "hodl_shield",
+      "name": "HODL Shield",
+      "description": "Uzun vadeli tutma stratejisiyle savunma.",
+      "type": "special1",
+      "damage": 50,
+      "cooldown": 800,
+      "range": 40,
+      "effects": ["shield", "defense_boost"],
+      "animation": "shield_up",
+      "projectileType": "BITCOIN_CIRCLE",
+      "battleCries": ["HODL forever!", "Diamond hands!", "Never sell!"]
+    },
+    {
+      "id": "corporate_strategy",
+      "name": "Corporate Strategy",
+      "description": "Kurumsal strateji ile güçlü saldırı.",
+      "type": "special2",
+      "damage": 180,
+      "cooldown": 1000,
+      "range": 75,
+      "effects": ["strategic", "multi_hit"],
+      "animation": "strategy_blast",
+      "projectileType": "BLOCKCHAIN_SECURITY",
+      "battleCries": ["Corporate power!", "Strategic move!", "Bitcoin treasury!"]
+    },
+    {
+      "id": "royal_profit",
+      "name": "Royal Profit",
+      "description": "Kraliçe'nin kar stratejisiyle saldırı.",
+      "type": "basic",
+      "damage": 100,
+      "cooldown": 400,
+      "range": 65,
+      "effects": ["profit", "gold_rush"],
+      "animation": "royal_strike",
+      "projectileType": "DEFI_ORB",
+      "battleCries": ["Royal profits!", "Queen's strategy!", "Golden opportunity!"]
+    },
+    {
+      "id": "queen_strike",
+      "name": "Queen Strike",
+      "description": "Kraliçe'nin güçlü vuruşu.",
+      "type": "special1",
+      "damage": 160,
+      "cooldown": 750,
+      "range": 70,
+      "effects": ["royal", "critical"],
+      "animation": "queen_attack",
+      "projectileType": "BITCOIN_LASER",
+      "battleCries": ["Queen's power!", "Royal strike!", "Bow to the queen!"]
+    },
+    {
+      "id": "market_dominance",
+      "name": "Market Dominance",
+      "description": "Piyasaya hakim olma gücü.",
+      "type": "special2",
+      "damage": 190,
+      "cooldown": 950,
+      "range": 80,
+      "effects": ["dominance", "market_control"],
+      "animation": "dominance_blast",
+      "projectileType": "MEME_ROCKET",
+      "battleCries": ["Market domination!", "Queen rules all!", "Total control!"]
+    },
+    {
+      "id": "diamond_hands",
+      "name": "Diamond Hands",
+      "description": "Asla satmayan elmas eller.",
+      "type": "basic",
+      "damage": 95,
+      "cooldown": 350,
+      "range": 55,
+      "effects": ["diamond", "unbreakable"],
+      "animation": "diamond_punch",
+      "projectileType": "BITCOIN_LASER",
+      "battleCries": ["Diamond hands!", "Never selling!", "HODL forever!"]
+    },
+    {
+      "id": "hodl_power",
+      "name": "HODL Power",
+      "description": "Uzun vadeli tutmanın gücü.",
+      "type": "special1",
+      "damage": 140,
+      "cooldown": 700,
+      "range": 60,
+      "effects": ["hodl", "patience"],
+      "animation": "hodl_blast",
+      "projectileType": "DIAMOND_ORIGAMI",
+      "battleCries": ["HODL power!", "Patience pays!", "Long term vision!"]
+    },
+    {
+      "id": "moon_mission",
+      "name": "Moon Mission",
+      "description": "Aya gidiş misyonu.",
+      "type": "special2",
+      "damage": 170,
+      "cooldown": 850,
+      "range": 75,
+      "effects": ["moon", "rocket"],
+      "animation": "moon_blast",
+      "projectileType": "HOLD_POWER",
+      "battleCries": ["To the moon!", "Moon mission!", "Rocket fuel!"]
+    },
+    {
+      "id": "binance_blast",
+      "name": "Binance Blast",
+      "description": "Binance'in gücüyle patlayıcı saldırı.",
+      "type": "basic",
+      "damage": 115,
+      "cooldown": 480,
+      "range": 65,
+      "effects": ["exchange", "volume"],
+      "animation": "exchange_blast",
+      "projectileType": "BITCOIN_LASER",
+      "battleCries": ["Binance power!", "Exchange dominance!", "Volume surge!"]
+    },
+    {
+      "id": "trading_fury",
+      "name": "Trading Fury",
+      "description": "Yoğun ticaret faaliyetiyle öfkeli saldırı.",
+      "type": "special1",
+      "damage": 165,
+      "cooldown": 750,
+      "range": 70,
+      "effects": ["fury", "multi_trade"],
+      "animation": "trading_storm",
+      "projectileType": "DEFI_ORB",
+      "battleCries": ["Trading fury!", "Market storm!", "Binance rage!"]
+    },
+    {
+      "id": "peer_review",
+      "name": "Peer Review",
+      "description": "Akademik inceleme ile hassas saldırı.",
+      "type": "basic",
+      "damage": 105,
+      "cooldown": 420,
+      "range": 60,
+      "effects": ["academic", "precision"],
+      "animation": "review_strike",
+      "projectileType": "DEFI_ORB",
+      "battleCries": ["Peer reviewed!", "Academic precision!", "Research power!"]
+    },
+    {
+      "id": "cardano_strike",
+      "name": "Cardano Strike",
+      "description": "Cardano'nun gücüyle stratejik vuruş.",
+      "type": "special1",
+      "damage": 155,
+      "cooldown": 700,
+      "range": 65,
+      "effects": ["cardano", "strategic"],
+      "animation": "cardano_blast",
+      "projectileType": "BITCOIN_LASER",
+      "battleCries": ["Cardano power!", "ADA strike!", "Proof of stake!"]
+    },
+    {
+      "id": "academic_precision",
+      "name": "Academic Precision",
+      "description": "Akademik hassasiyetle kesin vuruş.",
+      "type": "special2",
+      "damage": 175,
+      "cooldown": 850,
+      "range": 70,
+      "effects": ["precision", "academic"],
+      "animation": "precision_blast",
+      "projectileType": "DEFI_ORB",
+      "battleCries": ["Academic strike!", "Precision attack!", "Research validated!"]
+    },
+    {
+      "id": "parachain_link",
+      "name": "Parachain Link",
+      "description": "Parachain bağlantısıyla çoklu saldırı.",
+      "type": "basic",
+      "damage": 100,
+      "cooldown": 450,
+      "range": 70,
+      "effects": ["link", "multi_chain"],
+      "animation": "chain_link",
+      "projectileType": "DEFI_ORB",
+      "battleCries": ["Parachain power!", "Interoperability!", "Connected strike!"]
+    },
+    {
+      "id": "substrate_strike",
+      "name": "Substrate Strike",
+      "description": "Substrate framework ile güçlü vuruş.",
+      "type": "special1",
+      "damage": 150,
+      "cooldown": 680,
+      "range": 65,
+      "effects": ["substrate", "framework"],
+      "animation": "substrate_blast",
+      "projectileType": "BITCOIN_LASER",
+      "battleCries": ["Substrate power!", "Framework strike!", "Polkadot force!"]
+    },
+    {
+      "id": "interop_blast",
+      "name": "Interop Blast",
+      "description": "Interoperabilite ile patlayıcı saldırı.",
+      "type": "special2",
+      "damage": 180,
+      "cooldown": 900,
+      "range": 75,
+      "effects": ["interop", "blast"],
+      "animation": "interop_explosion",
+      "projectileType": "MEME_ROCKET",
+      "battleCries": ["Interop blast!", "Cross-chain power!", "Universal connection!"]
+    },
+    {
+      "id": "viral_attack",
+      "name": "Viral Attack",
+      "description": "Viral meme gücüyle yayılan saldırı.",
+      "type": "basic",
+      "damage": 85,
+      "cooldown": 350,
+      "range": 60,
+      "effects": ["viral", "spread"],
+      "animation": "viral_blast",
+      "projectileType": "MEME_ROCKET",
+      "battleCries": ["Going viral!", "Meme power!", "Spread the word!"]
     }
   ]
 }

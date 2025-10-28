@@ -13,9 +13,13 @@
       },
       "moves": [
         "diamond_hands",
-        "hodl_slam",
-        "patience_strike"
+        "hodl_power",
+        "moon_mission"
       ],
+      "special_projectiles": {
+        "special1": "DIAMOND_ORIGAMI",
+        "special2": "HOLD_POWER"
+      },
       "rarity": "legendary",
       "element": "stability"
     },
@@ -35,6 +39,10 @@
         "queen_strike",
         "market_dominance"
       ],
+      "special_projectiles": {
+        "special1": "CANDLE_STICKS",
+        "special2": "EXCHANGE_DOLLAR"
+      },
       "rarity": "epic",
       "element": "strategy"
     },
@@ -54,6 +62,10 @@
         "hodl_shield",
         "corporate_strategy"
       ],
+      "special_projectiles": {
+        "special1": "BITCOIN_CIRCLE",
+        "special2": "BLOCKCHAIN_SECURITY"
+      },
       "rarity": "legendary",
       "element": "power"
     },
@@ -73,6 +85,10 @@
         "liquidity_strike",
         "flash_loan"
       ],
+      "special_projectiles": {
+        "special1": "COMPUTER_CHIP",
+        "special2": "TRENDING_DOWN"
+      },
       "rarity": "epic",
       "element": "technology"
     },
@@ -92,6 +108,10 @@
         "moon_rocket",
         "diamond_paws"
       ],
+      "special_projectiles": {
+        "special1": "DOGE_COIN",
+        "special2": "MOON_STARS"
+      },
       "rarity": "common",
       "element": "chaos"
     },
@@ -111,6 +131,10 @@
         "ethereum_blast",
         "proof_of_stake"
       ],
+      "special_projectiles": {
+        "special1": "ETHEREUM_ALT",
+        "special2": "FIRE_BLAST"
+      },
       "rarity": "legendary",
       "element": "innovation"
     },
@@ -130,6 +154,10 @@
         "trading_fury",
         "market_dominance"
       ],
+      "special_projectiles": {
+        "special1": "BINANCE_COIN",
+        "special2": "ANNOUNCEMENT"
+      },
       "rarity": "legendary",
       "element": "exchange"
     },
@@ -145,10 +173,14 @@
         "speed": 170
       },
       "moves": [
-        "smart_contract",
-        "ethereum_blast",
-        "proof_of_stake"
+        "tesla_punch",
+        "spacex_rocket",
+        "doge_power"
       ],
+      "special_projectiles": {
+        "special1": "ROCKET_ADVANCED",
+        "special2": "SPACE_BLAST"
+      },
       "rarity": "legendary",
       "element": "innovation"
     },
@@ -168,6 +200,10 @@
         "cardano_strike",
         "academic_precision"
       ],
+      "special_projectiles": {
+        "special1": "MOON_ADVANCED",
+        "special2": "FIRE_BOMB"
+      },
       "rarity": "legendary",
       "element": "research"
     },
@@ -187,6 +223,10 @@
         "substrate_strike",
         "interop_blast"
       ],
+      "special_projectiles": {
+        "special1": "SPACE_COSMOS",
+        "special2": "ROCKET_CLASSIC"
+      },
       "rarity": "legendary",
       "element": "connectivity"
     },
@@ -206,6 +246,10 @@
         "blockchain_slam",
         "digital_strike"
       ],
+      "special_projectiles": {
+        "special1": "BOMB_CLASSIC",
+        "special2": "BOMB_ADVANCED"
+      },
       "rarity": "epic",
       "element": "power"
     },
@@ -225,6 +269,10 @@
         "swift_attack",
         "shadow_dash"
       ],
+      "special_projectiles": {
+        "special1": "NINJA_STAR",
+        "special2": "TRENDING_UP"
+      },
       "rarity": "rare",
       "element": "agility"
     }
