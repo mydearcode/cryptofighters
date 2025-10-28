@@ -117,9 +117,9 @@ export class ResultsScene extends Phaser.Scene {
     const char1Data = CharacterManager.getCharacterById(this.selectedCharacters.player1) || CharacterManager.getAllCharacters()[0]
     const char2Data = CharacterManager.getCharacterById(this.selectedCharacters.player2) || CharacterManager.getAllCharacters()[1]
 
-    // Calculate health percentages correctly (health values are 0-100, convert to percentage)
-    const player1HealthPercent = Math.round(this.fightResult.player1Health)
-    const player2HealthPercent = Math.round(this.fightResult.player2Health)
+    // Calculate health percentages correctly based on character's max health
+    const player1HealthPercent = Math.round((this.fightResult.player1Health / char1Data.stats.health) * 100)
+    const player2HealthPercent = Math.round((this.fightResult.player2Health / char2Data.stats.health) * 100)
 
     // Determine winner and loser for better status display
     const isPlayer1Winner = this.fightResult.result.includes('PLAYER1_WINS') || 
@@ -271,7 +271,7 @@ export class ResultsScene extends Phaser.Scene {
     shareBtn.setInteractive()
     shareBtn.on('pointerdown', () => {
       // Placeholder for Telegram sharing
-      console.log('Share functionality will be implemented in Phase 4')
+      // Share functionality will be implemented in Phase 4
     })
 
     shareBtn.on('pointerover', () => {

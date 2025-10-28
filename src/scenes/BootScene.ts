@@ -406,9 +406,8 @@ export class BootScene extends Phaser.Scene {
 
   create() {
     // Initialize game data system
-    console.log('Initializing game data system...')
     const dataStats = gameData.getDataStats()
-    console.log(`Game data loaded: ${dataStats.characters} characters, ${dataStats.moves} moves, ${dataStats.arenas} arenas`)
+    // Game data loaded successfully
 
     // Initialize legacy game registry (for backward compatibility)
     this.registry.set('gameData', {

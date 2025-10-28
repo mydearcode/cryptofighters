@@ -137,6 +137,29 @@
         "rocket_emojis",
         "diamond_hands"
       ]
+    },
+    {
+      "id": "baes_arena",
+      "name": "Baes Arena",
+      "description": "Bario Entertainment System'in klasik kripto savaş arenasında dövüş deneyimi.",
+      "background": "baes_arena.png",
+      "theme": "classic",
+      "music": "arena_battle",
+      "lighting": "stadium",
+      "effects": {
+        "particles": "dust_clouds",
+        "ambient": "crowd_roar"
+      },
+      "boundaries": {
+        "left": 50,
+        "right": 750,
+        "ground": 500
+      },
+      "special_features": [
+        "arena_lights",
+        "spectator_stands",
+        "battle_platform"
+      ]
     }
   ]
 }

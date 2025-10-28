@@ -89,16 +89,22 @@ export class DataManager {
       })
 
       // Load arenas
+      console.log('Loading arenas from JSON:', arenasData.arenas.length, 'arenas found')
       arenasData.arenas.forEach(arena => {
+        console.log('Processing arena:', arena.name, 'with id:', arena.id)
         if (this.validateArenaData(arena)) {
+          console.log('Arena validation passed for:', arena.name)
           this.arenas.set(arena.id, arena as ArenaData)
         } else {
-          console.warn(`Invalid arena data for: ${arena.id}`)
+          console.warn(`Invalid arena data for: ${arena.id}`, arena)
         }
       })
 
+      console.log('Total arenas loaded:', this.arenas.size)
+      console.log('Loaded arena IDs:', Array.from(this.arenas.keys()))
+
       this.isLoaded = true
-      console.log(`Data loaded: ${this.characters.size} characters, ${this.moves.size} moves, ${this.arenas.size} arenas`)
+      // Data loaded successfully
     } catch (error) {
       console.error('Failed to load game data:', error)
     }

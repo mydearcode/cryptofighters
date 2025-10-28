@@ -7,6 +7,7 @@ import defiTempleImg from '../assets/images/arenas/defi_temple.png'
 import exchangesStreetImg from '../assets/images/arenas/exchanges_street.png'
 import baseApprenaImg from '../assets/images/arenas/base_apprena.png'
 import tipboxArenaImg from '../assets/images/arenas/tipbox_arena.png'
+import baesArenaImg from '../assets/images/arenas/baes_arena.png'
 
 export class FightScene extends Phaser.Scene {
   private player1!: Character
@@ -46,7 +47,6 @@ export class FightScene extends Phaser.Scene {
 
   shutdown() {
     // Clean up all game objects and timers when leaving the scene
-    console.log('FightScene shutdown - cleaning up resources')
     
     // Destroy timer
     if (this.gameTimer) {
@@ -115,16 +115,12 @@ export class FightScene extends Phaser.Scene {
     
     // Clear all children to prevent sprite duplication
     this.children.removeAll(true)
-    
-    console.log('FightScene cleanup completed')
   }
 
   preload() {
-    console.log('FightScene preload started')
-    
     // Add load event listeners for debugging
     this.load.on('filecomplete', (key: string, type: string, data: any) => {
-      console.log(`File loaded successfully: ${key} (${type})`)
+      // File loaded successfully
     })
     
     this.load.on('loaderror', (file: any) => {
@@ -132,24 +128,18 @@ export class FightScene extends Phaser.Scene {
     })
     
     this.load.on('complete', () => {
-      console.log('All files loaded successfully')
+      // All files loaded successfully
     })
     
     // Load character assets
     CharacterManager.preloadAssets(this)
     
     // Load arena background images using Vite import
-    console.log('Loading defi_temple image from:', defiTempleImg)
     this.load.image('defi_temple', defiTempleImg)
-    
-    console.log('Loading exchanges_street image from:', exchangesStreetImg)
     this.load.image('exchanges_street', exchangesStreetImg)
-    
-    console.log('Loading base_apprena image from:', baseApprenaImg)
     this.load.image('base_apprena', baseApprenaImg)
-    
-    console.log('Loading tipbox_arena image from:', tipboxArenaImg)
     this.load.image('tipbox_arena', tipboxArenaImg)
+    this.load.image('baes_arena', baesArenaImg)
   }
 
   create() {
@@ -647,15 +637,8 @@ export class FightScene extends Phaser.Scene {
   }
 
   private endRound(result: string) {
-    // Add call stack logging
-    console.log('=== endRound CALLED ===')
-    console.log('Call stack:', new Error().stack)
-    console.log('Current round:', this.currentRound)
-    console.log('isMatchComplete before:', this.isMatchComplete)
-    
     // Prevent multiple calls
     if (this.isMatchComplete) {
-      console.log('endRound called but match already complete - ignoring')
       return
     }
     
@@ -669,8 +652,6 @@ export class FightScene extends Phaser.Scene {
 
     // Determine round winner and update scores
     let roundWinner = ''
-    console.log(`BEFORE score update: P1=${this.roundScores.player1}, P2=${this.roundScores.player2}`)
-    console.log(`Round result: ${result}`)
     
     if (result === 'PLAYER1_WIN' || result === 'PLAYER1_WINS') {
       this.roundScores.player1++
@@ -691,8 +672,6 @@ export class FightScene extends Phaser.Scene {
       }
     }
 
-    console.log(`AFTER score update: P1=${this.roundScores.player1}, P2=${this.roundScores.player2}`)
-
     // Show round result
     const resultText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, roundWinner, {
       font: 'bold 24px Courier New',
@@ -701,17 +680,11 @@ export class FightScene extends Phaser.Scene {
       padding: { x: 20, y: 10 }
     }).setOrigin(0.5)
 
-    // Debug log
-    console.log(`Round ${this.currentRound} ended. Scores: P1=${this.roundScores.player1}, P2=${this.roundScores.player2}`)
-
     // Check match completion conditions
     const hasWinner = this.roundScores.player1 >= 2 || this.roundScores.player2 >= 2
     const isThirdRound = this.currentRound >= 3
-    
-    console.log(`Match check: hasWinner=${hasWinner}, isThirdRound=${isThirdRound}, currentRound=${this.currentRound}`)
 
     if (hasWinner) {
-      console.log('Match complete: Someone won 2 rounds')
       // Set match complete flag
       this.isMatchComplete = true
       // Match is complete, go to results
@@ -728,7 +701,6 @@ export class FightScene extends Phaser.Scene {
         this.scene.start('ResultsScene')
       })
     } else if (isThirdRound) {
-      console.log('Match complete: 3 rounds completed')
       // Set match complete flag
       this.isMatchComplete = true
       // We've completed 3 rounds, match is over
@@ -745,7 +717,6 @@ export class FightScene extends Phaser.Scene {
         this.scene.start('ResultsScene')
       })
     } else {
-      console.log(`Continuing to next round. Will be round ${this.currentRound + 1}`)
       // Continue to next round
       this.time.delayedCall(3000, () => {
         resultText.destroy()

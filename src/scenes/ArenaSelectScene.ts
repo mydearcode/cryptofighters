@@ -70,7 +70,7 @@ export class ArenaSelectScene extends Phaser.Scene {
     const arenas = gameData.getAllArenas()
     
     // Arena selection title matching MenuScene style
-    this.add.text(width / 2, 160, 'AVAILABLE ARENAS', {
+    const titleText = this.add.text(width / 2, 160, 'AVAILABLE ARENAS', {
       fontSize: '24px',
       color: '#ffddcc',
       fontFamily: 'Impact, Arial Black, sans-serif',
@@ -84,13 +84,18 @@ export class ArenaSelectScene extends Phaser.Scene {
       }
     }).setOrigin(0.5)
     
-    // Arena grid - adjusted for better fit, smaller cards without descriptions
-    const gridCols = 2
-    const cardWidth = 240  // Smaller cards since no descriptions
-    const cardHeight = 70  // Much smaller height without descriptions
-    const spacing = 30     // Less spacing
+    // Set higher depth for the title to ensure it appears above arena cards
+    titleText.setDepth(100)
+    
+    // Arena grid - adjusted for 7 arenas, 3 columns to fit all
+    const gridCols = 3  // Changed from 2 to 3 columns
+    const cardWidth = 200  // Smaller cards to fit 3 columns
+    const cardHeight = 60  // Smaller height
+    const spacing = 20     // Less spacing
     const startX = width / 2 - ((gridCols - 1) * (cardWidth + spacing)) / 2
-    const startY = 200     // Moved up from 250
+    const startY = 220     // Moved down from 190 to avoid overlap with title
+    
+    console.log('Creating arena cards for', arenas.length, 'arenas')
     
     arenas.forEach((arena, index) => {
       const col = index % gridCols
@@ -98,8 +103,11 @@ export class ArenaSelectScene extends Phaser.Scene {
       const x = startX + col * (cardWidth + spacing)
       const y = startY + row * (cardHeight + spacing)
       
-      // Ensure cards don't go below a certain point
-      if (y + cardHeight / 2 > height - 120) {
+      console.log(`Arena ${index}: ${arena.name} at position (${x}, ${y})`)
+      
+      // More generous height check - allow cards to go lower
+      if (y + cardHeight / 2 > height - 80) {
+        console.log(`Skipping arena ${arena.name} - would be too low`)
         return // Skip cards that would be too low
       }
       
@@ -124,14 +132,12 @@ export class ArenaSelectScene extends Phaser.Scene {
           }
         })
       
-      // Arena name - centered in the card, no description
+      // Arena name - centered in the card, smaller font for 3 columns
       const nameText = this.add.text(x, y, arena.name, {
-        fontSize: '16px',  // Slightly smaller font
+        fontSize: '14px',  // Smaller font for 3 columns
         color: '#ff6600',
         fontFamily: 'Arial Bold'
       }).setOrigin(0.5)
-      
-      // Removed arena description to save space
       
       this.arenaButtons.push(card as any)
     })
