@@ -77,6 +77,13 @@ export class Projectile extends Phaser.GameObjects.Container {
   private maxLifespan: number
   private projectileType: ProjectileType
   private owner: any // Reference to the character who fired this projectile
+  
+  // Wave motion properties
+  private waveAmplitude: number = 0
+  private waveFrequency: number = 0
+  private waveTime: number = 0
+  private initialY: number = 0
+  private hasWaveMotion: boolean = false
 
   constructor(
     scene: Phaser.Scene, 
@@ -94,6 +101,7 @@ export class Projectile extends Phaser.GameObjects.Container {
     this.owner = owner
     this.lifespan = 0
     this.maxLifespan = 2000 // 2 seconds max lifespan
+    this.initialY = y // Store initial Y position for wave motion
     
     // DEBUG: Console log to see which projectile type is being created
     console.log(`🚀 PROJECTILE CREATED: ${projectileType} by ${owner?.characterId || 'unknown'}`)
@@ -101,263 +109,327 @@ export class Projectile extends Phaser.GameObjects.Container {
     // Set velocity based on projectile type and direction
     switch (projectileType) {
       case ProjectileType.BULLET:
-        this.velocity = { x: 600 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createBullet()
+        this.setupWaveMotion(30, 10)
         break
       case ProjectileType.ARROW:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createArrow()
+        this.setupWaveMotion(35, 9)
         break
       case ProjectileType.MAGIC:
-        this.velocity = { x: 400 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createMagicOrb()
+        this.setupWaveMotion(40, 8)
         break
       case ProjectileType.FIREBALL:
-        this.velocity = { x: 450 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createFireball()
+        this.setupWaveMotion(35, 9)
         break
       // Character-specific projectiles
       case ProjectileType.HODL_DIAMOND:
-        this.velocity = { x: 350 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createHodlDiamond()
+        this.setupWaveMotion(40, 8)
         break
       case ProjectileType.BITCOIN_LASER:
-        this.velocity = { x: 700 * direction, y: 0 }
+        this.velocity = { x: 750 * direction, y: 0 }
         this.createBitcoinCircle()
+        this.setupWaveMotion(30, 12)
         break
       case ProjectileType.ETHEREUM_SHARD:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createEthereumShard()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.BINANCE_BOLT:
-        this.velocity = { x: 650 * direction, y: 0 }
+        this.velocity = { x: 700 * direction, y: 0 }
         this.createBinanceBolt()
+        this.setupWaveMotion(30, 11)
         break
       case ProjectileType.MEME_ROCKET:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createMemeRocket()
+        this.setupWaveMotion(35, 10)
         break
       // New projectiles from existing SVGs
       case ProjectileType.BITCOIN_CIRCLE:
-        this.velocity = { x: 550 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createBitcoinCircle()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.ETHEREUM_ALT:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createEthereumAlt()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.BINANCE_COIN:
-        this.velocity = { x: 600 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createBinanceCoin()
+        this.setupWaveMotion(30, 10)
         break
       case ProjectileType.DOGE_COIN:
-        this.velocity = { x: 450 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createDogeCoin()
+        this.setupWaveMotion(35, 9)
         break
       case ProjectileType.DIAMOND_ORIGAMI:
-        this.velocity = { x: 400 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createDiamondOrigami()
+        this.setupWaveMotion(40, 8)
         break
       case ProjectileType.FIRE_BOMB:
-        this.velocity = { x: 350 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createFireBomb()
+        this.setupWaveMotion(40, 8)
         break
       case ProjectileType.FIRE_BLAST:
-        this.velocity = { x: 650 * direction, y: 0 }
+        this.velocity = { x: 700 * direction, y: 0 }
         this.createFireBlast()
+        this.setupWaveMotion(30, 11)
         break
       case ProjectileType.BOMB_CLASSIC:
-        this.velocity = { x: 300 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createBombClassic()
+        this.setupWaveMotion(45, 7)
         break
       case ProjectileType.BOMB_ADVANCED:
-        this.velocity = { x: 320 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createBombAdvanced()
+        this.setupWaveMotion(45, 7)
         break
       case ProjectileType.ROCKET_CLASSIC:
-        this.velocity = { x: 700 * direction, y: 0 }
+        this.velocity = { x: 750 * direction, y: 0 }
         this.createRocketClassic()
+        this.setupWaveMotion(30, 12)
         break
       case ProjectileType.ROCKET_ADVANCED:
-        this.velocity = { x: 750 * direction, y: 0 }
+        this.velocity = { x: 800 * direction, y: 0 }
         this.createRocketAdvanced()
+        this.setupWaveMotion(25, 14)
         break
       case ProjectileType.MOON_CLASSIC:
-        this.velocity = { x: 400 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createMoonClassic()
+        this.setupWaveMotion(40, 8)
         break
       case ProjectileType.MOON_STARS:
-        this.velocity = { x: 420 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createMoonStars()
+        this.setupWaveMotion(40, 8)
         break
       case ProjectileType.MOON_ADVANCED:
-        this.velocity = { x: 450 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createMoonAdvanced()
+        this.setupWaveMotion(35, 9)
         break
       case ProjectileType.SPACE_BLAST:
-        this.velocity = { x: 800 * direction, y: 0 }
+        this.velocity = { x: 850 * direction, y: 0 }
         this.createSpaceBlast()
+        this.setupWaveMotion(25, 15)
         break
       case ProjectileType.SPACE_COSMOS:
-        this.velocity = { x: 600 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createSpaceCosmos()
+        this.setupWaveMotion(30, 10)
         break
       case ProjectileType.COMPUTER_CHIP:
-        this.velocity = { x: 550 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createComputerChip()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.BLOCKCHAIN_SECURITY:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createBlockchainSecurity()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.CANDLE_STICKS:
-        this.velocity = { x: 400 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createCandleSticks()
+        this.setupWaveMotion(40, 8)
         break
       case ProjectileType.EXCHANGE_DOLLAR:
-        this.velocity = { x: 600 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createExchangeDollar()
+        this.setupWaveMotion(30, 10)
         break
       case ProjectileType.HOLD_POWER:
-        this.velocity = { x: 350 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createHoldPower()
+        this.setupWaveMotion(40, 8)
         break
       case ProjectileType.TRENDING_DOWN:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createTrendingDown()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.ANNOUNCEMENT:
-        this.velocity = { x: 450 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createAnnouncement()
+        this.setupWaveMotion(35, 9)
         break
       case ProjectileType.NINJA_STAR:
-        this.velocity = { x: 600 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createNinjaStar()
+        this.setupWaveMotion(30, 10)
         break
       case ProjectileType.SWORD_HEAVY:
-        this.velocity = { x: 400 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createSwordHeavy()
+        this.setupWaveMotion(40, 8)
         break
       case ProjectileType.CARDANO_COIN:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createCardanoCoin()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.ACADEMIC_PAPER:
-        this.velocity = { x: 450 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createAcademicPaper()
+        this.setupWaveMotion(35, 9)
         break
       case ProjectileType.POLKADOT_CHAIN:
-        this.velocity = { x: 550 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createPolkadotChain()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.COINBASE_COIN:
-        this.velocity = { x: 600 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createCoinbaseCoin()
+        this.setupWaveMotion(30, 10)
         break
       case ProjectileType.BASE_LAYER:
-        this.velocity = { x: 650 * direction, y: 0 }
+        this.velocity = { x: 700 * direction, y: 0 }
         this.createBaseLayer()
+        this.setupWaveMotion(30, 11)
         break
       // Character-specific projectiles
       case ProjectileType.HODL_MASTER_PROJECTILE_1:
-        this.velocity = { x: 350 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createDiamondOrigami()
+        this.setupWaveMotion(40, 8)
         break
       case ProjectileType.HODL_MASTER_PROJECTILE_2:
-        this.velocity = { x: 400 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createHoldPower()
+        this.setupWaveMotion(40, 8)
         break
       case ProjectileType.TRADE_QUEEN_PROJECTILE_1:
-        this.velocity = { x: 600 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createCandleSticks()
+        this.setupWaveMotion(30, 10)
         break
       case ProjectileType.TRADE_QUEEN_PROJECTILE_2:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createExchangeDollar()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.SAYLOR_PROJECTILE_1:
-        this.velocity = { x: 550 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createBitcoinCircle()
+        this.setupWaveMotion(35, 10) // Fast vertical oscillation for fast projectile
         break
       case ProjectileType.SAYLOR_PROJECTILE_2:
-        this.velocity = { x: 700 * direction, y: 0 }
+        this.velocity = { x: 750 * direction, y: 0 }
         this.createBlockchainSecurity()
+        this.setupWaveMotion(30, 12) // Very fast vertical oscillation for very fast projectile
         break
       case ProjectileType.DEFI_NINJA_PROJECTILE_1:
-        this.velocity = { x: 600 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createComputerChip()
+        this.setupWaveMotion(30, 10)
         break
       case ProjectileType.DEFI_NINJA_PROJECTILE_2:
-        this.velocity = { x: 400 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createSwordHeavy()
+        this.setupWaveMotion(40, 8)
         break
       case ProjectileType.MEME_LORD_PROJECTILE_1:
-        this.velocity = { x: 450 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createRocketAdvanced()
+        this.setupWaveMotion(35, 9)
         break
       case ProjectileType.MEME_LORD_PROJECTILE_2:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createMoonStars()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.VITALIK_PROJECTILE_1:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createEthereumAlt()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.VITALIK_PROJECTILE_2:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createFireBlast()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.CZ_PROJECTILE_1:
-        this.velocity = { x: 600 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createBinanceCoin()
+        this.setupWaveMotion(30, 10)
         break
       case ProjectileType.CZ_PROJECTILE_2:
-        this.velocity = { x: 650 * direction, y: 0 }
+        this.velocity = { x: 700 * direction, y: 0 }
         this.createAnnouncement()
+        this.setupWaveMotion(30, 11)
         break
       case ProjectileType.ELON_PROJECTILE_1:
-        this.velocity = { x: 700 * direction, y: 0 }
+        this.velocity = { x: 750 * direction, y: 0 }
         this.createDogeCoin()
+        this.setupWaveMotion(30, 12)
         break
       case ProjectileType.ELON_PROJECTILE_2:
-        this.velocity = { x: 750 * direction, y: 0 }
+        this.velocity = { x: 800 * direction, y: 0 }
         this.createRocketAdvanced()
+        this.setupWaveMotion(25, 14)
         break
       case ProjectileType.HOSKINSON_PROJECTILE_1:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createBitcoinCircle()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.HOSKINSON_PROJECTILE_2:
-        this.velocity = { x: 450 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createFireBomb()
+        this.setupWaveMotion(35, 9)
         break
       case ProjectileType.GAVIN_PROJECTILE_1:
-        this.velocity = { x: 550 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createEthereumShard()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.GAVIN_PROJECTILE_2:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createBlockchainSecurity()
+        this.setupWaveMotion(35, 10)
         break
       case ProjectileType.BRIAN_PROJECTILE_1:
-        this.velocity = { x: 600 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createBinanceBolt()
+        this.setupWaveMotion(30, 10)
         break
       case ProjectileType.BRIAN_PROJECTILE_2:
-        this.velocity = { x: 650 * direction, y: 0 }
+        this.velocity = { x: 700 * direction, y: 0 }
         this.createFireBlast()
+        this.setupWaveMotion(30, 11)
         break
       case ProjectileType.JESSE_PROJECTILE_1:
-        this.velocity = { x: 350 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createHodlDiamond()
+        this.setupWaveMotion(40, 8) // Fast vertical oscillation for slower projectile
         break
       case ProjectileType.JESSE_PROJECTILE_2:
-        this.velocity = { x: 500 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createComputerChip()
+        this.setupWaveMotion(35, 10) // Fast vertical oscillation for medium speed projectile
         break
       default:
-        this.velocity = { x: 400 * direction, y: 0 }
+        this.velocity = { x: 650 * direction, y: 0 }
         this.createBullet()
+        this.setupWaveMotion(30, 10)
         break
     }
     
@@ -628,6 +700,9 @@ export class Projectile extends Phaser.GameObjects.Container {
     this.x += this.velocity.x * deltaTime / 1000
     this.y += this.velocity.y * deltaTime / 1000
     
+    // Update wave motion (this will override y position if wave motion is enabled)
+    this.updateWaveMotion(deltaTime)
+    
     // Update lifespan
     this.lifespan += deltaTime
     
@@ -656,6 +731,22 @@ export class Projectile extends Phaser.GameObjects.Container {
 
   public getOwner(): any {
     return this.owner
+  }
+
+  // Wave motion functions
+  private setupWaveMotion(amplitude: number, frequency: number) {
+    this.waveAmplitude = amplitude
+    this.waveFrequency = frequency
+    this.waveTime = 0
+    this.hasWaveMotion = true
+  }
+
+  private updateWaveMotion(deltaTime: number) {
+    if (!this.hasWaveMotion) return
+    
+    this.waveTime += deltaTime * 0.001 // Convert to seconds
+    const waveOffset = Math.sin(this.waveTime * this.waveFrequency) * this.waveAmplitude
+    this.y = this.initialY + waveOffset
   }
 
   public getHitbox(): Phaser.Geom.Rectangle {
