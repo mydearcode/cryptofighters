@@ -3,278 +3,254 @@
     {
       "id": "hodl_master",
       "name": "HODL Master",
-      "sprite": "hodl-master",
-      "description": "Uzun vadeli yatırımın ustası, sabır ve kararlılıkla dövüşür.",
+      "description": "Sabırlı ve kararlı bir yatırımcı. Asla satmaz, her zaman tutar.",
       "stats": {
-        "health": 100,
-        "attack": 8,
-        "defense": 20,
-        "speed": 150
+        "health": 120,
+        "attack": 85,
+        "defense": 95,
+        "speed": 60,
+        "mana": 100
       },
-      "moves": [
-        "diamond_hands",
-        "hodl_power",
-        "moon_mission"
-      ],
-      "special_projectiles": {
-        "special1": "DIAMOND_ORIGAMI",
-        "special2": "HOLD_POWER"
-      },
-      "rarity": "legendary",
-      "element": "stability"
+      "moves": ["hodl_master_move_1", "hodl_master_move_2", "hodl_master_move_3"],
+      "specialProjectiles": ["DIAMOND_ORIGAMI", "HOLD_POWER"],
+      "rarity": "common",
+      "element": "diamond",
+      "spritePath": "sprites/characters/hodl_master.png",
+      "projectileSvgPaths": {
+        "HODL_MASTER_PROJECTILE_1": "sprites/projectiles/diamond-origami-paper-svgrepo-com.svg",
+        "HODL_MASTER_PROJECTILE_2": "sprites/projectiles/hold-svgrepo-com.svg"
+      }
     },
     {
       "id": "trade_queen",
       "name": "Trade Queen",
-      "sprite": "trade-queen",
-      "description": "Piyasaların kraliçesi, stratejik ticaret ustası.",
+      "description": "Piyasanın kraliçesi. Her hamlesi kar getirir.",
       "stats": {
-        "health": 85,
-        "attack": 10,
-        "defense": 18,
-        "speed": 190
+        "health": 100,
+        "attack": 110,
+        "defense": 70,
+        "speed": 95,
+        "mana": 120
       },
-      "moves": [
-        "royal_profit",
-        "queen_strike",
-        "market_dominance"
-      ],
-      "special_projectiles": {
-        "special1": "CANDLE_STICKS",
-        "special2": "EXCHANGE_DOLLAR"
-      },
-      "rarity": "epic",
-      "element": "strategy"
+      "moves": ["trade_queen_move_1", "trade_queen_move_2", "trade_queen_move_3"],
+      "specialProjectiles": ["CANDLE_STICKS", "EXCHANGE_DOLLAR"],
+      "rarity": "rare",
+      "element": "gold",
+      "spritePath": "sprites/characters/trade_queen.png",
+      "projectileSvgPaths": {
+        "TRADE_QUEEN_PROJECTILE_1": "sprites/projectiles/candle-sticks-svgrepo-com.svg",
+        "TRADE_QUEEN_PROJECTILE_2": "sprites/projectiles/exchange-dollar-svgrepo-com.svg"
+      }
     },
     {
       "id": "saylor",
-      "name": "Saylor",
-      "sprite": "saylor",
-      "description": "Bitcoin maksimalisti ve kurumsal stratejist, dijital altın savunucusu.",
+      "name": "Michael Saylor",
+      "description": "Bitcoin'in en büyük destekçisi. Kurumsal HODL stratejisinin ustası.",
       "stats": {
-        "health": 130,
-        "attack": 12,
-        "defense": 30,
-        "speed": 110
+        "health": 140,
+        "attack": 100,
+        "defense": 110,
+        "speed": 50,
+        "mana": 90
       },
-      "moves": [
-        "bitcoin_laser",
-        "hodl_shield",
-        "corporate_strategy"
-      ],
-      "special_projectiles": {
-      "special1": "BITCOIN_CIRCLE",
-      "special2": "BLOCKCHAIN_SECURITY"
-    },
+      "moves": ["saylor_move_1", "saylor_move_2", "saylor_move_3"],
+      "specialProjectiles": ["BITCOIN_CIRCLE", "BLOCKCHAIN_SECURITY"],
       "rarity": "legendary",
-      "element": "power"
+      "element": "bitcoin",
+      "spritePath": "sprites/characters/saylor.png",
+      "projectileSvgPaths": {
+        "SAYLOR_PROJECTILE_1": "sprites/projectiles/bitcoin-circle-svgrepo-com.svg",
+        "SAYLOR_PROJECTILE_2": "sprites/projectiles/bitcoin-circle-svgrepo-com.svg"
+      }
     },
     {
       "id": "defi_ninja",
       "name": "DeFi Ninja",
-      "sprite": "defi-ninja",
-      "description": "Merkezi olmayan finans protokollerinin gizli ustası.",
+      "description": "Merkeziyetsiz finansın gölge savaşçısı. Yield farming ustası.",
       "stats": {
         "health": 90,
-        "attack": 9,
-        "defense": 18,
-        "speed": 180
+        "attack": 105,
+        "defense": 60,
+        "speed": 120,
+        "mana": 130
       },
-      "moves": [
-        "yield_farming",
-        "liquidity_strike",
-        "flash_loan"
-      ],
-      "special_projectiles": {
-        "special1": "NINJA_STAR",
-        "special2": "SWORD_HEAVY"
-      },
+      "moves": ["defi_ninja_move_1", "defi_ninja_move_2", "defi_ninja_move_3"],
+      "specialProjectiles": ["COMPUTER_CHIP", "FIRE_BOMB"],
       "rarity": "epic",
-      "element": "technology"
+      "element": "defi",
+      "spritePath": "sprites/characters/defi_ninja.png",
+      "projectileSvgPaths": {
+        "DEFI_NINJA_PROJECTILE_1": "sprites/projectiles/ninja-star-svgrepo-com.svg",
+        "DEFI_NINJA_PROJECTILE_2": "sprites/projectiles/sword-heavy-svgrepo-com.svg"
+      }
     },
     {
       "id": "meme_lord",
       "name": "Meme Lord",
-      "sprite": "meme-lord",
-      "description": "Meme coinlerin gücüyle beslenen eğlenceli savaşçı.",
+      "description": "İnternetin meme kralı. Viral gücüyle savaşır.",
       "stats": {
-        "health": 75,
-        "attack": 7,
-        "defense": 16,
-        "speed": 190
+        "health": 85,
+        "attack": 95,
+        "defense": 55,
+        "speed": 110,
+        "mana": 140
       },
-      "moves": [
-        "viral_attack",
-        "moon_rocket",
-        "diamond_paws"
-      ],
-      "special_projectiles": {
-        "special1": "ROCKET_ADVANCED",
-        "special2": "MOON_STARS"
-      },
-      "rarity": "common",
-      "element": "chaos"
+      "moves": ["meme_lord_move_1", "meme_lord_move_2", "meme_lord_move_3"],
+      "specialProjectiles": ["ROCKET_ADVANCED", "MOON_STARS"],
+      "rarity": "rare",
+      "element": "meme",
+      "spritePath": "sprites/characters/meme_lord.png",
+      "projectileSvgPaths": {
+        "MEME_LORD_PROJECTILE_1": "sprites/projectiles/rocket-svgrepo-com_2.svg",
+        "MEME_LORD_PROJECTILE_2": "sprites/projectiles/pile-of-poo-svgrepo-com.svg"
+      }
     },
     {
       "id": "vitalik",
-      "name": "Vitalik",
-      "sprite": "vitalik",
-      "description": "Ethereum'un yaratıcısı, akıllı kontratların ustası ve blockchain vizyoneri.",
+      "name": "Vitalik Buterin",
+      "description": "Ethereum'un yaratıcısı. Akıllı kontratların babası.",
       "stats": {
         "health": 110,
-        "attack": 10,
-        "defense": 28,
-        "speed": 170
+        "attack": 120,
+        "defense": 80,
+        "speed": 85,
+        "mana": 150
       },
-      "moves": [
-        "smart_contract",
-        "ethereum_blast",
-        "proof_of_stake"
-      ],
-      "special_projectiles": {
-        "special1": "ETHEREUM_ALT",
-        "special2": "FIRE_BLAST"
-      },
+      "moves": ["vitalik_move_1", "vitalik_move_2", "vitalik_move_3"],
+      "specialProjectiles": ["ETHEREUM_ALT", "FIRE_BLAST"],
       "rarity": "legendary",
-      "element": "innovation"
+      "element": "ethereum",
+      "spritePath": "sprites/characters/vitalik.png",
+      "projectileSvgPaths": {
+        "VITALIK_PROJECTILE_1": "sprites/projectiles/ethereum-svgrepo-com_2.svg",
+        "VITALIK_PROJECTILE_2": "sprites/projectiles/computer-chip-svgrepo-com.svg"
+      }
     },
     {
       "id": "cz",
-      "name": "CZ",
-      "sprite": "cz",
-      "description": "Binance'in kurucusu, kripto dünyasının en büyük borsasının lideri.",
+      "name": "Changpeng Zhao (CZ)",
+      "description": "Binance'in kurucusu. Kripto borsalarının kralı.",
       "stats": {
-        "health": 115,
-        "attack": 10,
-        "defense": 26,
-        "speed": 165
+        "health": 125,
+        "attack": 115,
+        "defense": 90,
+        "speed": 75,
+        "mana": 110
       },
-      "moves": [
-        "binance_blast",
-        "trading_fury",
-        "market_dominance"
-      ],
-      "special_projectiles": {
-        "special1": "BINANCE_COIN",
-        "special2": "ANNOUNCEMENT"
-      },
+      "moves": ["cz_move_1", "cz_move_2", "cz_move_3"],
+      "specialProjectiles": ["BINANCE_COIN", "ANNOUNCEMENT"],
       "rarity": "legendary",
-      "element": "exchange"
+      "element": "exchange",
+      "spritePath": "sprites/characters/cz.png",
+      "projectileSvgPaths": {
+        "CZ_PROJECTILE_1": "sprites/projectiles/binance-svgrepo-com.svg",
+        "CZ_PROJECTILE_2": "sprites/projectiles/announcement-shout-svgrepo-com.svg"
+      }
     },
     {
       "id": "elon",
-      "name": "Elon",
-      "sprite": "elon",
-      "description": "Tesla ve SpaceX'in kurucusu, kripto dünyasının en etkili isimlerinden biri.",
+      "name": "Elon Musk",
+      "description": "Tesla ve SpaceX'in CEO'su. Dogecoin'in en büyük destekçisi.",
       "stats": {
-        "health": 110,
-        "attack": 10,
-        "defense": 28,
-        "speed": 170
+        "health": 105,
+        "attack": 125,
+        "defense": 65,
+        "speed": 100,
+        "mana": 115
       },
-      "moves": [
-        "tesla_punch",
-        "spacex_rocket",
-        "doge_power"
-      ],
-      "special_projectiles": {
-        "special1": "DOGE_COIN",
-        "special2": "ROCKET_ADVANCED"
-      },
+      "moves": ["elon_move_1", "elon_move_2", "elon_move_3"],
+      "specialProjectiles": ["DOGE_COIN", "ROCKET_ADVANCED"],
       "rarity": "legendary",
-      "element": "innovation"
+      "element": "innovation",
+      "spritePath": "sprites/characters/elon.png",
+      "projectileSvgPaths": {
+        "ELON_PROJECTILE_1": "sprites/projectiles/space-2-svgrepo-com.svg",
+        "ELON_PROJECTILE_2": "sprites/projectiles/rocket-svgrepo-com.svg"
+      }
     },
     {
       "id": "hoskinson",
-      "name": "Hoskinson",
-      "sprite": "hoskinson",
-      "description": "Cardano'nun kurucusu, akademik yaklaşımla blockchain teknolojisini geliştiren vizyon sahibi.",
+      "name": "Charles Hoskinson",
+      "description": "Cardano'nun kurucusu. Akademik yaklaşımın ustası.",
       "stats": {
         "health": 115,
-        "attack": 10,
-        "defense": 30,
-        "speed": 160
+        "attack": 100,
+        "defense": 100,
+        "speed": 70,
+        "mana": 125
       },
-      "moves": [
-        "peer_review",
-        "cardano_strike",
-        "academic_precision"
-      ],
-      "special_projectiles": {
-        "special1": "BITCOIN_LASER",
-        "special2": "FIRE_BOMB"
-      },
-      "rarity": "legendary",
-      "element": "research"
+      "moves": ["hoskinson_move_1", "hoskinson_move_2", "hoskinson_move_3"],
+      "specialProjectiles": ["BITCOIN_LASER", "FIRE_BOMB"],
+      "rarity": "epic",
+      "element": "academic",
+      "spritePath": "sprites/characters/hoskinson.png",
+      "projectileSvgPaths": {
+        "HOSKINSON_PROJECTILE_1": "sprites/projectiles/bitcoin-svgrepo-com.svg",
+        "HOSKINSON_PROJECTILE_2": "sprites/projectiles/fire-bomb-svgrepo-com.svg"
+      }
     },
     {
       "id": "gavin",
-      "name": "Gavin",
-      "sprite": "gavin",
-      "description": "Polkadot'un kurucusu ve Ethereum'un eski CTO'su, interoperabilite vizyoneri.",
+      "name": "Gavin Wood",
+      "description": "Polkadot'un kurucusu. Interoperabilite uzmanı.",
       "stats": {
-        "health": 120,
-        "attack": 9,
-        "defense": 32,
-        "speed": 155
+        "health": 100,
+        "attack": 110,
+        "defense": 85,
+        "speed": 90,
+        "mana": 120
       },
-      "moves": [
-        "parachain_link",
-        "substrate_strike",
-        "interop_blast"
-      ],
-      "special_projectiles": {
-        "special1": "ETHEREUM_SHARD",
-        "special2": "BLOCKCHAIN_SECURITY"
-      },
-      "rarity": "legendary",
-      "element": "connectivity"
+      "moves": ["gavin_move_1", "gavin_move_2", "gavin_move_3"],
+      "specialProjectiles": ["ETHEREUM_SHARD", "BLOCKCHAIN_SECURITY"],
+      "rarity": "epic",
+      "element": "interop",
+      "spritePath": "sprites/characters/gavin.png",
+      "projectileSvgPaths": {
+        "GAVIN_PROJECTILE_1": "sprites/projectiles/circle-dashed-svgrepo-com.svg",
+        "GAVIN_PROJECTILE_2": "sprites/projectiles/blockchain-digital-future-system-security-svgrepo-com.svg"
+      }
     },
     {
       "id": "brian",
-      "name": "Brian",
-      "sprite": "brian",
-      "description": "Kripto dünyasının deneyimli savaşçısı, güçlü ve kararlı bir dövüşçü.",
+      "name": "Brian Armstrong",
+      "description": "Coinbase'in kurucusu. Kripto benimseniminin öncüsü.",
       "stats": {
-        "health": 110,
-        "attack": 12,
-        "defense": 25,
-        "speed": 160
+        "health": 120,
+        "attack": 105,
+        "defense": 95,
+        "speed": 80,
+        "mana": 105
       },
-      "moves": [
-        "crypto_punch",
-        "blockchain_slam",
-        "digital_strike"
-      ],
-      "special_projectiles": {
-        "special1": "BINANCE_BOLT",
-        "special2": "FIRE_BLAST"
-      },
+      "moves": ["brian_move_1", "brian_move_2", "brian_move_3"],
+      "specialProjectiles": ["BINANCE_BOLT", "FIRE_BLAST"],
       "rarity": "epic",
-      "element": "power"
+      "element": "adoption",
+      "spritePath": "sprites/characters/brian.png",
+      "projectileSvgPaths": {
+        "BRIAN_PROJECTILE_1": "sprites/projectiles/coinbase-v2-svgrepo-com.svg",
+        "BRIAN_PROJECTILE_2": "sprites/projectiles/moon-svgrepo-com.svg"
+      }
     },
     {
       "id": "jesse",
-      "name": "Jesse",
-      "sprite": "jesse",
-      "description": "Hızlı ve çevik kripto ninja, stratejik saldırılarıyla rakiplerini şaşırtır.",
+      "name": "Jesse Pollak",
+      "description": "Base Network'ün lideri. Layer 2 çözümlerinin ustası.",
       "stats": {
         "health": 95,
-        "attack": 10,
-        "defense": 20,
-        "speed": 200
+        "attack": 100,
+        "defense": 75,
+        "speed": 115,
+        "mana": 110
       },
-      "moves": [
-        "ninja_strike",
-        "swift_attack",
-        "shadow_dash"
-      ],
-      "special_projectiles": {
-        "special1": "NINJA_STAR",
-        "special2": "BASE_COIN"
-      },
+      "moves": ["jesse_move_1", "jesse_move_2", "jesse_move_3"],
+      "specialProjectiles": ["HODL_DIAMOND", "COMPUTER_CHIP"],
       "rarity": "rare",
-      "element": "agility"
+      "element": "layer2",
+      "spritePath": "sprites/characters/jesse.png",
+      "projectileSvgPaths": {
+        "JESSE_PROJECTILE_1": "sprites/projectiles/diamond-origami-paper-svgrepo-com.svg",
+        "JESSE_PROJECTILE_2": "sprites/projectiles/computer-chip-svgrepo-com.svg"
+      }
     }
   ]
 }

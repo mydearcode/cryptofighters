@@ -14,7 +14,7 @@ export class CharacterManager {
         defense: 20,
         speed: 150
       },
-      moves: ['hodl_smash', 'diamond_punch', 'bull_rush']
+      moves: ['hodl_master_move_1', 'hodl_master_move_2', 'hodl_master_move_3']
     },
     {
       id: 'paper_hands',
@@ -26,7 +26,7 @@ export class CharacterManager {
         defense: 10,
         speed: 200
       },
-      moves: ['panic_sell', 'fomo_strike', 'weak_slap']
+      moves: ['paper_hands_move_1', 'paper_hands_move_2', 'paper_hands_move_3']
     },
     {
       id: 'whale_trader',
@@ -38,7 +38,7 @@ export class CharacterManager {
         defense: 25,
         speed: 120
       },
-      moves: ['market_manipulation', 'whale_splash', 'pump_dump']
+      moves: ['whale_trader_move_1', 'whale_trader_move_2', 'whale_trader_move_3']
     },
     {
       id: 'degen_ape',
@@ -50,7 +50,7 @@ export class CharacterManager {
         defense: 15,
         speed: 180
       },
-      moves: ['ape_in', 'diamond_hands', 'moon_shot']
+      moves: ['degen_ape_move_1', 'degen_ape_move_2', 'degen_ape_move_3']
     }
   ]
 
@@ -59,7 +59,7 @@ export class CharacterManager {
     return {
       id: jsonChar.id,
       name: jsonChar.name,
-      sprite: jsonChar.sprite.replace('-', '_'), // Convert kebab-case to snake_case for sprites
+      sprite: jsonChar.spritePath.replace(/^sprites\/characters\//, '').replace(/\.png$/, ''), // Extract sprite name from path
       stats: jsonChar.stats,
       moves: jsonChar.moves
     }

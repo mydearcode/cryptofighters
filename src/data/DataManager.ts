@@ -5,17 +5,22 @@ import arenasData from './arenas.json'
 export interface CharacterData {
   id: string
   name: string
-  sprite: string
   description: string
   stats: {
     health: number
     attack: number
     defense: number
     speed: number
+    mana: number
   }
   moves: string[]
+  specialProjectiles: string[]
   rarity: 'common' | 'rare' | 'epic' | 'legendary'
   element: string
+  spritePath: string
+  projectileSvgPaths: {
+    [key: string]: string
+  }
 }
 
 export interface MoveData {
@@ -23,7 +28,6 @@ export interface MoveData {
   name: string
   description: string
   type: 'basic' | 'special1' | 'special2'
-  damage: number
   cooldown: number
   range: number
   effects: string[]
@@ -75,7 +79,7 @@ export class DataManager {
       // Load characters
       charactersData.characters.forEach(character => {
         if (this.validateCharacterData(character)) {
-          this.characters.set(character.id, character as CharacterData)
+          this.characters.set(character.id, character as unknown as CharacterData)
         } else {
           console.warn(`Invalid character data for: ${character.id}`)
         }
@@ -110,16 +114,20 @@ export class DataManager {
     return (
       typeof data.id === 'string' &&
       typeof data.name === 'string' &&
-      typeof data.sprite === 'string' &&
       typeof data.description === 'string' &&
       data.stats &&
       typeof data.stats.health === 'number' &&
       typeof data.stats.attack === 'number' &&
       typeof data.stats.defense === 'number' &&
       typeof data.stats.speed === 'number' &&
+      typeof data.stats.mana === 'number' &&
       Array.isArray(data.moves) &&
+      Array.isArray(data.specialProjectiles) &&
       typeof data.rarity === 'string' &&
-      typeof data.element === 'string'
+      typeof data.element === 'string' &&
+      typeof data.spritePath === 'string' &&
+      data.projectileSvgPaths &&
+      typeof data.projectileSvgPaths === 'object'
     )
   }
 
@@ -129,7 +137,6 @@ export class DataManager {
       typeof data.name === 'string' &&
       typeof data.description === 'string' &&
       ['basic', 'special1', 'special2'].includes(data.type) &&
-      typeof data.damage === 'number' &&
       typeof data.cooldown === 'number' &&
       typeof data.range === 'number' &&
       Array.isArray(data.effects) &&
