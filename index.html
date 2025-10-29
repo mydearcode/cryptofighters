@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Fighters</title>
-    <!-- Google Fonts - Jacquard 12 with improved loading -->
+    <!-- Font loading optimization for IDE browsers -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <!-- Google Fonts - Bangers with improved loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap" rel="stylesheet">
-    <!-- Fallback font preload for better performance -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <!-- Font face declaration for better IDE browser support -->
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+        
         body {
             margin: 0;
             padding: 0;
@@ -21,7 +25,7 @@
             align-items: center;
             min-height: 100vh;
             /* Güçlendirilmiş fallback font stack */
-            font-family: 'Jacquard 12', 'Impact', 'Arial Black', 'Helvetica Neue', 'Arial', 'Courier New', monospace, sans-serif;
+            font-family: 'Bangers', 'Impact', 'Arial Black', 'Helvetica Neue', 'Arial', 'Courier New', monospace, sans-serif;
             /* Font yüklenmesini beklerken görünürlük */
             font-display: swap;
         }

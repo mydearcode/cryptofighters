@@ -29,7 +29,7 @@ export class ArenaSelectScene extends Phaser.Scene {
     this.add.text(width / 2, 80, 'SELECT ARENA', {
       fontSize: '42px',
       color: '#ff6600',
-      fontFamily: 'Jacquard 12, Impact, Arial Black, sans-serif',
+      fontFamily: 'Bangers, Impact, Arial Black, sans-serif',
       stroke: '#660000',
       strokeThickness: 5,
       letterSpacing: 2,
@@ -73,7 +73,7 @@ export class ArenaSelectScene extends Phaser.Scene {
     const titleText = this.add.text(width / 2, 160, 'AVAILABLE ARENAS', {
       fontSize: '24px',
       color: '#ffddcc',
-      fontFamily: 'Jacquard 12, Impact, Arial Black, sans-serif',
+      fontFamily: 'Bangers, Impact, Arial Black, sans-serif',
       letterSpacing: 1,
       shadow: {
         offsetX: 2,
@@ -95,19 +95,14 @@ export class ArenaSelectScene extends Phaser.Scene {
     const startX = width / 2 - ((gridCols - 1) * (cardWidth + spacing)) / 2
     const startY = 220     // Moved down from 190 to avoid overlap with title
     
-    console.log('Creating arena cards for', arenas.length, 'arenas')
-    
     arenas.forEach((arena, index) => {
       const col = index % gridCols
       const row = Math.floor(index / gridCols)
       const x = startX + col * (cardWidth + spacing)
       const y = startY + row * (cardHeight + spacing)
       
-      console.log(`Arena ${index}: ${arena.name} at position (${x}, ${y})`)
-      
       // More generous height check - allow cards to go lower
       if (y + cardHeight / 2 > height - 80) {
-        console.log(`Skipping arena ${arena.name} - would be too low`)
         return // Skip cards that would be too low
       }
       
@@ -136,7 +131,7 @@ export class ArenaSelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y, arena.name, {
         fontSize: '14px',  // Smaller font for 3 columns
         color: '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       
       this.arenaButtons.push(card as any)
@@ -149,7 +144,7 @@ export class ArenaSelectScene extends Phaser.Scene {
     const fightButton = this.add.text(width / 2, height - 80, 'START FIGHT!', {
       fontSize: '32px',
       color: '#ff6600',
-      fontFamily: 'Jacquard 12, Impact, Arial Black, sans-serif',
+      fontFamily: 'Bangers, Impact, Arial Black, sans-serif',
       backgroundColor: '#3d1a1a',
       padding: { x: 20, y: 10 },
       stroke: '#660000',

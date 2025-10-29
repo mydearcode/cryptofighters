@@ -7,16 +7,9 @@ export enum ProjectileType {
   FIREBALL = 'fireball',
   // Character-specific projectiles - Existing
   HODL_DIAMOND = 'hodl_diamond',
-  TRADE_COIN = 'trade_coin',
   BITCOIN_LASER = 'bitcoin_laser',
   ETHEREUM_SHARD = 'ethereum_shard',
   BINANCE_BOLT = 'binance_bolt',
-  TESLA_SPARK = 'tesla_spark',
-  CARDANO_WAVE = 'cardano_wave',
-  POLKADOT_LINK = 'polkadot_link',
-  CRYPTO_PUNCH = 'crypto_punch',
-  NINJA_STAR = 'ninja_star',
-  DEFI_ORB = 'defi_orb',
   MEME_ROCKET = 'meme_rocket',
   // New projectiles from existing SVGs
   BITCOIN_CIRCLE = 'bitcoin_circle',
@@ -41,7 +34,14 @@ export enum ProjectileType {
   EXCHANGE_DOLLAR = 'exchange_dollar',
   HOLD_POWER = 'hold_power',
   TRENDING_DOWN = 'trending_down',
-  ANNOUNCEMENT = 'announcement'
+  ANNOUNCEMENT = 'announcement',
+  NINJA_STAR = 'ninja_star',
+  SWORD_HEAVY = 'sword_heavy',
+  CARDANO_COIN = 'cardano_coin',
+  ACADEMIC_PAPER = 'academic_paper',
+  POLKADOT_CHAIN = 'polkadot_chain',
+  COINBASE_COIN = 'coinbase_coin',
+  BASE_LAYER = 'base_layer'
 }
 
 export class Projectile extends Phaser.GameObjects.Container {
@@ -70,6 +70,9 @@ export class Projectile extends Phaser.GameObjects.Container {
     this.lifespan = 0
     this.maxLifespan = 2000 // 2 seconds max lifespan
     
+    // DEBUG: Console log to see which projectile type is being created
+    console.log(`🚀 PROJECTILE CREATED: ${projectileType} by ${owner?.characterId || 'unknown'}`)
+    
     // Set velocity based on projectile type and direction
     switch (projectileType) {
       case ProjectileType.BULLET:
@@ -93,13 +96,9 @@ export class Projectile extends Phaser.GameObjects.Container {
         this.velocity = { x: 350 * direction, y: 0 }
         this.createHodlDiamond()
         break
-      case ProjectileType.TRADE_COIN:
-        this.velocity = { x: 550 * direction, y: 0 }
-        this.createTradeCoin()
-        break
       case ProjectileType.BITCOIN_LASER:
         this.velocity = { x: 700 * direction, y: 0 }
-        this.createBitcoinLaser()
+        this.createBitcoinCircle()
         break
       case ProjectileType.ETHEREUM_SHARD:
         this.velocity = { x: 500 * direction, y: 0 }
@@ -108,30 +107,6 @@ export class Projectile extends Phaser.GameObjects.Container {
       case ProjectileType.BINANCE_BOLT:
         this.velocity = { x: 650 * direction, y: 0 }
         this.createBinanceBolt()
-        break
-      case ProjectileType.TESLA_SPARK:
-        this.velocity = { x: 600 * direction, y: 0 }
-        this.createTeslaSpark()
-        break
-      case ProjectileType.CARDANO_WAVE:
-        this.velocity = { x: 400 * direction, y: 0 }
-        this.createCardanoWave()
-        break
-      case ProjectileType.POLKADOT_LINK:
-        this.velocity = { x: 450 * direction, y: 0 }
-        this.createPolkadotLink()
-        break
-      case ProjectileType.CRYPTO_PUNCH:
-        this.velocity = { x: 300 * direction, y: 0 }
-        this.createCryptoPunch()
-        break
-      case ProjectileType.NINJA_STAR:
-        this.velocity = { x: 750 * direction, y: 0 }
-        this.createNinjaStar()
-        break
-      case ProjectileType.DEFI_ORB:
-        this.velocity = { x: 400 * direction, y: 0 }
-        this.createDefiOrb()
         break
       case ProjectileType.MEME_ROCKET:
         this.velocity = { x: 500 * direction, y: 0 }
@@ -230,6 +205,34 @@ export class Projectile extends Phaser.GameObjects.Container {
         this.velocity = { x: 450 * direction, y: 0 }
         this.createAnnouncement()
         break
+      case ProjectileType.NINJA_STAR:
+        this.velocity = { x: 600 * direction, y: 0 }
+        this.createNinjaStar()
+        break
+      case ProjectileType.SWORD_HEAVY:
+        this.velocity = { x: 400 * direction, y: 0 }
+        this.createSwordHeavy()
+        break
+      case ProjectileType.CARDANO_COIN:
+        this.velocity = { x: 500 * direction, y: 0 }
+        this.createCardanoCoin()
+        break
+      case ProjectileType.ACADEMIC_PAPER:
+        this.velocity = { x: 450 * direction, y: 0 }
+        this.createAcademicPaper()
+        break
+      case ProjectileType.POLKADOT_CHAIN:
+        this.velocity = { x: 550 * direction, y: 0 }
+        this.createPolkadotChain()
+        break
+      case ProjectileType.COINBASE_COIN:
+        this.velocity = { x: 600 * direction, y: 0 }
+        this.createCoinbaseCoin()
+        break
+      case ProjectileType.BASE_LAYER:
+        this.velocity = { x: 650 * direction, y: 0 }
+        this.createBaseLayer()
+        break
       default:
         this.velocity = { x: 400 * direction, y: 0 }
         this.createBullet()
@@ -266,151 +269,108 @@ export class Projectile extends Phaser.GameObjects.Container {
   // Character-specific projectile creation methods
   private createHodlDiamond() {
     // Load SVG image for HODL diamond
-    this.projectileSprite = this.scene.add.image(0, 0, 'hodl_diamond')
-    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
-    this.add(this.projectileSprite)
-  }
-
-  private createTradeCoin() {
-    // Load SVG image for Trade coin
-    this.projectileSprite = this.scene.add.image(0, 0, 'trade_coin')
-    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
-    this.add(this.projectileSprite)
-  }
-
-  private createBitcoinLaser() {
-    // Load SVG image for Bitcoin laser
-    this.projectileSprite = this.scene.add.image(0, 0, 'bitcoin')
-    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
-    this.add(this.projectileSprite)
-  }
-
-  private createEthereumShard() {
-    // Load SVG image for Ethereum shard
-    this.projectileSprite = this.scene.add.image(0, 0, 'ethereum')
-    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
-    this.add(this.projectileSprite)
-  }
-
-  private createBinanceBolt() {
-    // Load SVG image for Binance bolt
-    this.projectileSprite = this.scene.add.image(0, 0, 'binance_bolt')
-    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
-    this.add(this.projectileSprite)
-  }
-
-  private createTeslaSpark() {
-    // Load SVG image for Tesla spark
-    this.projectileSprite = this.scene.add.image(0, 0, 'tesla')
-    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
-    this.add(this.projectileSprite)
-  }
-
-  private createCardanoWave() {
-    // Load SVG image for Cardano wave
-    this.projectileSprite = this.scene.add.image(0, 0, 'cardano_wave')
-    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
-    this.add(this.projectileSprite)
-  }
-
-  private createPolkadotLink() {
-    // Load SVG image for Polkadot link
-    this.projectileSprite = this.scene.add.image(0, 0, 'polkadot_link')
-    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
-    this.add(this.projectileSprite)
-  }
-
-  private createCryptoPunch() {
-    // Load SVG image for Crypto punch
-    this.projectileSprite = this.scene.add.image(0, 0, 'crypto_punch')
-    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
-    this.add(this.projectileSprite)
-  }
-
-  private createNinjaStar() {
-    // Load SVG image for Ninja star
-    this.projectileSprite = this.scene.add.image(0, 0, 'ninja_star')
-    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
-    this.add(this.projectileSprite)
-  }
-
-  private createDefiOrb() {
-    // Load SVG image for DeFi orb
-    this.projectileSprite = this.scene.add.image(0, 0, 'defi_orb')
+    console.log(`💎 HODL_DIAMOND using SVG: diamond-origami-paper-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'diamond-origami-paper-svgrepo-com')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   private createMemeRocket() {
     // Load SVG image for Meme rocket
-    this.projectileSprite = this.scene.add.image(0, 0, 'meme_rocket')
+    console.log(`🚀 MEME_ROCKET using SVG: rocket-svgrepo-com_2`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'rocket-svgrepo-com_2')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   // New projectile creation methods
   private createBitcoinCircle() {
+    console.log(`₿ BITCOIN_CIRCLE using SVG: bitcoin-circle`)
     this.projectileSprite = this.scene.add.image(0, 0, 'bitcoin-circle')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
+  private createEthereumShard() {
+    console.log(`⟠ ETHEREUM_SHARD using SVG: circle-dashed-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'circle-dashed-svgrepo-com')
+    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
+    this.add(this.projectileSprite)
+  }
+
   private createEthereumAlt() {
-    this.projectileSprite = this.scene.add.image(0, 0, 'ethereum-alt')
+    console.log(`⟠ ETHEREUM_ALT using SVG: ethereum-svgrepo-com_2`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'ethereum-svgrepo-com_2')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   private createBinanceCoin() {
-    this.projectileSprite = this.scene.add.image(0, 0, 'binance-coin')
+    console.log(`🟡 BINANCE_COIN using SVG: binance-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'binance-svgrepo-com')
+    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
+    this.add(this.projectileSprite)
+  }
+
+  private createBinanceBolt() {
+    console.log(`⚡ BINANCE_BOLT using SVG: coinbase-v2-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'coinbase-v2-svgrepo-com')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   private createDogeCoin() {
-    this.projectileSprite = this.scene.add.image(0, 0, 'doge-coin')
+    console.log(`🐕 DOGE_COIN using SVG: space-2-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'space-2-svgrepo-com')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   private createDiamondOrigami() {
+    console.log(`💎 DIAMOND_ORIGAMI using SVG: diamond-origami`)
     this.projectileSprite = this.scene.add.image(0, 0, 'diamond-origami')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   private createFireBomb() {
+    console.log(`💣 FIRE_BOMB using SVG: fire-bomb`)
     this.projectileSprite = this.scene.add.image(0, 0, 'fire-bomb')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   private createFireBlast() {
-    this.projectileSprite = this.scene.add.image(0, 0, 'fire-blast')
+    console.log(`🔥 FIRE_BLAST using SVG: computer-chip-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'computer-chip-svgrepo-com')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   private createBombClassic() {
+    console.log(`💣 BOMB_CLASSIC using SVG: bomb-classic`)
     this.projectileSprite = this.scene.add.image(0, 0, 'bomb-classic')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   private createBombAdvanced() {
+    console.log(`💣 BOMB_ADVANCED using SVG: bomb-advanced`)
     this.projectileSprite = this.scene.add.image(0, 0, 'bomb-advanced')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   private createRocketClassic() {
+    console.log(`🚀 ROCKET_CLASSIC using SVG: rocket-classic`)
     this.projectileSprite = this.scene.add.image(0, 0, 'rocket-classic')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   private createRocketAdvanced() {
-    this.projectileSprite = this.scene.add.image(0, 0, 'rocket-advanced')
+    console.log(`🚀 ROCKET_ADVANCED using SVG: rocket-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'rocket-svgrepo-com')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
@@ -422,7 +382,7 @@ export class Projectile extends Phaser.GameObjects.Container {
   }
 
   private createMoonStars() {
-    this.projectileSprite = this.scene.add.image(0, 0, 'moon-stars')
+    this.projectileSprite = this.scene.add.image(0, 0, 'pile-of-poo-svgrepo-com')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
@@ -452,7 +412,7 @@ export class Projectile extends Phaser.GameObjects.Container {
   }
 
   private createBlockchainSecurity() {
-    this.projectileSprite = this.scene.add.image(0, 0, 'blockchain-security')
+    this.projectileSprite = this.scene.add.image(0, 0, 'bitcoin-circle')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
@@ -470,19 +430,71 @@ export class Projectile extends Phaser.GameObjects.Container {
   }
 
   private createHoldPower() {
+    console.log(`💪 HOLD_POWER using SVG: hold-power`)
     this.projectileSprite = this.scene.add.image(0, 0, 'hold-power')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   private createTrendingDown() {
+    console.log(`📉 TRENDING_DOWN using SVG: trending-down`)
     this.projectileSprite = this.scene.add.image(0, 0, 'trending-down')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }
 
   private createAnnouncement() {
-    this.projectileSprite = this.scene.add.image(0, 0, 'announcement')
+    console.log(`📢 ANNOUNCEMENT using SVG: announcement-shout-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'announcement-shout-svgrepo-com')
+    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
+    this.add(this.projectileSprite)
+  }
+
+  private createNinjaStar() {
+    console.log(`⭐ NINJA_STAR using SVG: ninja-star-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'ninja-star-svgrepo-com')
+    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
+    this.add(this.projectileSprite)
+  }
+
+  private createSwordHeavy() {
+    console.log(`⚔️ SWORD_HEAVY using SVG: sword-heavy-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'sword-heavy-svgrepo-com')
+    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
+    this.add(this.projectileSprite)
+  }
+
+  private createCardanoCoin() {
+    console.log(`🪙 CARDANO_COIN using SVG: bitcoin-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'bitcoin-svgrepo-com')
+    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
+    this.add(this.projectileSprite)
+  }
+
+  private createAcademicPaper() {
+    console.log(`📄 ACADEMIC_PAPER using SVG: fire-bomb-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'fire-bomb-svgrepo-com')
+    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
+    this.add(this.projectileSprite)
+  }
+
+  private createPolkadotChain() {
+    console.log(`🔗 POLKADOT_CHAIN using SVG: blockchain-digital-future-system-security-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'blockchain-digital-future-system-security-svgrepo-com')
+    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
+    this.add(this.projectileSprite)
+  }
+
+  private createCoinbaseCoin() {
+    console.log(`🌙 COINBASE_COIN using SVG: moon-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'moon-svgrepo-com')
+    ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
+    this.add(this.projectileSprite)
+  }
+
+  private createBaseLayer() {
+    console.log(`💻 BASE_LAYER using SVG: computer-chip-svgrepo-com`)
+    this.projectileSprite = this.scene.add.image(0, 0, 'computer-chip-svgrepo-com')
     ;(this.projectileSprite as Phaser.GameObjects.Image).setDisplaySize(20, 20)
     this.add(this.projectileSprite)
   }

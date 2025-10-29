@@ -62,23 +62,17 @@ export class BootScene extends Phaser.Scene {
     this.load.image('player2', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==')
     this.load.image('background', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==')
     
-    // Load projectile SVG sprites
+    // Load existing projectile SVG sprites
+    this.load.image('hodl_diamond', 'src/assets/sprites/projectiles/diamond-origami-paper-svgrepo-com.svg')
     this.load.image('bitcoin', 'src/assets/sprites/projectiles/bitcoin-svgrepo-com.svg')
     this.load.image('ethereum', 'src/assets/sprites/projectiles/ethereum-svgrepo-com.svg')
-    this.load.image('tesla', 'src/assets/sprites/projectiles/tesla.svg') // Bu dosya yok, placeholder olarak bırakıyorum
-    this.load.image('hodl_diamond', 'src/assets/sprites/projectiles/hold-svgrepo-com.svg')
-    this.load.image('trade_coin', 'src/assets/sprites/projectiles/trade_coin.svg') // Bu dosya yok, placeholder olarak bırakıyorum
+    this.load.image('binance', 'src/assets/sprites/projectiles/binance-svgrepo-com.svg')
     this.load.image('binance_bolt', 'src/assets/sprites/projectiles/binance-svgrepo-com.svg')
-    this.load.image('cardano_wave', 'src/assets/sprites/projectiles/cardano_wave.svg') // Bu dosya yok, placeholder
-    this.load.image('polkadot_link', 'src/assets/sprites/projectiles/polkadot_link.svg') // Bu dosya yok, placeholder
-    this.load.image('crypto_punch', 'src/assets/sprites/projectiles/crypto_punch.svg') // Bu dosya yok, placeholder
-    this.load.image('ninja_star', 'src/assets/sprites/projectiles/ninja_star.svg') // Bu dosya yok, placeholder
-    this.load.image('defi_orb', 'src/assets/sprites/projectiles/defi_orb.svg') // Bu dosya yok, placeholder
     this.load.image('meme_rocket', 'src/assets/sprites/projectiles/rocket-svgrepo-com.svg')
     
     // Load additional projectile SVG sprites
     this.load.image('bitcoin-circle', 'src/assets/sprites/projectiles/bitcoin-circle-svgrepo-com.svg')
-    this.load.image('ethereum-alt', 'src/assets/sprites/projectiles/ethereum-svgrepo-com (1).svg')
+    this.load.image('ethereum-alt', 'src/assets/sprites/projectiles/ethereum-svgrepo-com_2.svg')
     this.load.image('binance-coin', 'src/assets/sprites/projectiles/binance-bnb-coin-2-svgrepo-com.svg')
     this.load.image('doge-coin', 'src/assets/sprites/projectiles/doge-svgrepo-com.svg')
     this.load.image('diamond-origami', 'src/assets/sprites/projectiles/diamond-origami-paper-svgrepo-com.svg')
@@ -87,7 +81,7 @@ export class BootScene extends Phaser.Scene {
     this.load.image('bomb-classic', 'src/assets/sprites/projectiles/bomb-svgrepo-com.svg')
     this.load.image('bomb-advanced', 'src/assets/sprites/projectiles/bomb-svgrepo-com_black.svg')
     this.load.image('rocket-classic', 'src/assets/sprites/projectiles/rocket-svgrepo-com.svg')
-    this.load.image('rocket-advanced', 'src/assets/sprites/projectiles/rocket-svgrepo-com (1).svg')
+    this.load.image('rocket-advanced', 'src/assets/sprites/projectiles/rocket-svgrepo-com_2.svg')
     this.load.image('moon-classic', 'src/assets/sprites/projectiles/moon-svgrepo-com.svg')
     this.load.image('moon-stars', 'src/assets/sprites/projectiles/moon-and-stars-svgrepo-com.svg')
     this.load.image('moon-advanced', 'src/assets/sprites/projectiles/moon-svgrepo-com_2.svg')
@@ -100,6 +94,36 @@ export class BootScene extends Phaser.Scene {
     this.load.image('hold-power', 'src/assets/sprites/projectiles/hold-svgrepo-com.svg')
     this.load.image('trending-down', 'src/assets/sprites/projectiles/trending-down-svgrepo-com.svg')
     this.load.image('announcement', 'src/assets/sprites/projectiles/announcement-shout-svgrepo-com.svg')
+    this.load.image('ninja-star', 'src/assets/sprites/projectiles/ninja-star-svgrepo-com.svg')
+    this.load.image('sword-heavy', 'src/assets/sprites/projectiles/sword-heavy-svgrepo-com.svg')
+    
+    // Load new projectile SVG sprites for updated characters
+    this.load.image('rocket-svgrepo-com_2', 'src/assets/sprites/projectiles/rocket-svgrepo-com_2.svg')
+    this.load.image('pile-of-poo', 'src/assets/sprites/projectiles/pile-of-poo-svgrepo-com.svg')
+    this.load.image('ethereum-svgrepo-com_2', 'src/assets/sprites/projectiles/ethereum-svgrepo-com_2.svg')
+    this.load.image('announcement-shout', 'src/assets/sprites/projectiles/announcement-shout-svgrepo-com.svg')
+    this.load.image('space-2', 'src/assets/sprites/projectiles/space-2-svgrepo-com.svg')
+    this.load.image('rocket', 'src/assets/sprites/projectiles/rocket-svgrepo-com.svg')
+    this.load.image('circle-dashed', 'src/assets/sprites/projectiles/circle-dashed-svgrepo-com.svg')
+    this.load.image('blockchain-digital-future-system-security', 'src/assets/sprites/projectiles/blockchain-digital-future-system-security-svgrepo-com.svg')
+    this.load.image('coinbase-v2', 'src/assets/sprites/projectiles/coinbase-v2-svgrepo-com.svg')
+    this.load.image('moon', 'src/assets/sprites/projectiles/moon-svgrepo-com.svg')
+    this.load.image('diamond-origami-paper', 'src/assets/sprites/projectiles/diamond-origami-paper-svgrepo-com.svg')
+    this.load.image('computer-chip-svgrepo-com', 'src/assets/sprites/projectiles/computer-chip-svgrepo-com.svg')
+    this.load.image('ninja-star-svgrepo-com', 'src/assets/sprites/projectiles/ninja-star-svgrepo-com.svg')
+    this.load.image('sword-heavy-svgrepo-com', 'src/assets/sprites/projectiles/sword-heavy-svgrepo-com.svg')
+    this.load.image('pile-of-poo-svgrepo-com', 'src/assets/sprites/projectiles/pile-of-poo-svgrepo-com.svg')
+    this.load.image('binance-svgrepo-com', 'src/assets/sprites/projectiles/binance-svgrepo-com.svg')
+    this.load.image('announcement-shout-svgrepo-com', 'src/assets/sprites/projectiles/announcement-shout-svgrepo-com.svg')
+    this.load.image('space-2-svgrepo-com', 'src/assets/sprites/projectiles/space-2-svgrepo-com.svg')
+    this.load.image('rocket-svgrepo-com', 'src/assets/sprites/projectiles/rocket-svgrepo-com.svg')
+    this.load.image('bitcoin-svgrepo-com', 'src/assets/sprites/projectiles/bitcoin-svgrepo-com.svg')
+    this.load.image('fire-bomb-svgrepo-com', 'src/assets/sprites/projectiles/fire-bomb-svgrepo-com.svg')
+    this.load.image('circle-dashed-svgrepo-com', 'src/assets/sprites/projectiles/circle-dashed-svgrepo-com.svg')
+    this.load.image('blockchain-digital-future-system-security-svgrepo-com', 'src/assets/sprites/projectiles/blockchain-digital-future-system-security-svgrepo-com.svg')
+    this.load.image('coinbase-v2-svgrepo-com', 'src/assets/sprites/projectiles/coinbase-v2-svgrepo-com.svg')
+    this.load.image('moon-svgrepo-com', 'src/assets/sprites/projectiles/moon-svgrepo-com.svg')
+    this.load.image('diamond-origami-paper-svgrepo-com', 'src/assets/sprites/projectiles/diamond-origami-paper-svgrepo-com.svg')
     
     // Load Vitalik character sprites as spritesheets (only side views - left and right)
     // combat_idle: 128x256 (2 frames horizontal, 4 directions vertical) - use row 1 (left) and row 3 (right)
@@ -129,11 +153,7 @@ export class BootScene extends Phaser.Scene {
     // Set default vitalik sprite (use first frame of combat_idle)
     this.load.image('vitalik', 'assets/sprites/vitalik/combat_idle.png')
     
-    // Load Vitalik portrait for character selection (single frame)
-    this.load.image('vitalik-portrait', 'assets/sprites/vitalik/vitalik_single.png')
-    
-    // Load vitalik_single as separate sprite for character selection
-    this.load.image('vitalik_single', 'assets/sprites/vitalik/vitalik_single.png')
+
     
     // Load CZ character sprites
     // idle: 512x256 (8 frames horizontal, 4 directions vertical) - use row 1 (left side view)

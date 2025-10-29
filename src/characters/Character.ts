@@ -1314,20 +1314,8 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     const moveData = gameData.getMove(moveId)
     if (!moveData || !moveData.battleCries || moveData.battleCries.length === 0) return
 
-    // AttackType'a göre sabit slogan seç (rastgele değil)
-    let battleCryIndex = 0
-    switch (attackType) {
-      case AttackType.BASIC:
-        battleCryIndex = 0 // İlk slogan
-        break
-      case AttackType.SPECIAL1:
-        battleCryIndex = 1 % moveData.battleCries.length // İkinci slogan (varsa)
-        break
-      case AttackType.SPECIAL2:
-        battleCryIndex = 2 % moveData.battleCries.length // Üçüncü slogan (varsa)
-        break
-    }
-    
+    // Rastgele slogan seç - artık tüm sloganlar kullanılacak!
+    const battleCryIndex = Math.floor(Math.random() * moveData.battleCries.length)
     const battleCry = moveData.battleCries[battleCryIndex]
 
     // Battle cry'ı ekranda göster
@@ -1340,7 +1328,7 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
         color: '#FFD700',
         stroke: '#000000',
         strokeThickness: 2,
-        fontFamily: 'Jacquard 12, Impact, Arial Black, Helvetica Neue, Arial, sans-serif'
+        fontFamily: 'Bangers, Impact, Arial Black, Helvetica Neue, Arial, sans-serif'
       }
     ).setOrigin(0.5)
 

@@ -18,7 +18,7 @@ export class MenuScene extends Phaser.Scene {
     const title = this.add.text(width / 2, 120, 'CRYPTO FIGHTERS', {
       fontSize: '72px',
       color: '#ff6600',
-      fontFamily: '"Jacquard 12", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
+      fontFamily: '"Bangers", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
       stroke: '#660000',
       strokeThickness: 8,
       shadow: {
@@ -50,7 +50,7 @@ export class MenuScene extends Phaser.Scene {
     const modeTitle = this.add.text(width / 2, 230, 'SELECT GAME MODE', {
       fontSize: '32px',
       color: '#ffddcc',
-      fontFamily: '"Jacquard 12", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
+      fontFamily: '"Bangers", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
       letterSpacing: 2,
       shadow: {
         offsetX: 2,
@@ -82,7 +82,7 @@ export class MenuScene extends Phaser.Scene {
     const singlePlayerText = this.add.text(width / 2, 285, 'SINGLE PLAYER', {
       fontSize: '24px',
       color: '#ff6600',
-      fontFamily: '"Jacquard 12", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
+      fontFamily: '"Bangers", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
       letterSpacing: 1,
       shadow: {
         offsetX: 1,
@@ -121,7 +121,7 @@ export class MenuScene extends Phaser.Scene {
     const twoPlayerText = this.add.text(width / 2, 385, 'TWO PLAYER', {
       fontSize: '24px',
       color: '#ff6600',
-      fontFamily: '"Jacquard 12", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
+      fontFamily: '"Bangers", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
       letterSpacing: 1,
       shadow: {
         offsetX: 1,

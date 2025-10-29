@@ -10,7 +10,7 @@
       "range": 60,
       "effects": ["knockback"],
       "animation": "grab_squeeze",
-      "projectileType": "HODL_DIAMOND",
+      "projectileType": "ETHEREUM_SHARD",
       "battleCries": ["HODL to the moon!", "Diamond hands never sell!", "Patience is power!"]
     },
     {
@@ -23,7 +23,7 @@
       "range": 70,
       "effects": ["stun", "knockback"],
       "animation": "power_slam",
-      "projectileType": "HODL_DIAMOND",
+      "projectileType": "DIAMOND_ORIGAMI",
       "battleCries": ["Feel the power of HODL!", "Years of patience unleashed!", "This is diamond strength!"]
     },
     {
@@ -36,7 +36,7 @@
       "range": 50,
       "effects": ["speed_boost"],
       "animation": "quick_jab",
-      "projectileType": "HODL_DIAMOND",
+      "projectileType": "HOLD_POWER",
       "battleCries": ["Patience pays off!", "Quick diamond strike!", "HODL power!"]
     },
     {
@@ -49,7 +49,7 @@
       "range": 55,
       "effects": ["speed_boost"],
       "animation": "rapid_strike",
-      "projectileType": "TRADE_COIN",
+      "projectileType": "BITCOIN_LASER",
       "battleCries": ["Quick gains!", "Profit secured!", "Trading like a queen!"]
     },
     {
@@ -127,8 +127,8 @@
       "range": 60,
       "effects": ["heal_self"],
       "animation": "energy_drain",
-      "projectileType": "DEFI_ORB",
-      "battleCries": ["Farming yields!", "DeFi power!", "Decentralized finance!"]
+      "projectileType": "ETHEREUM_SHARD",
+      "battleCries": ["FCFS Baby!", "Slippaged!", "Front Running!"]
     },
     {
       "id": "liquidity_strike",
@@ -140,8 +140,8 @@
       "range": 65,
       "effects": ["mana_drain"],
       "animation": "energy_blast",
-      "projectileType": "COMPUTER_CHIP",
-      "battleCries": ["Liquidity flows!", "Pool power!", "DeFi ninja strike!"]
+      "projectileType": "NINJA_STAR",
+      "battleCries": ["Liquidity flows!", "Uknown strike!", "Everybody Knows me!"]
     },
     {
       "id": "flash_loan",
@@ -153,8 +153,8 @@
       "range": 55,
       "effects": ["teleport", "surprise"],
       "animation": "flash_strike",
-      "projectileType": "TRENDING_DOWN",
-      "battleCries": ["Flash loan executed!", "Instant liquidity!", "DeFi magic!"]
+      "projectileType": "SWORD_HEAVY",
+      "battleCries": ["Ninja pool attack!", "Slippaged!", "Front Running!"]
     },
     {
       "id": "rare_mint",
@@ -166,7 +166,7 @@
       "range": 60,
       "effects": ["create_shield"],
       "animation": "creation_burst",
-      "projectileType": "NINJA_STAR",
+      "projectileType": "MEME_ROCKET",
       "battleCries": ["Rare NFT minted!", "Unique creation!", "Digital art power!"]
     },
     {
@@ -179,7 +179,7 @@
       "range": 70,
       "effects": ["power_stack"],
       "animation": "collection_wave",
-      "projectileType": "NINJA_STAR",
+      "projectileType": "MEME_ROCKET",
       "battleCries": ["Collection power!", "NFT army!", "Digital dominance!"]
     },
     {
@@ -192,7 +192,7 @@
       "range": 55,
       "effects": ["confusion"],
       "animation": "artistic_swirl",
-      "projectileType": "NINJA_STAR",
+      "projectileType": "MEME_ROCKET",
       "battleCries": ["Art is power!", "Creative destruction!", "NFT fury!"]
     },
     {
@@ -205,8 +205,8 @@
       "range": 65,
       "effects": ["spread_damage"],
       "animation": "viral_burst",
-      "projectileType": "MEME_ROCKET",
-      "battleCries": ["Going viral!", "Meme power!", "To the moon!"]
+      "projectileType": "ROCKET_ADVANCED",
+      "battleCries": ["Going viral!", "Shitpost power!", "To the moon!"]
     },
     {
       "id": "moon_rocket",
@@ -218,8 +218,8 @@
       "range": 75,
       "effects": ["launch", "knockback"],
       "animation": "rocket_launch",
-      "projectileType": "MEME_ROCKET",
-      "battleCries": ["Rocket to the moon!", "Diamond hands!", "Meme lord power!"]
+      "projectileType": "ROCKET_ADVANCED",
+      "battleCries": ["Kill the jeets!", "Paper hands!", "Rugpull attack!"]
     },
     {
       "id": "diamond_paws",
@@ -231,7 +231,7 @@
       "range": 50,
       "effects": ["crit_chance"],
       "animation": "claw_swipe",
-      "projectileType": "MEME_ROCKET",
+      "projectileType": "MOON_STARS",
       "battleCries": ["Diamond paws!", "Meme magic!", "Paws of power!"]
     },
     {
@@ -244,7 +244,7 @@
       "range": 65,
       "effects": ["auto_counter"],
       "animation": "code_cast",
-      "projectileType": "ETHEREUM_SHARD",
+      "projectileType": "ETHEREUM_ALT",
       "battleCries": ["Code is law!", "Smart contracts execute!", "Ethereum power!"]
     },
     {
@@ -257,8 +257,8 @@
       "range": 80,
       "effects": ["area_damage", "stun"],
       "animation": "energy_blast",
-      "projectileType": "ETHEREUM_SHARD",
-      "battleCries": ["Feel Ethereum's power!", "World computer activated!", "Decentralized destruction!"]
+      "projectileType": "ETHEREUM_ALT",
+      "battleCries": ["Unicorn Shirt!", "World computer activated!", "Decentralized destruction!"]
     },
     {
       "id": "proof_of_stake",
@@ -270,8 +270,8 @@
       "range": 60,
       "effects": ["defense_boost", "reflect"],
       "animation": "shield_counter",
-      "projectileType": "ETHEREUM_SHARD",
-      "battleCries": ["Proof of Stake!", "Staking rewards!", "Ethereum 2.0 power!"]
+      "projectileType": "FIRE_BLAST",
+      "battleCries": ["Proof of Stake!", "Unicorn Shirt!", "Ethereum 2.0 power!"]
     },
     {
       "id": "crypto_punch",
@@ -283,7 +283,7 @@
       "range": 60,
       "effects": ["knockback"],
       "animation": "power_punch",
-      "projectileType": "TRADE_COIN",
+      "projectileType": "BITCOIN_LASER",
       "battleCries": ["Coinbase power!", "Crypto for everyone!", "Building the future!"]
     },
     {
@@ -296,7 +296,7 @@
       "range": 70,
       "effects": ["area_damage", "stun"],
       "animation": "ground_slam",
-      "projectileType": "BITCOIN_LASER",
+      "projectileType": "FIRE_BLAST",
       "battleCries": ["Blockchain revolution!", "Decentralized power!", "Armstrong slam!"]
     },
     {
@@ -309,8 +309,8 @@
       "range": 65,
       "effects": ["speed_boost", "crit_chance"],
       "animation": "lightning_strike",
-      "projectileType": "ETHEREUM_SHARD",
-      "battleCries": ["Digital assets!", "Coinbase strike!", "Crypto adoption!"]
+      "projectileType": "COINBASE_COIN",
+      "battleCries": ["Crypto for everyone!", "Coinbase strike!", "Crypto adoption!"]
     },
     {
       "id": "ninja_strike",
@@ -335,7 +335,7 @@
       "range": 60,
       "effects": ["multi_hit", "speed_boost"],
       "animation": "combo_rush",
-      "projectileType": "ETHEREUM_SHARD",
+      "projectileType": "NINJA_STAR",
       "battleCries": ["Swift as Base!", "Layer 2 lightning!", "Polak power!"]
     },
     {
@@ -348,7 +348,7 @@
       "range": 70,
       "effects": ["teleport", "surprise", "dash"],
       "animation": "shadow_move",
-      "projectileType": "DEFI_ORB",
+      "projectileType": "BASE_COIN",
       "battleCries": ["Shadow dash!", "Base network!", "Invisible strike!"]
     },
     {
@@ -361,8 +361,8 @@
       "range": 60,
       "effects": ["electric_shock"],
       "animation": "electric_punch",
-      "projectileType": "BITCOIN_LASER",
-      "battleCries": ["Tesla power!", "Electric innovation!", "Sustainable energy!"]
+      "projectileType": "DOGE_COIN",
+      "battleCries": ["Tesla power!", "SpaceX Moon Lines!", "Pump the Doge!"]
     },
     {
       "id": "spacex_rocket",
@@ -374,8 +374,8 @@
       "range": 80,
       "effects": ["launch", "area_damage"],
       "animation": "rocket_blast",
-      "projectileType": "MEME_ROCKET",
-      "battleCries": ["To Mars!", "SpaceX launch!", "Rocket power!"]
+      "projectileType": "ROCKET_ADVANCED",
+      "battleCries": ["To the Mars!", "Pump the shit tokens!", "Sam killer attack!"]
     },
     {
       "id": "doge_power",
@@ -387,8 +387,8 @@
       "range": 65,
       "effects": ["meme_boost", "viral"],
       "animation": "doge_blast",
-      "projectileType": "MEME_ROCKET",
-      "battleCries": ["Much wow!", "Doge to the moon!", "Such power!"]
+      "projectileType": "DOGE_COIN",
+      "battleCries": ["Much wow!", "Doge to the moon!", "Sam is Liar!"]
     },
     {
       "id": "bitcoin_laser",
@@ -400,8 +400,8 @@
       "range": 70,
       "effects": ["burn", "pierce"],
       "animation": "laser_blast",
-      "projectileType": "BITCOIN_LASER",
-      "battleCries": ["Bitcoin power!", "Digital gold!", "HODL strong!"]
+      "projectileType": "BITCOIN_CIRCLE",
+      "battleCries": ["Laser eyes!", "Bitcoin power!", "HODL strong!"]
     },
     {
       "id": "hodl_shield",
@@ -414,7 +414,7 @@
       "effects": ["shield", "defense_boost"],
       "animation": "shield_up",
       "projectileType": "BITCOIN_CIRCLE",
-      "battleCries": ["HODL forever!", "Diamond hands!", "Never sell!"]
+      "battleCries": ["Again Bought BTC!", "Diamond hands!", "Never sell!"]
     },
     {
       "id": "corporate_strategy",
@@ -439,7 +439,7 @@
       "range": 65,
       "effects": ["profit", "gold_rush"],
       "animation": "royal_strike",
-      "projectileType": "DEFI_ORB",
+      "projectileType": "HODL_DIAMOND",
       "battleCries": ["Royal profits!", "Queen's strategy!", "Golden opportunity!"]
     },
     {
@@ -452,8 +452,8 @@
       "range": 70,
       "effects": ["royal", "critical"],
       "animation": "queen_attack",
-      "projectileType": "BITCOIN_LASER",
-      "battleCries": ["Queen's power!", "Royal strike!", "Bow to the queen!"]
+      "projectileType": "CANDLE_STICKS",
+      "battleCries": ["PnL Baby!", "Short Slash!", "Arbitrage slap!"]
     },
     {
       "id": "market_dominance",
@@ -465,8 +465,8 @@
       "range": 80,
       "effects": ["dominance", "market_control"],
       "animation": "dominance_blast",
-      "projectileType": "MEME_ROCKET",
-      "battleCries": ["Market domination!", "Queen rules all!", "Total control!"]
+      "projectileType": "FIRE_BLAST",
+      "battleCries": ["Market domination!", "Delist baby!", "I am OG!"]
     },
     {
       "id": "diamond_hands",
@@ -517,7 +517,7 @@
       "range": 65,
       "effects": ["exchange", "volume"],
       "animation": "exchange_blast",
-      "projectileType": "BITCOIN_LASER",
+      "projectileType": "BINANCE_COIN",
       "battleCries": ["Binance power!", "Exchange dominance!", "Volume surge!"]
     },
     {
@@ -530,8 +530,8 @@
       "range": 70,
       "effects": ["fury", "multi_trade"],
       "animation": "trading_storm",
-      "projectileType": "DEFI_ORB",
-      "battleCries": ["Trading fury!", "Market storm!", "Binance rage!"]
+      "projectileType": "BINANCE_BOLT",
+      "battleCries": ["Trading fury!", "I am the BOSS!", "Binance rage!"]
     },
     {
       "id": "peer_review",
@@ -543,8 +543,8 @@
       "range": 60,
       "effects": ["academic", "precision"],
       "animation": "review_strike",
-      "projectileType": "DEFI_ORB",
-      "battleCries": ["Peer reviewed!", "Academic precision!", "Research power!"]
+      "projectileType": "BITCOIN_LASER",
+      "battleCries": ["Uknown Power!", "Academic precision!", "Research power!"]
     },
     {
       "id": "cardano_strike",
@@ -569,8 +569,8 @@
       "range": 70,
       "effects": ["precision", "academic"],
       "animation": "precision_blast",
-      "projectileType": "DEFI_ORB",
-      "battleCries": ["Academic strike!", "Precision attack!", "Research validated!"]
+      "projectileType": "FIRE_BOMB",
+      "battleCries": ["I am not sure strike!", "Only Ico Power!", "Research validated!"]
     },
     {
       "id": "parachain_link",
@@ -582,7 +582,7 @@
       "range": 70,
       "effects": ["link", "multi_chain"],
       "animation": "chain_link",
-      "projectileType": "DEFI_ORB",
+      "projectileType": "POLKADOT_COIN",
       "battleCries": ["Parachain power!", "Interoperability!", "Connected strike!"]
     },
     {
@@ -595,7 +595,7 @@
       "range": 65,
       "effects": ["substrate", "framework"],
       "animation": "substrate_blast",
-      "projectileType": "BITCOIN_LASER",
+      "projectileType": "ETHEREUM_SHARD",
       "battleCries": ["Substrate power!", "Framework strike!", "Polkadot force!"]
     },
     {
@@ -608,7 +608,7 @@
       "range": 75,
       "effects": ["interop", "blast"],
       "animation": "interop_explosion",
-      "projectileType": "MEME_ROCKET",
+      "projectileType": "BLOCKCHAIN_SECURITY",
       "battleCries": ["Interop blast!", "Cross-chain power!", "Universal connection!"]
     },
     {
@@ -623,6 +623,19 @@
       "animation": "viral_blast",
       "projectileType": "MEME_ROCKET",
       "battleCries": ["Going viral!", "Meme power!", "Spread the word!"]
+    },
+    {
+      "id": "exchange_dominance",
+      "name": "Exchange Dominance",
+      "description": "Borsa hakimiyeti ile güçlü saldırı.",
+      "type": "special2",
+      "damage": 200,
+      "cooldown": 1200,
+      "range": 80,
+      "effects": ["dominance", "area_damage"],
+      "animation": "exchange_blast",
+      "projectileType": "EXCHANGE_POWER",
+      "battleCries": ["Exchange dominance!", "Binance rules!", "Market control!"]
     }
   ]
 }

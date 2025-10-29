@@ -35,7 +35,7 @@ export class SelectScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('vitalik-portrait', 'assets/sprites/vitalik/vitalik_single.png')
+    // Preload any necessary assets here
   }
 
   create() {
@@ -52,7 +52,7 @@ export class SelectScene extends Phaser.Scene {
     const title = this.add.text(width / 2, 50, 'CHARACTER SELECTION', {
       fontSize: '42px',
       color: '#ff6600',
-      fontFamily: 'Jacquard 12, Impact, Arial Black, sans-serif',
+      fontFamily: 'Bangers, Impact, Arial Black, sans-serif',
       stroke: '#660000',
       strokeThickness: 5,
       letterSpacing: 2,
@@ -115,7 +115,7 @@ export class SelectScene extends Phaser.Scene {
     this.player1Indicator = this.add.text(80, 480, 'P1', {
       fontSize: '18px',
       color: this.currentPlayer === 1 ? '#ff6600' : '#666666',
-      fontFamily: 'Jacquard 12, Impact, Arial Black, sans-serif',
+      fontFamily: 'Bangers, Impact, Arial Black, sans-serif',
       stroke: this.currentPlayer === 1 ? '#330000' : '#333333',
       strokeThickness: 2
     }).setOrigin(0.5)
@@ -125,7 +125,7 @@ export class SelectScene extends Phaser.Scene {
       this.player2Indicator = this.add.text(width - 80, 480, 'P2', {
         fontSize: '18px',
         color: this.currentPlayer === 2 ? '#ff6600' : '#666666',
-        fontFamily: 'Jacquard 12, Impact, Arial Black, sans-serif',
+        fontFamily: 'Bangers, Impact, Arial Black, sans-serif',
         stroke: this.currentPlayer === 2 ? '#330000' : '#333333',
         strokeThickness: 2
       }).setOrigin(0.5)
@@ -140,7 +140,7 @@ export class SelectScene extends Phaser.Scene {
     this.add.text(width / 2, 120, 'SELECT CHARACTER', {
       fontSize: '24px',
       color: '#ffddcc',
-      fontFamily: 'Jacquard 12, Impact, Arial Black, sans-serif',
+      fontFamily: 'Bangers, Impact, Arial Black, sans-serif',
       letterSpacing: 1,
       shadow: {
         offsetX: 2,
@@ -320,7 +320,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 35, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Impact, Arial Black, Helvetica Neue, Arial, sans-serif'
+        fontFamily: 'Bangers, Impact, Arial Black, Helvetica Neue, Arial, sans-serif'
       }).setOrigin(0.5)
       
       // Character special move - smaller font and positioned better
@@ -331,7 +331,7 @@ export class SelectScene extends Phaser.Scene {
       const moveText = this.add.text(x, y + 48, moveName, {
         fontSize: '9px',
         color: '#cccccc',
-        fontFamily: 'Jacquard 12, Impact, Arial Black, Helvetica Neue, Arial, sans-serif'
+        fontFamily: 'Bangers, Impact, Arial Black, Helvetica Neue, Arial, sans-serif'
       }).setOrigin(0.5)
     })
   }
@@ -349,7 +349,7 @@ export class SelectScene extends Phaser.Scene {
     this.player1ReadyButton = this.add.text(120, height - 30, 'READY!', {
       fontSize: '14px',
       color: '#ff6600',
-      fontFamily: 'Jacquard 12, Arial Bold',
+      fontFamily: 'Bangers, Arial Bold',
       backgroundColor: '#3d1a1a',
       padding: { x: 12, y: 6 }
     }).setOrigin(0.5)
@@ -373,7 +373,7 @@ export class SelectScene extends Phaser.Scene {
       this.player2ReadyButton = this.add.text(width - 120, height - 30, 'READY!', {
         fontSize: '14px',
         color: '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold',
+        fontFamily: 'Bangers, Arial Bold',
         backgroundColor: '#3d1a1a',
         padding: { x: 12, y: 6 }
       }).setOrigin(0.5)
@@ -541,7 +541,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 10, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(nameText)
 
@@ -550,7 +550,7 @@ export class SelectScene extends Phaser.Scene {
       const playerText = this.add.text(x, y - 60, playerLabel, {
         fontSize: '14px',
         color: player === 1 ? '#00ff00' : '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(playerText)
 
@@ -559,7 +559,7 @@ export class SelectScene extends Phaser.Scene {
         const statusTextObj = this.add.text(x, y + 25, 'CPU', {
           fontSize: '10px',
           color: '#ff6600',
-          fontFamily: 'Jacquard 12, Arial Bold'
+          fontFamily: 'Bangers, Arial Bold'
         }).setOrigin(0.5)
         displayElements.push(statusTextObj)
       }
@@ -575,7 +575,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 10, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(nameText)
 
@@ -584,7 +584,7 @@ export class SelectScene extends Phaser.Scene {
       const playerText = this.add.text(x, y - 60, playerLabel, {
         fontSize: '14px',
         color: player === 1 ? '#00ff00' : '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(playerText)
 
@@ -593,7 +593,7 @@ export class SelectScene extends Phaser.Scene {
         const statusTextObj = this.add.text(x, y + 25, 'CPU', {
           fontSize: '10px',
           color: '#ff6600',
-          fontFamily: 'Jacquard 12, Arial Bold'
+          fontFamily: 'Bangers, Arial Bold'
         }).setOrigin(0.5)
         displayElements.push(statusTextObj)
       }
@@ -609,7 +609,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 10, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(nameText)
 
@@ -618,7 +618,7 @@ export class SelectScene extends Phaser.Scene {
       const playerText = this.add.text(x, y - 60, playerLabel, {
         fontSize: '14px',
         color: player === 1 ? '#00ff00' : '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(playerText)
 
@@ -627,7 +627,7 @@ export class SelectScene extends Phaser.Scene {
         const statusTextObj = this.add.text(x, y + 25, 'CPU', {
           fontSize: '10px',
           color: '#ff6600',
-          fontFamily: 'Jacquard 12, Arial Bold'
+          fontFamily: 'Bangers, Arial Bold'
         }).setOrigin(0.5)
         displayElements.push(statusTextObj)
       }
@@ -643,7 +643,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 10, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(nameText)
 
@@ -652,7 +652,7 @@ export class SelectScene extends Phaser.Scene {
       const playerText = this.add.text(x, y - 60, playerLabel, {
         fontSize: '14px',
         color: player === 1 ? '#00ff00' : '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(playerText)
 
@@ -661,7 +661,7 @@ export class SelectScene extends Phaser.Scene {
         const statusTextObj = this.add.text(x, y + 25, 'CPU', {
           fontSize: '10px',
           color: '#ff6600',
-          fontFamily: 'Jacquard 12, Arial Bold'
+          fontFamily: 'Bangers, Arial Bold'
         }).setOrigin(0.5)
         displayElements.push(statusTextObj)
       }
@@ -677,7 +677,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 10, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(nameText)
 
@@ -686,7 +686,7 @@ export class SelectScene extends Phaser.Scene {
       const playerText = this.add.text(x, y - 60, playerLabel, {
         fontSize: '14px',
         color: player === 1 ? '#00ff00' : '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(playerText)
 
@@ -695,7 +695,7 @@ export class SelectScene extends Phaser.Scene {
         const statusTextObj = this.add.text(x, y + 25, 'CPU', {
           fontSize: '10px',
           color: '#ff6600',
-          fontFamily: 'Jacquard 12, Arial Bold'
+          fontFamily: 'Bangers, Arial Bold'
         }).setOrigin(0.5)
         displayElements.push(statusTextObj)
       }
@@ -711,7 +711,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 10, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(nameText)
 
@@ -720,7 +720,7 @@ export class SelectScene extends Phaser.Scene {
       const playerText = this.add.text(x, y - 60, playerLabel, {
         fontSize: '14px',
         color: player === 1 ? '#00ff00' : '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(playerText)
 
@@ -729,7 +729,7 @@ export class SelectScene extends Phaser.Scene {
         const statusTextObj = this.add.text(x, y + 25, 'CPU', {
           fontSize: '10px',
           color: '#ff6600',
-          fontFamily: 'Jacquard 12, Arial Bold'
+          fontFamily: 'Bangers, Arial Bold'
         }).setOrigin(0.5)
         displayElements.push(statusTextObj)
       }
@@ -745,7 +745,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 10, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(nameText)
 
@@ -754,7 +754,7 @@ export class SelectScene extends Phaser.Scene {
       const playerText = this.add.text(x, y - 60, playerLabel, {
         fontSize: '14px',
         color: player === 1 ? '#00ff00' : '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(playerText)
 
@@ -763,7 +763,7 @@ export class SelectScene extends Phaser.Scene {
         const statusTextObj = this.add.text(x, y + 25, 'CPU', {
           fontSize: '10px',
           color: '#ff6600',
-          fontFamily: 'Jacquard 12, Arial Bold'
+          fontFamily: 'Bangers, Arial Bold'
         }).setOrigin(0.5)
         displayElements.push(statusTextObj)
       }
@@ -779,7 +779,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 10, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(nameText)
 
@@ -788,7 +788,7 @@ export class SelectScene extends Phaser.Scene {
       const playerText = this.add.text(x, y - 60, playerLabel, {
         fontSize: '14px',
         color: player === 1 ? '#00ff00' : '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(playerText)
 
@@ -797,7 +797,7 @@ export class SelectScene extends Phaser.Scene {
         const statusTextObj = this.add.text(x, y + 25, 'CPU', {
           fontSize: '10px',
           color: '#ff6600',
-          fontFamily: 'Jacquard 12, Arial Bold'
+          fontFamily: 'Bangers, Arial Bold'
         }).setOrigin(0.5)
         displayElements.push(statusTextObj)
       }
@@ -813,7 +813,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 10, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(nameText)
 
@@ -822,7 +822,7 @@ export class SelectScene extends Phaser.Scene {
       const playerText = this.add.text(x, y - 60, playerLabel, {
         fontSize: '14px',
         color: player === 1 ? '#00ff00' : '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(playerText)
 
@@ -831,7 +831,7 @@ export class SelectScene extends Phaser.Scene {
         const statusTextObj = this.add.text(x, y + 25, 'CPU', {
           fontSize: '10px',
           color: '#ff6600',
-          fontFamily: 'Jacquard 12, Arial Bold'
+          fontFamily: 'Bangers, Arial Bold'
         }).setOrigin(0.5)
         displayElements.push(statusTextObj)
       }
@@ -847,7 +847,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 10, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(nameText)
 
@@ -856,7 +856,7 @@ export class SelectScene extends Phaser.Scene {
       const playerText = this.add.text(x, y - 60, playerLabel, {
         fontSize: '14px',
         color: player === 1 ? '#00ff00' : '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(playerText)
 
@@ -865,7 +865,7 @@ export class SelectScene extends Phaser.Scene {
         const statusTextObj = this.add.text(x, y + 25, 'CPU', {
           fontSize: '10px',
           color: '#ff6600',
-          fontFamily: 'Jacquard 12, Arial Bold'
+          fontFamily: 'Bangers, Arial Bold'
         }).setOrigin(0.5)
         displayElements.push(statusTextObj)
       }
@@ -881,7 +881,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 10, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(nameText)
 
@@ -890,7 +890,7 @@ export class SelectScene extends Phaser.Scene {
       const playerText = this.add.text(x, y - 60, playerLabel, {
         fontSize: '14px',
         color: player === 1 ? '#00ff00' : '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(playerText)
 
@@ -899,7 +899,7 @@ export class SelectScene extends Phaser.Scene {
         const statusTextObj = this.add.text(x, y + 25, 'CPU', {
           fontSize: '10px',
           color: '#ff6600',
-          fontFamily: 'Jacquard 12, Arial Bold'
+          fontFamily: 'Bangers, Arial Bold'
         }).setOrigin(0.5)
         displayElements.push(statusTextObj)
       }
@@ -915,7 +915,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 10, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(nameText)
 
@@ -924,7 +924,7 @@ export class SelectScene extends Phaser.Scene {
       const playerText = this.add.text(x, y - 60, playerLabel, {
         fontSize: '14px',
         color: player === 1 ? '#00ff00' : '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(playerText)
 
@@ -933,7 +933,7 @@ export class SelectScene extends Phaser.Scene {
         const statusTextObj = this.add.text(x, y + 25, 'CPU', {
           fontSize: '10px',
           color: '#ff6600',
-          fontFamily: 'Jacquard 12, Arial Bold'
+          fontFamily: 'Bangers, Arial Bold'
         }).setOrigin(0.5)
         displayElements.push(statusTextObj)
       }
@@ -949,7 +949,7 @@ export class SelectScene extends Phaser.Scene {
     const nameText = this.add.text(x, y + 10, character.name, {
       fontSize: '12px',
       color: '#00d4ff',
-      fontFamily: 'Jacquard 12, Arial Bold'
+      fontFamily: 'Bangers, Arial Bold'
     }).setOrigin(0.5)
     displayElements.push(nameText)
 
@@ -958,7 +958,7 @@ export class SelectScene extends Phaser.Scene {
     const playerText = this.add.text(x, y - 60, playerLabel, {
       fontSize: '14px',
       color: player === 1 ? '#00ff00' : '#ff6600',
-      fontFamily: 'Jacquard 12, Arial Bold'
+      fontFamily: 'Bangers, Arial Bold'
     }).setOrigin(0.5)
     displayElements.push(playerText)
 
@@ -967,7 +967,7 @@ export class SelectScene extends Phaser.Scene {
       const statusTextObj = this.add.text(x, y + 25, 'CPU', {
         fontSize: '10px',
         color: '#ff6600',
-        fontFamily: 'Jacquard 12, Arial Bold'
+        fontFamily: 'Bangers, Arial Bold'
       }).setOrigin(0.5)
       displayElements.push(statusTextObj)
     }

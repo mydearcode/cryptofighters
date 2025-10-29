@@ -63,9 +63,9 @@
         "corporate_strategy"
       ],
       "special_projectiles": {
-        "special1": "BITCOIN_CIRCLE",
-        "special2": "BLOCKCHAIN_SECURITY"
-      },
+      "special1": "BITCOIN_CIRCLE",
+      "special2": "BLOCKCHAIN_SECURITY"
+    },
       "rarity": "legendary",
       "element": "power"
     },
@@ -86,8 +86,8 @@
         "flash_loan"
       ],
       "special_projectiles": {
-        "special1": "COMPUTER_CHIP",
-        "special2": "TRENDING_DOWN"
+        "special1": "NINJA_STAR",
+        "special2": "SWORD_HEAVY"
       },
       "rarity": "epic",
       "element": "technology"
@@ -109,7 +109,7 @@
         "diamond_paws"
       ],
       "special_projectiles": {
-        "special1": "DOGE_COIN",
+        "special1": "ROCKET_ADVANCED",
         "special2": "MOON_STARS"
       },
       "rarity": "common",
@@ -178,8 +178,8 @@
         "doge_power"
       ],
       "special_projectiles": {
-        "special1": "ROCKET_ADVANCED",
-        "special2": "SPACE_BLAST"
+        "special1": "DOGE_COIN",
+        "special2": "ROCKET_ADVANCED"
       },
       "rarity": "legendary",
       "element": "innovation"
@@ -201,7 +201,7 @@
         "academic_precision"
       ],
       "special_projectiles": {
-        "special1": "MOON_ADVANCED",
+        "special1": "BITCOIN_LASER",
         "special2": "FIRE_BOMB"
       },
       "rarity": "legendary",
@@ -224,8 +224,8 @@
         "interop_blast"
       ],
       "special_projectiles": {
-        "special1": "SPACE_COSMOS",
-        "special2": "ROCKET_CLASSIC"
+        "special1": "ETHEREUM_SHARD",
+        "special2": "BLOCKCHAIN_SECURITY"
       },
       "rarity": "legendary",
       "element": "connectivity"
@@ -247,8 +247,8 @@
         "digital_strike"
       ],
       "special_projectiles": {
-        "special1": "BOMB_CLASSIC",
-        "special2": "BOMB_ADVANCED"
+        "special1": "BINANCE_BOLT",
+        "special2": "FIRE_BLAST"
       },
       "rarity": "epic",
       "element": "power"
@@ -271,7 +271,7 @@
       ],
       "special_projectiles": {
         "special1": "NINJA_STAR",
-        "special2": "TRENDING_UP"
+        "special2": "BASE_COIN"
       },
       "rarity": "rare",
       "element": "agility"
