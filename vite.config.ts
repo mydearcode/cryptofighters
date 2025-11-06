@@ -9,6 +9,7 @@ export default defineConfig({
       '@/assets': resolve(__dirname, 'assets')
     }
   },
+  publicDir: 'assets',
   server: {
     port: 3000,
     host: true
@@ -31,6 +32,6 @@ export default defineConfig({
       ]
     }
   },
-  base: './',
+  base: '/',
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg']
 })
