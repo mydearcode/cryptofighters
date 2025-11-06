@@ -14,12 +14,6 @@ export class SelectScene extends Phaser.Scene {
   }
   private currentPlayer: 1 | 2 = 1
   private characters = CharacterManager.getAllCharacters()
-  private characterIdMapping: { [key: string]: string } = {
-    'hodler': 'hodl_master',
-    'trader': 'paper_hands', 
-    'whale': 'whale_trader',
-    'degen': 'degen_ape'
-  }
   private player1ReadyButton!: Phaser.GameObjects.Text
   private player2ReadyButton!: Phaser.GameObjects.Text
   private player1Indicator!: Phaser.GameObjects.Text
@@ -40,7 +34,6 @@ export class SelectScene extends Phaser.Scene {
 
   create() {
     const { width, height } = this.cameras.main
-    const gameMode = this.registry.get('gameMode') || 'twoPlayer'
 
     // Background matching MenuScene - darker, more aggressive
     this.add.rectangle(width / 2, height / 2, width, height, 0x1a0a0a)
@@ -49,7 +42,7 @@ export class SelectScene extends Phaser.Scene {
     this.add.rectangle(width / 2, height / 2, width - 20, height - 20, 0x2a1a1a).setStrokeStyle(3, 0xff4444, 0.6)
     
     // Title with enhanced styling
-    const title = this.add.text(width / 2, 50, 'CHARACTER SELECTION', {
+    this.add.text(width / 2, 50, 'CHARACTER SELECTION', {
       fontSize: '42px',
       color: '#ff6600',
       fontFamily: 'Bangers, Impact, Arial Black, sans-serif',
@@ -133,8 +126,8 @@ export class SelectScene extends Phaser.Scene {
   }
 
   private createCharacterGrid() {
-    const { width, height } = this.cameras.main
-    const characters = gameData.getAllCharacters()
+    const { width } = this.cameras.main
+    const characters = this.characters
     
     // Character selection title matching MenuScene style
     this.add.text(width / 2, 120, 'SELECT CHARACTER', {
@@ -317,7 +310,7 @@ export class SelectScene extends Phaser.Scene {
       }
       
       // Character name - smaller font to prevent overlap
-      const nameText = this.add.text(x, y + 35, character.name, {
+      this.add.text(x, y + 35, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
         fontFamily: '"Geo", "Courier New", monospace, sans-serif'
@@ -328,7 +321,7 @@ export class SelectScene extends Phaser.Scene {
       const moveData = gameData.getMove(moveId)
       const moveName = moveData ? moveData.name : moveId.replace(/([A-Z])/g, ' $1').trim()
       
-      const moveText = this.add.text(x, y + 48, moveName, {
+      this.add.text(x, y + 48, moveName, {
         fontSize: '9px',
         color: '#cccccc',
         fontFamily: '"Geo", "Courier New", monospace, sans-serif'

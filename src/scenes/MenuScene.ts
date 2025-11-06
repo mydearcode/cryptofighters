@@ -65,7 +65,7 @@ export class MenuScene extends Phaser.Scene {
     subtitle.setAlpha(0.9)
     
     // Game mode selection title with better font
-    const modeTitle = this.add.text(width / 2, 230, 'SELECT GAME MODE', {
+    this.add.text(width / 2, 230, 'SELECT GAME MODE', {
       fontSize: '32px',
       color: '#ffddcc',
       fontFamily: '"Bangers", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
@@ -97,7 +97,7 @@ export class MenuScene extends Phaser.Scene {
         singlePlayerButton.setStrokeStyle(3, 0xff4444)
       })
     
-    const singlePlayerText = this.add.text(width / 2, 285, 'SINGLE PLAYER', {
+    this.add.text(width / 2, 285, 'SINGLE PLAYER', {
       fontSize: '24px',
       color: '#ff6600',
       fontFamily: '"Bangers", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
@@ -110,8 +110,8 @@ export class MenuScene extends Phaser.Scene {
         fill: true
       }
     }).setOrigin(0.5)
-    
-    const singlePlayerSubtext = this.add.text(width / 2, 310, 'Play vs CPU', {
+
+    this.add.text(width / 2, 310, 'Play vs CPU', {
       fontSize: '14px',
       color: '#ddaa88',
       fontFamily: '"Geo", "Courier New", monospace, sans-serif',
@@ -136,7 +136,7 @@ export class MenuScene extends Phaser.Scene {
         twoPlayerButton.setStrokeStyle(3, 0xff4444)
       })
     
-    const twoPlayerText = this.add.text(width / 2, 385, 'TWO PLAYER', {
+    this.add.text(width / 2, 385, 'TWO PLAYER', {
       fontSize: '24px',
       color: '#ff6600',
       fontFamily: '"Bangers", Impact, "Arial Black", "Helvetica Neue", Arial, sans-serif',
@@ -149,8 +149,8 @@ export class MenuScene extends Phaser.Scene {
         fill: true
       }
     }).setOrigin(0.5)
-    
-    const twoPlayerSubtext = this.add.text(width / 2, 410, 'Play with Friend', {
+
+    this.add.text(width / 2, 410, 'Play with Friend', {
       fontSize: '14px',
       color: '#ddaa88',
       fontFamily: '"Geo", "Courier New", monospace, sans-serif',

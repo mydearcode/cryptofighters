@@ -17,8 +17,6 @@ export class FightScene extends Phaser.Scene {
   private timerText!: Phaser.GameObjects.Text
   private p1HealthBar!: Phaser.GameObjects.Rectangle
   private p2HealthBar!: Phaser.GameObjects.Rectangle
-  private p1NameText!: Phaser.GameObjects.Text
-  private p2NameText!: Phaser.GameObjects.Text
   private cursors!: Phaser.Types.Input.Keyboard.CursorKeys
   private wasdKeys!: any
   private gameTimer!: Phaser.Time.TimerEvent
@@ -28,7 +26,6 @@ export class FightScene extends Phaser.Scene {
   
   // Round system variables
   private currentRound: number = 1
-  private maxRounds: number = 3  // Best of 3 system - up to 3 rounds
   private roundScores: { player1: number, player2: number } = { player1: 0, player2: 0 }
   private roundText!: Phaser.GameObjects.Text
   private isMatchComplete: boolean = false
@@ -120,7 +117,7 @@ export class FightScene extends Phaser.Scene {
 
   preload() {
     // Add load event listeners for debugging
-    this.load.on('filecomplete', (key: string, type: string, data: any) => {
+    this.load.on('filecomplete', () => {
       // File loaded successfully
     })
     
@@ -258,17 +255,6 @@ export class FightScene extends Phaser.Scene {
     return themeColors[colorStr] || 0x1a1a2e
   }
 
-  private getGroundColor(theme: string): number {
-    const groundColors: { [key: string]: number } = {
-      'cyberpunk': 0x444444,
-      'neon': 0x333366,
-      'industrial': 0x555555,
-      'mystical': 0x4a4a6a,
-      'artistic': 0xdaa520,
-      'playful': 0xff1493
-    }
-    return groundColors[theme] || 0x444444
-  }
 
   private getThemeColor(theme: string): string {
     const themeColors: { [key: string]: string } = {
@@ -337,8 +323,6 @@ export class FightScene extends Phaser.Scene {
     if (this.currentArena.background.endsWith('.png')) {
       return
     }
-
-    const width = this.cameras.main.width
     const crowdColor = this.parseColor(this.currentArena.lighting)
 
     // Crowd simulation with arena-specific colors (only for non-PNG backgrounds)
@@ -361,7 +345,7 @@ export class FightScene extends Phaser.Scene {
     this.add.rectangle(width / 2, 80, width - 40, 60, 0x000000, 0.7)
 
     // Player 1 UI (left side)
-    this.p1NameText = this.add.text(30, 60, char1Data.name.toUpperCase(), {
+    this.add.text(30, 60, char1Data.name.toUpperCase(), {
       font: 'bold 14px Courier New',
       color: '#00ff00'
     })
@@ -370,7 +354,7 @@ export class FightScene extends Phaser.Scene {
     this.p1HealthBar = this.add.rectangle(30, 85, 200, 18, 0x00ff00).setOrigin(0, 0.5)
 
     // Player 2 UI (right side)
-    this.p2NameText = this.add.text(width - 30, 60, char2Data.name.toUpperCase(), {
+    this.add.text(width - 30, 60, char2Data.name.toUpperCase(), {
       font: 'bold 14px Courier New',
       color: '#ff0000'
     }).setOrigin(1, 0)
@@ -725,22 +709,6 @@ export class FightScene extends Phaser.Scene {
         this.startNextRound()
       })
     }
-  }
-
-  private checkMatchComplete(): boolean {
-    // Check if someone won 2 rounds (best of 3 system)
-    if (this.roundScores.player1 >= 2 || this.roundScores.player2 >= 2) {
-      this.isMatchComplete = true
-      return true
-    }
-    
-    // Check if we've completed 3 rounds (after incrementing currentRound)
-    if (this.currentRound >= 3) {
-      this.isMatchComplete = true
-      return true
-    }
-    
-    return false
   }
 
   private getFinalMatchResult(): string {

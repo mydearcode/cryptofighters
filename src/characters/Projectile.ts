@@ -75,7 +75,6 @@ export class Projectile extends Phaser.GameObjects.Container {
   private damage: number
   private lifespan: number
   private maxLifespan: number
-  private projectileType: ProjectileType
   private owner: any // Reference to the character who fired this projectile
   
   // Wave motion properties
@@ -104,7 +103,6 @@ export class Projectile extends Phaser.GameObjects.Container {
   ) {
     super(scene, x, y)
     
-    this.projectileType = projectileType
     this.damage = damage
     this.owner = owner
     this.lifespan = 0
@@ -824,7 +822,8 @@ export class Projectile extends Phaser.GameObjects.Container {
     
     // Create pulsing glow effect using sine wave
     const glowValue = Math.sin(this.glowTime) // Oscillates between -1 and 1
-    const intensity = (glowValue + 1) * 0.5 // Convert -1,1 to 0,1
+    const rawIntensity = (glowValue + 1) * 0.5 // Convert -1,1 to 0,1
+    const intensity = Math.max(0, Math.min(1, rawIntensity * this.glowIntensity))
     
     // Check if this is an SVG-based projectile (Image type)
     if (this.projectileSprite instanceof Phaser.GameObjects.Image) {

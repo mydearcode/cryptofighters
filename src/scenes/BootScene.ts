@@ -465,7 +465,6 @@ export class BootScene extends Phaser.Scene {
 
   create() {
     // Initialize game data system
-    const dataStats = gameData.getDataStats()
     // Game data loaded successfully
 
     // Initialize legacy game registry (for backward compatibility)

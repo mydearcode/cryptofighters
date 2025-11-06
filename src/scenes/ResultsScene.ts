@@ -223,7 +223,7 @@ export class ResultsScene extends Phaser.Scene {
 
     // Fight Again button
     const fightAgainBtn = this.add.rectangle(width / 2 - 120, height - 80, 200, 40, 0x4a90e2)
-    const fightAgainText = this.add.text(width / 2 - 120, height - 80, 'FIGHT AGAIN', {
+    this.add.text(width / 2 - 120, height - 80, 'FIGHT AGAIN', {
       font: 'bold 14px Courier New',
       color: '#ffffff'
     }).setOrigin(0.5)
@@ -243,7 +243,7 @@ export class ResultsScene extends Phaser.Scene {
 
     // Main Menu button
     const mainMenuBtn = this.add.rectangle(width / 2 + 120, height - 80, 200, 40, 0x666666)
-    const mainMenuText = this.add.text(width / 2 + 120, height - 80, 'MAIN MENU', {
+    this.add.text(width / 2 + 120, height - 80, 'MAIN MENU', {
       font: 'bold 14px Courier New',
       color: '#ffffff'
     }).setOrigin(0.5)
@@ -263,7 +263,7 @@ export class ResultsScene extends Phaser.Scene {
 
     // Share Result button (placeholder for future Telegram integration)
     const shareBtn = this.add.rectangle(width / 2, height - 120, 300, 30, 0x0088cc)
-    const shareText = this.add.text(width / 2, height - 120, '📱 SHARE RESULT (Coming Soon)', {
+    this.add.text(width / 2, height - 120, '📱 SHARE RESULT (Coming Soon)', {
       font: '12px Courier New',
       color: '#ffffff'
     }).setOrigin(0.5)

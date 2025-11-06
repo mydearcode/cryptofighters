@@ -4,10 +4,6 @@ import { gameData } from '../data/DataManager'
 export class ArenaSelectScene extends Phaser.Scene {
   private selectedArena: string = 'crypto_exchange'
   private arenaButtons: Phaser.GameObjects.Text[] = []
-  private selectedCharacters: { player1: string | null, player2: string | null } = {
-    player1: null,
-    player2: null
-  }
 
   constructor() {
     super({ key: 'ArenaSelectScene' })
@@ -15,9 +11,6 @@ export class ArenaSelectScene extends Phaser.Scene {
 
   create() {
     const { width, height } = this.cameras.main
-    
-    // Get selected characters from registry
-    this.selectedCharacters = this.registry.get('selectedCharacters')
 
     // Background matching MenuScene - darker, more aggressive
     this.add.rectangle(width / 2, height / 2, width, height, 0x1a0a0a)
@@ -128,7 +121,7 @@ export class ArenaSelectScene extends Phaser.Scene {
         })
       
       // Arena name - centered in the card, smaller font for 3 columns
-      const nameText = this.add.text(x, y, arena.name, {
+      this.add.text(x, y, arena.name, {
         fontSize: '14px',  // Smaller font for 3 columns
         color: '#ff6600',
         fontFamily: '"Geo", "Courier New", monospace, sans-serif'

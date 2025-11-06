@@ -38,7 +38,6 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
   public health: number
   public maxHealth: number
   public facingRight: boolean = true
-  public onGround: boolean = true
   public isBlocking: boolean = false
   public projectiles: Projectile[] = [] // Array to track projectiles fired by this character
   
@@ -47,8 +46,6 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
   private attackCooldown: number = 0
   private hurtTimer: number = 0
   private animationTimer: number = 0
-  private baseScale: number = 1
-  private baseY: number = 0
 
   constructor(scene: Phaser.Scene, x: number, y: number, characterData: CharacterData) {
     super(scene, x, y, characterData.sprite)
@@ -1318,6 +1315,14 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     const battleCryIndex = Math.floor(Math.random() * moveData.battleCries.length)
     const battleCry = moveData.battleCries[battleCryIndex]
 
+    // Choose color based on attack type to visually differentiate
+    let battleCryColor = '#FFD700' // gold for basic
+    if (attackType === AttackType.SPECIAL1) {
+      battleCryColor = '#00FFFF' // cyan for special1
+    } else if (attackType === AttackType.SPECIAL2) {
+      battleCryColor = '#FF00FF' // magenta for special2
+    }
+
     // Display the battle cry on screen
     const battleCryText = this.scene.add.text(
       this.x,
@@ -1325,7 +1330,7 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
       battleCry,
       {
         fontSize: '14px',
-        color: '#FFD700',
+        color: battleCryColor,
         stroke: '#000000',
         strokeThickness: 2,
         fontFamily: 'Bangers, Impact, Arial Black, Helvetica Neue, Arial, sans-serif'
