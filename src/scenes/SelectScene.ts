@@ -29,7 +29,8 @@ export class SelectScene extends Phaser.Scene {
   }
 
   preload() {
-    // Preload any necessary assets here
+    // SelectScene global standard: assets are preloaded in BootScene.
+    // No local fallback preloads here.
   }
 
   create() {
@@ -190,7 +191,7 @@ export class SelectScene extends Phaser.Scene {
         this.characterSprites.push(sprite)
       } else if (character.id === 'cz') {
         // For CZ, create a sprite from the spritesheet with specific frame
-        const sprite = this.add.sprite(x, y - 15, 'cz-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        const sprite = this.add.sprite(x, y - 15, 'cz-combat-idle', 2)  // Use frame 2 (3rd frame)
           .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
           .setInteractive({ useHandCursor: true })
           .on('pointerdown', () => {
@@ -200,7 +201,7 @@ export class SelectScene extends Phaser.Scene {
         this.characterSprites.push(sprite)
       } else if (character.id === 'elon') {
         // For Elon, create a sprite from the spritesheet with specific frame
-        const sprite = this.add.sprite(x, y - 15, 'elon-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        const sprite = this.add.sprite(x, y - 15, 'elon-combat-idle', 2)  // Use frame 2 (3rd frame)
           .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
           .setInteractive({ useHandCursor: true })
           .on('pointerdown', () => {
@@ -210,7 +211,7 @@ export class SelectScene extends Phaser.Scene {
         this.characterSprites.push(sprite)
       } else if (character.id === 'hoskinson') {
         // For Hoskinson, create a sprite from the spritesheet with specific frame
-        const sprite = this.add.sprite(x, y - 15, 'hoskinson-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        const sprite = this.add.sprite(x, y - 15, 'hoskinson-combat-idle', 2)  // Use frame 2 (3rd frame)
           .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
           .setInteractive({ useHandCursor: true })
           .on('pointerdown', () => {
@@ -220,7 +221,7 @@ export class SelectScene extends Phaser.Scene {
         this.characterSprites.push(sprite)
       } else if (character.id === 'saylor') {
         // For Saylor, create a sprite from the spritesheet with specific frame
-        const sprite = this.add.sprite(x, y - 15, 'saylor-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        const sprite = this.add.sprite(x, y - 15, 'saylor-combat-idle', 2)  // Use frame 2 (3rd frame)
           .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
           .setInteractive({ useHandCursor: true })
           .on('pointerdown', () => {
@@ -230,7 +231,7 @@ export class SelectScene extends Phaser.Scene {
         this.characterSprites.push(sprite)
       } else if (character.id === 'gavin') {
         // For Gavin, create a sprite from the spritesheet with specific frame
-        const sprite = this.add.sprite(x, y - 15, 'gavin-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        const sprite = this.add.sprite(x, y - 15, 'gavin-combat-idle', 2)  // Use frame 2 (3rd frame)
           .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
           .setInteractive({ useHandCursor: true })
           .on('pointerdown', () => {
@@ -250,7 +251,7 @@ export class SelectScene extends Phaser.Scene {
         this.characterSprites.push(sprite)
       } else if (character.id === 'trade_queen') {
         // For Trade Queen, create a sprite from the spritesheet with specific frame
-        const sprite = this.add.sprite(x, y - 15, 'trade-queen-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        const sprite = this.add.sprite(x, y - 15, 'trade-queen-combat-idle', 2)  // Use frame 2 (3rd frame)
           .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
           .setInteractive({ useHandCursor: true })
           .on('pointerdown', () => {
@@ -260,7 +261,7 @@ export class SelectScene extends Phaser.Scene {
         this.characterSprites.push(sprite)
       } else if (character.id === 'defi_ninja') {
         // For Defi Ninja, create a sprite from the spritesheet with specific frame
-        const sprite = this.add.sprite(x, y - 15, 'defi-ninja-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        const sprite = this.add.sprite(x, y - 15, 'defi-ninja-combat-idle', 2)  // Use frame 2 (3rd frame)
           .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
           .setInteractive({ useHandCursor: true })
           .on('pointerdown', () => {
@@ -270,7 +271,7 @@ export class SelectScene extends Phaser.Scene {
         this.characterSprites.push(sprite)
       } else if (character.id === 'meme_lord') {
         // For Meme Lord, create a sprite from the spritesheet with specific frame
-        const sprite = this.add.sprite(x, y - 15, 'meme-lord-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        const sprite = this.add.sprite(x, y - 15, 'meme-lord-combat-idle', 2)  // Use frame 2 (3rd frame)
           .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
           .setInteractive({ useHandCursor: true })
           .on('pointerdown', () => {
@@ -280,7 +281,7 @@ export class SelectScene extends Phaser.Scene {
         this.characterSprites.push(sprite)
       } else if (character.id === 'brian') {
         // For Brian, create a sprite from the spritesheet with specific frame
-        const sprite = this.add.sprite(x, y - 15, 'brian-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        const sprite = this.add.sprite(x, y - 15, 'brian-combat-idle', 2)  // Use frame 2 (3rd frame)
           .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
           .setInteractive({ useHandCursor: true })
           .on('pointerdown', () => {
@@ -290,7 +291,7 @@ export class SelectScene extends Phaser.Scene {
         this.characterSprites.push(sprite)
       } else if (character.id === 'jesse') {
         // For Jesse, create a sprite from the spritesheet with specific frame
-        const sprite = this.add.sprite(x, y - 15, 'jesse-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+        const sprite = this.add.sprite(x, y - 15, 'jesse-combat-idle', 2)  // Use frame 2 (3rd frame)
           .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
           .setInteractive({ useHandCursor: true })
           .on('pointerdown', () => {
@@ -559,7 +560,7 @@ export class SelectScene extends Phaser.Scene {
       return  // Exit early for Vitalik character
     } else if (character.id === 'cz') {
       // For CZ, we'll create a specific frame from the spritesheet in the scene
-      const selectedSprite = this.add.sprite(x, y - 30, 'cz-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+      const selectedSprite = this.add.sprite(x, y - 30, 'cz-combat-idle', 2)  // Use frame 2 (3rd frame)
         .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
       displayElements.push(selectedSprite)
       
@@ -593,7 +594,7 @@ export class SelectScene extends Phaser.Scene {
       return  // Exit early for CZ character
     } else if (character.id === 'elon') {
       // For Elon, we'll create a specific frame from the spritesheet in the scene
-      const selectedSprite = this.add.sprite(x, y - 30, 'elon-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+      const selectedSprite = this.add.sprite(x, y - 30, 'elon-combat-idle', 2)  // Use frame 2 (3rd frame)
         .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
       displayElements.push(selectedSprite)
       
@@ -627,7 +628,7 @@ export class SelectScene extends Phaser.Scene {
       return  // Exit early for Elon character
     } else if (character.id === 'hoskinson') {
       // For Hoskinson, we'll create a specific frame from the spritesheet in the scene
-      const selectedSprite = this.add.sprite(x, y - 30, 'hoskinson-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+      const selectedSprite = this.add.sprite(x, y - 30, 'hoskinson-combat-idle', 2)  // Use frame 2 (3rd frame)
         .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
       displayElements.push(selectedSprite)
       
@@ -661,7 +662,7 @@ export class SelectScene extends Phaser.Scene {
       return  // Exit early for Hoskinson character
     } else if (character.id === 'saylor') {
       // For Saylor, we'll create a specific frame from the spritesheet in the scene
-      const selectedSprite = this.add.sprite(x, y - 30, 'saylor-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+      const selectedSprite = this.add.sprite(x, y - 30, 'saylor-combat-idle', 2)  // Use frame 2 (3rd frame)
         .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
       displayElements.push(selectedSprite)
       
@@ -695,7 +696,7 @@ export class SelectScene extends Phaser.Scene {
       return  // Exit early for Saylor character
     } else if (character.id === 'gavin') {
       // For Gavin, we'll create a specific frame from the spritesheet in the scene
-      const selectedSprite = this.add.sprite(x, y - 30, 'gavin-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+      const selectedSprite = this.add.sprite(x, y - 30, 'gavin-combat-idle', 2)  // Use frame 2 (3rd frame)
         .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
       displayElements.push(selectedSprite)
       
@@ -763,7 +764,7 @@ export class SelectScene extends Phaser.Scene {
       return  // Exit early for Hodl Master character
     } else if (character.id === 'trade_queen') {
       // For Trade Queen, we'll create a specific frame from the spritesheet in the scene
-      const selectedSprite = this.add.sprite(x, y - 30, 'trade-queen-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+      const selectedSprite = this.add.sprite(x, y - 30, 'trade-queen-combat-idle', 2)  // Use frame 2 (3rd frame)
         .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
       displayElements.push(selectedSprite)
       
@@ -797,7 +798,7 @@ export class SelectScene extends Phaser.Scene {
       return  // Exit early for Trade Queen character
     } else if (character.id === 'defi_ninja') {
       // For Defi Ninja, we'll create a specific frame from the spritesheet in the scene
-      const selectedSprite = this.add.sprite(x, y - 30, 'defi-ninja-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+      const selectedSprite = this.add.sprite(x, y - 30, 'defi-ninja-combat-idle', 2)  // Use frame 2 (3rd frame)
         .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
       displayElements.push(selectedSprite)
       
@@ -831,7 +832,7 @@ export class SelectScene extends Phaser.Scene {
       return  // Exit early for Defi Ninja character
     } else if (character.id === 'meme_lord') {
       // For Meme Lord, we'll create a specific frame from the spritesheet in the scene
-      const selectedSprite = this.add.sprite(x, y - 30, 'meme-lord-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+      const selectedSprite = this.add.sprite(x, y - 30, 'meme-lord-combat-idle', 2)  // Use frame 2 (3rd frame)
         .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
       displayElements.push(selectedSprite)
       
@@ -865,7 +866,7 @@ export class SelectScene extends Phaser.Scene {
       return  // Exit early for Meme Lord character
     } else if (character.id === 'brian') {
       // For Brian, we'll create a specific frame from the spritesheet in the scene
-      const selectedSprite = this.add.sprite(x, y - 30, 'brian-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+      const selectedSprite = this.add.sprite(x, y - 30, 'brian-combat-idle', 2)  // Use frame 2 (3rd frame)
         .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
       displayElements.push(selectedSprite)
       
@@ -899,7 +900,7 @@ export class SelectScene extends Phaser.Scene {
       return  // Exit early for Brian character
     } else if (character.id === 'jesse') {
       // For Jesse, we'll create a specific frame from the spritesheet in the scene
-      const selectedSprite = this.add.sprite(x, y - 30, 'jesse-combat-idle-frames', 2)  // Use frame 2 (3rd frame)
+      const selectedSprite = this.add.sprite(x, y - 30, 'jesse-combat-idle', 2)  // Use frame 2 (3rd frame)
         .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
       displayElements.push(selectedSprite)
       
