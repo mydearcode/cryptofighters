@@ -1,11 +1,11 @@
 
 
-## 📋 Karakter Detayları
+## 📋 Character Details
 
 ### 1. HODL Master
 - **ID**: `hodl_master`
-- **Sprite Klasörü**: `assets/sprites/hold_master/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/hold_master/`
+- **Current Projectiles**:
   - Special1: `DIAMOND_ORIGAMI` | diamond-origami-paper-svgrepo-com.svg
   - Special2: `HOLD_POWER` | hold-svgrepo-com.svg
 - **Moves & Battle Cries**:
@@ -15,8 +15,8 @@
 
 ### 2. Trade Queen
 - **ID**: `trade_queen`
-- **Sprite Klasörü**: `assets/sprites/trade_queen/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/trade_queen/`
+- **Current Projectiles**:
   - Special1: `CANDLE_STICKS` | candle-sticks-svgrepo-com.svg
   - Special2: `EXCHANGE_DOLLAR` | exchange-dollar-svgrepo-com.svg
 - **Moves & Battle Cries**:
@@ -26,10 +26,10 @@
 
 ### 3. Saylor
 - **ID**: `saylor`
-- **Sprite Klasörü**: `assets/sprites/saylor/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/saylor/`
+- **Current Projectiles**:
   - Special1: `BITCOIN_CIRCLE` | bitcoin-circle-svgrepo-com.svg
-  - Special2: `BLOCKCHAIN_SECURITY` ⚠️ (Gavin ile aynı) | bitcoin-circle-svgrepo-com.svg
+  - Special2: `BLOCKCHAIN_SECURITY` | bitcoin-circle-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `bitcoin_laser`: ["Laser eyes!", "Bitcoin power!", "HODL strong!"]
   - `hodl_shield`: ["Again Bought BTC!", "Diamond hands!", "Never sell!"]
@@ -37,10 +37,10 @@
 
 ### 4. DeFi Ninja
 - **ID**: `defi_ninja`
-- **Sprite Klasörü**: `assets/sprites/defi_ninja/`
-- **Mevcut Projectiles**:
-  - Special1: `COMPUTER_CHIP` ⚠️ (Jesse ile aynı) | ninja-star-svgrepo-com.svg
-  - Special2: `FIRE_BOMB` ⚠️ (Hoskinson ile aynı) | sword-heavy-svgrepo-com.svg
+- **Sprite Folder**: `assets/sprites/defi_ninja/`
+- **Current Projectiles**:
+  - Special1: `COMPUTER_CHIP` | ninja-star-svgrepo-com.svg
+  - Special2: `FIRE_BOMB` | sword-heavy-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `yield_farming`: ["FCFS Baby!", "Slippaged!", "Front Running!"]
   - `liquidity_strike`: ["Liquidity flows!", "Uknown strike!", "Everybody Knows me!"]
@@ -48,9 +48,9 @@
 
 ### 5. Meme Lord
 - **ID**: `meme_lord`
-- **Sprite Klasörü**: `assets/sprites/meme_lord/`
-- **Mevcut Projectiles**:
-  - Special1: `ROCKET_ADVANCED` ⚠️ (Elon ile aynı) | rocket-svgrepo-com_2.svg
+- **Sprite Folder**: `assets/sprites/meme_lord/`
+- **Current Projectiles**:
+  - Special1: `ROCKET_ADVANCED` | rocket-svgrepo-com_2.svg
   - Special2: `MOON_STARS` | pile-of-poo-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `viral_attack`: ["Going viral!", "Shitpost power!", "To the moon!"]
@@ -59,8 +59,8 @@
 
 ### 6. Vitalik
 - **ID**: `vitalik`
-- **Sprite Klasörü**: `assets/sprites/vitalik/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/vitalik/`
+- **Current Projectiles**:
   - Special1: `ETHEREUM_ALT` | ethereum-svgrepo-com_2.svg
   - Special2: `FIRE_BLAST` | computer-chip-svgrepo-com.svg
 - **Moves & Battle Cries**:
@@ -70,8 +70,8 @@
 
 ### 7. CZ
 - **ID**: `cz`
-- **Sprite Klasörü**: `assets/sprites/cz/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/cz/`
+- **Current Projectiles**:
   - Special1: `BINANCE_COIN` | binance-svgrepo-com.svg
   - Special2: `ANNOUNCEMENT` | announcement-shout-svgrepo-com.svg
 - **Moves & Battle Cries**:
@@ -81,8 +81,8 @@
 
 ### 8. Elon
 - **ID**: `elon`
-- **Sprite Klasörü**: `assets/sprites/elon/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/elon/`
+- **Current Projectiles**:
   - Special1: `DOGE_COIN` | space-2-svgrepo-com.svg
   - Special2: `ROCKET_ADVANCED` | rocket-svgrepo-com.svg
 - **Moves & Battle Cries**:
@@ -92,10 +92,10 @@
 
 ### 9. Hoskinson
 - **ID**: `hoskinson`
-- **Sprite Klasörü**: `assets/sprites/hoskinson/`
-- **Mevcut Projectiles**:
-  - Special1: `BITCOIN_LASER` ⚠️ (Saylor, CZ, Brian ile aynı) | bitcoin-svgrepo-com.svg
-  - Special2: `FIRE_BOMB` ⚠️ (DeFi Ninja ile aynı) | fire-bomb-svgrepo-com.svg
+- **Sprite Folder**: `assets/sprites/hoskinson/`
+- **Current Projectiles**:
+  - Special1: `BITCOIN_LASER`  | bitcoin-svgrepo-com.svg
+  - Special2: `FIRE_BOMB`  | fire-bomb-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `peer_review`: ["Uknown Power!", "Academic precision!", "Research power!"]
   - `cardano_strike`: ["Cardano power!", "ADA strike!", "Proof of stake!"]
@@ -103,10 +103,10 @@
 
 ### 10. Gavin
 - **ID**: `gavin`
-- **Sprite Klasörü**: `assets/sprites/gavin/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/gavin/`
+- **Current Projectiles**:
   - Special1: `ETHEREUM_SHARD` | circle-dashed-svgrepo-com.svg
-  - Special2: `BLOCKCHAIN_SECURITY` ⚠️ (Saylor ile aynı) | blockchain-digital-future-system-security-svgrepo-com.svg
+  - Special2: `BLOCKCHAIN_SECURITY`| blockchain-digital-future-system-security-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `parachain_link`: ["Parachain power!", "Interoperability!", "Connected strike!"]
   - `substrate_strike`: ["Substrate power!", "Framework strike!", "Polkadot force!"]
@@ -114,10 +114,10 @@
 
 ### 11. Brian
 - **ID**: `brian`
-- **Sprite Klasörü**: `assets/sprites/brian/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/brian/`
+- **Current Projectiles**:
   - Special1: `BINANCE_BOLT` | coinbase-v2-svgrepo-com.svg
-  - Special2: `FIRE_BLAST` ⚠️ (Vitalik ile aynı) | moon-svgrepo-com.svg
+  - Special2: `FIRE_BLAST`  | moon-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `crypto_punch`: ["Coinbase power!", "Crypto for everyone!", "Stock Trade Punch!"]
   - `blockchain_slam`: ["Blockchain revolution!", "Decentralized power!", "Armstrong slam!"]
@@ -125,10 +125,10 @@
 
 ### 12. Jesse
 - **ID**: `jesse`
-- **Sprite Klasörü**: `assets/sprites/jesse/`
-- **Mevcut Projectiles**:
-  - Special1: `HODL_DIAMOND` ⚠️ (Trade Queen ile aynı) | diamond-origami-paper-svgrepo-com.svg
-  - Special2: `COMPUTER_CHIP` ⚠️ (DeFi Ninja ile aynı) | computer-chip-svgrepo-com.svg
+- **Sprite Folder**: `assets/sprites/jesse/`
+- **Current Projectiles**:
+  - Special1: `HODL_DIAMOND`  | diamond-origami-paper-svgrepo-com.svg
+  - Special2: `COMPUTER_CHIP`  | computer-chip-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `ninja_strike`: ["Base speed!", "Layer 2 power!", "Ninja technique!"]
   - `swift_attack`: ["Swift as Base!", "Layer 2 lightning!", "Polak power!"]

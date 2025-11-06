@@ -1,98 +1,98 @@
 # Crypto Fighters
 
-2D piksel sanat dövüş oyunu - Kripto para dünyasının jargonu ve kültürüyle harmanlanmış Street Fighter tarzı dövüş deneyimi.
+2D pixel art fighting game — Street Fighter-style combat infused with crypto culture and jargon.
 
-## Proje Hakkında
+## About the Project
 
-**Crypto Fighters**, blockchain terminolojisi ve kripto kültürüyle bezeli nostaljik bir dövüş oyunudur. Telegram Mini App olarak geliştirilmekte olup, modern web teknolojileri kullanılarak 960x540 çözünürlükte optimize edilmiştir.
+**Crypto Fighters** is a nostalgic fighting game themed around blockchain terminology and crypto culture. It is developed as a Telegram Mini App and optimized to run at 960x540 using modern web technologies.
 
-### Özellikler
+### Features
 
-- 🥊 Street Fighter tarzı dövüş mekaniği
-- 🪙 Kripto temalı saldırılar ("HODL Smash", "Liquidation Hook", vb.)
-- 🏟️ Blockchain etkinliklerinden ilham alan arenalar
-- 📱 Telegram Mini App uyumluluğu
-- 🎮 Dokunmatik ve klavye kontrolü
-- 🎨 Piksel sanat grafikleri
+- 🥊 Street Fighter-style combat mechanics
+- 🪙 Crypto-themed attacks ("HODL Smash", "Liquidation Hook", etc.)
+- 🏟️ Arenas inspired by blockchain events
+- 📱 Telegram Mini App compatibility
+- 🎮 Touch and keyboard controls
+- 🎨 Pixel art graphics
 
-## Teknoloji Stack
+## Tech Stack
 
 - **Game Engine:** Phaser 3.70+
 - **Language:** TypeScript 5.0+
 - **Build Tool:** Vite
 - **Platform:** Web (Telegram Mini App)
 
-## Geliştirme
+## Development
 
-### Gereksinimler
+### Requirements
 
 - Node.js 18+
-- npm veya yarn
+- npm or yarn
 
-### Kurulum
+### Setup
 
 ```bash
-# Bağımlılıkları yükle
+# Install dependencies
 npm install
 
-# Geliştirme sunucusunu başlat
+# Start the development server
 npm run dev
 
 # Production build
 npm run build
 ```
 
-### Proje Yapısı
+### Project Structure
 
 ```
 src/
-├── config/          # Oyun konfigürasyonları
-├── scenes/          # Phaser sahneleri
-├── characters/      # Karakter sınıfları
-├── ui/             # Kullanıcı arayüzü bileşenleri
-├── net/            # Ağ ve API işlemleri
-└── main.ts         # Ana giriş noktası
+├── config/          # Game configuration
+├── scenes/          # Phaser scenes
+├── characters/      # Character classes
+├── ui/              # User interface components
+├── net/             # Networking and API handling
+└── main.ts          # Main entry point
 
 assets/
-├── sprites/        # Karakter ve nesne sprite'ları
-├── audio/          # Ses dosyaları
-└── data/           # JSON veri dosyaları
+├── sprites/         # Character and object sprites
+├── audio/           # Audio files
+└── data/            # JSON data files
 
-public/             # Statik dosyalar
+public/              # Static assets
 ```
 
-## Geliştirme Yol Haritası
+## Development Roadmap
 
-Detaylı geliştirme planı için [project-roadmap.md](./project-roadmap.md) dosyasına bakınız.
+See [project-roadmap.md](./project-roadmap.md) for the detailed development plan.
 
-### Mevcut Durum: Faz 1.1 ✅
+### Current Status: Phase 1.1 ✅
 
-- [x] Phaser 3 proje kurulumu
-- [x] Klasör yapısı oluşturma
-- [x] Temel konfigürasyon
-- [x] Geliştirme sunucusu
-- [x] Git repository kurulumu
+- [x] Phaser 3 project setup
+- [x] Create folder structure
+- [x] Basic configuration
+- [x] Development server
+- [x] Initialize Git repository
 
-### Sonraki Adımlar: Faz 1.2
+### Next Steps: Phase 1.2
 
-- [ ] Boot sahne (asset yükleme)
-- [ ] Menu sahne (ana menü)
-- [ ] Select sahne (karakter seçimi)
-- [ ] Fight sahne (dövüş)
-- [ ] Results sahne (sonuç)
+- [ ] Boot scene (asset loading)
+- [ ] Menu scene (main menu)
+- [ ] Select scene (character selection)
+- [ ] Fight scene (combat)
+- [ ] Results scene (results)
 
-## Katkıda Bulunma
+## Contributing
 
-1. Bu repository'yi fork edin
-2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add amazing feature'`)
-4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
-5. Pull Request oluşturun
+1. Fork this repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## Lisans
+## License
 
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakınız.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
-**Not:** Bu proje aktif geliştirme aşamasındadır. MVP (Minimum Viable Product) hedefi doğrultusunda fazlı bir yaklaşım benimsenmiştir.
+**Note:** This project is under active development. We follow a phased approach aligned with an MVP (Minimum Viable Product) target.

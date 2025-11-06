@@ -46,8 +46,8 @@ export class ArenaSelectScene extends Phaser.Scene {
     const subtitle = this.add.text(width / 2, 120, 'Choose the battlefield for your fight', {
       fontSize: '18px',
       color: '#ffccaa',
-      fontFamily: 'Georgia, serif',
-      fontStyle: 'italic',
+      fontFamily: '"Geo", "Courier New", monospace, sans-serif',
+      fontStyle: 'normal',
       shadow: {
         offsetX: 1,
         offsetY: 1,
@@ -131,7 +131,7 @@ export class ArenaSelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y, arena.name, {
         fontSize: '14px',  // Smaller font for 3 columns
         color: '#ff6600',
-        fontFamily: 'Bangers, Arial Bold'
+        fontFamily: '"Geo", "Courier New", monospace, sans-serif'
       }).setOrigin(0.5)
       
       this.arenaButtons.push(card as any)

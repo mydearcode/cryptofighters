@@ -3,7 +3,7 @@
     {
       "id": "hodl_master_move_1",
       "name": "Diamond Hands",
-      "description": "Güçlü bir tutma hareketi, rakibi sıkıştırır.",
+      "description": "A powerful hold move that squeezes the opponent.",
       "type": "basic",
       "cooldown": 350,
       "range": 55,
@@ -15,7 +15,7 @@
     {
       "id": "hodl_master_move_2",
       "name": "HODL Power",
-      "description": "Uzun vadeli tutmanın gücü.",
+      "description": "The power of long-term holding.",
       "type": "special1",
       "cooldown": 700,
       "range": 60,
@@ -27,7 +27,7 @@
     {
       "id": "hodl_master_move_3",
       "name": "Moon Mission",
-      "description": "Aya gidiş misyonu.",
+      "description": "Mission to reach the moon.",
       "type": "special2",
       "cooldown": 850,
       "range": 75,
@@ -39,7 +39,7 @@
     {
       "id": "trade_queen_move_1",
       "name": "Royal Profit",
-      "description": "Kraliçe'nin kar stratejisiyle saldırı.",
+      "description": "Attack with the queen's profit strategy.",
       "type": "basic",
       "cooldown": 400,
       "range": 65,
@@ -51,7 +51,7 @@
     {
       "id": "trade_queen_move_2",
       "name": "Queen Strike",
-      "description": "Kraliçe'nin güçlü vuruşu.",
+      "description": "The queen's powerful strike.",
       "type": "special1",
       "cooldown": 750,
       "range": 70,
@@ -63,7 +63,7 @@
     {
       "id": "trade_queen_move_3",
       "name": "Market Dominance",
-      "description": "Piyasaya hakim olma gücü.",
+      "description": "Power to dominate the market.",
       "type": "special2",
       "cooldown": 950,
       "range": 80,
@@ -75,7 +75,7 @@
     {
       "id": "saylor_move_1",
       "name": "Bitcoin Laser",
-      "description": "Bitcoin'in gücüyle lazer saldırısı.",
+      "description": "Laser attack powered by Bitcoin.",
       "type": "basic",
       "cooldown": 500,
       "range": 70,
@@ -87,7 +87,7 @@
     {
       "id": "saylor_move_2",
       "name": "HODL Shield",
-      "description": "Uzun vadeli tutma stratejisiyle savunma.",
+      "description": "Defense via long-term holding strategy.",
       "type": "special1",
       "cooldown": 800,
       "range": 40,
@@ -99,7 +99,7 @@
     {
       "id": "saylor_move_3",
       "name": "Corporate Strategy",
-      "description": "Kurumsal strateji ile güçlü saldırı.",
+      "description": "Powerful attack with corporate strategy.",
       "type": "special2",
       "cooldown": 1000,
       "range": 75,
@@ -111,7 +111,7 @@
     {
       "id": "defi_ninja_move_1",
       "name": "Yield Farming",
-      "description": "Verim odaklı stratejik saldırı.",
+      "description": "Efficiency-focused strategic attack.",
       "type": "basic",
       "cooldown": 400,
       "range": 60,
@@ -123,7 +123,7 @@
     {
       "id": "defi_ninja_move_2",
       "name": "Liquidity Strike",
-      "description": "Likidite gücüyle saldırı.",
+      "description": "Attack empowered by liquidity.",
       "type": "special1",
       "cooldown": 800,
       "range": 65,
@@ -135,7 +135,7 @@
     {
       "id": "defi_ninja_move_3",
       "name": "Flash Loan",
-      "description": "Anlık borçlanma ile hızlı saldırı.",
+      "description": "Fast attack using instant borrowing.",
       "type": "special2",
       "cooldown": 600,
       "range": 55,
@@ -147,7 +147,7 @@
     {
       "id": "meme_lord_move_1",
       "name": "Viral Attack",
-      "description": "Viral yayılım ile saldırı.",
+      "description": "Attack through viral spread.",
       "type": "basic",
       "cooldown": 400,
       "range": 65,
@@ -159,7 +159,7 @@
     {
       "id": "meme_lord_move_2",
       "name": "Moon Rocket",
-      "description": "Aya roket ile güçlü saldırı.",
+      "description": "Powerful attack with a rocket to the moon.",
       "type": "special1",
       "cooldown": 800,
       "range": 75,
@@ -171,7 +171,7 @@
     {
       "id": "meme_lord_move_3",
       "name": "Diamond Paws",
-      "description": "Elmas pençeler ile hızlı saldırı.",
+      "description": "Quick attack with diamond claws.",
       "type": "special2",
       "cooldown": 600,
       "range": 50,
@@ -183,7 +183,7 @@
     {
       "id": "vitalik_move_1",
       "name": "Smart Contract",
-      "description": "Akıllı kontrat ile otomatik saldırı sistemi kurar.",
+      "description": "Sets up an automated attack system via smart contract.",
       "type": "basic",
       "cooldown": 450,
       "range": 65,
@@ -195,7 +195,7 @@
     {
       "id": "vitalik_move_2",
       "name": "Ethereum Blast",
-      "description": "Ethereum ağının gücüyle dev bir enerji patlaması.",
+      "description": "Massive energy blast with the power of the Ethereum network.",
       "type": "special1",
       "cooldown": 900,
       "range": 80,
@@ -207,7 +207,7 @@
     {
       "id": "vitalik_move_3",
       "name": "Proof of Stake",
-      "description": "Stake gücüyle savunma ve karşı saldırı.",
+      "description": "Defense and counterattack empowered by staking.",
       "type": "special2",
       "cooldown": 650,
       "range": 60,
@@ -219,7 +219,7 @@
     {
       "id": "cz_move_1",
       "name": "Binance Blast",
-      "description": "Binance'in gücüyle patlayıcı saldırı.",
+      "description": "Explosive attack powered by Binance.",
       "type": "basic",
       "cooldown": 480,
       "range": 65,
@@ -231,7 +231,7 @@
     {
       "id": "cz_move_2",
       "name": "Trading Fury",
-      "description": "Yoğun ticaret faaliyetiyle öfkeli saldırı.",
+      "description": "Furious attack fueled by intense trading activity.",
       "type": "special1",
       "cooldown": 750,
       "range": 70,
@@ -243,7 +243,7 @@
     {
       "id": "cz_move_3",
       "name": "Market Dominance",
-      "description": "Piyasaya hakim olma gücü.",
+      "description": "Power to dominate the market.",
       "type": "special2",
       "cooldown": 950,
       "range": 80,
@@ -255,7 +255,7 @@
     {
       "id": "elon_move_1",
       "name": "Tesla Punch",
-      "description": "Elektrikli güçle Tesla yumruğu.",
+      "description": "Tesla punch charged with electric power.",
       "type": "basic",
       "cooldown": 450,
       "range": 60,
@@ -267,7 +267,7 @@
     {
       "id": "elon_move_2",
       "name": "SpaceX Rocket",
-      "description": "Uzay roketiyle güçlü saldırı.",
+      "description": "Powerful attack with a space rocket.",
       "type": "special1",
       "cooldown": 900,
       "range": 80,
@@ -279,7 +279,7 @@
     {
       "id": "elon_move_3",
       "name": "Doge Power",
-      "description": "Dogecoin'in gücüyle meme saldırısı.",
+      "description": "Meme attack powered by Dogecoin.",
       "type": "special2",
       "cooldown": 650,
       "range": 65,
@@ -291,7 +291,7 @@
     {
       "id": "hoskinson_move_1",
       "name": "Peer Review",
-      "description": "Akademik inceleme ile hassas saldırı.",
+      "description": "Precise attack with academic review.",
       "type": "basic",
       "cooldown": 420,
       "range": 60,
@@ -303,7 +303,7 @@
     {
       "id": "hoskinson_move_2",
       "name": "Cardano Strike",
-      "description": "Cardano'nun gücüyle stratejik vuruş.",
+      "description": "Strategic strike powered by Cardano.",
       "type": "special1",
       "cooldown": 700,
       "range": 65,
@@ -315,7 +315,7 @@
     {
       "id": "hoskinson_move_3",
       "name": "Academic Precision",
-      "description": "Akademik hassasiyetle kesin vuruş.",
+      "description": "Definitive strike with academic precision.",
       "type": "special2",
       "cooldown": 850,
       "range": 70,
@@ -327,7 +327,7 @@
     {
       "id": "gavin_move_1",
       "name": "Parachain Link",
-      "description": "Parachain bağlantısıyla çoklu saldırı.",
+      "description": "Multi-attack via parachain linking.",
       "type": "basic",
       "cooldown": 450,
       "range": 70,
@@ -339,7 +339,7 @@
     {
       "id": "gavin_move_2",
       "name": "Substrate Strike",
-      "description": "Substrate framework ile güçlü vuruş.",
+      "description": "Powerful strike using the Substrate framework.",
       "type": "special1",
       "cooldown": 680,
       "range": 65,
@@ -351,7 +351,7 @@
     {
       "id": "gavin_move_3",
       "name": "Interop Blast",
-      "description": "Interoperabilite ile patlayıcı saldırı.",
+      "description": "Explosive attack through interoperability.",
       "type": "special2",
       "cooldown": 900,
       "range": 75,
@@ -363,7 +363,7 @@
     {
       "id": "brian_move_1",
       "name": "Crypto Punch",
-      "description": "Coinbase'in gücüyle güçlü yumruk.",
+      "description": "Powerful punch with Coinbase's strength.",
       "type": "basic",
       "cooldown": 450,
       "range": 60,
@@ -375,7 +375,7 @@
     {
       "id": "brian_move_2",
       "name": "Blockchain Slam",
-      "description": "Blockchain teknolojisinin gücüyle ezici darbe.",
+      "description": "Crushing blow powered by blockchain technology.",
       "type": "special1",
       "cooldown": 850,
       "range": 70,
@@ -387,7 +387,7 @@
     {
       "id": "brian_move_3",
       "name": "Digital Strike",
-      "description": "Dijital varlıkların gücüyle hızlı saldırı.",
+      "description": "Fast attack powered by digital assets.",
       "type": "special2",
       "cooldown": 650,
       "range": 65,
@@ -399,7 +399,7 @@
     {
       "id": "jesse_move_1",
       "name": "Ninja Strike",
-      "description": "Base Network'ün hızıyla ninja saldırısı.",
+      "description": "Ninja attack using Base Network speed.",
       "type": "basic",
       "cooldown": 400,
       "range": 55,
@@ -411,7 +411,7 @@
     {
       "id": "jesse_move_2",
       "name": "Swift Attack",
-      "description": "Şimşek hızında Base Network saldırısı.",
+      "description": "Lightning-fast Base Network attack.",
       "type": "special1",
       "cooldown": 750,
       "range": 60,
@@ -423,7 +423,7 @@
     {
       "id": "jesse_move_3",
       "name": "Shadow Dash",
-      "description": "Gölge gibi hızlı Base Network hamlesi.",
+      "description": "Shadow-like fast Base Network dash.",
       "type": "special2",
       "cooldown": 600,
       "range": 70,

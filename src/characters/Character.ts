@@ -1159,21 +1159,21 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     this.currentAttackType = attackType
     this.setCharacterState(CharacterState.ATTACKING)
     
-    // Karakter-spesifik move verilerini al
+    // Get character-specific move data
     const moveData = this.getCharacterMoveData(attackType)
     
     // Different cooldowns for different attack types
     switch (attackType) {
       case AttackType.BASIC:
         this.attackCooldown = moveData?.cooldown || 400 // Fast basic attack
-        // BASIC attack için de battle cry göster
+        // Show battle cry for BASIC attack as well
         if (moveData?.id) {
           this.showBattleCry(moveData.id, attackType)
         }
         break
       case AttackType.SPECIAL1:
         this.attackCooldown = moveData?.cooldown || 800 // Slower but stronger
-        // Karakter-spesifik projectile oluştur
+        // Spawn character-specific projectile
         if (moveData?.id) {
           this.createProjectileFromMove(moveData.id)
           this.showBattleCry(moveData.id, attackType)
@@ -1183,7 +1183,7 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
         break
       case AttackType.SPECIAL2:
         this.attackCooldown = moveData?.cooldown || 600 // Medium speed
-        // Karakter-spesifik projectile oluştur
+        // Spawn character-specific projectile
         if (moveData?.id) {
           this.createProjectileFromMove(moveData.id)
           this.showBattleCry(moveData.id, attackType)
@@ -1298,12 +1298,12 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     this.projectiles.push(projectile)
   }
 
-  // Yeni metodlar: Karakter-spesifik projectile ve battle cry
+  // New methods: character-specific projectile and battle cry
   public createProjectileFromMove(moveId: string): void {
     const moveData = gameData.getMove(moveId)
     if (!moveData || !moveData.projectileType) return
 
-    // ProjectileType enum'ından uygun türü bul
+    // Resolve appropriate type from ProjectileType enum
     const projectileType = ProjectileType[moveData.projectileType as keyof typeof ProjectileType]
     if (projectileType) {
       this.createProjectile(projectileType)
@@ -1314,11 +1314,11 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     const moveData = gameData.getMove(moveId)
     if (!moveData || !moveData.battleCries || moveData.battleCries.length === 0) return
 
-    // Rastgele slogan seç - artık tüm sloganlar kullanılacak!
+    // Pick a random slogan — now all slogans are used
     const battleCryIndex = Math.floor(Math.random() * moveData.battleCries.length)
     const battleCry = moveData.battleCries[battleCryIndex]
 
-    // Battle cry'ı ekranda göster
+    // Display the battle cry on screen
     const battleCryText = this.scene.add.text(
       this.x,
       this.y - 60,
@@ -1332,7 +1332,7 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
       }
     ).setOrigin(0.5)
 
-    // Animasyon: yukarı doğru hareket ve fade out
+    // Animation: float upward and fade out
     this.scene.tweens.add({
       targets: battleCryText,
       y: battleCryText.y - 30,
@@ -1346,11 +1346,11 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
   }
 
   public getCharacterMoveData(attackType: AttackType): any {
-    // Karakterin moves listesinden uygun move'u bul
+    // Find appropriate move from the character's moves list
     const characterMoves = gameData.getCharacterMoves(this.characterData.id)
     if (characterMoves.length === 0) return null
 
-    // AttackType'a göre uygun move'u seç
+    // Select move based on AttackType
     let targetMoveType: string
     switch (attackType) {
       case AttackType.BASIC:
@@ -1366,8 +1366,8 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
         targetMoveType = 'basic'
     }
 
-    // Bu tipteki ilk move'u bul
+    // Find the first move of this type
     const move = characterMoves.find(m => m.type === targetMoveType)
-    return move || characterMoves[0] // Bulamazsa ilk move'u döndür
+    return move || characterMoves[0] // Fallback to the first move if not found
   }
 }

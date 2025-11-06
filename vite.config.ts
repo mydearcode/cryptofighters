@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig({
   resolve: {
@@ -19,7 +20,15 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html')
-      }
+      },
+      plugins: [
+        visualizer({
+          filename: 'dist/stats.html',
+          open: true,
+          gzipSize: true,
+          brotliSize: true,
+        })
+      ]
     }
   },
   base: './',

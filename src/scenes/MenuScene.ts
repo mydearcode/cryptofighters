@@ -34,8 +34,8 @@ export class MenuScene extends Phaser.Scene {
     const subtitle = this.add.text(width / 2, 170, 'The Most Powerful Warriors of Crypto World', {
       fontSize: '20px',
       color: '#ffccaa',
-      fontFamily: 'Georgia, serif',
-      fontStyle: 'italic',
+      fontFamily: '"Geo", "Courier New", monospace, sans-serif',
+      fontStyle: 'normal',
       shadow: {
         offsetX: 1,
         offsetY: 1,
@@ -96,8 +96,8 @@ export class MenuScene extends Phaser.Scene {
     const singlePlayerSubtext = this.add.text(width / 2, 310, 'Play vs CPU', {
       fontSize: '14px',
       color: '#ddaa88',
-      fontFamily: 'Georgia, serif',
-      fontStyle: 'italic'
+      fontFamily: '"Geo", "Courier New", monospace, sans-serif',
+      fontStyle: 'normal'
     }).setOrigin(0.5)
     
     // Two Player Button - matching theme with better styling
@@ -135,8 +135,8 @@ export class MenuScene extends Phaser.Scene {
     const twoPlayerSubtext = this.add.text(width / 2, 410, 'Play with Friend', {
       fontSize: '14px',
       color: '#ddaa88',
-      fontFamily: 'Georgia, serif',
-      fontStyle: 'italic'
+      fontFamily: '"Geo", "Courier New", monospace, sans-serif',
+      fontStyle: 'normal'
     }).setOrigin(0.5)
     
     // Add instructions - better styled and more readable
@@ -145,7 +145,7 @@ export class MenuScene extends Phaser.Scene {
       'Attack: J, K, L (Player 1) / 1, 2, 3 (Player 2)', {
       fontSize: '13px',
       color: '#aa7766',
-      fontFamily: 'Courier New, monospace',
+      fontFamily: '"Geo", "Courier New", monospace, sans-serif',
       align: 'center',
       lineSpacing: 4
     }).setOrigin(0.5)

@@ -1,35 +1,35 @@
-# Yeni Karakter Ekleme Rehberi
+# New Character Addition Guide
 
-Bu rehber, Crypto Fighters oyununa yeni bir karakter eklemek için gereken tüm adımları içerir.
+This guide covers all the steps required to add a new character to Crypto Fighters.
 
-## Gerekli Dosyalar ve Klasör Yapısı
+## Required Files and Folder Structure
 
-### 1. Sprite Dosyaları
-Yeni karakterin sprite dosyalarını `/assets/sprites/[karakter_adi]/` klasörüne yerleştirin:
+### 1. Sprite Files
+Place the new character’s sprite files in `/assets/sprites/[character_name]/`:
 
-**Gerekli sprite dosyaları:**
-- `[karakter_adi]-combat-idle-frames.png` - Boşta durma animasyonu
-- `[karakter_adi]-combat-walk-frames.png` - Yürüme animasyonu  
-- `[karakter_adi]-combat-run-frames.png` - Koşma animasyonu
-- `[karakter_adi]-combat-jump-frames.png` - Zıplama animasyonu
-- `[karakter_adi]-combat-attack-frames.png` - Saldırı animasyonu
-- `[karakter_adi]-combat-hurt-frames.png` - Hasar alma animasyonu
-- `[karakter_adi]-combat-shoot-frames.png` - Atış animasyonu
-- `[karakter_adi]-combat-spellcast-frames.png` - Büyü yapma animasyonu
-- `[karakter_adi].png` - Varsayılan resim
-- `[karakter_adi]_portrait.png` - Portre resmi
+**Required sprite files:**
+- `[character_name]-combat-idle-frames.png` — Idle animation
+- `[character_name]-combat-walk-frames.png` — Walk animation  
+- `[character_name]-combat-run-frames.png` — Run animation
+- `[character_name]-combat-jump-frames.png` — Jump animation
+- `[character_name]-combat-attack-frames.png` — Attack animation
+- `[character_name]-combat-hurt-frames.png` — Hurt animation
+- `[character_name]-combat-shoot-frames.png` — Shoot animation
+- `[character_name]-combat-spellcast-frames.png` — Spellcast animation
+- `[character_name].png` — Default image
+- `[character_name]_portrait.png` — Portrait image
 
-## Kod Değişiklikleri
+## Code Changes
 
-### 1. characters.json Dosyasına Ekleme
-`/src/data/characters.json` dosyasına yeni karakteri ekleyin:
+### 1. Add to characters.json
+Add the new character to `/src/data/characters.json`:
 
 ```json
 {
-  "id": "karakter_adi",
-  "name": "Karakter Adı",
-  "sprite": "karakter-adi",
-  "description": "Karakterin açıklaması",
+  "id": "character_name",
+  "name": "Character Name",
+  "sprite": "character-name",
+  "description": "Character description",
   "stats": {
     "health": 100,
     "attack": 30,
@@ -37,114 +37,114 @@ Yeni karakterin sprite dosyalarını `/assets/sprites/[karakter_adi]/` klasörü
     "speed": 150
   },
   "moves": [
-    "hareket1",
-    "hareket2", 
-    "hareket3"
+    "move1",
+    "move2", 
+    "move3"
   ],
   "rarity": "legendary", // legendary, epic, rare, common
-  "element": "element_adi"
+  "element": "element_name"
 }
 ```
 
-### 2. BootScene.ts - Sprite Yükleme
-`/src/scenes/BootScene.ts` dosyasına sprite yükleme kodlarını ekleyin:
+### 2. BootScene.ts — Load Sprites
+Add sprite loading code to `/src/scenes/BootScene.ts`:
 
 ```typescript
-// Karakter spritesheets
-this.load.spritesheet('karakter-adi-combat-idle-frames', 'assets/sprites/karakter_adi/karakter-adi-combat-idle-frames.png', { frameWidth: 64, frameHeight: 64 })
-this.load.spritesheet('karakter-adi-combat-walk-frames', 'assets/sprites/karakter_adi/karakter-adi-combat-walk-frames.png', { frameWidth: 64, frameHeight: 64 })
-this.load.spritesheet('karakter-adi-combat-run-frames', 'assets/sprites/karakter_adi/karakter-adi-combat-run-frames.png', { frameWidth: 64, frameHeight: 64 })
-this.load.spritesheet('karakter-adi-combat-jump-frames', 'assets/sprites/karakter_adi/karakter-adi-combat-jump-frames.png', { frameWidth: 64, frameHeight: 64 })
-this.load.spritesheet('karakter-adi-combat-attack-frames', 'assets/sprites/karakter_adi/karakter-adi-combat-attack-frames.png', { frameWidth: 64, frameHeight: 64 })
-this.load.spritesheet('karakter-adi-combat-hurt-frames', 'assets/sprites/karakter_adi/karakter-adi-combat-hurt-frames.png', { frameWidth: 64, frameHeight: 64 })
-this.load.spritesheet('karakter-adi-combat-shoot-frames', 'assets/sprites/karakter_adi/karakter-adi-combat-shoot-frames.png', { frameWidth: 64, frameHeight: 64 })
-this.load.spritesheet('karakter-adi-combat-spellcast-frames', 'assets/sprites/karakter_adi/karakter-adi-combat-spellcast-frames.png', { frameWidth: 64, frameHeight: 64 })
+// Character spritesheets
+this.load.spritesheet('character-name-combat-idle-frames', 'assets/sprites/character_name/character-name-combat-idle-frames.png', { frameWidth: 64, frameHeight: 64 })
+this.load.spritesheet('character-name-combat-walk-frames', 'assets/sprites/character_name/character-name-combat-walk-frames.png', { frameWidth: 64, frameHeight: 64 })
+this.load.spritesheet('character-name-combat-run-frames', 'assets/sprites/character_name/character-name-combat-run-frames.png', { frameWidth: 64, frameHeight: 64 })
+this.load.spritesheet('character-name-combat-jump-frames', 'assets/sprites/character_name/character-name-combat-jump-frames.png', { frameWidth: 64, frameHeight: 64 })
+this.load.spritesheet('character-name-combat-attack-frames', 'assets/sprites/character_name/character-name-combat-attack-frames.png', { frameWidth: 64, frameHeight: 64 })
+this.load.spritesheet('character-name-combat-hurt-frames', 'assets/sprites/character_name/character-name-combat-hurt-frames.png', { frameWidth: 64, frameHeight: 64 })
+this.load.spritesheet('character-name-combat-shoot-frames', 'assets/sprites/character_name/character-name-combat-shoot-frames.png', { frameWidth: 64, frameHeight: 64 })
+this.load.spritesheet('character-name-combat-spellcast-frames', 'assets/sprites/character_name/character-name-combat-spellcast-frames.png', { frameWidth: 64, frameHeight: 64 })
 
-// Varsayılan resimler
-this.load.image('karakter-adi', 'assets/sprites/karakter_adi/karakter-adi.png')
-this.load.image('karakter-adi_portrait', 'assets/sprites/karakter_adi/karakter-adi_portrait.png')
+// Default images
+this.load.image('character-name', 'assets/sprites/character_name/character-name.png')
+this.load.image('character-name_portrait', 'assets/sprites/character_name/character-name_portrait.png')
 ```
 
-### 3. Character.ts - Animasyon Sistemi
-`/src/characters/Character.ts` dosyasında iki yer güncellenmeli:
+### 3. Character.ts — Animation System
+Two updates are needed in `/src/characters/Character.ts`:
 
-#### A. Constructor'da karakter kontrolü ekleyin:
+#### A. Add character check in constructor:
 ```typescript
-if (characterId === 'karakter_adi') {
-  this.createKarakterAdiAnimations(scene)
+if (characterId === 'character_name') {
+  this.createCharacterNameAnimations(scene)
 } else if (characterId === 'vitalik') {
-  // mevcut kod...
+  // existing code...
 }
 ```
 
-#### B. Animasyon metodunu ekleyin:
+#### B. Add the animation method:
 ```typescript
-private createKarakterAdiAnimations(scene: Phaser.Scene) {
-  // Idle animasyonu
-  if (!scene.anims.exists('karakter_adi-idle-anim')) {
+private createCharacterNameAnimations(scene: Phaser.Scene) {
+  // Idle animation
+  if (!scene.anims.exists('character_name-idle-anim')) {
     scene.anims.create({
-      key: 'karakter_adi-idle-anim',
-      frames: scene.anims.generateFrameNumbers('karakter-adi-combat-idle', { start: 0, end: 3 }),
+      key: 'character_name-idle-anim',
+      frames: scene.anims.generateFrameNumbers('character-name-combat-idle-frames', { start: 0, end: 3 }),
       frameRate: 8,
       repeat: -1
     })
   }
 
-  // Walk animasyonu
-  if (!scene.anims.exists('karakter_adi-walk-anim')) {
+  // Walk animation
+  if (!scene.anims.exists('character_name-walk-anim')) {
     scene.anims.create({
-      key: 'karakter_adi-walk-anim',
-      frames: scene.anims.generateFrameNumbers('karakter-adi-walk', { start: 0, end: 7 }),
+      key: 'character_name-walk-anim',
+      frames: scene.anims.generateFrameNumbers('character-name-combat-walk-frames', { start: 0, end: 7 }),
       frameRate: 12,
       repeat: -1
     })
   }
 
-  // Attack animasyonu
-  if (!scene.anims.exists('karakter_adi-attack-anim')) {
+  // Attack animation
+  if (!scene.anims.exists('character_name-attack-anim')) {
     scene.anims.create({
-      key: 'karakter_adi-attack-anim',
-      frames: scene.anims.generateFrameNumbers('karakter-adi-slash', { start: 0, end: 5 }),
+      key: 'character_name-attack-anim',
+      frames: scene.anims.generateFrameNumbers('character-name-combat-attack-frames', { start: 0, end: 5 }),
       frameRate: 15,
       repeat: 0
     })
   }
 
-  // Hurt animasyonu
-  if (!scene.anims.exists('karakter_adi-hurt-anim')) {
+  // Hurt animation
+  if (!scene.anims.exists('character_name-hurt-anim')) {
     scene.anims.create({
-      key: 'karakter_adi-hurt-anim',
-      frames: scene.anims.generateFrameNumbers('karakter-adi-hurt', { start: 0, end: 2 }),
+      key: 'character_name-hurt-anim',
+      frames: scene.anims.generateFrameNumbers('character-name-combat-hurt-frames', { start: 0, end: 2 }),
       frameRate: 10,
       repeat: 0
     })
   }
 
-  // Jump animasyonu
-  if (!scene.anims.exists('karakter_adi-jump-anim')) {
+  // Jump animation
+  if (!scene.anims.exists('character_name-jump-anim')) {
     scene.anims.create({
-      key: 'karakter_adi-jump-anim',
-      frames: scene.anims.generateFrameNumbers('karakter-adi-jump', { start: 0, end: 3 }),
+      key: 'character_name-jump-anim',
+      frames: scene.anims.generateFrameNumbers('character-name-combat-jump-frames', { start: 0, end: 3 }),
       frameRate: 10,
       repeat: 0
     })
   }
 
-  // Shoot animasyonu
-  if (!scene.anims.exists('karakter_adi-shoot-anim')) {
+  // Shoot animation
+  if (!scene.anims.exists('character_name-shoot-anim')) {
     scene.anims.create({
-      key: 'karakter_adi-shoot-anim',
-      frames: scene.anims.generateFrameNumbers('karakter-adi-shoot', { start: 0, end: 4 }),
+      key: 'character_name-shoot-anim',
+      frames: scene.anims.generateFrameNumbers('character-name-combat-shoot-frames', { start: 0, end: 4 }),
       frameRate: 12,
       repeat: 0
     })
   }
 
-  // Spellcast animasyonu
-  if (!scene.anims.exists('karakter_adi-spellcast-anim')) {
+  // Spellcast animation
+  if (!scene.anims.exists('character_name-spellcast-anim')) {
     scene.anims.create({
-      key: 'karakter_adi-spellcast-anim',
-      frames: scene.anims.generateFrameNumbers('karakter-adi-spellcast', { start: 0, end: 6 }),
+      key: 'character_name-spellcast-anim',
+      frames: scene.anims.generateFrameNumbers('character-name-combat-spellcast-frames', { start: 0, end: 6 }),
       frameRate: 10,
       repeat: 0
     })
@@ -152,14 +152,14 @@ private createKarakterAdiAnimations(scene: Phaser.Scene) {
 }
 ```
 
-### 4. SelectScene.ts - Karakter Seçim Ekranı
-`/src/scenes/SelectScene.ts` dosyasında iki yerde güncelleme yapın:
+### 4. SelectScene.ts — Character Selection Screen
+Make two updates in `/src/scenes/SelectScene.ts`:
 
-#### A. Karakter kartları bölümünde (createCharacterGrid metodunda):
+#### A. Character cards section (in `createCharacterGrid`):
 ```typescript
-} else if (character.id === 'karakter_adi') {
-  // Karakter için spritesheet'ten belirli frame kullan
-  const sprite = this.add.sprite(x, y - 15, 'karakter-adi-combat-idle-frames', 2)  // Frame 2 kullan
+} else if (character.id === 'character_name') {
+  // Use a specific frame from the spritesheet for the character
+  const sprite = this.add.sprite(x, y - 15, 'character-name-combat-idle-frames', 2)  // Use frame 2
     .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_CARD.height)
     .setInteractive({ useHandCursor: true })
     .on('pointerdown', () => {
@@ -170,42 +170,42 @@ private createKarakterAdiAnimations(scene: Phaser.Scene) {
 } else {
 ```
 
-#### B. Seçilen karakter görüntüleme bölümünde (updateSelectedDisplay metodunda):
+#### B. Selected character display section (in `updateSelectedDisplay`):
 ```typescript
-} else if (character.id === 'karakter_adi') {
-  // Karakter için spritesheet'ten belirli frame kullan
-  const selectedSprite = this.add.sprite(x, y - 30, 'karakter-adi-combat-idle-frames', 2)  // Frame 2 kullan
+} else if (character.id === 'character_name') {
+  // Use a specific frame from the spritesheet for the character
+  const selectedSprite = this.add.sprite(x, y - 30, 'character-name-combat-idle-frames', 2)  // Use frame 2
     .setDisplaySize(GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.width, GAME_CONSTANTS.CHARACTER_SIZES.SELECTION_DISPLAY.height)
   displayElements.push(selectedSprite)
   
-  // Diğer UI elementleri (isim, player indicator, vs.) ekle
-  // ... (mevcut kod örneğini takip edin)
+  // Add other UI elements (name, player indicator, etc.)
+  // ... (follow the existing code example)
   
-  return  // Erken çıkış
+  return  // Early return
 } else {
 ```
 
-## Kontrol Listesi
+## Checklist
 
-- [ ] Sprite dosyaları doğru klasöre yerleştirildi
-- [ ] characters.json'a karakter eklendi
-- [ ] BootScene.ts'ye sprite yükleme kodları eklendi
-- [ ] Character.ts'ye animasyon sistemi eklendi
-- [ ] SelectScene.ts'ye karakter seçim kodları eklendi
-- [ ] Oyun test edildi ve karakter görünüyor
-- [ ] Karakter animasyonları çalışıyor
-- [ ] Dövüş sahnesinde karakter düzgün çalışıyor
+- [ ] Sprite files placed in the correct folder
+- [ ] Character added to characters.json
+- [ ] Sprite loading code added to BootScene.ts
+- [ ] Animation system added to Character.ts
+- [ ] Character selection code added to SelectScene.ts
+- [ ] Game tested and character is visible
+- [ ] Character animations work
+- [ ] Character works correctly in the combat scene
 
-## Notlar
+## Notes
 
-- Frame boyutları genellikle 64x64'tür, ancak sprite dosyalarına göre ayarlanabilir
-- Animasyon frame sayıları sprite dosyalarındaki gerçek frame sayısına göre ayarlanmalıdır
-- Karakter ID'si dosya adlarıyla tutarlı olmalıdır
-- Rarity ve element değerleri oyun dengesini etkileyebilir
+- Frame sizes are typically 64x64, but adjust according to the sprite files
+- Animation frame counts should match the actual frame counts in the sprite files
+- Character ID should be consistent with file names
+- Rarity and element values can affect game balance
 
-## Sorun Giderme
+## Troubleshooting
 
-**Karakter görünmüyor:** BootScene.ts'de sprite yükleme kodlarını kontrol edin
-**Animasyonlar çalışmıyor:** Character.ts'deki animasyon tanımlarını ve frame sayılarını kontrol edin
-**Seçim ekranında sorun:** SelectScene.ts'deki sprite frame kullanımını kontrol edin
-**Konsol hataları:** Dosya yollarının ve sprite isimlerinin doğru olduğundan emin olun
+**Character not visible:** Check sprite loading code in BootScene.ts
+**Animations not working:** Check animation definitions and frame counts in Character.ts
+**Issue in selection screen:** Check sprite frame usage in SelectScene.ts
+**Console errors:** Ensure file paths and sprite names are correct

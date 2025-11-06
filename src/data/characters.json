@@ -3,7 +3,7 @@
     {
       "id": "hodl_master",
       "name": "HODL Master",
-      "description": "Sabırlı ve kararlı bir yatırımcı. Asla satmaz, her zaman tutar.",
+      "description": "A patient and determined investor. Never sells, always holds.",
       "stats": {
         "health": 120,
         "attack": 85,
@@ -24,7 +24,7 @@
     {
       "id": "trade_queen",
       "name": "Trade Queen",
-      "description": "Piyasanın kraliçesi. Her hamlesi kar getirir.",
+      "description": "Queen of the markets. Every move brings profit.",
       "stats": {
         "health": 100,
         "attack": 110,
@@ -45,7 +45,7 @@
     {
       "id": "saylor",
       "name": "Michael Saylor",
-      "description": "Bitcoin'in en büyük destekçisi. Kurumsal HODL stratejisinin ustası.",
+      "description": "Bitcoin's biggest advocate. Master of corporate HODL strategy.",
       "stats": {
         "health": 140,
         "attack": 100,
@@ -66,7 +66,7 @@
     {
       "id": "defi_ninja",
       "name": "DeFi Ninja",
-      "description": "Merkeziyetsiz finansın gölge savaşçısı. Yield farming ustası.",
+      "description": "Shadow warrior of decentralized finance. Master of yield farming.",
       "stats": {
         "health": 90,
         "attack": 105,
@@ -87,7 +87,7 @@
     {
       "id": "meme_lord",
       "name": "Meme Lord",
-      "description": "İnternetin meme kralı. Viral gücüyle savaşır.",
+      "description": "The internet's meme king. Fights with viral power.",
       "stats": {
         "health": 85,
         "attack": 95,
@@ -108,7 +108,7 @@
     {
       "id": "vitalik",
       "name": "Vitalik Buterin",
-      "description": "Ethereum'un yaratıcısı. Akıllı kontratların babası.",
+      "description": "Creator of Ethereum. Father of smart contracts.",
       "stats": {
         "health": 110,
         "attack": 120,
@@ -129,7 +129,7 @@
     {
       "id": "cz",
       "name": "Changpeng Zhao (CZ)",
-      "description": "Binance'in kurucusu. Kripto borsalarının kralı.",
+      "description": "Founder of Binance. King of crypto exchanges.",
       "stats": {
         "health": 125,
         "attack": 115,
@@ -150,7 +150,7 @@
     {
       "id": "elon",
       "name": "Elon Musk",
-      "description": "Tesla ve SpaceX'in CEO'su. Dogecoin'in en büyük destekçisi.",
+      "description": "CEO of Tesla and SpaceX. Biggest supporter of Dogecoin.",
       "stats": {
         "health": 105,
         "attack": 125,
@@ -171,7 +171,7 @@
     {
       "id": "hoskinson",
       "name": "Charles Hoskinson",
-      "description": "Cardano'nun kurucusu. Akademik yaklaşımın ustası.",
+      "description": "Founder of Cardano. Master of academic approach.",
       "stats": {
         "health": 115,
         "attack": 100,
@@ -192,7 +192,7 @@
     {
       "id": "gavin",
       "name": "Gavin Wood",
-      "description": "Polkadot'un kurucusu. Interoperabilite uzmanı.",
+      "description": "Founder of Polkadot. Interoperability expert.",
       "stats": {
         "health": 100,
         "attack": 110,
@@ -213,7 +213,7 @@
     {
       "id": "brian",
       "name": "Brian Armstrong",
-      "description": "Coinbase'in kurucusu. Kripto benimseniminin öncüsü.",
+      "description": "Founder of Coinbase. Pioneer of crypto adoption.",
       "stats": {
         "health": 120,
         "attack": 105,
@@ -234,7 +234,7 @@
     {
       "id": "jesse",
       "name": "Jesse Pollak",
-      "description": "Base Network'ün lideri. Layer 2 çözümlerinin ustası.",
+      "description": "Leader of Base Network. Master of Layer 2 solutions.",
       "stats": {
         "health": 95,
         "attack": 100,

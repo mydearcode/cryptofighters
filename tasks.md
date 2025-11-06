@@ -1,217 +1,217 @@
 
-# Crypto Fighters görev listesi
+# Crypto Fighters Task List
 
-Phaser 3 ile geliştirilecek iki boyutlu piksel dövüş oyunu. Street Fighter tarzı oynanış. Telegram Mini App uyumlu web dağıtımı hedeflenir.
+A two-dimensional pixel fighting game built with Phaser 3. Street Fighter-style gameplay. Target: Telegram Mini App-compatible web distribution.
 
-## A. Proje iskeleti ve temel sahneler
+## A. Project Skeleton and Core Scenes
 
-1. Phaser 3 proje kurulumu
-   Hedef JavaScript veya TypeScript. Vite ya da Webpack ile yerel geliştirme sunucusu.
-   Çözünürlük 960 x 540. Oyun döngüsü 60 FPS.
+1. Phaser 3 project setup
+   Target JavaScript or TypeScript. Local dev server via Vite or Webpack.
+   Resolution 960 x 540. Game loop at 60 FPS.
 
-2. Klasör yapısı
+2. Folder structure
    src, assets, src/scenes, src/characters, src/ui, src/config, src/net.
-   public içine statik dosyalar.
+   Static files go into `public`.
 
-3. Temel sahneler
+3. Core scenes
    Boot, Menu, Select, Fight, Results.
-   Boot sahnesi tüm asset ve JSON konfigürasyonları yükler.
-   Menu sahnesi Start Fight seçeneği sunar.
-   Select sahnesi karakter seçimi ve arena ön izlemesi içerir.
-   Fight sahnesi dövüşün oynandığı ana sahnedir.
-   Results sahnesi maç sonucu ve tekrar oyun seçeneklerini gösterir.
+   Boot loads all assets and JSON configurations.
+   Menu provides a Start Fight option.
+   Select includes character selection and arena preview.
+   Fight is the main scene where combat happens.
+   Results displays match outcome and replay options.
 
-4. Veri odaklı yükleme
-   Phaser Loader ile atlas ve JSON dosyaları.
-   Aşağıdaki JSON’lar yüklensin ve oyun genelinde erişilebilir olsun
+4. Data-driven loading
+   Use Phaser Loader for atlases and JSON files.
+   Load the following JSONs and make them accessible across the game:
    characters.json
    moves.json
    arenas.json
    events.json
    sponsors.json
 
-5. Kabul kriterleri
-   Tüm sahneler art arda çalışır. Menüden Select sahnesine, oradan Fight sahnesine geçiş yapılır. Yer tutucu sprite ve arka planlar ile akış doğrulanır.
+5. Acceptance criteria
+   All scenes run sequentially. Flow is Menu → Select → Fight. Placeholder sprites and backgrounds verify the flow.
 
-## B. Karakter ve hareket sistemi
+## B. Character and Move System
 
-1. Karakter seçimi
-   Select sahnesinde iki oyuncu için ayrı seçim akışı. CPU seçeneği menüden belirlenebilir.
+1. Character selection
+   Separate selection flow for two players in Select scene. CPU option configurable from the menu.
 
-2. Animasyon ve durum makinesi
-   Idle, yürüme, zıplama, eğilme, hafif yumruk, ağır yumruk, hafif tekme, ağır tekme, savunma, hasar alma, düşüş, kalkış, zafer, kaybetme.
-   Animasyonlar Aseprite atlasları ve kare numaraları ile tanımlanır.
+2. Animation and state machine
+   Idle, walk, jump, crouch, light punch, heavy punch, light kick, heavy kick, block, take hit, fall, rise, victory, defeat.
+   Animations defined via Aseprite atlases and frame indices.
 
-3. Hitbox ve hurtbox
-   moves.json içinden kare bazlı hitbox ve hurtbox okunur.
-   Startup, active, recovery değerleri kare cinsinden çalışır.
-   Çarpışma anında tek tetikleme ve toparlanma penceresi uygulanır.
+3. Hitbox and hurtbox
+   Read frame-based hitbox and hurtbox from moves.json.
+   Startup, active, recovery values work in frames.
+   Single trigger on collision and apply recovery windows.
 
-4. Enerji ve hasar mantığı
-   Her hareketin damage, stun ve enerji maliyeti değerleri moves.json içinde bulunur.
-   Savunma aktifken alınan hasar azalır.
+4. Energy and damage logic
+   Each move has damage, stun, and energy cost values in moves.json.
+   Incoming damage is reduced while blocking.
 
-5. Kabul kriterleri
-   İki karakter aynı cihazda temel hareket ve saldırıları oynar. Çarpışma ve hasar doğru işler. Raund bitişi çalışır.
+5. Acceptance criteria
+   Two characters on the same device can perform basic movement and attacks. Collisions and damage behave correctly. Round end works.
 
-## C. Arena ve sahne yönetimi
+## C. Arena and Scene Management
 
-1. Rastgele arena seçimi
-   Fight başlangıcında arenas.json içinden rastgele sahne seçilir.
+1. Random arena selection
+   At fight start, select a random scene from arenas.json.
 
-2. Örnek arena isimleri ve görseller
+2. Example arena names and visuals
    Token2049 Dubai Arena
    Token2049 Singapore Arena
    Devcon Argentina
    Istanbul Blockchain Stage
-   Ek etkinlik temalı arenalar ileride eklenecek.
+   Additional event-themed arenas will be added later.
 
-3. Katmanlı arka plan
-   Uzak, orta, ön katman. Basit paralaks. Zemin çizgisi ve sahne sınırları.
+3. Layered backgrounds
+   Far, mid, near layers. Simple parallax. Ground line and scene boundaries.
 
-4. Kabul kriterleri
-   Her maç başında farklı arena gelebilir. Zemin ve duvar sınırları doğru çalışır.
+4. Acceptance criteria
+   A different arena can appear at each match start. Ground and wall boundaries work correctly.
 
-## D. Mid fight event sistemi
+## D. Mid-fight Event System
 
-1. Pump Dump olayı
-   Dövüş sırasında rastgele bir anda yorumcu karakter ekrana girer ve Market Alert duyurusu verir.
-   Olay iki moddan biri olarak aktif olur.
+1. Pump/Dump event
+   During the fight, a commentator character may enter randomly and announce a Market Alert.
+   Event activates in one of two modes.
 
-2. Dump modu
-   Tavandan kırmızı mumlar yağar. Oyuncu mumlardan kaçarsa hasar almaz.
-   Muma temas eden oyuncu standart rakip darbesi kadar hasar alır.
-   Olay süresi ve frekansı events.json içinde tanımlıdır.
+2. Dump mode
+   Red candles drop from the ceiling. Avoiding them prevents damage.
+   Touching a candle deals standard enemy hit damage.
+   Event duration and frequency are defined in events.json.
 
-3. Pump modu
-   Zeminden yeşil mumlar yükselir. Yeşil muma temas eden oyuncu enerji kazanır.
-   Healing miktarı events.json içinde tanımlıdır.
+3. Pump mode
+   Green candles rise from the ground. Touching a green candle grants energy.
+   Healing amount is defined in events.json.
 
-4. Kavga devamlılığı
-   Event esnasında normal saldırı ve savunma akışı değişmez.
+4. Combat continuity
+   Regular attack and defense flow remains unchanged during events.
 
-5. Kabul kriterleri
-   Uyarı, aktif ve soğuma durumları ile olay doğru zamanlanır. Çarpışmalar ve etkileri beklendiği gibi işler.
+5. Acceptance criteria
+   With warning, active, and cooldown states, the event is timed correctly. Collisions and effects behave as expected.
 
-## E. Sponsor heal nesneleri
+## E. Sponsor Heal Objects
 
-1. Mantık
-   Admin onayı varsa maçın ortasında sponsor logolu bir heal objesi düşer.
-   Alan oyuncunun enerjisi tamamen dolar.
+1. Logic
+   If admin-approved, a sponsor-branded heal object drops mid-match.
+   The player who collects it fully restores energy.
 
-2. Konfigürasyon
-   sponsors.json içinde sponsor adı, logo, düşme olasılığı, etkin olduğu maç aralığı alanları bulunur.
-   Admin onay alanı true olana kadar nesne düşmez.
+2. Configuration
+   sponsors.json contains sponsor name, logo, drop chance, and match range.
+   The object does not drop until the admin approval field is true.
 
-3. Kabul kriterleri
-   Onaylı sponsor heal nesnesi doğru zamanda görülür ve alındığında enerji tam dolar.
+3. Acceptance criteria
+   Approved sponsor heal object appears at the right time and fully restores energy when collected.
 
-## F. Kripto jargonu ve durum bildirimleri
+## F. Crypto Jargon and Status Messages
 
-1. Saldırı adları
-   HODL Smash, Airdrop Kick, Rekt Uppercut, Liquidation Hook, Degen Dash gibi adlar moves.json içinde isim alanında tutulur.
+1. Attack names
+   HODL Smash, Airdrop Kick, Rekt Uppercut, Liquidation Hook, Degen Dash and similar names are stored in moves.json under the name field.
 
-2. Durum metinleri
-   Rekt, dumped, liquidated gibi kısa durum metinleri ekran üstünde anlık olarak görünür.
-   UI katmanı bu metinleri birkaç saniye gösterir.
+2. Status texts
+   Short status texts like Rekt, dumped, liquidated appear briefly at the top of the screen.
+   The UI layer displays these texts for a few seconds.
 
-3. Kabul kriterleri
-   Saldırıya ait ad ve renkli efektler doğru zamanda görünür. Durum metinleri okunabilirdir.
+3. Acceptance criteria
+   Attack names and colored effects appear at the correct times. Status texts are readable.
 
-## G. Oyun arayüzü
+## G. Game UI
 
-1. Sağlık ve enerji çubukları
-   Üstte iki oyuncu için sağlık ve enerji barı. Değerler anlık güncellenir.
+1. Health and energy bars
+   Two bars at the top for both players. Values update in real-time.
 
-2. Raund ve süre bilgisi
-   Ortada geri sayım sayacı. Süre dolunca sonuç ekranına geçiş.
+2. Round and time info
+   Countdown timer in the middle. On timeout, transition to the results screen.
 
-3. Girdi ipuçları
-   Ekranın alt kısmında hareket ipuçları. Dokunmatik ve klavye için farklı göstergeler.
+3. Input hints
+   Movement hints at the bottom. Different indicators for touch and keyboard.
 
-4. Kabul kriterleri
-   UI tüm arenalarda ve karakterlerde tutarlı çalışır. Tema karanlık ve aydınlık ile uyumludur.
+4. Acceptance criteria
+   UI works consistently across all arenas and characters. Supports dark and light themes.
 
-## H. Eşleşme akışı ve CPU modu
+## H. Match Flow and CPU Mode
 
-1. Hızlı maç
-   Oyuncu tek tuşla maç arar. Rakip bulunamazsa CPU devreye girer.
+1. Quick match
+   Player starts a match with one button. If no opponent is found, CPU takes over.
 
-2. CPU seçimi
-   CPU karakter seçimi otomatik yapılır. Zorluk seviyesi üç kademeli olur.
+2. CPU selection
+   CPU character selection is automatic. Three difficulty levels.
 
-3. Kabul kriterleri
-   Rakip bulunamadığında CPU ile maç gecikmeden başlar.
+3. Acceptance criteria
+   If no opponent is found, CPU match starts without delay.
 
-## I. Global leaderboard
+## I. Global Leaderboard
 
-1. Skor hesaplama
-   Galibiyet, süre, isabet verimi ve bonus hedefleri ile puan hesaplanır.
+1. Scoring
+   Score is calculated from victory, time, hit accuracy, and bonus objectives.
 
-2. Saklama
-   İlk aşamada yerel ya da mock servis. Sonraki aşamada sunucuya yazılır.
+2. Storage
+   Local or mock service initially. Server persistence later.
 
-3. Kabul kriterleri
-   Maç bitiminde sonuçlar Results sahnesinde görünür ve sıralama ekranında listelenir.
+3. Acceptance criteria
+   At match end, results appear in the Results scene and are listed on the leaderboard screen.
 
-## J. Bonus mini oyunlar
+## J. Bonus Mini Games
 
 1. Break the Ice Save the Lambo
-   Belirli sürede buz kırılırsa ekstra puan. Darbe başına puan artışı.
+   Extra points if ice is broken within time. Points increase per hit.
 
 2. Dump Rain Challenge
-   Sadece kaçınma odaklı mini oyun. Süre sonunda kaç mumdan kaçıldığına göre skor.
+   Dodge-focused mini game. Score based on how many candles are avoided.
 
 3. Kill the Scammer
-   Ekrana akan mesajlar. Kötü mesajlara vur, güven veren mesajlara vurma. Hata yapınca puan kesintisi.
+   Messages flow on screen. Hit bad messages, avoid trustworthy ones. Mistakes reduce points.
 
-4. Kabul kriterleri
-   Her mini oyun kendi sahnesinde bağımsız çalışır. Skorlar Results sahnesine aktarılır.
+4. Acceptance criteria
+   Each mini game runs in its own scene independently. Scores feed into the Results scene.
 
-## K. Telegram Mini App uyumu
+## K. Telegram Mini App Compatibility
 
-1. Başlangıç
-   Telegram initData doğrulaması sunucu tarafında yapılır. Kullanıcı adı ve avatar oyun içi kartlara yansıtılır.
+1. Initialization
+   Telegram initData validation is performed server-side. Username and avatar reflect on in-game cards.
 
-2. Tema
-   Telegram Mini App tema değişkenleri UI bileşenlerine uygulanır.
+2. Theme
+   Telegram Mini App theme variables are applied to UI components.
 
-3. Kabul kriterleri
-   WebView içinde performans ve giriş akışı sorunsuzdur.
+3. Acceptance criteria
+   Performance and input flow are smooth within the WebView.
 
-## L. Ses ve efektler
+## L. Audio and Effects
 
-1. Ses seti
-   Vuruş, savunma, özel hareket, event uyarıları için kısa sesler. OGG ve M4A çift paket.
+1. Sound set
+   Short sounds for hits, blocks, special moves, and event alerts. Dual-pack OGG and M4A.
 
 2. VFX
-   Vuruş flaşları, toz ve mum efektleri sprite atlaslarından çalışır. Alfa maliyeti düşük tutulur.
+   Hit flashes, dust, and candle effects via sprite atlases. Keep alpha cost low.
 
-3. Kabul kriterleri
-   Ses tetiklemeleri kare zamanlaması ile uyumlu olur. Efektler performansı düşürmez.
+3. Acceptance criteria
+   Audio triggers align with frame timing. Effects don’t degrade performance.
 
-## M. Test ve dengeleme
+## M. Testing and Balancing
 
-1. Eğitim modu
-   Girdi görüntüleyici ve kare verisi overlay.
-   Hitbox görünür kılma seçeneği.
+1. Training mode
+   Input viewer and frame data overlay.
+   Option to visualize hitboxes.
 
-2. Denge
-   moves.json üzerinde değer değiştirerek dengeleme. Kod değişimine gerek kalmaz.
+2. Balance
+   Adjust values in moves.json for balancing. No code changes required.
 
-3. Kabul kriterleri
-   Eğitim sahnesi ile kare ve çarpışma sorunları hızla tespit edilir. Temel denge turu tamamlanır.
+3. Acceptance criteria
+   Training scene quickly exposes frame and collision issues. Complete a basic balance pass.
 
-## N. Yayın ve optimizasyon
+## N. Release and Optimization
 
-1. Paket boyutu
-   Atlasların bölünmesi, görsellerin sıkıştırılması, gereksiz asset temizliği.
+1. Package size
+   Split atlases, compress images, remove unused assets.
 
-2. Performans
-   Mobil cihazlarda 60 FPS için profil çıkarma ve mikro iyileştirmeler.
+2. Performance
+   Profile for 60 FPS on mobile and micro-optimize.
 
-3. Kabul kriterleri
-   İlk MVP build’i Telegram Mini App içinde stabil çalışır. Menüden maça giriş ve sonuç ekranı sorunsuzdur.
+3. Acceptance criteria
+   The first MVP build runs stably within Telegram Mini App. Enter match from menu and exit to results smoothly.
 
 ---
 

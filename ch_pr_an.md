@@ -1,25 +1,25 @@
-# Crypto Fighters - Karakter & Projectile Analizi
+# Crypto Fighters - Character & Projectile Analysis
 
-Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganlarını ve SVG dosya yollarını listeler.
+This document lists all characters’ current projectile assignments, battle cries, and SVG file paths.
 
-## 🚨 Tespit Edilen Sorunlar
+## 🚨 Identified Issues
 
-### Aynı Projectile Kullanan Karakterler:
-- **BITCOIN_LASER**: Hoskinson, Saylor, Brian (3 karakter)
-- **FIRE_BLAST**: Vitalik, Brian (2 karakter)  
-- **ROCKET_ADVANCED**: Meme Lord, Elon (2 karakter)
-- **BLOCKCHAIN_SECURITY**: Saylor, Gavin (2 karakter)
-- **NINJA_STAR**: DeFi Ninja, Jesse (2 karakter)
-- **ANNOUNCEMENT**: CZ (1 karakter - güncellenmiş)
+### Characters Using the Same Projectiles:
+- **BITCOIN_LASER**: Hoskinson, Saylor, Brian (3 characters)
+- **FIRE_BLAST**: Vitalik, Brian (2 characters)  
+- **ROCKET_ADVANCED**: Meme Lord, Elon (2 characters)
+- **BLOCKCHAIN_SECURITY**: Saylor, Gavin (2 characters)
+- **NINJA_STAR**: DeFi Ninja, Jesse (2 characters)
+- **ANNOUNCEMENT**: CZ (1 character — updated)
 
 ---
 
-## 📋 Karakter Detayları
+## 📋 Character Details
 
 ### 1. HODL Master
 - **ID**: `hodl_master`
-- **Sprite Klasörü**: `assets/sprites/hodl_master/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/hodl_master/`
+- **Current Projectiles**:
   - Special1: `DIAMOND_ORIGAMI` | diamond-origami-paper-svgrepo-com.svg
   - Special2: `HOLD_POWER` | hold-svgrepo-com.svg
 - **Moves & Battle Cries**:
@@ -29,8 +29,8 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ### 2. Trade Queen
 - **ID**: `trade_queen`
-- **Sprite Klasörü**: `assets/sprites/trade_queen/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/trade_queen/`
+- **Current Projectiles**:
   - Special1: `CANDLE_STICKS` | candle-sticks-svgrepo-com.svg
   - Special2: `EXCHANGE_DOLLAR` | exchange-dollar-svgrepo-com.svg
 - **Moves & Battle Cries**:
@@ -40,10 +40,10 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ### 3. Saylor
 - **ID**: `saylor`
-- **Sprite Klasörü**: `assets/sprites/saylor/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/saylor/`
+- **Current Projectiles**:
   - Special1: `BITCOIN_CIRCLE` | bitcoin-circle-svgrepo-com.svg
-  - Special2: `BLOCKCHAIN_SECURITY` ⚠️ (Gavin ile aynı) | blockchain-digital-future-system-security-svgrepo-com.svg
+  - Special2: `BLOCKCHAIN_SECURITY` ⚠️ (same as Gavin) | blockchain-digital-future-system-security-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `bitcoin_laser`: ["Laser eyes!", "Bitcoin power!", "HODL strong!"]
   - `hodl_shield`: ["Again Bought BTC!", "Diamond hands!", "Never sell!"]
@@ -51,9 +51,9 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ### 4. DeFi Ninja
 - **ID**: `defi_ninja`
-- **Sprite Klasörü**: `assets/sprites/defi_ninja/`
-- **Mevcut Projectiles**:
-  - Special1: `NINJA_STAR` ⚠️ (Jesse ile aynı) | ninja-star-svgrepo-com.svg
+- **Sprite Folder**: `assets/sprites/defi_ninja/`
+- **Current Projectiles**:
+  - Special1: `NINJA_STAR` ⚠️ (same as Jesse) | ninja-star-svgrepo-com.svg
   - Special2: `SWORD_HEAVY` | sword-heavy-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `yield_farming`: ["FCFS Baby!", "Slippaged!", "Front Running!"]
@@ -62,9 +62,9 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ### 5. Meme Lord
 - **ID**: `meme_lord`
-- **Sprite Klasörü**: `assets/sprites/meme_lord/`
-- **Mevcut Projectiles**:
-  - Special1: `ROCKET_ADVANCED` ⚠️ (Elon ile aynı) | rocket-svgrepo-com_2.svg
+- **Sprite Folder**: `assets/sprites/meme_lord/`
+- **Current Projectiles**:
+  - Special1: `ROCKET_ADVANCED` ⚠️ (same as Elon) | rocket-svgrepo-com_2.svg
   - Special2: `MOON_STARS` | moon-and-stars-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `viral_attack`: ["Going viral!", "Shitpost power!", "To the moon!"]
@@ -73,10 +73,10 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ### 6. Vitalik
 - **ID**: `vitalik`
-- **Sprite Klasörü**: `assets/sprites/vitalik/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/vitalik/`
+- **Current Projectiles**:
   - Special1: `ETHEREUM_ALT` | ethereum-svgrepo-com_2.svg
-  - Special2: `FIRE_BLAST` ⚠️ (Brian ile aynı) | fire-svgrepo-com.svg
+  - Special2: `FIRE_BLAST` ⚠️ (same as Brian) | fire-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `smart_contract`: ["Code is law!", "Smart contracts execute!", "Ethereum power!"]
   - `ethereum_blast`: ["Unicorn Shirt!", "World computer activated!", "Decentralized destruction!"]
@@ -84,8 +84,8 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ### 7. CZ
 - **ID**: `cz`
-- **Sprite Klasörü**: `assets/sprites/cz/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/cz/`
+- **Current Projectiles**:
   - Special1: `BINANCE_COIN` | binance-bnb-coin-2-svgrepo-com.svg
   - Special2: `ANNOUNCEMENT` | announcement-shout-svgrepo-com.svg
 - **Moves & Battle Cries**:
@@ -95,10 +95,10 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ### 8. Elon
 - **ID**: `elon`
-- **Sprite Klasörü**: `assets/sprites/elon/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/elon/`
+- **Current Projectiles**:
   - Special1: `DOGE_COIN` | doge-svgrepo-com.svg
-  - Special2: `ROCKET_ADVANCED` ⚠️ (Meme Lord ile aynı) | rocket-svgrepo-com.svg
+  - Special2: `ROCKET_ADVANCED` ⚠️ (same as Meme Lord) | rocket-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `tesla_punch`: ["Tesla power!", "SpaceX Moon Lines!", "Pump the Doge!"]
   - `spacex_rocket`: ["To the Mars!", "Pump the shit tokens!", "Sam killer attack!"]
@@ -106,9 +106,9 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ### 9. Hoskinson
 - **ID**: `hoskinson`
-- **Sprite Klasörü**: `assets/sprites/hoskinson/`
-- **Mevcut Projectiles**:
-  - Special1: `BITCOIN_LASER` ⚠️ (Saylor, Brian ile aynı) | bitcoin-svgrepo-com.svg
+- **Sprite Folder**: `assets/sprites/hoskinson/`
+- **Current Projectiles**:
+  - Special1: `BITCOIN_LASER` ⚠️ (same as Saylor, Brian) | bitcoin-svgrepo-com.svg
   - Special2: `FIRE_BOMB` | fire-bomb-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `peer_review`: ["Uknown Power!", "Academic precision!", "Research power!"]
@@ -117,10 +117,10 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ### 10. Gavin
 - **ID**: `gavin`
-- **Sprite Klasörü**: `assets/sprites/gavin/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/gavin/`
+- **Current Projectiles**:
   - Special1: `ETHEREUM_SHARD` | ethereum-svgrepo-com.svg
-  - Special2: `BLOCKCHAIN_SECURITY` ⚠️ (Saylor ile aynı) | blockchain-digital-future-system-security-svgrepo-com.svg
+  - Special2: `BLOCKCHAIN_SECURITY` ⚠️ (same as Saylor) | blockchain-digital-future-system-security-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `parachain_link`: ["Parachain power!", "Interoperability!", "Connected strike!"]
   - `substrate_strike`: ["Substrate power!", "Framework strike!", "Polkadot force!"]
@@ -128,10 +128,10 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ### 11. Brian
 - **ID**: `brian`
-- **Sprite Klasörü**: `assets/sprites/brian/`
-- **Mevcut Projectiles**:
+- **Sprite Folder**: `assets/sprites/brian/`
+- **Current Projectiles**:
   - Special1: `BINANCE_BOLT` | binance-svgrepo-com.svg
-  - Special2: `FIRE_BLAST` ⚠️ (Vitalik ile aynı) | fire-svgrepo-com.svg
+  - Special2: `FIRE_BLAST` ⚠️ (same as Vitalik) | fire-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `crypto_punch`: ["Coinbase power!", "Crypto for everyone!", "Building the future!"]
   - `blockchain_slam`: ["Blockchain revolution!", "Decentralized power!", "Armstrong slam!"]
@@ -139,9 +139,9 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ### 12. Jesse
 - **ID**: `jesse`
-- **Sprite Klasörü**: `assets/sprites/jesse/`
-- **Mevcut Projectiles**:
-  - Special1: `NINJA_STAR` ⚠️ (DeFi Ninja ile aynı) | ninja-star-svgrepo-com.svg
+- **Sprite Folder**: `assets/sprites/jesse/`
+- **Current Projectiles**:
+  - Special1: `NINJA_STAR` ⚠️ (same as DeFi Ninja) | ninja-star-svgrepo-com.svg
   - Special2: `BASE_COIN` | base-coin-svgrepo-com.svg
 - **Moves & Battle Cries**:
   - `ninja_strike`: ["Base speed!", "Layer 2 power!", "Ninja technique!"]
@@ -150,9 +150,9 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ---
 
-## 🎯 Mevcut Projectile Türleri ve SVG Dosya Yolları
+## 🎯 Current Projectile Types and SVG Paths
 
-### Kullanılan Projectiles:
+### Used Projectiles:
 1. **DIAMOND_ORIGAMI** → `src/assets/sprites/projectiles/diamond-origami-paper-svgrepo-com.svg`
 2. **HOLD_POWER** → `src/assets/sprites/projectiles/hold-svgrepo-com.svg`
 3. **CANDLE_STICKS** → `src/assets/sprites/projectiles/candle-sticks-svgrepo-com.svg`
@@ -174,7 +174,7 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 19. **BINANCE_BOLT** → `src/assets/sprites/projectiles/binance-svgrepo-com.svg`
 20. **BASE_COIN** → `src/assets/sprites/projectiles/base-coin-svgrepo-com.svg`
 
-### Kullanılmayan Projectiles:
+### Unused Projectiles:
 21. **BOMB_CLASSIC** → `src/assets/sprites/projectiles/bomb-svgrepo-com.svg`
 22. **BOMB_ADVANCED** → `src/assets/sprites/projectiles/bomb-svgrepo-com_black.svg`
 23. **ROCKET_CLASSIC** → `src/assets/sprites/projectiles/rocket-svgrepo-com.svg`
@@ -187,10 +187,10 @@ Bu dosya tüm karakterlerin mevcut projectile atamalarını, vuruş sloganların
 
 ---
 
-## 📝 Öneriler
+## 📝 Recommendations
 
-1. **Benzersiz Projectile Ataması**: Her karakter için farklı projectile kombinasyonları kullanın
-2. **Tematik Uyum**: Karakterin temasına uygun projectile'lar seçin
-3. **Kullanılmayan Projectile'lar**: Yukarıdaki kullanılmayan projectile'ları yeni atamalarda kullanabilirsiniz
+1. **Unique Projectile Assignment**: Use distinct projectile combinations for each character.
+2. **Thematic Consistency**: Choose projectiles that fit the character theme.
+3. **Unused Projectiles**: Consider using the unused projectiles above for new assignments.
 
-Bu dosyayı düzenleyip bana geri gönderin, karakterlerin yeni projectile atamalarını yapacağım.
+Edit this document and send it back; I will update the characters’ projectile assignments accordingly.

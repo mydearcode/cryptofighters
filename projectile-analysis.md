@@ -1,6 +1,6 @@
-# Karakter Projectile Tutarsızlık Analizi
+# Character Projectile Inconsistency Analysis
 
-## Vitalik ✅ (Düzeltildi)
+## Vitalik ✅ (Fixed)
 - **characters.json**: special1: "ETHEREUM_ALT", special2: "FIRE_BLAST"
 - **moves.json**: ethereum_blast (special1): "ETHEREUM_ALT" ✅, proof_of_stake (special2): "FIRE_BLAST" ✅
 
@@ -48,8 +48,8 @@
 - **characters.json**: special1: "BASE_LAYER", special2: "COMPUTER_CHIP"
 - **moves.json**: swift_attack (special1): "ETHEREUM_SHARD" ❌, shadow_dash (special2): "HODL_DIAMOND" ❌
 
-## Özet
-- **Toplam Karakter**: 12
-- **Doğru Projectile Kullanan**: 1 (Vitalik - düzeltildi)
-- **Düzeltilmesi Gereken**: 11 karakter
-- **Toplam Tutarsızlık**: 18 move
+## Summary
+- **Total Characters**: 12
+- **Correct Projectile Usage**: 1 (Vitalik — fixed)
+- **To Be Fixed**: 11 characters
+- **Total Inconsistencies**: 18 moves

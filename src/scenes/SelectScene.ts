@@ -69,8 +69,8 @@ export class SelectScene extends Phaser.Scene {
     const subtitle = this.add.text(width / 2, 85, 'Choose Your Fighter', {
       fontSize: '18px',
       color: '#ffccaa',
-      fontFamily: 'Georgia, serif',
-      fontStyle: 'italic',
+      fontFamily: '"Geo", "Courier New", monospace, sans-serif',
+      fontStyle: 'normal',
       shadow: {
         offsetX: 1,
         offsetY: 1,
@@ -320,7 +320,7 @@ export class SelectScene extends Phaser.Scene {
       const nameText = this.add.text(x, y + 35, character.name, {
         fontSize: '12px',
         color: '#00d4ff',
-        fontFamily: 'Bangers, Impact, Arial Black, Helvetica Neue, Arial, sans-serif'
+        fontFamily: '"Geo", "Courier New", monospace, sans-serif'
       }).setOrigin(0.5)
       
       // Character special move - smaller font and positioned better
@@ -331,7 +331,7 @@ export class SelectScene extends Phaser.Scene {
       const moveText = this.add.text(x, y + 48, moveName, {
         fontSize: '9px',
         color: '#cccccc',
-        fontFamily: 'Bangers, Impact, Arial Black, Helvetica Neue, Arial, sans-serif'
+        fontFamily: '"Geo", "Courier New", monospace, sans-serif'
       }).setOrigin(0.5)
     })
   }
@@ -349,7 +349,7 @@ export class SelectScene extends Phaser.Scene {
     this.player1ReadyButton = this.add.text(120, height - 30, 'READY!', {
       fontSize: '14px',
       color: '#ff6600',
-      fontFamily: 'Bangers, Arial Bold',
+      fontFamily: '"Geo", "Courier New", monospace, sans-serif',
       backgroundColor: '#3d1a1a',
       padding: { x: 12, y: 6 }
     }).setOrigin(0.5)
@@ -373,7 +373,7 @@ export class SelectScene extends Phaser.Scene {
       this.player2ReadyButton = this.add.text(width - 120, height - 30, 'READY!', {
         fontSize: '14px',
         color: '#ff6600',
-        fontFamily: 'Bangers, Arial Bold',
+        fontFamily: '"Geo", "Courier New", monospace, sans-serif',
         backgroundColor: '#3d1a1a',
         padding: { x: 12, y: 6 }
       }).setOrigin(0.5)
@@ -980,7 +980,7 @@ export class SelectScene extends Phaser.Scene {
     const nextButton = this.add.text(width - 80, 60, 'NEXT', {
       fontSize: '18px',
       color: '#00d4ff',
-      fontFamily: 'Arial Black',
+      fontFamily: '"Geo", "Courier New", monospace, sans-serif',
       backgroundColor: '#16213e',
       padding: { x: 15, y: 8 }
     }).setOrigin(0.5)

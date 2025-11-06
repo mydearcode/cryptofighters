@@ -85,6 +85,14 @@ export class Projectile extends Phaser.GameObjects.Container {
   private initialY: number = 0
   private hasWaveMotion: boolean = false
 
+  // Glow effect properties
+  private glowTime: number = 0
+  private glowIntensity: number = 1
+  private glowSpeed: number = 3
+  private hasGlowEffect: boolean = true
+  private glowSprite?: Phaser.GameObjects.Graphics
+  private glowColors: number[] = [0x40E0D0, 0xFF8C00] // Turquoise and Orange
+
   constructor(
     scene: Phaser.Scene, 
     x: number, 
@@ -433,6 +441,9 @@ export class Projectile extends Phaser.GameObjects.Container {
         break
     }
     
+    // Initialize glow effect for all projectiles
+    this.setupGlowEffect()
+    
     scene.add.existing(this)
   }
 
@@ -703,6 +714,9 @@ export class Projectile extends Phaser.GameObjects.Container {
     // Update wave motion (this will override y position if wave motion is enabled)
     this.updateWaveMotion(deltaTime)
     
+    // Update glow effect
+    this.updateGlowEffect(deltaTime)
+    
     // Update lifespan
     this.lifespan += deltaTime
     
@@ -749,6 +763,95 @@ export class Projectile extends Phaser.GameObjects.Container {
     this.y = this.initialY + waveOffset
   }
 
+  private setupGlowEffect() {
+    this.hasGlowEffect = true
+    this.glowTime = 0
+    this.glowIntensity = 1
+    this.glowSpeed = 1.5 // Slower, more subtle pulsing
+    
+    // Create separate glow sprite for SVG projectiles
+    if (this.projectileSprite instanceof Phaser.GameObjects.Image) {
+      this.createGlowSprite()
+    }
+  }
+
+  private createGlowSprite() {
+    // Create a graphics object for the glow effect
+    this.glowSprite = this.scene.add.graphics()
+    
+    // Add it to the container behind the main projectile
+    this.add(this.glowSprite)
+    this.sendToBack(this.glowSprite)
+    
+    // Set initial glow properties
+    this.updateGlowSprite(0.5) // Start with medium intensity
+  }
+
+  private updateGlowSprite(intensity: number) {
+    if (!this.glowSprite) return
+    
+    this.glowSprite.clear()
+    
+    // Choose random color from turquoise and orange (less frequently)
+    const colorIndex = Math.floor(this.glowTime / 2000) % this.glowColors.length // Change color every 2 seconds
+    const glowColor = this.glowColors[colorIndex]
+    
+    // Create balanced feather-like glow effect with multiple layers
+    const baseSize = 45 // Slightly larger base size
+    const glowSize = baseSize + intensity * 15 // More size variation
+    
+    // Outer glow (larger, more visible on dark backgrounds)
+    this.glowSprite.fillStyle(glowColor, 0.12 + intensity * 0.18) // More visible
+    this.glowSprite.fillEllipse(0, 0, glowSize * 1.4, glowSize * 0.8)
+    
+    // Middle glow (increased opacity)
+    this.glowSprite.fillStyle(glowColor, 0.15 + intensity * 0.2)
+    this.glowSprite.fillEllipse(0, 0, glowSize * 1.0, glowSize * 0.6)
+    
+    // Inner glow (more intense but still balanced)
+    this.glowSprite.fillStyle(glowColor, 0.18 + intensity * 0.25)
+    this.glowSprite.fillEllipse(0, 0, glowSize * 0.6, glowSize * 0.35)
+    
+    // Add a subtle center highlight for better visibility
+    this.glowSprite.fillStyle(glowColor, 0.08 + intensity * 0.12)
+    this.glowSprite.fillEllipse(0, 0, glowSize * 0.3, glowSize * 0.2)
+  }
+
+  private updateGlowEffect(deltaTime: number) {
+    if (!this.hasGlowEffect || !this.projectileSprite) return
+    
+    this.glowTime += deltaTime * 0.001 * this.glowSpeed
+    
+    // Create pulsing glow effect using sine wave
+    const glowValue = Math.sin(this.glowTime) // Oscillates between -1 and 1
+    const intensity = (glowValue + 1) * 0.5 // Convert -1,1 to 0,1
+    
+    // Check if this is an SVG-based projectile (Image type)
+    if (this.projectileSprite instanceof Phaser.GameObjects.Image) {
+      // For SVG projectiles, update the separate glow sprite
+      this.updateGlowSprite(intensity)
+      
+    } else {
+      // For non-SVG projectiles (shapes), use tint and alpha
+      if (this.projectileSprite instanceof Phaser.GameObjects.Sprite) {
+        // Create dramatic color pulsing effect - optimized for dark/black projectiles
+        if (intensity > 0.7) {
+          // Bright cyan/electric blue - very visible on dark objects
+          this.projectileSprite.setTint(0x00ffff)
+        } else if (intensity > 0.4) {
+          // Bright green - excellent contrast with black
+          this.projectileSprite.setTint(0x00ff00)
+        } else {
+          // Bright magenta/pink - stands out on any dark surface
+          this.projectileSprite.setTint(0xff00ff)
+        }
+        
+        // Very dramatic alpha pulsing for maximum visibility
+        this.projectileSprite.setAlpha(0.3 + intensity * 0.7) // Alpha between 0.3 and 1.0
+      }
+    }
+  }
+
   public getHitbox(): Phaser.Geom.Rectangle {
     return new Phaser.Geom.Rectangle(
       this.x - 6,
@@ -761,6 +864,9 @@ export class Projectile extends Phaser.GameObjects.Container {
   public destroy() {
     if (this.projectileSprite) {
       this.projectileSprite.destroy()
+    }
+    if (this.glowSprite) {
+      this.glowSprite.destroy()
     }
     super.destroy()
   }

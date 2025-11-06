@@ -1,242 +1,242 @@
-# Crypto Fighters - Proje Yol Haritası
+# Crypto Fighters - Project Roadmap
 
-## Oyun Hakkında
+## About the Game
 
-**Crypto Fighters**, kripto para dünyasının jargonu ve kültürüyle harmanlanmış 2D piksel sanat dövüş oyunudur. Street Fighter tarzı klasik dövüş mekaniğini modern blockchain terminolojisiyle buluşturan bu oyun, Telegram Mini App olarak geliştirilmektedir.
+**Crypto Fighters** is a 2D pixel art fighting game infused with the jargon and culture of the crypto world. It blends classic Street Fighter-style mechanics with modern blockchain terminology and is developed as a Telegram Mini App.
 
-Oyuncular kripto dünyasından ilham alan karakterlerle dövüşürken "HODL Smash", "Liquidation Hook", "Airdrop Kick" gibi saldırılar kullanacaklar. Token2049, Devcon gibi gerçek blockchain etkinliklerinden ilham alan arenalarda mücadele edecek, dövüş sırasında "Pump & Dump" olayları yaşayacaklar. Oyun, hem nostaljik dövüş oyunu deneyimi hem de kripto kültürünün eğlenceli bir yorumunu sunmayı hedefliyor.
+Players fight with characters inspired by the crypto space using attacks like "HODL Smash", "Liquidation Hook", and "Airdrop Kick". Arenas are inspired by real blockchain events like Token2049 and Devcon, and fights can trigger "Pump & Dump" events. The goal is to deliver a nostalgic fighting game experience with a fun take on crypto culture.
 
-Hedef platform Telegram Mini App olduğu için 960x540 çözünürlükte, dokunmatik kontrollere optimize edilmiş, hızlı yüklenen ve performanslı bir deneyim sunacak.
-
----
-
-## 📊 Proje Durumu Özeti
-
-### ✅ Tamamlanan Fazlar:
-- **Faz 1.1**: Proje kurulumu ve altyapı
-- **Faz 1.2**: Temel sahne sistemi
-- **Faz 1.5**: Çarpışma ve hasar sistemi (gelişmiş)
-- **Faz 1.7**: Temel UI sistemi
-
-### 🔄 Devam Eden/Kısmi Tamamlanan:
-- **Faz 1.3**: Karakter sistemi (SVG sprite'lar eklendi, animasyon gerekli)
-- **Faz 1.6**: Arena sistemi (temel tasarım)
-
-### 🎯 Sonraki Öncelikler:
-1. **Faz 1.3**: Karakter animasyon sistemi
-2. **Faz 1.4**: JSON veri sistemi
-3. **Faz 1.6**: Çoklu arena desteği
-4. **Faz 2.1**: Gelişmiş karakter sistemi
-
-### 🎮 Mevcut Oynanabilir Özellikler:
-- Tam sahne döngüsü (Menu → Select → Fight → Results)
-- İki oyunculu dövüş (WASD vs Arrow keys)
-- **YENİ:** Çoklu saldırı sistemi (3 farklı saldırı tipi her oyuncu için)
-- **YENİ:** Dengeli hasar sistemi (15+ vuruş gerekli)
-- **YENİ:** Karakter sprite'ları (4 kripto karakter)
-- Sağlık barları ve zamanlayıcı
-- Sonuç ekranı ve skor sistemi
+The target platform is Telegram Mini App, optimized for 960x540 resolution, touch controls, fast loading, and high performance.
 
 ---
 
-## Faz 1: MVP (Minimum Viable Product) - Temel Oyun
+## 📊 Project Status Summary
 
-### ✅ 1.1 Proje Kurulumu ve Altyapı **[TAMAMLANDI]**
-**Hedef:** Çalışan Phaser 3 projesi ve geliştirme ortamı
+### ✅ Completed Phases:
+- **Phase 1.1**: Project setup and infrastructure
+- **Phase 1.2**: Basic scene system
+- **Phase 1.5**: Collision and damage system (advanced)
+- **Phase 1.7**: Basic UI system
 
-- [x] Phaser 3 proje kurulumu (TypeScript + Vite)
-- [x] Klasör yapısı oluşturma (`src/`, `assets/`, `public/`)
-- [x] Temel konfigürasyon (960x540, 60 FPS)
-- [x] Geliştirme sunucusu kurulumu
-- [x] Git repository ve temel README
+### 🔄 In Progress / Partially Complete:
+- **Phase 1.3**: Character system (SVG sprites added, animation needed)
+- **Phase 1.6**: Arena system (basic design)
 
-**Kabul Kriteri:** ✅ Boş Phaser sahne çalışır ve tarayıcıda görüntülenir.
+### 🎯 Next Priorities:
+1. **Phase 1.3**: Character animation system
+2. **Phase 1.4**: JSON data system
+3. **Phase 1.6**: Multiple arena support
+4. **Phase 2.1**: Advanced character system
 
-### ✅ 1.2 Temel Sahne Sistemi **[TAMAMLANDI]**
-**Hedef:** Oyun akışının iskelet yapısı
-
-- [x] Boot sahne (asset yükleme)
-- [x] Menu sahne (ana menü)
-- [x] Select sahne (karakter seçimi)
-- [x] Fight sahne (dövüş)
-- [x] Results sahne (sonuç)
-- [x] Sahneler arası geçiş sistemi
-
-**Kabul Kriteri:** ✅ Menüden başlayarak tüm sahneler sırayla çalışır.
-
-**Mevcut Durum:** Tam oyun döngüsü çalışıyor - Menu → Select → Fight → Results
-
-### ✅ 1.3 Karakter Sistemi **[KISMİ TAMAMLANDI]**
-**Hedef:** Oynanabilir karakter mekaniği
-
-- [x] Karakter sprite sistemi (SVG formatında 4 karakter)
-- [x] Temel durum makinesi (idle, walk, jump, attack)
-- [x] Input handling (klavye kontrolü)
-- [x] Karakter fizik ve hareket
-- [x] İki oyuncu kontrolü
-- [x] Çoklu saldırı sistemi (3 farklı saldırı tipi)
-- [ ] Karakter animasyon sistemi
-- [ ] Dokunmatik kontrol desteği
-
-**Kabul Kriteri:** ✅ İki karakter ekranda hareket eder ve farklı saldırılar yapar.
-
-**Mevcut Durum:** Karakter sprite'ları ve temel mekanikler tamamlandı, animasyon sistemi gerekli.
-
-### 1.4 Veri Yapıları ve JSON Sistemi
-**Hedef:** Oyun verilerinin merkezi yönetimi
-
-- [ ] `characters.json` şeması ve örnek veri
-- [ ] `moves.json` şeması ve örnek veri
-- [ ] `arenas.json` şeması ve örnek veri
-- [ ] JSON yükleme ve erişim sistemi
-- [ ] Veri doğrulama mekanizması
-
-**Kabul Kriteri:** JSON dosyaları yüklenir ve oyun genelinde erişilebilir.
-
-### ✅ 1.5 Çarpışma ve Hasar Sistemi **[TAMAMLANDI]**
-**Hedef:** Dövüş mekaniğinin temeli
-
-- [x] Gelişmiş hasar hesaplama sistemi
-- [x] Sağlık sistemi
-- [x] Hitbox sistemi (mesafe tabanlı çarpışma)
-- [x] Saldırı cooldown sistemi
-- [x] Çoklu saldırı tipi desteği
-- [x] Dengeli hasar değerleri (15+ vuruş gerekli)
-- [x] Tek vuruş koruma sistemi
-- [ ] Frame data implementasyonu
-- [ ] Temel savunma mekaniği
-
-**Kabul Kriteri:** ✅ Saldırılar dengeli hasar verir, sağlık azalır, raund biter.
-
-**Mevcut Durum:** Gelişmiş hasar sistemi tamamlandı. 3 farklı saldırı tipi: Temel (%100), Güçlü (%180), Hızlı (%70) hasar değerleri.
-
-### 1.6 Temel Arena Sistemi **[KISMİ TAMAMLANDI]**
-**Hedef:** Dövüş ortamı
-
-- [x] Arena arka plan sistemi (temel)
-- [x] Zemin ve sınır tanımları
-- [ ] Rastgele arena seçimi
-- [ ] 2-3 temel arena tasarımı
-
-**Kabul Kriteri:** Farklı arenalarda dövüş yapılabilir.
-
-**Mevcut Durum:** "TOKEN2049 DUBAI ARENA" temel tasarımı mevcut.
-
-### ✅ 1.7 Temel UI Sistemi **[TAMAMLANDI]**
-**Hedef:** Oyuncu bilgilendirmesi
-
-- [x] Sağlık barları
-- [x] Raund sayacı
-- [x] Süre göstergesi
-- [x] Temel kontrol ipuçları
-
-**Kabul Kriteri:** ✅ UI tüm sahnelerde tutarlı çalışır.
+### 🎮 Current Playable Features:
+- Full scene loop (Menu → Select → Fight → Results)
+- Two-player combat (WASD vs Arrow keys)
+- **NEW:** Multiple attack types (3 per player)
+- **NEW:** Balanced damage system (15+ hits required)
+- **NEW:** Character sprites (4 crypto characters)
+- Health bars and timer
+- Results screen and scoring
 
 ---
 
-## Faz 2: Oyun Deneyimi Geliştirmeleri
+## Phase 1: MVP (Minimum Viable Product) - Core Game
 
-### 2.1 Gelişmiş Karakter Sistemi
-- [ ] Özel hareket animasyonları
-- [ ] Kombo sistemi
-- [ ] Enerji/mana sistemi
-- [ ] Karakter özel yetenekleri
+### ✅ 1.1 Project Setup and Infrastructure **[COMPLETED]**
+**Goal:** Working Phaser 3 project and development environment
 
-### 2.2 Kripto Teması Entegrasyonu
-- [ ] Kripto jargonlu saldırı isimleri
-- [ ] Durum bildirimleri ("Rekt!", "Liquidated!")
-- [ ] Tema uygun ses efektleri
-- [ ] Görsel efektler
+- [x] Phaser 3 project setup (TypeScript + Vite)
+- [x] Folder structure (`src/`, `assets/`, `public/`)
+- [x] Basic configuration (960x540, 60 FPS)
+- [x] Development server setup
+- [x] Git repository and basic README
 
-### 2.3 CPU Rakip Sistemi
-- [ ] AI davranış sistemi
-- [ ] Zorluk seviyeleri
-- [ ] CPU karakter seçimi
-- [ ] Eşleşme sistemi
+**Acceptance Criteria:** ✅ Empty Phaser scene runs and is visible in the browser.
+
+### ✅ 1.2 Basic Scene System **[COMPLETED]**
+**Goal:** Skeleton of the game flow
+
+- [x] Boot scene (asset loading)
+- [x] Menu scene (main menu)
+- [x] Select scene (character selection)
+- [x] Fight scene (combat)
+- [x] Results scene (results)
+- [x] Scene transitions
+
+**Acceptance Criteria:** ✅ All scenes run in order starting from the Menu.
+
+**Current Status:** Full game loop is working - Menu → Select → Fight → Results
+
+### ✅ 1.3 Character System **[PARTIALLY COMPLETED]**
+**Goal:** Playable character mechanics
+
+- [x] Character sprite system (4 characters in SVG)
+- [x] Basic state machine (idle, walk, jump, attack)
+- [x] Input handling (keyboard)
+- [x] Character physics and movement
+- [x] Two-player control
+- [x] Multiple attack types (3 types)
+- [ ] Character animation system
+- [ ] Touch control support
+
+**Acceptance Criteria:** ✅ Two characters move on screen and perform different attacks.
+
+**Current Status:** Character sprites and core mechanics are done; animation system needed.
+
+### 1.4 Data Structures and JSON System
+**Goal:** Centralized management of game data
+
+- [ ] `characters.json` schema and sample data
+- [ ] `moves.json` schema and sample data
+- [ ] `arenas.json` schema and sample data
+- [ ] JSON loading and access system
+- [ ] Data validation mechanism
+
+**Acceptance Criteria:** JSON files load and are accessible across the game.
+
+### ✅ 1.5 Collision and Damage System **[COMPLETED]**
+**Goal:** Foundation of the combat mechanics
+
+- [x] Advanced damage calculation
+- [x] Health system
+- [x] Hitbox system (distance-based collisions)
+- [x] Attack cooldown system
+- [x] Multiple attack type support
+- [x] Balanced damage values (15+ hits required)
+- [x] One-hit protection
+- [ ] Frame data implementation
+- [ ] Basic defense mechanics
+
+**Acceptance Criteria:** ✅ Attacks apply balanced damage, health decreases, the round ends.
+
+**Current Status:** Advanced damage system completed. 3 attack types: Basic (100%), Strong (180%), Fast (70%).
+
+### 1.6 Basic Arena System **[PARTIALLY COMPLETED]**
+**Goal:** Combat environment
+
+- [x] Arena background system (basic)
+- [x] Ground and boundary definitions
+- [ ] Random arena selection
+- [ ] 2–3 basic arena designs
+
+**Acceptance Criteria:** Fights can occur across different arenas.
+
+**Current Status:** "TOKEN2049 DUBAI ARENA" basic design is available.
+
+### ✅ 1.7 Basic UI System **[COMPLETED]**
+**Goal:** Player feedback
+
+- [x] Health bars
+- [x] Round counter
+- [x] Timer display
+- [x] Basic control hints
+
+**Acceptance Criteria:** ✅ UI works consistently across all scenes.
 
 ---
 
-## Faz 3: İleri Özellikler
+## Phase 2: Gameplay Enhancements
 
-### 3.1 Event Sistemi
-- [ ] Pump & Dump olayları
-- [ ] Rastgele event tetikleme
-- [ ] Event animasyonları ve efektleri
-- [ ] Event dengeleme
+### 2.1 Advanced Character System
+- [ ] Special move animations
+- [ ] Combo system
+- [ ] Energy/mana system
+- [ ] Character-specific abilities
 
-### 3.2 Sponsor Sistemi
-- [ ] Sponsor heal nesneleri
-- [ ] Admin onay sistemi
-- [ ] Sponsor logo entegrasyonu
+### 2.2 Crypto Theme Integration
+- [ ] Crypto-jargon attack names
+- [ ] Status notifications ("Rekt!", "Liquidated!")
+- [ ] Themed sound effects
+- [ ] Visual effects
 
-### 3.3 Ses ve Görsel Efektler
-- [ ] Kapsamlı ses kütüphanesi
-- [ ] Parçacık efektleri
-- [ ] Ekran sarsıntıları
-- [ ] Geçiş animasyonları
+### 2.3 CPU Opponent System
+- [ ] AI behavior system
+- [ ] Difficulty levels
+- [ ] CPU character selection
+- [ ] Matchmaking system
 
 ---
 
-## Faz 4: Platform Entegrasyonu
+## Phase 3: Advanced Features
+
+### 3.1 Event System
+- [ ] Pump & Dump events
+- [ ] Random event triggering
+- [ ] Event animations and effects
+- [ ] Event balancing
+
+### 3.2 Sponsor System
+- [ ] Sponsor heal objects
+- [ ] Admin approval system
+- [ ] Sponsor logo integration
+
+### 3.3 Audio and Visual Effects
+- [ ] Comprehensive audio library
+- [ ] Particle effects
+- [ ] Screen shakes
+- [ ] Transition animations
+
+---
+
+## Phase 4: Platform Integration
 
 ### 4.1 Telegram Mini App
-- [ ] Telegram WebApp API entegrasyonu
-- [ ] Kullanıcı kimlik doğrulama
-- [ ] Tema uyumluluğu
-- [ ] Performans optimizasyonu
+- [ ] Telegram WebApp API integration
+- [ ] User authentication
+- [ ] Theme compatibility
+- [ ] Performance optimization
 
-### 4.2 Leaderboard Sistemi
-- [ ] Skor hesaplama algoritması
-- [ ] Yerel skor saklama
-- [ ] Sıralama ekranı
-- [ ] Sunucu entegrasyonu (opsiyonel)
+### 4.2 Leaderboard System
+- [ ] Score calculation algorithm
+- [ ] Local score storage
+- [ ] Leaderboard screen
+- [ ] Server integration (optional)
 
 ---
 
-## Faz 5: Bonus İçerikler (Opsiyonel)
+## Phase 5: Bonus Content (Optional)
 
-### 5.1 Mini Oyunlar
+### 5.1 Mini Games
 - [ ] Break the Ice Save the Lambo
 - [ ] Dump Rain Challenge
 - [ ] Kill the Scammer
-- [ ] Mini oyun skorları
+- [ ] Mini-game scores
 
-### 5.2 İleri Özellikler
-- [ ] Eğitim modu
-- [ ] Frame data görüntüleyici
-- [ ] Replay sistemi
-- [ ] Turnuva modu
+### 5.2 Advanced Features
+- [ ] Training mode
+- [ ] Frame data viewer
+- [ ] Replay system
+- [ ] Tournament mode
 
 ---
 
-## Teknik Gereksinimler
+## Technical Requirements
 
-### Performans Hedefleri
-- 60 FPS sabit kare hızı
-- 3 saniye altında ilk yükleme
-- 10MB altında toplam boyut
-- Mobil cihazlarda sorunsuz çalışım
+### Performance Targets
+- Steady 60 FPS
+- Initial load under 3 seconds
+- Total size under 10MB
+- Smooth operation on mobile devices
 
-### Uyumluluk
-- Modern web tarayıcıları
-- iOS Safari ve Android Chrome
+### Compatibility
+- Modern web browsers
+- iOS Safari and Android Chrome
 - Telegram WebView
-- Dokunmatik ve klavye kontrolü
+- Touch and keyboard controls
 
-### Geliştirme Araçları
+### Development Tools
 - Phaser 3.70+
 - TypeScript 5.0+
-- Vite build sistemi
-- Aseprite (sprite editörü)
+- Vite build system
+- Aseprite (sprite editor)
 
 ---
 
-## Başlangıç Adımları
+## Getting Started
 
-1. **Faz 1.1'den başlayın** - Proje kurulumu kritik
-2. **Her faz sonunda test edin** - Erken geri bildirim önemli
-3. **MVP'yi önce tamamlayın** - Çalışan oyun en önemli hedef
-4. **Performansı sürekli izleyin** - Telegram Mini App sınırları var
-5. **Kullanıcı testleri yapın** - Dokunmatik kontroller kritik
+1. **Start from Phase 1.1** — Project setup is critical
+2. **Test at the end of each phase** — Early feedback is important
+3. **Complete the MVP first** — A working game is the main goal
+4. **Monitor performance continuously** — Telegram Mini App has constraints
+5. **Run user tests** — Touch controls are critical
 
-Bu yol haritası esnek bir plandır. Her fazın sonunda değerlendirme yaparak sonraki adımları belirleyebilirsiniz.
+This roadmap is flexible. Reassess at the end of each phase to decide next steps.
