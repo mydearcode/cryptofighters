@@ -29,6 +29,24 @@ export class MenuScene extends Phaser.Scene {
         fill: true
       }
     }).setOrigin(0.5)
+
+    // Subtle beta badge next to the title
+    const titleBounds = title.getBounds()
+    this.add.text(titleBounds.right + 10, titleBounds.top + 8, '(beta)', {
+      fontSize: '20px',
+      color: '#ffddcc',
+      fontFamily: '"Geo", "Courier New", monospace, sans-serif',
+      fontStyle: 'italic',
+      stroke: '#5a1a1a',
+      strokeThickness: 2,
+      shadow: {
+        offsetX: 1,
+        offsetY: 1,
+        color: '#330000',
+        blur: 2,
+        fill: true
+      }
+    }).setOrigin(0, 0).setAlpha(0.9)
     
     // Add subtitle with better styling
     const subtitle = this.add.text(width / 2, 170, 'The Most Powerful Warriors of Crypto World', {
@@ -142,7 +160,7 @@ export class MenuScene extends Phaser.Scene {
     // Add instructions - better styled and more readable
     const instructions = this.add.text(width / 2, 500, 
       'Movement: WASD (Player 1) / Arrow Keys (Player 2)\n' +
-      'Attack: J, K, L (Player 1) / 1, 2, 3 (Player 2)', {
+      'Attack: SPACE/Q/E (Player 1) / P (Punch), Shift/Enter (Shots) (Player 2)', {
       fontSize: '13px',
       color: '#aa7766',
       fontFamily: '"Geo", "Courier New", monospace, sans-serif',

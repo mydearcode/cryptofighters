@@ -8,6 +8,7 @@ import exchangesStreetImg from '../assets/images/arenas/exchanges_street.png'
 import baseApprenaImg from '../assets/images/arenas/base_apprena.png'
 import tipboxArenaImg from '../assets/images/arenas/tipbox_arena.png'
 import baesArenaImg from '../assets/images/arenas/baes_arena.png'
+import memeArenaImg from '../assets/images/arenas/meme_arena.png'
 
 export class FightScene extends Phaser.Scene {
   private player1!: Character
@@ -140,6 +141,7 @@ export class FightScene extends Phaser.Scene {
     this.load.image('base_apprena', baseApprenaImg)
     this.load.image('tipbox_arena', tipboxArenaImg)
     this.load.image('baes_arena', baesArenaImg)
+    this.load.image('meme_arena', memeArenaImg)
   }
 
   create() {
@@ -186,7 +188,7 @@ export class FightScene extends Phaser.Scene {
     this.startCountdown()
 
     // Add some fight instructions
-    this.add.text(width / 2, height - 30, 'P1: WASD + Space | P2: Arrow Keys + Enter', {
+    this.add.text(width / 2, height - 30, 'P1: WASD + Space/Q/E | P2: Arrows + P/Shift/Enter', {
       font: '12px Courier New',
       color: '#888888'
     }).setOrigin(0.5)
@@ -419,8 +421,8 @@ export class FightScene extends Phaser.Scene {
     // Cursor keys for Player 2
     this.cursors = this.input.keyboard!.createCursorKeys()
 
-    // WASD keys for Player 1
-    this.wasdKeys = this.input.keyboard!.addKeys('W,S,A,D,SPACE,Q,E,ENTER,CTRL')
+    // WASD keys for Player 1 + P2 attack keys (P, Enter)
+    this.wasdKeys = this.input.keyboard!.addKeys('W,S,A,D,SPACE,Q,E,P,ENTER')
   }
 
   private startRoundTimer() {
@@ -537,14 +539,14 @@ export class FightScene extends Phaser.Scene {
       }
 
       // Player 2 attack inputs
+      if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.P)) {
+        this.player2.attack(AttackType.BASIC) // Basic attack (Punch)
+      }
       if (Phaser.Input.Keyboard.JustDown(this.cursors.shift!)) {
-        this.player2.attack(AttackType.BASIC) // Basic attack - normal damage, fast
+        this.player2.attack(AttackType.SPECIAL2) // Shot - special move 2
       }
       if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.ENTER)) {
-        this.player2.attack(AttackType.SPECIAL1) // Special move 1 - high damage, slow
-      }
-      if (Phaser.Input.Keyboard.JustDown(this.wasdKeys.CTRL)) {
-        this.player2.attack(AttackType.SPECIAL2) // Special move 2 - low damage, medium speed
+        this.player2.attack(AttackType.SPECIAL1) // Shot - special move 1
       }
     } else {
       // Single player mode - CPU controls for Player 2

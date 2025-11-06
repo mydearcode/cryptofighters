@@ -92,34 +92,12 @@
         "ancient_symbols"
       ]
     },
-    {
-      "id": "nft_gallery",
-      "name": "NFT Gallery",
-      "description": "Fight among artworks in a prestigious NFT gallery.",
-      "background": "art-gallery",
-      "theme": "artistic",
-      "music": "classical_electronic",
-      "lighting": "gallery_spots",
-      "effects": {
-        "particles": "color_splashes",
-        "ambient": "gallery_quiet"
-      },
-      "boundaries": {
-        "left": 55,
-        "right": 745,
-        "ground": 510
-      },
-      "special_features": [
-        "nft_displays",
-        "art_frames",
-        "spotlight_beams"
-      ]
-    },
+    
     {
       "id": "meme_arena",
       "name": "Meme Arena",
       "description": "Fight in the playful world of meme coins.",
-      "background": "meme-space",
+      "background": "meme_arena.png",
       "theme": "chaotic",
       "music": "meme_beats",
       "lighting": "rainbow",
