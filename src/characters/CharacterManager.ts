@@ -1,6 +1,11 @@
 import { CharacterData } from './Character'
 import { gameData, CharacterData as JSONCharacterData } from '../data/DataManager'
 
+// Normalize sprite folder names when JSON uses legacy names
+const SPRITE_NAME_OVERRIDES: Record<string, string> = {
+  hodl_master: 'hold_master'
+}
+
 export class CharacterManager {
   // Legacy hardcoded characters (kept for backward compatibility)
   private static legacyCharacters: CharacterData[] = [
@@ -56,10 +61,14 @@ export class CharacterManager {
 
   // Convert JSON character data to game character data format
   private static convertJSONToCharacterData(jsonChar: JSONCharacterData): CharacterData {
+    const rawSprite = jsonChar.spritePath
+      .replace(/^sprites\/characters\//, '')
+      .replace(/\.png$/, '')
+    const sprite = SPRITE_NAME_OVERRIDES[rawSprite] ?? rawSprite
     return {
       id: jsonChar.id,
       name: jsonChar.name,
-      sprite: jsonChar.spritePath.replace(/^sprites\/characters\//, '').replace(/\.png$/, ''), // Extract sprite name from path
+      sprite,
       stats: jsonChar.stats,
       moves: jsonChar.moves
     }
@@ -102,7 +111,8 @@ export class CharacterManager {
   public static preloadAssets(scene: Phaser.Scene) {
     const characters = this.getAllCharacters()
     characters.forEach(character => {
-      scene.load.image(character.sprite, `assets/characters/${character.sprite}.png`)
+      // Load the default portrait/idle frame from public sprites directory
+      scene.load.image(character.sprite, `/sprites/${character.sprite}/combat_idle.png`)
     })
   }
 
