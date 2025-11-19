@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import { SoundManager } from '../audio/SoundManager'
+import creditsRaw from '../../credits.md?raw'
 
 export class MenuScene extends Phaser.Scene {
   constructor() {
@@ -182,5 +183,103 @@ export class MenuScene extends Phaser.Scene {
     })
 
     // Menü müziği FightScene başlayana kadar devam etsin, burada durdurmuyoruz.
+
+    // Credits button (top-left)
+    const creditsButtonBg = this.add.rectangle(80, 30, 120, 36, 0x3d1a1a)
+      .setStrokeStyle(2, 0xff4444)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => this.showCreditsPanel())
+      .on('pointerover', () => {
+        creditsButtonBg.setFillStyle(0x5d2a2a)
+        creditsButtonText.setColor('#ff8800')
+      })
+      .on('pointerout', () => {
+        creditsButtonBg.setFillStyle(0x3d1a1a)
+        creditsButtonText.setColor('#ff6600')
+      })
+    creditsButtonBg.setOrigin(0.5)
+    const creditsButtonText = this.add.text(80, 30, 'CREDITS', {
+      fontSize: '18px',
+      color: '#ff6600',
+      fontFamily: 'Bangers, Impact, Arial Black, sans-serif',
+      stroke: '#660000',
+      strokeThickness: 2
+    }).setOrigin(0.5)
+  }
+
+  private showCreditsPanel() {
+    const { width, height } = this.cameras.main
+    const overlay = this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.55)
+      .setInteractive()
+      .setDepth(1000)
+
+    const panelWidth = Math.min(820, Math.floor(width * 0.9))
+    const panelHeight = Math.min(440, Math.floor(height * 0.85))
+
+    // credits.md içeriğini işle: ilk paragrafta Tipbox.co'yu linkle ve daha büyük göster
+    const creditsText = (creditsRaw || '').trim()
+    const parts = creditsText.split(/\n\s*\n/)
+    const intro = parts.shift() || ''
+    const introLinked = intro.replace(/Tipbox\.co/g, '<a href="https://tipbox.co" target="_blank" rel="noopener noreferrer" style="color:#ffccaa; text-decoration: underline;">Tipbox.co</a>')
+    const rest = parts.join('\n\n')
+
+    const html = `
+      <div id="credits-panel" style="
+        width: ${panelWidth}px;
+        height: ${panelHeight}px;
+        background: #1f1f29;
+        color: #ffd8b0;
+        border: 2px solid #ff4444;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+        border-radius: 8px;
+        font-family: 'Geo', 'Courier New', monospace, sans-serif;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      ">
+        <div style="
+          display:flex;
+          align-items:center;
+          justify-content: space-between;
+          padding: 10px 14px;
+          background: #2a1a1a;
+          border-bottom: 1px solid #ff4444;
+        ">
+          <div style="
+            font-family: 'Bangers', Impact, 'Arial Black', sans-serif;
+            font-size: 20px; color:#ff8800; letter-spacing:1px;
+            text-shadow: 1px 1px #330000;
+          ">CREDITS</div>
+          <button id="closeCredits" style="
+            background:#3d1a1a; color:#ffddcc; border:1px solid #ff6666; border-radius:4px;
+            font-weight:bold; cursor:pointer; padding:6px 10px;
+          ">X</button>
+        </div>
+        <div style="padding:14px; overflow:auto; flex:1;">
+          <div style="white-space: pre-wrap; line-height:1.4;">
+            <div style="font-size: 18px; margin-bottom: 12px;">${introLinked}</div>
+            <div style="font-size: 14px;">${rest}</div>
+          </div>
+        </div>
+      </div>
+    `
+
+    const dom = this.add.dom(width / 2, height / 2).createFromHTML(html)
+    dom.setDepth(1001)
+
+    const close = () => {
+      dom.destroy()
+      overlay.destroy()
+    }
+
+    // Close button wiring
+    const node = dom.node as HTMLElement
+    const btn = node.querySelector('#closeCredits') as HTMLButtonElement | null
+    if (btn) {
+      btn.addEventListener('click', (e) => { e.preventDefault(); close() })
+    }
+
+    // Optional: click outside to close
+    overlay.on('pointerdown', () => close())
   }
 }
