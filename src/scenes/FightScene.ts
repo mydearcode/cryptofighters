@@ -442,7 +442,8 @@ export class FightScene extends Phaser.Scene {
         .setDepth(1000)
         .setScrollFactor(0)
       const txt = this.add.text(x, y, label, {
-        font: 'bold 14px Courier New',
+        fontSize: '22px',
+        fontFamily: 'Arial, Helvetica, sans-serif',
         color: '#ffffff'
       }).setOrigin(0.5).setDepth(1001).setScrollFactor(0)
       rect.on('pointerdown', () => {
@@ -457,9 +458,10 @@ export class FightScene extends Phaser.Scene {
     const x2 = x3 - (btnSize + margin)
     const x1 = x2 - (btnSize + margin)
 
-    makeBtn(x1, 'BASIC', () => this.player1.attack(AttackType.BASIC))
-    makeBtn(x2, 'S1', () => this.player1.attack(AttackType.SPECIAL1))
-    makeBtn(x3, 'S2', () => this.player1.attack(AttackType.SPECIAL2))
+    // Icons: BASIC=👊, S1=💥, S2=🚀
+    makeBtn(x1, '👊', () => this.player1.attack(AttackType.BASIC))
+    makeBtn(x2, '💥', () => this.player1.attack(AttackType.SPECIAL1))
+    makeBtn(x3, '🚀', () => this.player1.attack(AttackType.SPECIAL2))
 
     // Hint text for mobile
     this.add.text(width - margin - 160, y - btnSize / 2 - 8, 'ATTACK', {
