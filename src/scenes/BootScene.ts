@@ -60,6 +60,7 @@ export class BootScene extends Phaser.Scene {
     this.load.audio('bg_fight1', '/audio/bg_fight1.mp3')
     this.load.audio('bg_fight2', '/audio/bg_fight2.mp3')
     this.load.audio('countdown', '/audio/countdown.mp3')
+    this.load.audio('ready_fight', '/audio/ready_fight.mp3')
     this.load.audio('sfx_attack_basic', '/audio/sfx_attack_basic.mp3')
     this.load.audio('sfx_attack_special', '/audio/sfx_attack_special.mp3')
     this.load.audio('sfx_hit', '/audio/sfx_hit.mp3')

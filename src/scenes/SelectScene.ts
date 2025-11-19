@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import { SoundManager } from '../audio/SoundManager'
 import { CharacterManager } from '../characters/CharacterManager'
 import { gameData } from '../data/DataManager'
 import { GAME_CONSTANTS } from '../config/GameConfig'
@@ -999,3 +1000,5 @@ export class SelectScene extends Phaser.Scene {
   }
 
 }
+    // Menü müziğini bu sahnede de sürdür (otomatik durduysa yeniden başlat)
+    SoundManager.playBgm(this, 'bg_menu', { loop: true, volume: 0.3 })

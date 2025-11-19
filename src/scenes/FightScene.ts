@@ -770,6 +770,8 @@ export class FightScene extends Phaser.Scene {
   }
 
   private startCountdown() {
+    // 3 saniyelik geri sayım SFX
+    SoundManager.playSfx(this, 'countdown', { volume: 0.7 })
     let countdownNumber = 3
     
     const showCountdownNumber = () => {
@@ -783,6 +785,11 @@ export class FightScene extends Phaser.Scene {
       this.time.delayedCall(1000, () => {
         countdownText.destroy()
         countdownNumber--
+
+        // 2. saniyede (3→2 geçişinde) ready_fight.mp3 çal
+        if (countdownNumber === 2) {
+          SoundManager.playSfx(this, 'ready_fight', { volume: 0.8 })
+        }
         
         if (countdownNumber > 0) {
           showCountdownNumber()

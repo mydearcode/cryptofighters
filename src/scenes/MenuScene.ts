@@ -181,9 +181,6 @@ export class MenuScene extends Phaser.Scene {
       SoundManager.playBgm(this, 'bg_menu', { loop: true, volume: 0.3 })
     })
 
-    // Ensure music stops when leaving this scene
-    this.events.once('shutdown', () => {
-      SoundManager.stopBgm(this)
-    })
+    // Menü müziği FightScene başlayana kadar devam etsin, burada durdurmuyoruz.
   }
 }

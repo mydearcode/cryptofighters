@@ -11,11 +11,12 @@ type SfxOptions = { volume?: number }
  */
 export class SoundManager {
   /** Play looping background music. Skips silently if audio not loaded. */
-  static playBgm(scene: Phaser.Scene, key: string, opts: BgmOptions = {}) {
+  static playBgm(scene: Phaser.Scene | undefined, key: string, opts: BgmOptions = {}) {
+    if (!scene || !scene.sound || !scene.sys || !scene.sys.game) return
     const volume = opts.volume ?? 0.25
     const loop = opts.loop ?? true
 
-    // Stop any previous BGM tracked for this scene
+    // Stop any previous BGM tracked globally
     this.stopBgm(scene)
 
     // Only play if the audio key is loaded
@@ -25,9 +26,9 @@ export class SoundManager {
       try {
         const snd = scene.sound.add(key, { loop, volume })
         snd.play()
-        // Track current bgm sound instance by key on the registry
-        scene.registry.set('currentBgmKey', key)
-        scene.registry.set('currentBgmInstance', snd)
+        // Track current bgm sound instance globally on game registry
+        scene.sys.game.registry.set('currentBgmKey', key)
+        scene.sys.game.registry.set('currentBgmInstance', snd)
       } catch {
         // Asset not present; ignore
       }
@@ -41,18 +42,19 @@ export class SoundManager {
       }
       existing.play({ loop, volume })
     } catch {}
-    scene.registry.set('currentBgmKey', key)
-    scene.registry.set('currentBgmInstance', existing)
+    scene.sys.game.registry.set('currentBgmKey', key)
+    scene.sys.game.registry.set('currentBgmInstance', existing)
   }
 
   /** Stop current background music if playing. */
-  static stopBgm(scene: Phaser.Scene) {
-    const current = scene.registry.get('currentBgmInstance') as Phaser.Sound.BaseSound | undefined
+  static stopBgm(scene: Phaser.Scene | undefined) {
+    if (!scene || !scene.sys || !scene.sys.game) return
+    const current = scene.sys.game.registry.get('currentBgmInstance') as Phaser.Sound.BaseSound | undefined
     if (current && current.isPlaying) {
       try { current.stop() } catch {}
     }
-    scene.registry.set('currentBgmKey', undefined)
-    scene.registry.set('currentBgmInstance', undefined)
+    scene.sys.game.registry.set('currentBgmKey', undefined)
+    scene.sys.game.registry.set('currentBgmInstance', undefined)
   }
 
   /** Play a one-shot SFX; skips silently if audio not loaded. */

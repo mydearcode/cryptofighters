@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import { SoundManager } from '../audio/SoundManager'
 import { gameData } from '../data/DataManager'
 
 export class ArenaSelectScene extends Phaser.Scene {
@@ -179,3 +180,5 @@ export class ArenaSelectScene extends Phaser.Scene {
     this.scene.start('FightScene')
   }
 }
+    // Menü müziğini arena seçiminde de sürdür
+    SoundManager.playBgm(this, 'bg_menu', { loop: true, volume: 0.3 })
