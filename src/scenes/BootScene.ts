@@ -344,138 +344,138 @@ export class BootScene extends Phaser.Scene {
     this.load.image('trade-queen', 'sprites/trade_queen/combat_idle.png')
     
     // Load Trade Queen portrait for character selection (specific frame from combat_idle spritesheet)
-    this.load.spritesheet('trade-queen-combat-idle-frames', '/sprites/trade_queen/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('trade-queen-combat-idle-frames', 'sprites/trade_queen/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
 
     // Load DeFi Ninja character sprites
     // idle: 512x256 (8 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-idle', '/sprites/defi_ninja/idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-idle', 'sprites/defi_ninja/idle.png', { frameWidth: 64, frameHeight: 64 })
     
     // combat_idle: 128x256 (2 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-combat-idle', '/sprites/defi_ninja/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-combat-idle', 'sprites/defi_ninja/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
     
     // walk: 512x256 (8 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-walk', '/sprites/defi_ninja/walk.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-walk', 'sprites/defi_ninja/walk.png', { frameWidth: 64, frameHeight: 64 })
     
     // run: 512x256 (8 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-run', '/sprites/defi_ninja/run.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-run', 'sprites/defi_ninja/run.png', { frameWidth: 64, frameHeight: 64 })
     
     // jump: 192x256 (3 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-jump', '/sprites/defi_ninja/jump.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-jump', 'sprites/defi_ninja/jump.png', { frameWidth: 64, frameHeight: 64 })
     
     // slash: 384x256 (6 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-slash', '/sprites/defi_ninja/slash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-slash', 'sprites/defi_ninja/slash.png', { frameWidth: 64, frameHeight: 64 })
     
     // halfslash: 192x256 (3 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-halfslash', '/sprites/defi_ninja/halfslash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-halfslash', 'sprites/defi_ninja/halfslash.png', { frameWidth: 64, frameHeight: 64 })
     
     // backslash: 256x256 (4 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-backslash', '/sprites/defi_ninja/backslash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-backslash', 'sprites/defi_ninja/backslash.png', { frameWidth: 64, frameHeight: 64 })
     
     // thrust: 512x256 (8 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-thrust', '/sprites/defi_ninja/thrust.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-thrust', 'sprites/defi_ninja/thrust.png', { frameWidth: 64, frameHeight: 64 })
     
     // hurt: 192x256 (3 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-hurt', '/sprites/defi_ninja/hurt.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-hurt', 'sprites/defi_ninja/hurt.png', { frameWidth: 64, frameHeight: 64 })
     
     // shoot: 832x256 (13 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-shoot', '/sprites/defi_ninja/shoot.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-shoot', 'sprites/defi_ninja/shoot.png', { frameWidth: 64, frameHeight: 64 })
     
     // spellcast: 448x256 (7 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-spellcast', '/sprites/defi_ninja/spellcast.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-spellcast', 'sprites/defi_ninja/spellcast.png', { frameWidth: 64, frameHeight: 64 })
     
     // climb: 256x256 (4 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-climb', '/sprites/defi_ninja/climb.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-climb', 'sprites/defi_ninja/climb.png', { frameWidth: 64, frameHeight: 64 })
     
     // sit: 64x256 (1 frame horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-sit', '/sprites/defi_ninja/sit.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-sit', 'sprites/defi_ninja/sit.png', { frameWidth: 64, frameHeight: 64 })
     
     // emote: 256x256 (4 frames horizontal, 4 directions vertical) - use row 1 (left side view)
-    this.load.spritesheet('defi-ninja-emote', '/sprites/defi_ninja/emote.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-emote', 'sprites/defi_ninja/emote.png', { frameWidth: 64, frameHeight: 64 })
     
     // Set default defi-ninja sprite (use first frame of combat_idle)
-    this.load.image('defi-ninja', '/sprites/defi_ninja/combat_idle.png')
+    this.load.image('defi-ninja', 'sprites/defi_ninja/combat_idle.png')
     
     // Load DeFi Ninja portrait for character selection (specific frame from combat_idle spritesheet)
-    this.load.spritesheet('defi-ninja-combat-idle-frames', '/sprites/defi_ninja/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('defi-ninja-combat-idle-frames', 'sprites/defi_ninja/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
     
     // Load defi_ninja as separate sprite for character selection
-    this.load.image('defi_ninja', '/sprites/defi_ninja/combat_idle.png')
+    this.load.image('defi_ninja', 'sprites/defi_ninja/combat_idle.png')
 
     // Load Meme Lord character sprites
-    this.load.spritesheet('meme-lord-idle', '/sprites/meme_lord/idle.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-combat-idle', '/sprites/meme_lord/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-walk', '/sprites/meme_lord/walk.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-run', '/sprites/meme_lord/run.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-jump', '/sprites/meme_lord/jump.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-slash', '/sprites/meme_lord/slash.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-halfslash', '/sprites/meme_lord/halfslash.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-backslash', '/sprites/meme_lord/backslash.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-thrust', '/sprites/meme_lord/thrust.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-hurt', '/sprites/meme_lord/hurt.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-shoot', '/sprites/meme_lord/shoot.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-spellcast', '/sprites/meme_lord/spellcast.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-climb', '/sprites/meme_lord/climb.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-sit', '/sprites/meme_lord/sit.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('meme-lord-emote', '/sprites/meme_lord/emote.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-idle', 'sprites/meme_lord/idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-combat-idle', 'sprites/meme_lord/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-walk', 'sprites/meme_lord/walk.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-run', 'sprites/meme_lord/run.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-jump', 'sprites/meme_lord/jump.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-slash', 'sprites/meme_lord/slash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-halfslash', 'sprites/meme_lord/halfslash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-backslash', 'sprites/meme_lord/backslash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-thrust', 'sprites/meme_lord/thrust.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-hurt', 'sprites/meme_lord/hurt.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-shoot', 'sprites/meme_lord/shoot.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-spellcast', 'sprites/meme_lord/spellcast.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-climb', 'sprites/meme_lord/climb.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-sit', 'sprites/meme_lord/sit.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-emote', 'sprites/meme_lord/emote.png', { frameWidth: 64, frameHeight: 64 })
     
     // Set default meme-lord sprite (use first frame of combat_idle)
-    this.load.image('meme-lord', '/sprites/meme_lord/combat_idle.png')
+    this.load.image('meme-lord', 'sprites/meme_lord/combat_idle.png')
     
     // Load Meme Lord portrait for character selection (specific frame from combat_idle spritesheet)
-    this.load.spritesheet('meme-lord-combat-idle-frames', '/sprites/meme_lord/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('meme-lord-combat-idle-frames', 'sprites/meme_lord/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
     
     // Load meme_lord as separate sprite for character selection
-    this.load.image('meme_lord', '/sprites/meme_lord/combat_idle.png')
+    this.load.image('meme_lord', 'sprites/meme_lord/combat_idle.png')
 
     // Load Brian sprites
-    this.load.spritesheet('brian-idle', '/sprites/brian/idle.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-combat-idle', '/sprites/brian/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-walk', '/sprites/brian/walk.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-run', '/sprites/brian/run.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-jump', '/sprites/brian/jump.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-slash', '/sprites/brian/slash.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-halfslash', '/sprites/brian/halfslash.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-backslash', '/sprites/brian/backslash.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-thrust', '/sprites/brian/thrust.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-hurt', '/sprites/brian/hurt.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-shoot', '/sprites/brian/shoot.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-spellcast', '/sprites/brian/spellcast.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-climb', '/sprites/brian/climb.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-sit', '/sprites/brian/sit.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('brian-emote', '/sprites/brian/emote.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-idle', 'sprites/brian/idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-combat-idle', 'sprites/brian/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-walk', 'sprites/brian/walk.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-run', 'sprites/brian/run.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-jump', 'sprites/brian/jump.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-slash', 'sprites/brian/slash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-halfslash', 'sprites/brian/halfslash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-backslash', 'sprites/brian/backslash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-thrust', 'sprites/brian/thrust.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-hurt', 'sprites/brian/hurt.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-shoot', 'sprites/brian/shoot.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-spellcast', 'sprites/brian/spellcast.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-climb', 'sprites/brian/climb.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-sit', 'sprites/brian/sit.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-emote', 'sprites/brian/emote.png', { frameWidth: 64, frameHeight: 64 })
 
     // Load Brian portrait for character selection (specific frame from combat_idle spritesheet)
-    this.load.spritesheet('brian-combat-idle-frames', '/sprites/brian/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('brian-combat-idle-frames', 'sprites/brian/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
     
     // Load brian as separate sprite for character selection
-    this.load.image('brian', '/sprites/brian/combat_idle.png')
+    this.load.image('brian', 'sprites/brian/combat_idle.png')
 
     // Load Jesse sprites
-    this.load.spritesheet('jesse-idle', '/sprites/jesse/idle.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-combat-idle', '/sprites/jesse/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-walk', '/sprites/jesse/walk.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-run', '/sprites/jesse/run.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-jump', '/sprites/jesse/jump.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-slash', '/sprites/jesse/slash.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-halfslash', '/sprites/jesse/halfslash.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-backslash', '/sprites/jesse/backslash.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-thrust', '/sprites/jesse/thrust.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-hurt', '/sprites/jesse/hurt.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-shoot', '/sprites/jesse/shoot.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-spellcast', '/sprites/jesse/spellcast.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-climb', '/sprites/jesse/climb.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-sit', '/sprites/jesse/sit.png', { frameWidth: 64, frameHeight: 64 })
-    this.load.spritesheet('jesse-emote', '/sprites/jesse/emote.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-idle', 'sprites/jesse/idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-combat-idle', 'sprites/jesse/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-walk', 'sprites/jesse/walk.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-run', 'sprites/jesse/run.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-jump', 'sprites/jesse/jump.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-slash', 'sprites/jesse/slash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-halfslash', 'sprites/jesse/halfslash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-backslash', 'sprites/jesse/backslash.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-thrust', 'sprites/jesse/thrust.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-hurt', 'sprites/jesse/hurt.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-shoot', 'sprites/jesse/shoot.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-spellcast', 'sprites/jesse/spellcast.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-climb', 'sprites/jesse/climb.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-sit', 'sprites/jesse/sit.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-emote', 'sprites/jesse/emote.png', { frameWidth: 64, frameHeight: 64 })
 
     // Load Jesse portrait for character selection (specific frame from combat_idle spritesheet)
-    this.load.spritesheet('jesse-combat-idle-frames', '/sprites/jesse/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('jesse-combat-idle-frames', 'sprites/jesse/combat_idle.png', { frameWidth: 64, frameHeight: 64 })
     
     // Load jesse as separate sprite for character selection
-    this.load.image('jesse', '/sprites/jesse/combat_idle.png')
+    this.load.image('jesse', 'sprites/jesse/combat_idle.png')
 
     // Load placeholder images for characters that don't have sprites yet
-    this.load.image('trade_queen', '/sprites/trade_queen/combat_idle.png')
-    this.load.image('hodl_master', '/sprites/hold_master/combat_idle.png')
+    this.load.image('trade_queen', 'sprites/trade_queen/combat_idle.png')
+    this.load.image('hodl_master', 'sprites/hold_master/combat_idle.png')
   }
 
   create() {
