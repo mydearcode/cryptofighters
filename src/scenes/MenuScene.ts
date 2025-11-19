@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import { SoundManager } from '../audio/SoundManager'
 
 export class MenuScene extends Phaser.Scene {
   constructor() {
@@ -168,5 +169,21 @@ export class MenuScene extends Phaser.Scene {
       lineSpacing: 4
     }).setOrigin(0.5)
     instructions.setAlpha(0.8)
+
+    // Play menu background music (if available)
+    SoundManager.playBgm(this, 'bg_menu', { loop: true, volume: 0.3 })
+
+    // Fallbacks for autoplay policies: resume on unlock or first interaction
+    this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+      SoundManager.playBgm(this, 'bg_menu', { loop: true, volume: 0.3 })
+    })
+    this.input.once('pointerdown', () => {
+      SoundManager.playBgm(this, 'bg_menu', { loop: true, volume: 0.3 })
+    })
+
+    // Ensure music stops when leaving this scene
+    this.events.once('shutdown', () => {
+      SoundManager.stopBgm(this)
+    })
   }
 }

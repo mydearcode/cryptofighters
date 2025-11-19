@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import { GAME_CONSTANTS } from '../config/GameConfig'
 import { Projectile, ProjectileType } from './Projectile'
 import { gameData } from '../data/DataManager'
+import { SoundManager } from '../audio/SoundManager'
 
 export interface CharacterData {
   id: string
@@ -1145,6 +1146,8 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     if (this.body && (this.body as Phaser.Physics.Arcade.Body).onFloor()) {
       (this.body as Phaser.Physics.Arcade.Body).setVelocityY(GAME_CONSTANTS.JUMP_VELOCITY)
       this.setCharacterState(CharacterState.JUMPING)
+      // Jump SFX
+      SoundManager.playSfx(this.scene, 'sfx_jump', { volume: 0.4 })
     }
   }
 
@@ -1163,6 +1166,8 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     switch (attackType) {
       case AttackType.BASIC:
         this.attackCooldown = moveData?.cooldown || 400 // Fast basic attack
+        // SFX for basic melee
+        SoundManager.playSfx(this.scene, 'sfx_attack_basic', { volume: 0.5 })
         // Show battle cry for BASIC attack as well
         if (moveData?.id) {
           this.showBattleCry(moveData.id, attackType)
@@ -1177,6 +1182,8 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
         } else {
           this.createProjectile(ProjectileType.BULLET)
         }
+        // SFX for special/projectile
+        SoundManager.playSfx(this.scene, 'sfx_attack_special', { volume: 0.5 })
         break
       case AttackType.SPECIAL2:
         this.attackCooldown = moveData?.cooldown || 600 // Medium speed
@@ -1187,6 +1194,8 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
         } else {
           this.createProjectile(ProjectileType.MAGIC)
         }
+        // SFX for special/projectile
+        SoundManager.playSfx(this.scene, 'sfx_attack_special', { volume: 0.5 })
         break
     }
     
@@ -1231,6 +1240,9 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
       (this.body as Phaser.Physics.Arcade.Body).setVelocityX(knockbackX)
     }
     
+    // Hit SFX
+    SoundManager.playSfx(this.scene, 'sfx_hit', { volume: 0.55 })
+
     if (this.health <= 0) {
       this.health = 0
       return true // Character is defeated
@@ -1304,6 +1316,8 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     const projectileType = ProjectileType[moveData.projectileType as keyof typeof ProjectileType]
     if (projectileType) {
       this.createProjectile(projectileType)
+      // Projectile spawn SFX
+      SoundManager.playSfx(this.scene, 'sfx_projectile', { volume: 0.5 })
     }
   }
 

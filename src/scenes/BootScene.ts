@@ -54,6 +54,16 @@ export class BootScene extends Phaser.Scene {
 
     // Load placeholder assets for now
     this.loadPlaceholderAssets()
+
+    // Load audio assets (served from publicDir 'assets')
+    this.load.audio('bg_menu', '/audio/bg_menu.mp3')
+    this.load.audio('bg_fight1', '/audio/bg_fight1.mp3')
+    this.load.audio('bg_fight2', '/audio/bg_fight2.mp3')
+    this.load.audio('countdown', '/audio/countdown.mp3')
+    this.load.audio('sfx_attack_basic', '/audio/sfx_attack_basic.mp3')
+    this.load.audio('sfx_attack_special', '/audio/sfx_attack_special.mp3')
+    this.load.audio('sfx_hit', '/audio/sfx_hit.mp3')
+    this.load.audio('sfx_projectile', '/audio/sfx_projectile.mp3')
   }
 
   private loadPlaceholderAssets() {

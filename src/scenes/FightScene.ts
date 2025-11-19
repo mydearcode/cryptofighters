@@ -9,6 +9,7 @@ import baseApprenaImg from '../assets/images/arenas/base_apprena.png'
 import tipboxArenaImg from '../assets/images/arenas/tipbox_arena.png'
 import baesArenaImg from '../assets/images/arenas/baes_arena.png'
 import memeArenaImg from '../assets/images/arenas/meme_arena.png'
+import { SoundManager } from '../audio/SoundManager'
 
 export class FightScene extends Phaser.Scene {
   private player1!: Character
@@ -45,6 +46,8 @@ export class FightScene extends Phaser.Scene {
 
   shutdown() {
     // Clean up all game objects and timers when leaving the scene
+    // Stop fight BGM
+    SoundManager.stopBgm(this)
     
     // Destroy timer
     if (this.gameTimer) {
@@ -169,6 +172,9 @@ export class FightScene extends Phaser.Scene {
 
     // Background (arena)
     this.createArena()
+
+    // Start fight background music (if available)
+    SoundManager.playBgm(this, 'bg_fight1', { loop: true, volume: 0.25 })
 
     // Create UI
     this.createUI(selectedCharacters)
