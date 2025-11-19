@@ -40,6 +40,11 @@ export class FightScene extends Phaser.Scene {
   private cpuNextAction: string = 'idle'
   private cpuActionCooldown: number = 0
 
+  // Mobile controls
+  private mobileButtonsCreated: boolean = false
+  private mobileMoveLeft: boolean = false
+  private mobileMoveRight: boolean = false
+
   constructor() {
     super({ key: 'FightScene' })
   }
@@ -184,6 +189,10 @@ export class FightScene extends Phaser.Scene {
 
     // Setup input
     this.setupInput()
+
+    // Create mobile controls if on mobile and single player
+    this.createMobileAttackButtons()
+    this.createMobileMovementControls()
 
     // Start with countdown for first round
     this.isRoundActive = false
@@ -415,6 +424,105 @@ export class FightScene extends Phaser.Scene {
     this.wasdKeys = this.input.keyboard!.addKeys('W,S,A,D,SPACE,Q,E,P,ENTER')
   }
 
+  private createMobileAttackButtons() {
+    const isMobile = this.sys.game.device.os.android || this.sys.game.device.os.iOS
+    const gameMode = this.registry.get('gameMode') || 'twoPlayer'
+    if (!isMobile || this.mobileButtonsCreated || gameMode !== 'singlePlayer') return
+
+    const width = this.cameras.main.width
+    const height = this.cameras.main.height
+    const margin = Math.max(10, Math.floor(width * 0.02))
+    const btnSize = Phaser.Math.Clamp(Math.floor(width * 0.12), 48, 64)
+    const y = height - margin - btnSize / 2
+
+    const makeBtn = (x: number, label: string, onTap: () => void) => {
+      const rect = this.add.rectangle(x, y, btnSize, btnSize, 0x8b0000, 0.85)
+        .setStrokeStyle(2, 0xffffff)
+        .setInteractive()
+        .setDepth(1000)
+        .setScrollFactor(0)
+      const txt = this.add.text(x, y, label, {
+        font: 'bold 14px Courier New',
+        color: '#ffffff'
+      }).setOrigin(0.5).setDepth(1001).setScrollFactor(0)
+      rect.on('pointerdown', () => {
+        if (!this.isRoundActive || this.isCountingDown || this.isMatchComplete) return
+        onTap()
+      })
+      return { rect, txt }
+    }
+
+    // Right side: three attack buttons (Basic, S1, S2)
+    const x3 = width - margin - btnSize / 2
+    const x2 = x3 - (btnSize + margin)
+    const x1 = x2 - (btnSize + margin)
+
+    makeBtn(x1, 'BASIC', () => this.player1.attack(AttackType.BASIC))
+    makeBtn(x2, 'S1', () => this.player1.attack(AttackType.SPECIAL1))
+    makeBtn(x3, 'S2', () => this.player1.attack(AttackType.SPECIAL2))
+
+    // Hint text for mobile
+    this.add.text(width - margin - 160, y - btnSize / 2 - 8, 'ATTACK', {
+      font: 'bold 12px Courier New',
+      color: '#ffccaa'
+    }).setDepth(1001).setScrollFactor(0)
+
+    this.mobileButtonsCreated = true
+  }
+
+  private createMobileMovementControls() {
+    const isMobile = this.sys.game.device.os.android || this.sys.game.device.os.iOS
+    const gameMode = this.registry.get('gameMode') || 'twoPlayer'
+    if (!isMobile || gameMode !== 'singlePlayer') return
+
+    const width = this.cameras.main.width
+    const height = this.cameras.main.height
+    const margin = Math.max(10, Math.floor(width * 0.02))
+    const btnSize = Phaser.Math.Clamp(Math.floor(width * 0.12), 48, 64)
+    const y = height - margin - btnSize / 2
+
+    const xLeft = margin + btnSize / 2
+    const xRight = xLeft + btnSize + margin
+    const xJump = xLeft + (btnSize + margin) / 2
+    const yJump = y - btnSize - margin
+
+    const makeCircleBtn = (x: number, yPos: number, label: string, onDown: () => void, onUp?: () => void) => {
+      const circle = this.add.circle(x, yPos, btnSize / 2, 0x1e1e2f, 0.7)
+        .setStrokeStyle(2, 0xffffff)
+        .setInteractive({ useHandCursor: true })
+        .setDepth(1000)
+        .setScrollFactor(0)
+      const txt = this.add.text(x, yPos, label, {
+        font: 'bold 16px Courier New',
+        color: '#ffffff'
+      }).setOrigin(0.5).setDepth(1001).setScrollFactor(0)
+      circle.on('pointerdown', () => {
+        if (!this.isRoundActive || this.isCountingDown || this.isMatchComplete) return
+        onDown()
+      })
+      circle.on('pointerup', () => {
+        onUp && onUp()
+      })
+      circle.on('pointerout', () => {
+        onUp && onUp()
+      })
+      return { circle, txt }
+    }
+
+    // Left and Right movement (hold to move)
+    makeCircleBtn(xLeft, y, '←', () => { this.mobileMoveLeft = true }, () => { this.mobileMoveLeft = false })
+    makeCircleBtn(xRight, y, '→', () => { this.mobileMoveRight = true }, () => { this.mobileMoveRight = false })
+
+    // Jump button above
+    makeCircleBtn(xJump, yJump, 'JUMP', () => { if (this.isRoundActive && !this.isCountingDown && !this.isMatchComplete) this.player1.jump() })
+
+    // Label
+    this.add.text(xRight + btnSize / 2 + 4, y - btnSize / 2 - 8, 'MOVE', {
+      font: 'bold 12px Courier New',
+      color: '#ffccaa'
+    }).setDepth(1001).setScrollFactor(0)
+  }
+
   private startRoundTimer() {
     // Reset timer to initial value
     this.roundTime = GAME_CONSTANTS.ROUND_TIME
@@ -489,10 +597,12 @@ export class FightScene extends Phaser.Scene {
 
     const gameMode = this.registry.get('gameMode') || 'twoPlayer'
     
-    // Player 1 controls (WASD) - only when round is active
-    if (this.wasdKeys.A.isDown) {
+    // Player 1 controls: merge keyboard + mobile D-pad
+    const p1Left = this.wasdKeys.A.isDown || this.mobileMoveLeft
+    const p1Right = this.wasdKeys.D.isDown || this.mobileMoveRight
+    if (p1Left && !p1Right) {
       this.player1.moveLeft()
-    } else if (this.wasdKeys.D.isDown) {
+    } else if (p1Right && !p1Left) {
       this.player1.moveRight()
     } else {
       this.player1.stopMovement()

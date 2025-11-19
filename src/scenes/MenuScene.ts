@@ -279,7 +279,12 @@ export class MenuScene extends Phaser.Scene {
       btn.addEventListener('click', (e) => { e.preventDefault(); close() })
     }
 
-    // Optional: click outside to close
-    overlay.on('pointerdown', () => close())
+    // Click outside the panel to close; clicks inside panel do NOT close
+    overlay.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
+      const cx = width / 2
+      const cy = height / 2
+      const insidePanel = Math.abs(pointer.x - cx) <= panelWidth / 2 && Math.abs(pointer.y - cy) <= panelHeight / 2
+      if (!insidePanel) close()
+    })
   }
 }
