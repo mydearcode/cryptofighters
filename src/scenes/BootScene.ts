@@ -44,6 +44,21 @@ export class BootScene extends Phaser.Scene {
       assetText.setText('Loading asset: ' + file.key)
     })
     
+    // Debug: log resolved URLs for successful and failed loads (helps platform diagnosis)
+    this.load.on('filecomplete', (key: string, _type: string, data: any) => {
+      try {
+        // Some loader file objects expose src/url; log defensively
+        const src = (data && (data.src || data.url)) || undefined
+        if (src) console.debug('Loaded asset OK:', key, '→', src)
+      } catch {}
+    })
+    this.load.on('loaderror', (file: any) => {
+      try {
+        const src = file?.src || file?.url || file?.urlFull || undefined
+        console.error('Asset load error:', file?.key, '→', src)
+      } catch {}
+    })
+    
     this.load.on('complete', () => {
       progressBar.destroy()
       progressBox.destroy()

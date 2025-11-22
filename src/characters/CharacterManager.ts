@@ -112,7 +112,7 @@ export class CharacterManager {
     const characters = this.getAllCharacters()
     characters.forEach(character => {
       // Load the default portrait/idle frame from public sprites directory
-      scene.load.image(character.sprite, `/sprites/${character.sprite}/combat_idle.png`)
+      scene.load.image(character.sprite, `sprites/${character.sprite}/combat_idle.png`)
     })
   }
 
